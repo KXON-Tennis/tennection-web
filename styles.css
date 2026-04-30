@@ -1,0 +1,286 @@
+:root {
+  --bg: #0f1419;
+  --surface: #1a1f26;
+  --border: #2a2f36;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a6b0;
+  --text-tertiary: #6b7280;
+  --accent: #d4ff00;
+  --accent-soft: rgba(212, 255, 0, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+    "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-primary);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .brand {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.site-header .accent-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.site-header nav {
+  margin-left: auto;
+  display: flex;
+  gap: 18px;
+}
+
+.site-header nav a {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.site-header nav a.active,
+.site-header nav a:hover {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  margin: 8px 0 8px;
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 40px 0 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  line-height: 1.4;
+}
+
+h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 32px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 24px 0 8px;
+  color: var(--text-primary);
+}
+
+p {
+  margin: 12px 0;
+  color: var(--text-secondary);
+}
+
+ul {
+  padding-left: 22px;
+  color: var(--text-secondary);
+}
+
+li {
+  margin: 6px 0;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin-bottom: 24px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  background: var(--surface);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  background: rgba(255, 255, 255, 0.03);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+td {
+  color: var(--text-secondary);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.contact {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin: 24px 0;
+}
+
+.contact strong {
+  color: var(--text-primary);
+}
+
+.hero {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+
+.hero .tag {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 44px;
+  margin-bottom: 12px;
+}
+
+.hero .lead {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 540px;
+  margin: 0 auto 32px;
+}
+
+.hero .accent-line {
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  margin: 0 auto 32px;
+  border-radius: 2px;
+}
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-row a {
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.cta-row a.primary {
+  background: var(--accent);
+  color: #000;
+}
+
+.cta-row a.secondary {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.cta-row a:hover {
+  text-decoration: none;
+  filter: brightness(1.1);
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 20px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+footer a {
+  color: var(--text-secondary);
+  margin: 0 8px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 24px 18px 60px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero .lead {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  table {
+    font-size: 13px;
+  }
+
+  th,
+  td {
+    padding: 10px 12px;
+  }
+}
