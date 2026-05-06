@@ -182,8 +182,37 @@ tr:last-child td {
 }
 
 .hero {
+  position: relative;
   text-align: center;
   padding: 60px 20px 40px;
+  overflow: hidden;
+}
+
+.hero .court-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero > *:not(.court-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero .device {
+  margin: 40px auto 0;
+  max-width: 280px;
+  filter: drop-shadow(0 22px 40px rgba(212, 255, 0, 0.10))
+          drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
+}
+
+.hero .device svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .hero .tag {
