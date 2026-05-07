@@ -26,6 +26,15 @@ body {
   color: var(--text-primary);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+
+  /* Full-viewport flex column so the landing page fits one screen with
+     the footer pinned to the bottom. Other pages (privacy/terms) still
+     work because the footer uses margin-top: auto (sticky-footer trick)
+     and content flows naturally above it. */
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
@@ -49,6 +58,7 @@ a:hover {
   gap: 12px;
   padding: 20px 24px;
   border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
 }
 
 .site-header .brand {
@@ -184,8 +194,17 @@ tr:last-child td {
 .hero {
   position: relative;
   text-align: center;
-  padding: 60px 20px 40px;
+  padding: 28px 20px 24px;
   overflow: hidden;
+
+  /* Fill the viewport between header and footer so the whole landing
+     page is visible without scrolling, and vertically centre the inner
+     content so the phone mockup sits in the optical middle. */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero .court-bg {
@@ -199,8 +218,10 @@ tr:last-child td {
 
 /* Looping hero video sits above the clay SVG so when the file is
    present it takes over visually; when it 404s the element stays
-   transparent and the SVG below shows through. Slight opacity +
-   dark blend keeps it from fighting the white/lime hero copy. */
+   transparent and the SVG below shows through. Knocked back hard
+   (opacity 0.32 + slight desaturate) so the dark/lime brand voice
+   stays dominant and any AI text artefacts in the footage blur into
+   the dark page bg rather than reading as gibberish signage. */
 .hero .hero-video {
   position: absolute;
   inset: 0;
@@ -209,18 +230,40 @@ tr:last-child td {
   object-fit: cover;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.55;
+  opacity: 0.32;
+  filter: saturate(0.85) brightness(0.95);
   background: transparent;
+}
+
+/* Dark vignette + bottom-fade overlay layered above the video. The
+   radial vignette pulls focus to the centre (where the phone mockup
+   sits) and darkens the corners — including the top-left where the
+   AI-generated ad-board text lives. */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 55%, rgba(15, 20, 25, 0.10) 0%,
+      rgba(15, 20, 25, 0.55) 70%, rgba(15, 20, 25, 0.85) 100%),
+    linear-gradient(to bottom, rgba(15, 20, 25, 0) 55%,
+      rgba(15, 20, 25, 0.6) 100%);
 }
 
 .hero > *:not(.court-bg):not(.hero-video) {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero .device {
-  margin: 40px auto 0;
-  max-width: 280px;
+  /* Scales with viewport height: phone aspect-ratio is 280/540 ≈ 0.519,
+     so we cap width at min(260px, 50vh × 0.52) to ensure header + h1 +
+     lead + phone + footer all fit a single 100vh viewport on laptops. */
+  margin: 18px auto 0;
+  max-width: min(260px, calc(50vh * 0.52));
+  width: 100%;
   filter: drop-shadow(0 22px 40px rgba(212, 255, 0, 0.10))
           drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
 }
@@ -243,22 +286,22 @@ tr:last-child td {
 }
 
 .hero h1 {
-  font-size: 44px;
-  margin-bottom: 12px;
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 
 .hero .lead {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--text-secondary);
   max-width: 540px;
-  margin: 0 auto 32px;
+  margin: 0 auto 16px;
 }
 
 .hero .accent-line {
   width: 48px;
   height: 3px;
   background: var(--accent);
-  margin: 0 auto 32px;
+  margin: 0 auto 18px;
   border-radius: 2px;
 }
 
@@ -294,10 +337,12 @@ tr:last-child td {
 
 footer {
   border-top: 1px solid var(--border);
-  padding: 24px 20px;
+  padding: 18px 20px;
   text-align: center;
   font-size: 13px;
   color: var(--text-tertiary);
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
 footer a {
