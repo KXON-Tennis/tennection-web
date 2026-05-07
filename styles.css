@@ -197,9 +197,25 @@ tr:last-child td {
   pointer-events: none;
 }
 
-.hero > *:not(.court-bg) {
-  position: relative;
+/* Looping hero video sits above the clay SVG so when the file is
+   present it takes over visually; when it 404s the element stays
+   transparent and the SVG below shows through. Slight opacity +
+   dark blend keeps it from fighting the white/lime hero copy. */
+.hero .hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   z-index: 1;
+  pointer-events: none;
+  opacity: 0.55;
+  background: transparent;
+}
+
+.hero > *:not(.court-bg):not(.hero-video) {
+  position: relative;
+  z-index: 2;
 }
 
 .hero .device {

@@ -22,8 +22,26 @@
   </header>
 
   <main class="hero">
+    <!-- Optional looping hero video. Drop /hero-loop.mp4 into the repo
+         root (and optionally /hero-loop.webm for a smaller alt) and it
+         takes over from the clay SVG below. While the file is missing
+         the <video> stays transparent and the SVG fallback shows. -->
+    <video
+      class="hero-video"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    >
+      <source src="/hero-loop.webm" type="video/webm" />
+      <source src="/hero-loop.mp4" type="video/mp4" />
+    </video>
+
     <!-- Clay-court backdrop: warm terracotta wash with a fine grit texture,
-         all subtle so the dark hero copy still reads cleanly on top. -->
+         all subtle so the dark hero copy still reads cleanly on top.
+         Also serves as fallback when /hero-loop.mp4 is missing. -->
     <svg class="court-bg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
         <radialGradient id="clayGlow" cx="50%" cy="55%" r="65%">
