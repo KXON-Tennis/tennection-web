@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>隱私權政策 · Tennection</title>
   <meta name="description" content="Tennection 隱私權政策——說明我們收集、使用、儲存與分享您個人資料的方式。" />
-  <meta name="last-modified" content="2026-05-07" />
+  <meta name="last-modified" content="2026-05-14" />
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="apple-touch-icon" href="/logo.png" />
   <link rel="stylesheet" href="/styles.css" />
@@ -24,7 +24,7 @@
 
   <article class="container">
     <h1>Tennection 隱私權政策</h1>
-    <p class="meta">最後更新日期：2026 年 5 月 7 日</p>
+    <p class="meta">最後更新日期：2026 年 5 月 14 日</p>
 
     <p>
       歡迎使用 Tennection（以下簡稱「本 App」）。本隱私權政策說明本 App 開發者（以下簡稱「我們」）會如何收集、使用、儲存與分享您的個人資料。請您於使用本 App 前詳細閱讀本政策。當您下載、安裝或使用本 App，即表示您已閱讀、理解並同意本政策內容。
@@ -35,7 +35,7 @@
 
     <h3>1.1 帳號與個人檔案資訊</h3>
     <ul>
-      <li>您透過 Email 或 Google 帳號登入時提供的:電子郵件地址、姓名、個人頭像、Google 使用者識別碼。</li>
+      <li>您透過 Email、Apple ID 或 Google 帳號登入時提供的:電子郵件地址、姓名、個人頭像、第三方識別碼(Apple 的 sub、Google 的 user ID)。使用 Apple 隱藏電子郵件功能時,我們僅取得 Apple 中繼的轉發位址,不會收到您的真實 Email。</li>
       <li>您主動於個人檔案中填寫的:暱稱、性別、慣用手、球技程度、所在地區等。</li>
     </ul>
 
@@ -67,6 +67,13 @@
     <h3>1.6 裝置與技術資訊</h3>
     <ul>
       <li>為了改善服務與排查錯誤，本 App 可能蒐集裝置型號、作業系統版本、語言設定、App 版本、Crash 紀錄。</li>
+    </ul>
+
+    <h3>1.7 球場活動分享(可關閉)</h3>
+    <ul>
+      <li>當您透過 GPS 在球場現場儲存練習或比賽紀錄時,本 App 會建立一筆「打卡紀錄」,於該紀錄產生後 3 小時內貢獻到該球場的「N 人在打」<strong>匿名計數</strong>。其他使用者只會看到計數,不會看到您的身份。</li>
+      <li>您可隨時在 App 內的「設定 → 隱私 → 分享我的球場活動到社群」關閉此功能;關閉後您將完全不計入該匿名計數。</li>
+      <li>推播通知(好友抵達同一球場時)走獨立路徑,只在您與對方互為好友時觸發,跟上述計數功能無關。</li>
     </ul>
 
     <p><strong>我們不會主動蒐集</strong>:通訊錄、簡訊、健康資料、Apple ID 密碼、信用卡資料。</p>
@@ -109,9 +116,24 @@
           <td><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a></td>
         </tr>
         <tr>
+          <td>Sign in with Apple</td>
+          <td>Apple ID 第三方登入</td>
+          <td><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a></td>
+        </tr>
+        <tr>
           <td>Google Sign-In</td>
-          <td>OAuth 第三方登入</td>
+          <td>Google 帳號第三方登入</td>
           <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td>
+        </tr>
+        <tr>
+          <td>Mapbox</td>
+          <td>球場地圖渲染與地理服務</td>
+          <td><a href="https://www.mapbox.com/legal/privacy" target="_blank" rel="noopener">mapbox.com/legal/privacy</a></td>
+        </tr>
+        <tr>
+          <td>Resend</td>
+          <td>系統 Email(登入連結、通知)</td>
+          <td><a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener">resend.com/legal/privacy-policy</a></td>
         </tr>
         <tr>
           <td>Apple TestFlight</td>
@@ -125,7 +147,7 @@
     <h2>5. 資料儲存位置與保留期限</h2>
     <ul>
       <li>您的資料儲存於 Supabase 託管之伺服器（目前位於亞太區域）。</li>
-      <li>帳號資料於您主動刪除帳號後 30 天內永久移除。</li>
+      <li>您可隨時於 App 內「設定 → 帳號 → 永久刪除帳號」自助刪除;送出後個人資料與相關紀錄即時永久移除,Apple 中繼 Email 等第三方識別碼亦同步解除綁定。</li>
       <li>練習與比賽紀錄會持續保留，直到您主動刪除。</li>
       <li>諮詢案件中的對話、圖片與影片內容預計依方案保留期限自動清除（Lite 7 天、Pro 30 天、Elite 1 年）。</li>
       <li>法令要求保留之資料（如交易紀錄）依相關法律期限保存。</li>
@@ -136,7 +158,7 @@
     <ul>
       <li><strong>存取</strong>:要求查閱我們持有的您個人資料副本。</li>
       <li><strong>更正</strong>:更新或修改不正確的資料。</li>
-      <li><strong>刪除</strong>:要求刪除您的帳號與所有相關資料（部分匿名化統計資料可能保留）。</li>
+      <li><strong>刪除</strong>:於 App 內「設定 → 帳號 → 永久刪除帳號」即可自助刪除;部分匿名化統計資料(如球場總計次數)可能保留但無法與您連結。</li>
       <li><strong>退出</strong>:撤回您先前授予的權限（位置、相機、相簿、推播）。</li>
       <li><strong>資料可攜</strong>:要求以結構化、機器可讀格式取得您的資料副本。</li>
     </ul>
