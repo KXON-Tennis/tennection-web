@@ -195,16 +195,33 @@ tr:last-child td {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   background:
     radial-gradient(ellipse at 50% 30%, var(--accent-soft) 0%, rgba(92, 154, 70, 0) 60%),
     var(--bg);
 }
 
-.hero .nutty {
-  width: 200px;
+.hero .device {
+  position: relative;
+  width: 100%;
+  max-width: 248px;
+  margin: 8px auto 22px;
+  filter: drop-shadow(0 18px 38px rgba(45, 90, 52, 0.16));
+}
+
+.hero .device svg {
+  width: 100%;
   height: auto;
-  margin-bottom: 4px;
-  filter: drop-shadow(0 10px 20px rgba(45, 90, 52, 0.18));
+  display: block;
+}
+
+.hero .device .peek {
+  position: absolute;
+  right: -18px;
+  bottom: -4px;
+  width: 92px;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.18));
 }
 
 .hero .tag {
@@ -334,8 +351,12 @@ footer a {
     font-size: 16px;
   }
 
-  .hero .nutty {
-    width: 168px;
+  .hero .device {
+    max-width: 218px;
+  }
+
+  .hero .device .peek {
+    width: 78px;
   }
 
   .features {
