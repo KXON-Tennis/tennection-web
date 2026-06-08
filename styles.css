@@ -505,11 +505,13 @@ footer a {
   background: #1A1A1A;
 }
 
-.sharecard .court-svg {
+.sharecard .court-photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: 38% center;
   display: block;
 }
 
