@@ -236,12 +236,12 @@ tr:last-child td {
 
 .hero .device .peek {
   position: absolute;
-  right: -8px;
-  bottom: -8px;
-  width: 86px;
+  right: -26px;
+  bottom: -18px;
+  width: 132px;
   height: auto;
   z-index: 3;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.18));
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.2));
 }
 
 .hero .tag {
@@ -498,7 +498,8 @@ footer a {
   }
 
   .hero .device .peek {
-    width: 72px;
+    width: 108px;
+    right: -18px;
   }
 
   .features {
