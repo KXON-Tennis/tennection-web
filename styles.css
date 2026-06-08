@@ -54,7 +54,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 18px 24px;
+  padding: 12px 24px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
   background: var(--surface);
@@ -74,7 +74,7 @@ a:hover {
 }
 
 .site-header .brand-wordmark {
-  height: 42px;
+  height: 58px;
   width: auto;
   display: block;
 }
