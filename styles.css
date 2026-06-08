@@ -67,10 +67,16 @@ a:hover {
   letter-spacing: 0.5px;
 }
 
-.site-header .brand-logo {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+.site-header .brand-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.site-header .brand-wordmark {
+  height: 30px;
+  width: auto;
+  display: block;
 }
 
 .site-header nav {
