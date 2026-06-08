@@ -502,16 +502,23 @@ footer a {
   overflow: hidden;
   transform: rotate(-3deg);
   box-shadow: 0 18px 40px rgba(45, 90, 52, 0.22);
-  background:
-    radial-gradient(120% 80% at 50% 0%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 50%),
-    linear-gradient(150deg, #6FB04A 0%, #3F8A4F 55%, #2F6B53 100%);
+  background: #1A1A1A;
+}
+
+.sharecard .court-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .sharecard .scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35),
-      rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.5) 100%);
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 42%),
+    linear-gradient(to top, rgba(26, 26, 26, 0.82) 0%, rgba(26, 26, 26, 0) 32%);
 }
 
 .sharecard .ov {
@@ -532,9 +539,18 @@ footer a {
 }
 
 .sharecard .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: 12px;
   font-weight: 800;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.sharecard .badge .bi {
+  width: 15px;
+  height: 15px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
 }
 
 .sharecard .mark {
@@ -574,10 +590,29 @@ footer a {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-.sharecard .scfoot {
+.sharecard .ov-foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sharecard .foot-nutty {
+  width: 19px;
+  height: 19px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+.sharecard .foot-brand {
   font-size: 10.5px;
-  margin-top: 10px;
-  opacity: 0.95;
+  font-weight: 700;
+  color: #F4ECD8;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.sharecard .foot-date {
+  margin-left: auto;
+  font-size: 10.5px;
+  opacity: 0.92;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 

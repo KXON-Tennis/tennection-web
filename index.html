@@ -169,17 +169,71 @@
     <p>拍照打卡，一鍵做成專屬圖卡，把你的高光時刻分享到社群。</p>
     <div class="sharewrap">
       <div class="sharecard">
+        <svg class="court-svg" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#37795A"/><stop offset=".4" stop-color="#2C6A4C"/><stop offset="1" stop-color="#21563C"/>
+            </linearGradient>
+            <linearGradient id="surf" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#61A24C"/><stop offset="1" stop-color="#4A8A39"/>
+            </linearGradient>
+          </defs>
+          <rect width="300" height="400" fill="url(#bg)"/>
+          <rect x="0" y="118" width="300" height="40" fill="#2A6047" opacity=".45"/>
+          <polygon points="112,150 188,150 268,366 32,366" fill="url(#surf)"/>
+          <g stroke="#F3F8EE" stroke-width="2.2" fill="none" opacity=".9" stroke-linejoin="round">
+            <polygon points="112,150 188,150 268,366 32,366"/>
+            <line x1="124" y1="150" x2="74" y2="366"/>
+            <line x1="176" y1="150" x2="226" y2="366"/>
+            <line x1="129" y1="196" x2="171" y2="196"/>
+            <line x1="86" y1="300" x2="214" y2="300"/>
+            <line x1="150" y1="196" x2="150" y2="232"/>
+            <line x1="150" y1="241" x2="150" y2="300"/>
+          </g>
+          <g>
+            <rect x="76" y="231" width="148" height="10" fill="#E9F2E3" opacity=".8"/>
+            <line x1="76" y1="236" x2="224" y2="236" stroke="#FFFFFF" stroke-width="2"/>
+            <rect x="73" y="224" width="4" height="18" fill="#dfeada"/>
+            <rect x="223" y="224" width="4" height="18" fill="#dfeada"/>
+          </g>
+          <g fill="#27402F">
+            <ellipse cx="130" cy="179" rx="13" ry="3" fill="#1c3326" opacity=".5"/>
+            <rect x="127" y="163" width="4" height="16" rx="2"/><rect x="132" y="163" width="4" height="16" rx="2"/>
+            <rect x="123" y="146" width="14" height="20" rx="6"/><circle cx="130" cy="141" r="6"/>
+            <ellipse cx="170" cy="179" rx="13" ry="3" fill="#1c3326" opacity=".5"/>
+            <rect x="167" y="163" width="4" height="16" rx="2"/><rect x="172" y="163" width="4" height="16" rx="2"/>
+            <rect x="163" y="146" width="14" height="20" rx="6"/><circle cx="170" cy="141" r="6"/>
+          </g>
+          <g fill="#15221A">
+            <ellipse cx="92" cy="352" rx="27" ry="6" fill="#102018" opacity=".4"/>
+            <ellipse cx="206" cy="352" rx="27" ry="6" fill="#102018" opacity=".4"/>
+            <rect x="82" y="316" width="8" height="36" rx="4"/><rect x="94" y="316" width="8" height="36" rx="4"/>
+            <rect x="79" y="284" width="26" height="38" rx="11"/><circle cx="92" cy="276" r="11"/>
+            <line x1="82" y1="292" x2="75" y2="314" stroke="#15221A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="101" y1="288" x2="120" y2="260" stroke="#15221A" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="127" cy="250" r="10" fill="none" stroke="#15221A" stroke-width="3"/>
+            <rect x="196" y="316" width="8" height="36" rx="4"/><rect x="208" y="316" width="8" height="36" rx="4"/>
+            <rect x="193" y="286" width="26" height="36" rx="11"/><circle cx="206" cy="278" r="11"/>
+            <line x1="196" y1="294" x2="189" y2="314" stroke="#15221A" stroke-width="8" stroke-linecap="round"/>
+            <line x1="216" y1="294" x2="231" y2="308" stroke="#15221A" stroke-width="7" stroke-linecap="round"/>
+            <ellipse cx="238" cy="314" rx="8" ry="10" fill="none" stroke="#15221A" stroke-width="2.5" transform="rotate(35 238 314)"/>
+          </g>
+        </svg>
         <div class="scrim"></div>
         <div class="ov">
-          <div class="ov-row">
-            <span class="badge">🏆 勝 · 雙打</span>
-            <span class="mark"><img src="/logo.png" alt="" />Tennis Nut</span>
-          </div>
-          <div>
+          <div class="ov-top">
+            <div class="ov-row">
+              <span class="badge"><svg class="bi" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#B6F06A"/><path d="M2.4 4.2C5 5.6 5 10.4 2.4 11.8M13.6 4.2C11 5.6 11 10.4 13.6 11.8" stroke="#2F6B3A" stroke-width="1.3" fill="none"/></svg>勝 · 雙打</span>
+              <span class="mark"><img src="logo.png" alt="" />Tennis Nut</span>
+            </div>
             <div class="court">中央大學網球場</div>
             <div class="vs">我 &amp; Jenny　vs　Carl &amp; 阿宏</div>
             <div class="score">6-4　3-6　7-5</div>
-            <div class="scfoot">🌰 Tennis Nut · 球場好夥伴　2026.06.09</div>
+          </div>
+          <div class="ov-foot">
+            <img src="nutty.png" alt="" class="foot-nutty" />
+            <span class="foot-brand">Tennis Nut · 球場好夥伴</span>
+            <span class="foot-date">2026.06.09</span>
           </div>
         </div>
       </div>
