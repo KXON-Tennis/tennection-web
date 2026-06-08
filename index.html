@@ -1,183 +1,74 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tennection · 記錄每一球，連結每一場</title>
-  <meta name="description" content="Tennection 是專為網球玩家打造的練習日記與專家諮詢 App。記錄練習、找球友、與專業團隊建立長期合作。" />
+  <title>Tennis Nut · 記錄每一球，連結每一場</title>
+  <meta name="description"
+    content="Tennis Nut 是專為網球玩家打造的 App：看球場即時狀態、用堅果點數向專業教練團提問、記錄練習與比賽、找球友。" />
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="apple-touch-icon" href="/logo.png" />
-  <meta property="og:title" content="Tennection" />
-  <meta property="og:description" content="口袋裡的專業團隊：網球、體能、物理治療、營養、心理。透過諮詢獲取專屬行動建議。" />
+  <meta property="og:title" content="Tennis Nut" />
+  <meta property="og:description"
+    content="口袋裡的專業團隊 + 全台球場即時狀態。回報球場、記錄練習賺堅果，用堅果向網球/體能/物療/營養/運動心理專家提問。" />
   <meta property="og:image" content="/logo.png" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
+
 <body>
   <header class="site-header">
     <a href="/" style="display: flex; align-items: center; gap: 12px; color: inherit; text-decoration: none;">
-      <img src="/logo.png" alt="Tennection" class="brand-logo" />
-      <span class="brand">TENNECTION</span>
+      <img src="/logo.png" alt="Tennis Nut" class="brand-logo" />
+      <span class="brand">Tennis Nut</span>
     </a>
   </header>
 
   <main class="hero">
-    <!-- Optional looping hero video. Drop /hero-loop.mp4 into the repo
-         root (and optionally /hero-loop.webm for a smaller alt) and it
-         takes over from the clay SVG below. While the file is missing
-         the <video> stays transparent and the SVG fallback shows. -->
-    <video
-      class="hero-video"
-      autoplay
-      loop
-      muted
-      playsinline
-      preload="auto"
-      aria-hidden="true"
-    >
-      <source src="/hero-loop.webm" type="video/webm" />
-      <source src="/hero-loop.mp4" type="video/mp4" />
-    </video>
-
-    <!-- Clay-court backdrop: warm terracotta wash with a fine grit texture,
-         all subtle so the dark hero copy still reads cleanly on top.
-         Also serves as fallback when /hero-loop.mp4 is missing. -->
-    <svg class="court-bg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <radialGradient id="clayGlow" cx="50%" cy="55%" r="65%">
-          <stop offset="0%" stop-color="rgba(199, 95, 55, 0.28)" />
-          <stop offset="60%" stop-color="rgba(174, 76, 42, 0.14)" />
-          <stop offset="100%" stop-color="rgba(199, 95, 55, 0)" />
-        </radialGradient>
-        <pattern id="clayGrit" patternUnits="userSpaceOnUse" width="6" height="6">
-          <circle cx="1.5" cy="2" r="0.45" fill="rgba(220, 130, 90, 0.18)" />
-          <circle cx="4.5" cy="4.5" r="0.35" fill="rgba(150, 65, 35, 0.22)" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#clayGlow)" />
-      <rect width="100%" height="100%" fill="url(#clayGrit)" />
-    </svg>
-
-    <span class="tag">COMING SOON</span>
+    <span class="tag">搶先體驗中 🌰</span>
+    <img src="/nutty.png" alt="Nutty" class="nutty" />
     <h1>記錄每一球，<br />連結每一場</h1>
-    <div class="accent-line"></div>
     <p class="lead">
-      口袋裡的專業團隊：網球、體能、物理治療、營養、心理。透過諮詢獲取專屬行動建議。
+      口袋裡的專業團隊，加上全台球場即時狀態。<br />
+      回報球場、記錄練習賺堅果，用堅果向專家提問。
     </p>
-
-    <!-- Phone mockup showing the in-app team-hero element. -->
-    <div class="device">
-      <svg viewBox="0 0 280 540" xmlns="http://www.w3.org/2000/svg" aria-label="Tennection app preview">
-        <defs>
-          <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="rgba(212,255,0,0.18)" />
-            <stop offset="100%" stop-color="rgba(212,255,0,0.04)" />
-          </linearGradient>
-          <!-- Shared circle clip so each portrait silhouette stays inside
-               its frame regardless of head/body proportions. Origin-centred
-               so we can re-translate per avatar. -->
-          <clipPath id="avatarClip">
-            <circle cx="0" cy="0" r="22" />
-          </clipPath>
-          <!-- Solid silhouette colours — head sits on top of shoulders so
-               we use opaque tones, head a few stops lighter than the body
-               so the chin reads cleanly against the clothing. -->
-          <linearGradient id="headFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#e0e6ec" />
-            <stop offset="100%" stop-color="#c0c8d0" />
-          </linearGradient>
-          <linearGradient id="bodyFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#dde3e8" />
-            <stop offset="100%" stop-color="#b9c1cb" />
-          </linearGradient>
-        </defs>
-
-        <!-- phone frame -->
-        <rect x="0" y="0" width="280" height="540" rx="40" fill="#1a1f26" stroke="#2a2f36" stroke-width="2" />
-        <!-- screen -->
-        <rect x="10" y="10" width="260" height="520" rx="32" fill="#0f1419" />
-        <!-- notch -->
-        <rect x="110" y="20" width="60" height="14" rx="7" fill="#1a1f26" />
-
-        <!-- header brand -->
-        <text x="140" y="70" text-anchor="middle" fill="#d4ff00" font-size="11" font-weight="800" letter-spacing="2" font-family="-apple-system, sans-serif">TENNECTION</text>
-
-        <!-- greeting line -->
-        <text x="28" y="112" fill="#fff" font-size="13" font-weight="800" font-family="-apple-system, sans-serif">嗨，Kayson</text>
-
-        <!-- team hero card -->
-        <rect x="22" y="130" width="236" height="148" rx="16" fill="url(#heroGrad)" stroke="rgba(212,255,0,0.35)" stroke-width="1" />
-
-        <!-- Overlapping ringed avatars. Each portrait is a stylised
-             silhouette (head + shoulders) with the type accent ring,
-             matching how the app renders coaches without a profile photo. -->
-        <g transform="translate(62, 180)">
-          <circle cx="0" cy="0" r="22" fill="#1d242c" />
-          <circle cx="0" cy="0" r="22" fill="#C2D680" fill-opacity="0.22" />
-          <g clip-path="url(#avatarClip)">
-            <ellipse cx="0" cy="14" rx="14" ry="11" fill="url(#bodyFill)" />
-            <circle cx="0" cy="-3" r="9" fill="url(#headFill)" />
-          </g>
-          <circle cx="0" cy="0" r="22" fill="none" stroke="#C2D680" stroke-width="2" />
-        </g>
-
-        <g transform="translate(100, 180)">
-          <circle cx="0" cy="0" r="22" fill="#1d242c" />
-          <circle cx="0" cy="0" r="22" fill="#E1A485" fill-opacity="0.22" />
-          <g clip-path="url(#avatarClip)">
-            <ellipse cx="0" cy="15" rx="15" ry="12" fill="url(#bodyFill)" />
-            <circle cx="0" cy="-2" r="9.5" fill="url(#headFill)" />
-          </g>
-          <circle cx="0" cy="0" r="22" fill="none" stroke="#E1A485" stroke-width="2" />
-        </g>
-
-        <g transform="translate(138, 180)">
-          <circle cx="0" cy="0" r="22" fill="#1d242c" />
-          <circle cx="0" cy="0" r="22" fill="#9DBBD0" fill-opacity="0.22" />
-          <g clip-path="url(#avatarClip)">
-            <ellipse cx="0" cy="14" rx="13" ry="10.5" fill="url(#bodyFill)" />
-            <circle cx="0" cy="-3" r="8.5" fill="url(#headFill)" />
-          </g>
-          <circle cx="0" cy="0" r="22" fill="none" stroke="#9DBBD0" stroke-width="2" />
-        </g>
-
-        <g transform="translate(176, 180)">
-          <circle cx="0" cy="0" r="22" fill="#1d242c" />
-          <circle cx="0" cy="0" r="22" fill="#D6BD8A" fill-opacity="0.22" />
-          <g clip-path="url(#avatarClip)">
-            <ellipse cx="0" cy="14.5" rx="14" ry="11" fill="url(#bodyFill)" />
-            <circle cx="0" cy="-3" r="9" fill="url(#headFill)" />
-          </g>
-          <circle cx="0" cy="0" r="22" fill="none" stroke="#D6BD8A" stroke-width="2" />
-        </g>
-
-        <text x="40" y="232" fill="#fff" font-size="13" font-weight="800" font-family="-apple-system, sans-serif">您的專業團隊已就位</text>
-        <text x="40" y="252" fill="#a0a6b0" font-size="10" font-family="-apple-system, sans-serif">與 Carl、Jenny 等專家一同推動你的網球極限</text>
-
-        <!-- list items -->
-        <text x="22" y="312" fill="#a0a6b0" font-size="11" font-weight="700" font-family="-apple-system, sans-serif">進行中</text>
-        <rect x="22" y="324" width="236" height="64" rx="12" fill="#1a1f26" />
-        <circle cx="38" cy="356" r="4" fill="#d4ff00" />
-        <text x="50" y="350" fill="#fff" font-size="11" font-weight="700" font-family="-apple-system, sans-serif">反手切球角度問題</text>
-        <text x="50" y="366" fill="#a0a6b0" font-size="9" font-family="-apple-system, sans-serif">Carl 教練 ・ 等你追問</text>
-
-        <text x="22" y="416" fill="#a0a6b0" font-size="11" font-weight="700" font-family="-apple-system, sans-serif">新諮詢</text>
-        <rect x="22" y="428" width="112" height="68" rx="14" fill="rgba(194,214,128,0.08)" stroke="rgba(194,214,128,0.45)" stroke-width="1" />
-        <text x="34" y="476" fill="#fff" font-size="11" font-weight="800" font-family="-apple-system, sans-serif">網球技術</text>
-        <text x="34" y="488" fill="rgba(194,214,128,0.95)" font-size="8" font-family="-apple-system, sans-serif">抽球・發球・步法</text>
-
-        <rect x="146" y="428" width="112" height="68" rx="14" fill="rgba(225,164,133,0.08)" stroke="rgba(225,164,133,0.45)" stroke-width="1" />
-        <text x="158" y="476" fill="#fff" font-size="11" font-weight="800" font-family="-apple-system, sans-serif">體能訓練</text>
-        <text x="158" y="488" fill="rgba(225,164,133,0.95)" font-size="8" font-family="-apple-system, sans-serif">肌力・爆發力・核心</text>
-      </svg>
+    <div class="cta-row">
+      <a class="primary" href="https://forms.gle/N7EKJ58FmvhVKQs69" target="_blank" rel="noopener">
+        🌰 申請搶先體驗
+      </a>
     </div>
   </main>
+
+  <section class="features">
+    <div class="feature">
+      <div class="fi">📢</div>
+      <h3>球場即時狀態</h3>
+      <p>客滿、溼滑、損壞，出門前先知道。一鍵回報、把主場加最愛還能收即時推播。</p>
+    </div>
+    <div class="feature">
+      <div class="fi">🎾</div>
+      <h3>問專業教練團</h3>
+      <p>網球技術、體能訓練、物理治療、營養、運動心理——用堅果點數換專家的專屬解答。</p>
+    </div>
+    <div class="feature">
+      <div class="fi">📓</div>
+      <h3>記錄練習與比賽</h3>
+      <p>練習日記、比賽戰績、球場征服，還能做成專屬圖卡分享給球友。</p>
+    </div>
+    <div class="feature">
+      <div class="fi">🌰</div>
+      <h3>堅果點數</h3>
+      <p>回報球場、記錄練習比賽、拜訪新球場都能賺堅果，再拿去換教練解答。</p>
+    </div>
+  </section>
 
   <footer>
     <a href="/privacy">隱私權政策</a>·
     <a href="/terms">服務條款</a>·
     <a href="mailto:kaysoncho@gmail.com">聯絡我們</a>
-    <div style="margin-top: 12px;">© 2026 Tennection · KXON</div>
+    <div style="margin-top: 12px;">© 2026 Tennis Nut · KXON</div>
   </footer>
 </body>
+
 </html>

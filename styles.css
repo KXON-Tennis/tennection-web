@@ -1,12 +1,14 @@
 :root {
-  --bg: #0f1419;
-  --surface: #1a1f26;
-  --border: #2a2f36;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a6b0;
-  --text-tertiary: #6b7280;
-  --accent: #d4ff00;
-  --accent-soft: rgba(212, 255, 0, 0.12);
+  --bg: #FBFAF6;
+  --surface: #FFFFFF;
+  --border: #ECEAE2;
+  --text-primary: #2E5A34;
+  --text-secondary: #5E7A60;
+  --text-tertiary: #93A795;
+  --accent: #5C9A46;
+  --accent-d: #3C6E3F;
+  --accent-soft: rgba(92, 154, 70, 0.12);
+  --tint: #F3F8EC;
 }
 
 * {
@@ -26,11 +28,6 @@ body {
   color: var(--text-primary);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
-
-  /* Full-viewport flex column so the landing page fits one screen with
-     the footer pinned to the bottom. Other pages (privacy/terms) still
-     work because the footer uses margin-top: auto (sticky-footer trick)
-     and content flows naturally above it. */
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -38,7 +35,7 @@ body {
 }
 
 a {
-  color: var(--accent);
+  color: var(--accent-d);
   text-decoration: none;
 }
 
@@ -56,23 +53,17 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 20px 24px;
+  padding: 18px 24px;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
+  background: var(--surface);
 }
 
 .site-header .brand {
   font-size: 18px;
   font-weight: 800;
-  color: var(--text-primary);
+  color: var(--accent-d);
   letter-spacing: 0.5px;
-}
-
-.site-header .accent-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
 }
 
 .site-header .brand-logo {
@@ -104,6 +95,7 @@ h1 {
   letter-spacing: -0.3px;
   margin: 8px 0 8px;
   line-height: 1.25;
+  color: var(--accent-d);
 }
 
 h2 {
@@ -113,6 +105,7 @@ h2 {
   padding-top: 12px;
   border-top: 1px solid var(--border);
   line-height: 1.4;
+  color: var(--accent-d);
 }
 
 h2:first-of-type {
@@ -154,6 +147,7 @@ table {
   margin: 16px 0;
   font-size: 14px;
   background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -166,7 +160,7 @@ td {
 }
 
 th {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--tint);
   font-weight: 700;
   color: var(--text-primary);
 }
@@ -180,7 +174,7 @@ tr:last-child td {
 }
 
 .contact {
-  background: var(--surface);
+  background: var(--tint);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 18px 20px;
@@ -191,118 +185,50 @@ tr:last-child td {
   color: var(--text-primary);
 }
 
+/* ── Hero ── */
 .hero {
   position: relative;
   text-align: center;
-  padding: 28px 20px 24px;
-  overflow: hidden;
-
-  /* Fill the viewport between header and footer so the whole landing
-     page is visible without scrolling, and vertically centre the inner
-     content so the phone mockup sits in the optical middle. */
+  padding: 36px 20px 28px;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.hero .court-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Looping hero video sits above the clay SVG so when the file is
-   present it takes over visually; when it 404s the element stays
-   transparent and the SVG below shows through. Knocked back hard
-   (opacity 0.32 + slight desaturate) so the dark/lime brand voice
-   stays dominant and any AI text artefacts in the footage blur into
-   the dark page bg rather than reading as gibberish signage. */
-.hero .hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.32;
-  filter: saturate(0.85) brightness(0.95);
-  background: transparent;
-}
-
-/* Dark vignette + bottom-fade overlay layered above the video. The
-   radial vignette pulls focus to the centre (where the phone mockup
-   sits) and darkens the corners — including the top-left where the
-   AI-generated ad-board text lives. */
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
   background:
-    radial-gradient(ellipse at 50% 55%, rgba(15, 20, 25, 0.10) 0%,
-      rgba(15, 20, 25, 0.55) 70%, rgba(15, 20, 25, 0.85) 100%),
-    linear-gradient(to bottom, rgba(15, 20, 25, 0) 55%,
-      rgba(15, 20, 25, 0.6) 100%);
+    radial-gradient(ellipse at 50% 30%, var(--accent-soft) 0%, rgba(92, 154, 70, 0) 60%),
+    var(--bg);
 }
 
-.hero > *:not(.court-bg):not(.hero-video) {
-  position: relative;
-  z-index: 3;
-}
-
-.hero .device {
-  /* Scales with viewport height: phone aspect-ratio is 280/540 ≈ 0.519,
-     so we cap width at min(260px, 50vh × 0.52) to ensure header + h1 +
-     lead + phone + footer all fit a single 100vh viewport on laptops. */
-  margin: 18px auto 0;
-  max-width: min(260px, calc(50vh * 0.52));
-  width: 100%;
-  filter: drop-shadow(0 22px 40px rgba(212, 255, 0, 0.10))
-          drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
-}
-
-.hero .device svg {
-  width: 100%;
+.hero .nutty {
+  width: 200px;
   height: auto;
-  display: block;
+  margin-bottom: 4px;
+  filter: drop-shadow(0 10px 20px rgba(45, 90, 52, 0.18));
 }
 
 .hero .tag {
   display: inline-block;
-  padding: 6px 12px;
-  border: 1px solid var(--border);
+  padding: 6px 14px;
   border-radius: 999px;
   font-size: 12px;
+  font-weight: 700;
   letter-spacing: 1px;
-  color: var(--text-secondary);
-  margin-bottom: 20px;
+  color: #fff;
+  background: var(--accent);
+  margin-bottom: 18px;
 }
 
 .hero h1 {
-  font-size: 40px;
-  margin-bottom: 10px;
+  font-size: 38px;
+  margin-bottom: 12px;
 }
 
 .hero .lead {
   font-size: 17px;
   color: var(--text-secondary);
   max-width: 540px;
-  margin: 0 auto 16px;
-}
-
-.hero .accent-line {
-  width: 48px;
-  height: 3px;
-  background: var(--accent);
-  margin: 0 auto 18px;
-  border-radius: 2px;
+  margin: 0 auto 24px;
 }
 
 .cta-row {
@@ -313,26 +239,66 @@ tr:last-child td {
 }
 
 .cta-row a {
-  padding: 12px 22px;
+  padding: 13px 24px;
   border-radius: 999px;
   font-weight: 700;
   font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .cta-row a.primary {
   background: var(--accent);
-  color: #000;
+  color: #fff;
 }
 
 .cta-row a.secondary {
   background: var(--surface);
-  color: var(--text-primary);
-  border: 1px solid var(--border);
+  color: var(--accent-d);
+  border: 1px solid var(--accent);
 }
 
 .cta-row a:hover {
   text-decoration: none;
-  filter: brightness(1.1);
+  filter: brightness(1.05);
+}
+
+/* ── Features ── */
+.features {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 8px 20px 56px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.feature {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(45, 50, 35, 0.04);
+}
+
+.feature .fi {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.feature h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--accent-d);
+}
+
+.feature p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 footer {
@@ -343,6 +309,7 @@ footer {
   color: var(--text-tertiary);
   flex-shrink: 0;
   margin-top: auto;
+  background: var(--surface);
 }
 
 footer a {
@@ -360,11 +327,19 @@ footer a {
   }
 
   .hero h1 {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .hero .lead {
     font-size: 16px;
+  }
+
+  .hero .nutty {
+    width: 168px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
   }
 
   h2 {
