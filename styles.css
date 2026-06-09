@@ -963,21 +963,40 @@ footer a {
   margin: 0 auto;
 }
 
-.sharewrap {
-  position: relative;
-  width: 244px;
-  margin: 28px auto 0;
+.share-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 18px;
+  margin: 34px auto 0;
+  flex-wrap: wrap;
 }
 
 .sharecard {
   position: relative;
-  width: 244px;
-  height: 325px;
+  width: 220px;
+  height: 293px;
   border-radius: 18px;
   overflow: hidden;
-  transform: rotate(-3deg);
   box-shadow: 0 18px 40px rgba(45, 90, 52, 0.22);
   background: #1A1A1A;
+}
+
+.share-gallery .sharecard:nth-child(odd) {
+  transform: rotate(-2.5deg);
+}
+
+.share-gallery .sharecard:nth-child(even) {
+  transform: rotate(2.5deg);
+  margin-top: 10px;
+}
+
+.sc-practice {
+  background: linear-gradient(155deg, #357142 0%, #1C432A 100%);
+}
+
+.sc-visit {
+  background: linear-gradient(155deg, #3E7B4B 0%, #214A2D 100%);
 }
 
 .sharecard .court-photo {
@@ -1066,6 +1085,19 @@ footer a {
   margin-top: 8px;
   letter-spacing: 1px;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.sharecard .score.stat {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.sharecard .score.stat small {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  color: #F4ECD8;
 }
 
 .sharecard .ov-foot {
@@ -1312,6 +1344,46 @@ footer a {
   background: #3C8E3A;
 }
 
+/* iOS section — blue theme (Android keeps the default green) */
+.plat-btn[href="#ios"] {
+  border-color: #0D7DD6;
+  color: #0A5FA8;
+}
+
+.plat-btn[href="#ios"]:hover {
+  background: #E8F2FB;
+}
+
+#ios .plat-h {
+  color: #0A5FA8;
+}
+
+#ios .step-no {
+  background: #0D7DD6;
+}
+
+#ios .step-body h3 {
+  color: #0A5FA8;
+}
+
+#ios .step-art {
+  color: #0D7DD6;
+}
+
+#ios .mini-btn {
+  color: #0A5FA8;
+  border-color: #8FC8EF;
+}
+
+#ios .mini-btn:hover {
+  background: #E8F2FB;
+}
+
+#ios .callout {
+  background: #E8F2FB;
+  border-color: #BFE0F7;
+}
+
 .guide .hint {
   font-size: 12.5px;
   color: var(--text-tertiary);
@@ -1347,6 +1419,28 @@ footer a {
 @media (max-width: 600px) {
   .container {
     padding: 24px 18px 60px;
+  }
+
+  .share-gallery {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 8px 18px 16px;
+    margin-top: 24px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .share-gallery .sharecard {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+  }
+
+  .share-gallery .sharecard:nth-child(odd),
+  .share-gallery .sharecard:nth-child(even) {
+    transform: none;
+    margin-top: 0;
   }
 
   .step-art {
