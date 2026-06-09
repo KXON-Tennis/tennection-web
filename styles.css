@@ -666,28 +666,28 @@ tr:last-child td {
   max-width: 230px;
 }
 
-.callout {
+.app-callout {
   background: rgba(0, 0, 0, 0.22);
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 14px;
   padding: 13px 15px;
 }
 
-.callout b {
+.app-callout b {
   display: block;
   color: #fff;
   font-size: 14.5px;
   font-weight: 800;
 }
 
-.callout span {
+.app-callout span {
   display: block;
   color: rgba(255, 255, 255, 0.9);
   font-size: 12px;
   margin-top: 2px;
 }
 
-.callout-col.left .callout {
+.callout-col.left .app-callout {
   text-align: right;
 }
 
@@ -728,11 +728,11 @@ tr:last-child td {
     width: 100%;
   }
 
-  .callout-col.left .callout {
+  .callout-col.left .app-callout {
     text-align: left;
   }
 
-  .callout {
+  .app-callout {
     flex: 1;
   }
 
