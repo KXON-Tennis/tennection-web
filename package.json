@@ -1,0 +1,10 @@
+{
+  "name": "tennection-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tennis Nut official website",
+  "scripts": {
+    "ship": "npx vercel deploy --prod --yes",
+    "ship-apk": "bash scripts/ship-apk.sh"
+  }
+}

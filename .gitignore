@@ -6,3 +6,6 @@ node_modules/
 
 # test APK — hosted on Vercel, not tracked in git
 tennisnut.apk
+
+# allow this repo's package.json past the global *.json ignore
+!package.json
