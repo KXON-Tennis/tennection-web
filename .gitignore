@@ -3,3 +3,6 @@
 node_modules/
 *.log
 .vercel
+
+# test APK — hosted on Vercel, not tracked in git
+tennisnut.apk
