@@ -1222,6 +1222,11 @@ footer a {
   color: #3C6E3F;
 }
 
+.plat-ic.line {
+  background: #06C755;
+  color: #fff;
+}
+
 .steps {
   list-style: none;
   padding: 0;
