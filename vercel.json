@@ -1,4 +1,12 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "tennection.kxon.net" }],
+      "destination": "https://tennisnut.kxon.net/$1",
+      "permanent": true
+    }
+  ]
 }

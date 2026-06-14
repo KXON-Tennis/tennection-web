@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="App 專屬功能：把堅果變成你的網球資產"
+     font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <linearGradient id="court" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#356641"/>
+      <stop offset="1" stop-color="#264B30"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBFAF5"/>
+      <stop offset="1" stop-color="#EFEDE3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- court background -->
+  <rect width="1200" height="630" fill="url(#court)"/>
+  <g stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="3" fill="none">
+    <rect x="40" y="150" width="1120" height="440" rx="6"/>
+    <line x1="600" y1="150" x2="600" y2="590"/>
+    <line x1="40" y1="370" x2="1160" y2="370"/>
+  </g>
+
+  <!-- badge -->
+  <g transform="translate(600,52)" text-anchor="middle">
+    <rect x="-78" y="-22" width="156" height="40" rx="20" fill="#E8C84F"/>
+    <text y="6" font-size="22" font-weight="700" fill="#274A30">🌰 APP 限定</text>
+  </g>
+
+  <!-- heading -->
+  <text x="600" y="128" text-anchor="middle" font-size="50" font-weight="800" fill="#FFFFFF">
+    把堅果變成你的<tspan fill="#E8C84F">網球資產</tspan>
+  </text>
+  <text x="600" y="166" text-anchor="middle" font-size="20" fill="#FFFFFF" fill-opacity="0.82">
+    先在 LINE 回報球場、賽程，再用 App 解鎖只在這裡才有的完整功能
+  </text>
+
+  <!-- phone -->
+  <g transform="translate(600,400)">
+    <rect x="-110" y="-185" width="220" height="370" rx="34" fill="#10271A" stroke="#0B1B12" stroke-width="3"/>
+    <rect x="-96" y="-171" width="192" height="342" rx="24" fill="url(#screen)"/>
+    <!-- status / header -->
+    <rect x="-96" y="-171" width="192" height="46" rx="24" fill="#2E5A37"/>
+    <rect x="-96" y="-149" width="192" height="24" fill="#2E5A37"/>
+    <text x="0" y="-141" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">我的揪球</text>
+    <!-- list rows -->
+    <g>
+      <rect x="-80" y="-110" width="160" height="46" rx="10" fill="#FFFFFF"/>
+      <circle cx="-58" cy="-87" r="12" fill="#E8C84F"/>
+      <rect x="-38" y="-97" width="96" height="9" rx="4.5" fill="#2E5A37"/>
+      <rect x="-38" y="-82" width="64" height="8" rx="4" fill="#C9D3CC"/>
+
+      <rect x="-80" y="-56" width="160" height="46" rx="10" fill="#FFFFFF"/>
+      <circle cx="-58" cy="-33" r="12" fill="#7FB084"/>
+      <rect x="-38" y="-43" width="96" height="9" rx="4.5" fill="#2E5A37"/>
+      <rect x="-38" y="-28" width="72" height="8" rx="4" fill="#C9D3CC"/>
+
+      <rect x="-80" y="-2" width="160" height="46" rx="10" fill="#FFFFFF"/>
+      <circle cx="-58" cy="21" r="12" fill="#E8C84F"/>
+      <rect x="-38" y="11" width="96" height="9" rx="4.5" fill="#2E5A37"/>
+      <rect x="-38" y="26" width="58" height="8" rx="4" fill="#C9D3CC"/>
+    </g>
+    <!-- bottom nav -->
+    <rect x="-96" y="135" width="192" height="36" fill="#FFFFFF"/>
+    <g fill="#9AA9A0">
+      <circle cx="-60" cy="153" r="7"/>
+      <circle cx="-20" cy="153" r="7"/>
+      <circle cx="20" cy="153" r="7" fill="#2E5A37"/>
+      <circle cx="60" cy="153" r="7"/>
+    </g>
+  </g>
+
+  <!-- callouts -->
+  <g font-size="22" font-weight="700" fill="#FFFFFF">
+    <!-- left top -->
+    <g text-anchor="end">
+      <line x1="318" y1="248" x2="486" y2="280" stroke="#E8C84F" stroke-width="2.5"/>
+      <circle cx="486" cy="280" r="5" fill="#E8C84F"/>
+      <text x="300" y="244">用堅果發起揪球</text>
+      <text x="300" y="270" font-size="15" font-weight="400" fill="#FFFFFF" fill-opacity="0.72">在 LINE 揪人，戰況同步進 App</text>
+    </g>
+    <!-- left bottom -->
+    <g text-anchor="end">
+      <line x1="318" y1="452" x2="486" y2="430" stroke="#E8C84F" stroke-width="2.5"/>
+      <circle cx="486" cy="430" r="5" fill="#E8C84F"/>
+      <text x="300" y="448">自動指派專家</text>
+      <text x="300" y="474" font-size="15" font-weight="400" fill="#FFFFFF" fill-opacity="0.72">依需求媒合教練與夥伴</text>
+    </g>
+    <!-- right top -->
+    <g text-anchor="start">
+      <line x1="882" y1="248" x2="714" y2="280" stroke="#E8C84F" stroke-width="2.5"/>
+      <circle cx="714" cy="280" r="5" fill="#E8C84F"/>
+      <text x="900" y="244">進行中・已結束一目了然</text>
+      <text x="900" y="270" font-size="15" font-weight="400" fill="#FFFFFF" fill-opacity="0.72">所有賽程狀態清楚分流</text>
+    </g>
+    <!-- right bottom -->
+    <g text-anchor="start">
+      <line x1="882" y1="452" x2="714" y2="430" stroke="#E8C84F" stroke-width="2.5"/>
+      <circle cx="714" cy="430" r="5" fill="#E8C84F"/>
+      <text x="900" y="448">指定專家</text>
+      <text x="900" y="474" font-size="15" font-weight="400" fill="#FFFFFF" fill-opacity="0.72">想找誰、想練什麼，自己決定</text>
+    </g>
+  </g>
+
+  <!-- tennis ball -->
+  <g transform="translate(110,540)">
+    <circle r="46" fill="#D9E64B"/>
+    <path d="M -46 -8 A 60 60 0 0 1 46 -8" fill="none" stroke="#FBFAF5" stroke-width="4"/>
+    <path d="M -46 8 A 60 60 0 0 0 46 8" fill="none" stroke="#FBFAF5" stroke-width="4"/>
+  </g>
+</svg>
