@@ -43,6 +43,22 @@
     .iab-btn.primary { background: var(--accent); color: #fff; }
     .iab-btn.ghost { background: #fff; color: var(--accent-d); border: 1px solid var(--accent); }
     .hero-art { margin: 10px auto 0; max-width: 100%; width: 100%; display: block; }
+    /* Team invite (only when ?code=… present) */
+    .team-invite { display: none; text-align: center; margin: 0 0 22px;
+      background: #F2F8EE; border: 2px solid var(--accent); border-radius: 18px;
+      padding: 20px 18px; }
+    .team-invite.show { display: block; }
+    .ti-emoji { font-size: 34px; line-height: 1; }
+    .ti-title { font-size: 18px; font-weight: 800; color: var(--text-primary);
+      margin: 8px 0 12px; }
+    .ti-code { font-size: 30px; font-weight: 900; letter-spacing: 6px;
+      color: var(--accent-d); background: #fff; border: 1px dashed var(--accent);
+      border-radius: 12px; padding: 10px 0; margin: 0 auto 14px; max-width: 260px; }
+    .ti-steps { font-size: 14px; color: var(--text-secondary); line-height: 1.65;
+      margin-bottom: 16px; }
+    .ti-cta { display: inline-block; background: var(--accent); color: #fff;
+      font-weight: 800; padding: 11px 24px; border-radius: 999px;
+      text-decoration: none; }
     .cta-cue {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--accent); color: #fff; font-weight: 800; font-size: 16px;
@@ -143,6 +159,18 @@
   </header>
 
   <main class="container">
+    <!-- Team invite (shown only when ?code=… present, via JS) -->
+    <div id="team-invite" class="team-invite">
+      <div class="ti-emoji">🎾</div>
+      <div class="ti-title">有人邀請你加入球隊</div>
+      <div class="ti-code" id="team-invite-code">------</div>
+      <div class="ti-steps">
+        開啟 <b>Tennis Nut</b> → 護照「我的球隊」→ <b>輸入邀請碼</b> 或掃描 QR 即可加入。<br>
+        還沒安裝？往下下載，裝好回來輸入這組邀請碼。
+      </div>
+      <a class="ti-cta" href="#join">下載 / 開啟 App</a>
+    </div>
+
     <!-- In-app browser nudge (shown only inside FB/IG/LINE via JS) -->
     <div id="iab-banner" class="iab-banner">
       <div class="iab-head">
@@ -327,6 +355,20 @@
       });
       // Report the source so Vercel Analytics can break down /join by channel.
       try { window.va && window.va('event', { name: 'join_source', ref: ref }); } catch (e) {}
+    })();
+
+    // Team invite: /join?code=XXXX (scanned from a share QR, or a pasted
+    // link) shows the invite banner up top with the code to enter in-app.
+    (function () {
+      var code = new URLSearchParams(location.search).get('code');
+      if (!code) return;
+      code = code.trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12);
+      if (!code) return;
+      var el = document.getElementById('team-invite-code');
+      var box = document.getElementById('team-invite');
+      if (el) el.textContent = code;
+      if (box) box.classList.add('show');
+      try { window.va && window.va('event', { name: 'team_invite_view' }); } catch (e) {}
     })();
 
     // In-app browser (FB / IG / LINE / Messenger) nudge — their webview
