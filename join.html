@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>加入 Tennis Nut · 網球人的球場夥伴</title>
-  <meta name="description" content="Tennis Nut：找球場、記錄練球與比賽，還能直接向專家提問、拿到一份為你而寫的解答。測試期免費，iPhone 用 TestFlight、Android 下載 APK，或先加 LINE。" />
+  <meta name="description" content="Tennis Nut：找球場、記錄練球與比賽，還能直接向專家提問、拿到一份為你而寫的解答。測試期免費，iPhone 用 TestFlight、Android 走 Google Play 測試，或先加 LINE。" />
   <meta property="og:title" content="加入 Tennis Nut — 問對問題，打得更好" />
   <meta property="og:description" content="找球場、記錄揮拍、向專家提問拿正式解答。網球人的球場夥伴，測試期免費。" />
   <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
@@ -250,7 +250,7 @@
         </div>
         <div class="trust-row">
           <span class="t-ic">🔒</span>
-          <p>iPhone 走 Apple 官方 <b>TestFlight</b>；Android 是我們<b>官方簽署</b>的測試 APK。安裝時手機跳「來源不明」是正常的，照著<a href="/install">安裝教學</a>做就行。</p>
+          <p>iPhone 走 Apple 官方 <b>TestFlight</b>；Android 走 <b>Google Play 測試</b>——留下 Gmail、我們把你加入測試名單後，就能從 Play 安裝並<b>自動更新</b>，不必再手動下載。</p>
         </div>
         <div class="trust-row">
           <span class="t-ic">🚀</span>
@@ -265,12 +265,13 @@
       <p class="section-sub">根據您的手機類型安裝，或還沒想裝，可先加 LINE 獲取 App 更新資訊與最新活動消息，我們慢慢帶你 🌰</p>
       <div class="cta-cards">
         <a class="cta-card" id="dl-android"
-           href="https://github.com/KXON-Tennis/tennection-web/releases/download/apk-latest/tennisnut.apk" download>
+           href="https://forms.gle/N7EKJ58FmvhVKQs69"
+           target="_blank" rel="noopener">
           <span class="cta-ic and">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 9h12v8.2a1 1 0 0 1-1 1h-1.1V21h-2v-2.8h-3.8V21h-2v-2.8H7a1 1 0 0 1-1-1V9zM3.6 9.6a1.1 1.1 0 0 1 1.1 1.1v4.3a1.1 1.1 0 0 1-2.2 0v-4.3a1.1 1.1 0 0 1 1.1-1.1zm16.8 0a1.1 1.1 0 0 1 1.1 1.1v4.3a1.1 1.1 0 0 1-2.2 0v-4.3a1.1 1.1 0 0 1 1.1-1.1zM7.4 8a4.6 4.6 0 0 1 9.2 0H7.4z"/></svg>
           </span>
-          <span class="cta-tx"><b>Android · 立即下載</b><span>下載 APK，直接安裝</span></span>
-          <span class="cta-go">↓</span>
+          <span class="cta-tx"><b>Android · 加入測試</b><span>留 Gmail，加入 Google Play 測試（自動更新）</span></span>
+          <span class="cta-go">→</span>
         </a>
         <a class="cta-card" id="dl-ios"
            href="https://testflight.apple.com/join/UG2pgEPB" target="_blank" rel="noopener">
@@ -304,8 +305,8 @@
         <p>堅果有很多免費賺的方式：<b>註冊就送</b>一筆、<b>每天打開 App 登入</b>領取、<b>回報球場狀態</b>、<b>新增還沒收錄的球場</b>等——對社群有貢獻就有堅果。累積起來，就能在不付費的情況下向教練提問。</p>
       </details>
       <details>
-        <summary>Android 安裝時為什麼會跳「來源不明」？</summary>
-        <p>iPhone 走 Apple 官方 TestFlight；Android 是我們官方簽署的測試 APK。因為還沒上架商店，Android 安裝時會跳「來源不明」提醒，這是正常的，安裝完可以把該權限關回去。</p>
+        <summary>Android 怎麼安裝？</summary>
+        <p>iPhone 走 Apple 官方 TestFlight；Android 走 <b>Google Play 測試</b>——先填表留下 Gmail，我們把你加入測試名單後（通常一天內），就能從 Google Play 安裝並<b>自動更新</b>，不需要「未知來源」權限，也不會有 Play Protect 警告。</p>
       </details>
       <details>
         <summary>之後會上架 App Store / Google Play 嗎？</summary>
@@ -344,7 +345,7 @@
     (function () {
       var ref = new URLSearchParams(location.search).get('ref');
       if (!ref) return;
-      ['dl-android', 'dl-ios', 'dl-line'].forEach(function (id) {
+      ['dl-ios', 'dl-line'].forEach(function (id) {
         var a = document.getElementById(id);
         if (!a) return;
         try {
