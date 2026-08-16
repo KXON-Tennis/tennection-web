@@ -31,7 +31,7 @@
       --clay: #FF6A3D; --hard: #4FA8FF; --grass: #7ED957; --other: #AEB6BD;
       --glass: rgba(16,21,27,.74);
       --glass-line: rgba(255,255,255,.12);
-      --ink: #F2F5F7; --ink2: #AEBAC4;
+      --ink: #F2F5F7; --ink2: #AEBAC4; --ink3: #7C8B99;
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; height: 100%; }
@@ -101,6 +101,107 @@
       box-shadow: 0 0 6px currentColor; flex: 0 0 auto; }
     .legend-row .cnt { color: var(--ink); font-weight: 800; font-variant-numeric: tabular-nums; }
 
+    /* ── 球場詳細面板 ──
+       On a wide screen it takes the top panel's slot rather than opening
+       beside it: the title and the legend are what you read before you have
+       picked anywhere, and a court is what you read after. Same position and
+       width, so nothing moves and there is nothing to collide with.
+       On a phone it is a bottom sheet, and the CTA bar / basemap switch stand
+       down while it is open — the panel carries its own call to action. */
+    .court-panel {
+      position: fixed; z-index: 4; top: 14px; left: 14px;
+      width: min(440px, calc(100vw - 28px));
+      max-height: calc(100vh - 28px); overflow-y: auto; overscroll-behavior: contain;
+      padding: 16px 17px 17px;
+    }
+    .court-panel[hidden] { display: none; }
+    body.court-open .top-panel { display: none; }
+
+    .cp-head { display: flex; align-items: flex-start; gap: 10px; }
+    .cp-head h2 { margin: 0; font-size: 19px; font-weight: 900; line-height: 1.25;
+      letter-spacing: -.2px; flex: 1 1 auto; min-width: 0; }
+    .cp-head .alt { margin: 3px 0 0; font-size: 12.5px; color: var(--ink2); }
+    .cp-x { flex: 0 0 auto; appearance: none; border: 1px solid var(--glass-line);
+      background: rgba(255,255,255,.07); color: var(--ink); cursor: pointer;
+      width: 28px; height: 28px; border-radius: 50%; font-size: 15px; line-height: 1; }
+    .cp-city { margin: 3px 0 0; font-size: 12.5px; color: var(--ink2); }
+
+    .cp-sec { margin-top: 14px; padding-top: 13px; border-top: 1px solid var(--glass-line); }
+    .cp-sec:first-of-type { border-top: 0; padding-top: 0; }
+    .cp-lb { font-size: 10.5px; font-weight: 800; letter-spacing: .7px;
+      text-transform: uppercase; color: var(--ink3); margin-bottom: 7px; }
+
+    /* Live. The one thing on this page that is true only right now, so it
+       leads and it is the only thing that moves. */
+    .cp-live { display: flex; align-items: center; gap: 9px; margin-top: 13px;
+      background: rgba(198,255,60,.13); border: 1px solid rgba(198,255,60,.42);
+      border-radius: 999px; padding: 9px 14px; }
+    .cp-live .pulse { width: 9px; height: 9px; border-radius: 50%; background: #C6FF3C;
+      flex: 0 0 auto; animation: cp-pulse 1.9s ease-out infinite; }
+    @keyframes cp-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(198,255,60,.65); }
+      70% { box-shadow: 0 0 0 9px rgba(198,255,60,0); }
+      100% { box-shadow: 0 0 0 0 rgba(198,255,60,0); }
+    }
+    @media (prefers-reduced-motion: reduce) { .cp-live .pulse { animation: none; } }
+    .cp-live .n { font-size: 14px; font-weight: 800; color: #DFFF8F; }
+    .cp-live .ago { font-size: 12px; color: var(--ink2); }
+
+    .cp-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .cp-chip { font-size: 12px; font-weight: 700; color: var(--ink2);
+      background: rgba(255,255,255,.07); border: 1px solid var(--glass-line);
+      border-radius: 999px; padding: 5px 10px; }
+    .cp-chip .sw { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+      margin-right: 6px; vertical-align: 0; }
+
+    /* Reported conditions: headcount is the point, so it is the loud part. */
+    .cp-cond { display: flex; flex-wrap: wrap; gap: 6px; }
+    .cp-cond .c { display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12.5px; font-weight: 700; border-radius: 10px; padding: 6px 10px;
+      border: 1px solid transparent; }
+    .cp-cond .c.green { background: rgba(122,214,109,.16); border-color: rgba(122,214,109,.4); color: #BFF0B4; }
+    .cp-cond .c.yellow { background: rgba(255,205,84,.15); border-color: rgba(255,205,84,.4); color: #FFDF9E; }
+    .cp-cond .c.red { background: rgba(255,120,110,.15); border-color: rgba(255,120,110,.42); color: #FFB9B3; }
+    .cp-cond .c b { font-variant-numeric: tabular-nums; }
+    .cp-when { margin: 7px 0 0; font-size: 11.5px; color: var(--ink3); }
+
+    /* Verification. Freshness leads and the count follows — a court fourteen
+       people confirmed five years ago is worth less than one confirmed
+       yesterday, and side by side that reads backwards. */
+    .cp-ver { display: flex; flex-direction: column; gap: 7px; }
+    .cp-ver .v { display: flex; align-items: baseline; gap: 8px; font-size: 12.5px; }
+    .cp-ver .v .ic { flex: 0 0 auto; font-size: 13px; }
+    .cp-ver .v .nm { font-weight: 800; color: var(--ink); }
+    .cp-ver .v .dt { color: var(--ink2); }
+    .cp-ver .v .fr { margin-left: auto; font-size: 11px; font-weight: 800;
+      padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+    .cp-ver .v .fr.ok { background: rgba(122,214,109,.16); color: #BFF0B4; }
+    .cp-ver .v .fr.old { background: rgba(255,255,255,.07); color: var(--ink3); }
+    .cp-ver .sub { margin: 2px 0 0 21px; font-size: 11.5px; color: var(--ink3); }
+
+    .cp-list { margin: 0; padding: 0; list-style: none; font-size: 12.5px; color: var(--ink2); }
+    .cp-list li { display: flex; gap: 8px; padding: 3px 0; line-height: 1.5; }
+    .cp-list li .k { flex: 0 0 auto; }
+    .cp-text { margin: 0; font-size: 12.5px; color: var(--ink2); line-height: 1.6;
+      white-space: pre-wrap; }
+
+    .cp-acts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .cp-acts a, .cp-acts button { appearance: none; cursor: pointer; text-decoration: none;
+      font: inherit; font-size: 13px; font-weight: 800; padding: 9px 14px;
+      border-radius: 999px; border: 1px solid var(--glass-line);
+      background: rgba(255,255,255,.08); color: var(--ink); }
+    .cp-acts a.go { background: var(--accent); color: #fff; border-color: transparent; }
+    .cp-cta { display: block; margin-top: 11px; font-size: 12px; font-weight: 700;
+      color: var(--ink2); text-decoration: none; }
+    .cp-cta:hover { color: var(--ink); }
+
+    @media (max-width: 559px) {
+      .court-panel { top: auto; left: 8px; right: 8px; width: auto;
+        bottom: calc(8px + env(safe-area-inset-bottom)); max-height: 76vh;
+        border-radius: 20px; }
+      body.court-open .cta-bar, body.court-open .style-switch { display: none; }
+    }
+
     /* ── 底部 CTA bar ── */
     .cta-bar {
       position: fixed; z-index: 3; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom));
@@ -166,6 +267,9 @@
     <div class="legend-row" id="legend" hidden></div>
   </div>
 
+  <!-- 球場詳細面板：桌機佔用頂部面板的位置，手機是底部抽屜 -->
+  <aside class="court-panel glass" id="courtPanel" hidden></aside>
+
   <!-- 底圖切換（與 App 相同的三種） -->
   <div class="style-switch glass" id="styleSwitch" hidden></div>
 
@@ -216,6 +320,28 @@
         accessFree: "免費開放", accessPaid: "付費", accessPrivate: "私人",
         parking: n => `步行 ${n} 分鐘有停車場`,
         confirmed: n => `${n} 位球友確認過`,
+        playingNow: n => `現在 ${n} 人在打`,
+        justArrived: "剛剛有人抵達",
+        arrivedMins: n => `${n} 分鐘前有人抵達`,
+        arrivedHours: n => `${n} 小時前有人抵達`,
+        liveStat: n => `${n} 座球場有人在打`,
+        courtStatus: "狀態", lastUpdated: "最後更新",
+        cond: { playable: "可使用", occupied: "客滿", wet: "溼滑",
+                damaged: "損壞", closed: "暫停" },
+        verifyCommunity: "現場驗證", verifyRemote: "遠端驗證", verifyOfficial: "官方驗證",
+        verifyCommunityCount: n => `${n} 位球友確認過`,
+        verifyFresh: "仍在效期內", verifyStale: "需要重新確認",
+        parkingNearby: "附近停車場", parkingWalk: n => `步行 ${n} 分鐘`,
+        parkingUnnamed: "停車場", parkingCar: "汽車", parkingMotorcycle: "機車",
+        parkingMixed: "汽機車", parkingPaid: "收費", parkingFree: "免費",
+        hours: "開放時間", pricing: "費用", rentalLb: "租借",
+        callCourt: "打電話", website: "官網",
+        navigate: "導航", copyLink: "複製連結", copied: "已複製",
+        close: "關閉",
+        panelCta: "在 App 回報這座球場的狀態",
+        justNow: "剛剛", minsAgo: n => `${n} 分鐘前`, hoursAgo: n => `${n} 小時前`,
+        daysAgo: n => `${n} 天前`, monthsAgo: n => `${n} 個月前`, yearsAgo: n => `${n} 年前`,
+        rentals: { yes: "可租借", no: "不開放租借" },
         surfaces: { hard: "硬地", clay: "紅土", grass: "草地",
                     artificial_grass: "人工草", omni: "砂地人工草", concrete: "水泥",
                     pu: "PU", carpet: "地毯", other: "其他", unknown: "未標示" },
@@ -232,6 +358,29 @@
         accessFree: "Free", accessPaid: "Paid", accessPrivate: "Private",
         parking: n => `Parking ${n} min walk`,
         confirmed: n => `${n} player${n === 1 ? "" : "s"} confirmed`,
+        playingNow: n => `${n} playing now`,
+        justArrived: "Someone just arrived",
+        arrivedMins: n => `Someone arrived ${n} min ago`,
+        arrivedHours: n => `Someone arrived ${n} h ago`,
+        liveStat: n => `${n} court${n === 1 ? "" : "s"} live now`,
+        courtStatus: "Status", lastUpdated: "Last updated",
+        cond: { playable: "Playable", occupied: "Full", wet: "Wet",
+                damaged: "Damaged", closed: "Closed" },
+        verifyCommunity: "Community verified", verifyRemote: "Remotely verified",
+        verifyOfficial: "Officially verified",
+        verifyCommunityCount: n => `${n} player${n === 1 ? "" : "s"} confirmed`,
+        verifyFresh: "still current", verifyStale: "due a re-check",
+        parkingNearby: "Parking nearby", parkingWalk: n => `${n} min walk`,
+        parkingUnnamed: "Car park", parkingCar: "cars", parkingMotorcycle: "motorcycles",
+        parkingMixed: "cars & motorcycles", parkingPaid: "paid", parkingFree: "free",
+        hours: "Opening hours", pricing: "Pricing", rentalLb: "Rental",
+        callCourt: "Call", website: "Website",
+        navigate: "Directions", copyLink: "Copy link", copied: "Copied",
+        close: "Close",
+        panelCta: "Report this court's condition in the app",
+        justNow: "just now", minsAgo: n => `${n} min ago`, hoursAgo: n => `${n} h ago`,
+        daysAgo: n => `${n} d ago`, monthsAgo: n => `${n} mo ago`, yearsAgo: n => `${n} y ago`,
+        rentals: { yes: "Rackets/balls for hire", no: "No rental" },
         surfaces: { hard: "Hard", clay: "Clay", grass: "Grass",
                     artificial_grass: "Artificial grass", omni: "Sand-filled turf",
                     concrete: "Concrete", pu: "PU", carpet: "Carpet",
@@ -332,6 +481,216 @@
 
     // 圖層需在樣式就緒後才能加。資料與樣式各自非同步，兩者都備妥才加圖層，
     // 並用 getSource 防重複（避免 once('load') 競態導致圖層永遠沒加上）。
+    // ── 球場詳細面板 ────────────────────────────────────────────────────
+    const panelEl = document.getElementById("courtPanel");
+    let openCourtId = null;
+
+    function closePanel() {
+      openCourtId = null;
+      panelEl.hidden = true;
+      document.body.classList.remove("court-open");
+    }
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePanel(); });
+
+    // Shift the map so the court is not underneath the panel: sideways on a
+    // wide screen where the panel is a column, upwards on a phone where it is
+    // a sheet.
+    function panelOffset() {
+      return window.matchMedia("(max-width: 559px)").matches
+        ? [0, -Math.round(window.innerHeight * 0.18)]
+        : [Math.round(Math.min(230, window.innerWidth * 0.22)), 0];
+    }
+
+    // Coarse and human. An exact "3 days 4 hours" is precision nobody asked
+    // for about a fact that is only ever used as "recent or not".
+    function ago(iso) {
+      if (!iso) return "";
+      const mins = Math.floor((Date.now() - new Date(iso).getTime()) / 60000);
+      if (mins < 2) return T.justNow;
+      if (mins < 60) return T.minsAgo(mins);
+      const h = Math.floor(mins / 60);
+      if (h < 24) return T.hoursAgo(h);
+      const d = Math.floor(h / 24);
+      if (d < 31) return T.daysAgo(d);
+      const mo = Math.floor(d / 30);
+      if (mo < 12) return T.monthsAgo(mo);
+      return T.yearsAgo(Math.floor(mo / 12));
+    }
+
+    // Which conditions to show and in what order. Headcount first, severity as
+    // the tie-break — the same rule as CourtCondition.sortedEntries in the app
+    // and countEntries in the LIFF page, so the three never disagree about
+    // which condition a court is in.
+    const COND_LIGHT = { playable: "green", occupied: "yellow", wet: "yellow",
+                         damaged: "red", closed: "red" };
+    const COND_EMOJI = { playable: "✅", occupied: "🚫", wet: "💧",
+                         damaged: "⚠️", closed: "🔒" };
+    const COND_SEVERITY = { closed: 3, damaged: 3, wet: 2, occupied: 2, playable: 1 };
+    function condEntries(counts) {
+      if (!counts) return [];
+      return Object.entries(counts).filter(([, v]) => v > 0)
+        .sort((a, b) => (b[1] - a[1]) ||
+              ((COND_SEVERITY[b[0]] || 0) - (COND_SEVERITY[a[0]] || 0)));
+    }
+    // A reported condition decays after six hours — same window as the marker
+    // colour and the LIFF view. A 客滿 from this morning is not information
+    // about this afternoon.
+    const STATUS_FRESH_MS = 6 * 3600 * 1000;
+    const statusFresh = (iso) => !!iso && (Date.now() - new Date(iso).getTime()) <= STATUS_FRESH_MS;
+
+    function renderPanel(f, d, parking, live) {
+      openCourtId = f.id;
+      d = d || {};
+      const sec = [];
+
+      // Live first: it is the only thing here that is true only right now.
+      if (live && live.playing_now > 0) {
+        const mins = live.latest_arrival
+          ? Math.floor((Date.now() - new Date(live.latest_arrival).getTime()) / 60000) : null;
+        const arr = mins == null ? ""
+          : mins < 5 ? T.justArrived
+          : mins < 60 ? T.arrivedMins(mins)
+          : T.arrivedHours(Math.floor(mins / 60));
+        sec.push(`<div class="cp-live"><span class="pulse"></span>` +
+          `<span class="n">${escapeHtml(T.playingNow(live.playing_now))}</span>` +
+          (arr ? `<span class="ago">· ${escapeHtml(arr)}</span>` : "") + `</div>`);
+      }
+
+      // Reported condition. Silence beats 「未知」: a court nobody has reported
+      // on says nothing rather than carrying a grey row saying so.
+      const entries = statusFresh(d.last_reported_at) ? condEntries(d.status_counts) : [];
+      const freeText = statusFresh(d.last_reported_at) && d.status_text;
+      if (entries.length || freeText) {
+        let body = entries.length
+          ? `<div class="cp-cond">` + entries.map(([k, v]) =>
+              `<span class="c ${COND_LIGHT[k] || "green"}">${COND_EMOJI[k] || "📋"} ` +
+              `${escapeHtml(T.cond[k] || k)} <b>${v}</b></span>`).join("") + `</div>`
+          : `<p class="cp-text">${escapeHtml(d.status_text)}</p>`;
+        if (d.last_reported_at)
+          body += `<p class="cp-when">${escapeHtml(T.lastUpdated)} · ${escapeHtml(ago(d.last_reported_at))}</p>`;
+        sec.push(`<div class="cp-sec"><div class="cp-lb">${escapeHtml(T.courtStatus)}</div>${body}</div>`);
+      }
+
+      // The facts that do not change: surface, size, lights, access.
+      const chips = [`<span class="cp-chip"><span class="sw" style="background:${COLORS[f.cls]}"></span>${escapeHtml(T.surfaces[f.cls])}</span>`];
+      if (f.court_count) chips.push(`<span class="cp-chip">${escapeHtml(T.courtsUnit(f.court_count))}</span>`);
+      if (f.light) chips.push(`<span class="cp-chip">${escapeHtml(T.lights)}</span>`);
+      if (f.indoor) chips.push(`<span class="cp-chip">${escapeHtml(T.indoor)}</span>`);
+      if (f.access === "free") chips.push(`<span class="cp-chip">${escapeHtml(T.accessFree)}</span>`);
+      else if (f.access === "paid") chips.push(`<span class="cp-chip">${escapeHtml(T.accessPaid)}</span>`);
+      else if (f.access === "private") chips.push(`<span class="cp-chip">${escapeHtml(T.accessPrivate)}</span>`);
+      sec.push(`<div class="cp-sec"><div class="cp-chips">${chips.join("")}</div></div>`);
+
+      // Verification. Rendered only where it exists — most of the imported set
+      // has none, and a stack of grey "not verified" rows on 3,000 courts
+      // reads as a defect rather than as the absence of information it is.
+      const vers = [
+        ["👤", T.verifyCommunity, d.community_verified_at, d.community_fresh,
+         d.community_verify_count > 0 ? T.verifyCommunityCount(d.community_verify_count) : null],
+        ["🛰", T.verifyRemote, d.remote_verified_at, d.remote_fresh, null],
+        ["✔", T.verifyOfficial, d.official_verified_at, d.official_fresh, null],
+      ].filter(v => v[2]);
+      if (vers.length) {
+        sec.push(`<div class="cp-sec"><div class="cp-ver">` + vers.map(([ic, nm, at, fresh, sub]) =>
+          `<div><div class="v"><span class="ic">${ic}</span>` +
+          `<span class="nm">${escapeHtml(nm)}</span>` +
+          `<span class="dt">${escapeHtml(ago(at))}</span>` +
+          `<span class="fr ${fresh ? "ok" : "old"}">${escapeHtml(fresh ? T.verifyFresh : T.verifyStale)}</span></div>` +
+          (sub ? `<div class="sub">${escapeHtml(sub)}</div>` : "") + `</div>`).join("") +
+          `</div></div>`);
+      }
+
+      // Parking, up to three. One was not enough: the nearest space to a court
+      // in Taiwan is routinely a motorcycle bay, which is the wrong answer for
+      // someone arriving by car.
+      if (parking && parking.length) {
+        const vlabel = { car: T.parkingCar, motorcycle: T.parkingMotorcycle, mixed: T.parkingMixed };
+        sec.push(`<div class="cp-sec"><div class="cp-lb">${escapeHtml(T.parkingNearby)}</div><ul class="cp-list">` +
+          parking.map(pk => {
+            const bits = [T.parkingWalk(Math.max(1, Math.ceil(pk.distance_m / 80)))];
+            if (vlabel[pk.vehicle]) bits.push(vlabel[pk.vehicle]);
+            if (pk.fee === "yes") bits.push(T.parkingPaid);
+            else if (pk.fee === "no") bits.push(T.parkingFree);
+            return `<li><span class="k">🅿️</span><span>${escapeHtml(pk.name || T.parkingUnnamed)}` +
+                   ` · ${escapeHtml(bits.join(" · "))}</span></li>`;
+          }).join("") + `</ul></div>`);
+      }
+
+      // Hours, price, rental — the open-data fields that are prose, not chips.
+      const rows = [];
+      if (d.hours_text) rows.push([T.hours, d.hours_text]);
+      if (d.pricing_note) rows.push([T.pricing, d.pricing_note]);
+      if (d.rental && T.rentals[d.rental]) rows.push([T.rentalLb, T.rentals[d.rental]]);
+      if (rows.length || d.opening_notes) {
+        sec.push(`<div class="cp-sec"><ul class="cp-list">` +
+          rows.map(([k, v]) => `<li><span class="k">${escapeHtml(k)}</span><span>${escapeHtml(v)}</span></li>`).join("") +
+          `</ul>` + (d.opening_notes ? `<p class="cp-text" style="margin-top:6px">${escapeHtml(d.opening_notes)}</p>` : "") +
+          `</div>`);
+      }
+
+      const [lng, lat] = [f._lng, f._lat];
+      const acts = [`<a class="go" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}">${escapeHtml(T.navigate)}</a>`];
+      if (d.tel) acts.push(`<a href="tel:${encodeURIComponent(d.tel)}">${escapeHtml(T.callCourt)}</a>`);
+      if (d.website) acts.push(`<a target="_blank" rel="noopener" href="${escapeHtml(d.website)}">${escapeHtml(T.website)}</a>`);
+      acts.push(`<button type="button" id="cpCopy">${escapeHtml(T.copyLink)}</button>`);
+
+      const altName = (LANG === "en" ? null : d.name_en) || null;
+      panelEl.innerHTML =
+        `<div class="cp-head"><div style="flex:1 1 auto;min-width:0">` +
+        `<h2>${escapeHtml(f.name)}</h2>` +
+        (altName && altName !== f.name ? `<p class="alt">${escapeHtml(altName)}</p>` : "") +
+        (f.city ? `<p class="cp-city">${escapeHtml(f.city)}${d.address ? " · " + escapeHtml(d.address) : ""}</p>` : "") +
+        `</div><button class="cp-x" type="button" id="cpClose" aria-label="${escapeHtml(T.close)}">✕</button></div>` +
+        sec.join("") +
+        `<div class="cp-acts">${acts.join("")}</div>` +
+        `<a class="cp-cta" href="https://forms.gle/N7EKJ58FmvhVKQs69" target="_blank" rel="noopener">${escapeHtml(T.panelCta)} →</a>`;
+
+      panelEl.hidden = false;
+      panelEl.scrollTop = 0;
+      document.body.classList.add("court-open");
+      document.getElementById("cpClose").onclick = closePanel;
+      document.getElementById("cpCopy").onclick = (ev) => {
+        const url = `${location.origin}/courts-map?court=${f.id}&lang=${LANG}`;
+        navigator.clipboard && navigator.clipboard.writeText(url);
+        ev.currentTarget.textContent = T.copied;
+      };
+    }
+
+    // court_id → { playing_now, latest_arrival }. Empty until courts_live_now
+    // lands, and usually empty after: on most days nobody is on court.
+    let liveByCourt = {};
+    function liveFeatures() {
+      if (!courtFeatures) return [];
+      return courtFeatures.filter(f => liveByCourt[f.properties.id]);
+    }
+    function refreshLiveLayer() {
+      if (map.getSource("live")) {
+        map.getSource("live").setData({ type: "FeatureCollection", features: liveFeatures() });
+      }
+    }
+
+    // One rAF loop, started only when there is something to pulse and stopped
+    // when there is not — an always-running animation would repaint the whole
+    // map forever for a ring that is usually not on screen.
+    let pulseRunning = false, pulseLast = 0;
+    function pulse(ts) {
+      if (!pulseRunning) return;
+      if (ts - pulseLast > 50) {              // ~20fps is plenty for a breath
+        pulseLast = ts;
+        const t = (ts % 2400) / 2400;
+        if (map.getLayer("courts-live")) {
+          map.setPaintProperty("courts-live", "circle-radius", 14 + 12 * t);
+          map.setPaintProperty("courts-live", "circle-stroke-opacity", 0.85 * (1 - t));
+        }
+      }
+      requestAnimationFrame(pulse);
+    }
+    function setPulse(on) {
+      if (on === pulseRunning) return;
+      pulseRunning = on;
+      if (on) requestAnimationFrame(pulse);
+    }
+
     let courtFeatures = null;
     function tryAddLayers() {
       if (!courtFeatures || !map.isStyleLoaded() || map.getSource("courts")) return;
@@ -360,6 +719,22 @@
       // 光暈層半徑 ≈ 實心點 ×2.2（不能把 zoom 內插巢狀包在 "*" 裡，需獨立寫死）
       const glowRadiusExpr = ["interpolate", ["linear"], ["zoom"],
         5, 11, 7, 16.5, 10, 22, 14, 29];
+
+      // Courts with someone on them right now. A ring under the dot, breathing
+      // slowly, on the handful of courts where it is true — the one thing on
+      // this map that no other court map can show, so it earns the motion.
+      map.addSource("live", { type: "geojson",
+        data: { type: "FeatureCollection", features: liveFeatures() } });
+      map.addLayer({
+        id: "courts-live", type: "circle", source: "live",
+        paint: {
+          "circle-color": "rgba(0,0,0,0)",
+          "circle-radius": 16,
+          "circle-stroke-color": "#C6FF3C",
+          "circle-stroke-width": 2,
+          "circle-stroke-opacity": 0.9,
+        },
+      });
 
       // 光暈層（底）
       map.addLayer({
@@ -410,46 +785,39 @@
         },
       });
 
-      const popup = new mapboxgl.Popup({ closeButton: true, offset: 12, maxWidth: "280px" });
-
-      function popupHtml(f, parking) {
-        const bits = [];
-        if (f.city) bits.push(escapeHtml(f.city));
-        if (f.court_count) bits.push(T.courtsUnit(f.court_count));
-        if (f.light) bits.push(T.lights);
-        if (f.indoor) bits.push(T.indoor);
-        if (f.access === "free") bits.push(T.accessFree);
-        else if (f.access === "paid") bits.push(T.accessPaid);
-        else if (f.access === "private") bits.push(T.accessPrivate);
-
-        let html = `<div class="nm">${escapeHtml(f.name)}</div>`;
-        if (bits.length) html += `<div class="meta">${bits.join(" · ")}</div>`;
-        html += `<span class="tag" style="background:${COLORS[f.cls]}">${T.surfaces[f.cls]}</span>`;
-        // Two things no other court map has, so they are worth the space:
-        // who has actually been there, and where to leave the car.
-        if (f.confirmed > 0) {
-          html += `<div class="meta" style="margin-top:6px">✓ ${T.confirmed(f.confirmed)}</div>`;
-        }
-        if (parking) {
-          html += `<div class="meta">🅿️ ${T.parking(Math.max(1, Math.ceil(parking.distance_m / 80)))}` +
-                  (parking.name ? ` · ${escapeHtml(parking.name)}` : "") + `</div>`;
-        }
-        return html;
-      }
-
+      // The popup this replaced held a name, four chips and a parking line.
+      // The app's court sheet holds the reported condition and its headcount,
+      // who is on the court right now, three tiers of verification with their
+      // freshness, hours, pricing, rental, phone and site. On a page whose
+      // whole claim is data quality, showing a tenth of what is known was the
+      // weakest thing about it.
       async function openCourt(f, lngLat) {
-        popup.setLngLat(lngLat).setHTML(popupHtml(f, null)).addTo(map);
-        // Parking is one small request per court rather than 2,900 rows up
-        // front; the popup fills in when it lands.
-        try {
-          const r = await fetch(SUPABASE_URL +
-            `/rest/v1/court_parking?select=name,distance_m&court_id=eq.${f.id}&order=rank&limit=1`,
-            { headers: { apikey: ANON, Authorization: "Bearer " + ANON } });
-          const rows = await r.json();
-          if (rows && rows[0] && popup.isOpen()) {
-            popup.setHTML(popupHtml(f, rows[0]));
-          }
-        } catch (_) { /* the popup is already useful without it */ }
+        // Directions should aim at the court, not at the pixel that was
+        // tapped, so the coordinates come off the feature.
+        f = Object.assign({}, f, { _lng: lngLat[0], _lat: lngLat[1] });
+        renderPanel(f, null, null, null);
+        map.easeTo({ center: lngLat, offset: panelOffset(), duration: 500 });
+
+        // Three requests, all optional. The panel is already on screen with
+        // what the map itself knows, so each one only ever adds.
+        const headers = { apikey: ANON, Authorization: "Bearer " + ANON,
+                          "Content-Type": "application/json" };
+        const q = (path, init) => fetch(SUPABASE_URL + path, init || { headers })
+          .then(r => r.ok ? r.json() : null).catch(() => null);
+
+        const [detail, parking, live] = await Promise.all([
+          q(`/rest/v1/courts_with_status?id=eq.${f.id}&select=name_en,city_en,` +
+            `status_light,status_text,status_counts,last_reported_at,` +
+            `community_verified_at,community_verify_count,community_fresh,` +
+            `remote_verified_at,remote_fresh,official_verified_at,official_fresh,` +
+            `hours_text,opening_notes,pricing_note,rental,tel,website,address`),
+          q(`/rest/v1/court_parking?court_id=eq.${f.id}&select=name,distance_m,fee,vehicle&order=rank&limit=3`),
+          q(`/rest/v1/rpc/court_live_activity`,
+            { method: "POST", headers, body: JSON.stringify({ p_court_id: f.id }) }),
+        ]);
+        // Someone may have clicked another court while these were in flight.
+        if (openCourtId !== f.id) return;
+        renderPanel(f, detail && detail[0], parking || [], live && live[0]);
       }
 
       // Everything below binds to the map, not to the style, so it survives a
@@ -458,7 +826,7 @@
       wiredUp = true;
 
       map.on("click", "courts", (ev) => {
-        openCourt(ev.features[0].properties, ev.lngLat);
+        openCourt(ev.features[0].properties, ev.features[0].geometry.coordinates);
       });
 
       // /courts-map?court=451 — what an invitation links to, so the recipient
@@ -540,11 +908,16 @@
         document.getElementById("stats").innerHTML =
             `<span class="stat"><b>${total}</b> ${T.courts}</span>`
           + `<span class="stat"><b>${markets.size}</b> ${T.markets}</span>`
-          + `<span class="stat">${T.surfaced} <b>${pct(known, total)}%</b></span>`;
+          + `<span class="stat">${T.surfaced} <b>${pct(known, total)}%</b></span>`
+          // Filled in by loadLive, and hidden on the ordinary day when nobody
+          // is on a court — a permanent "0 live" would make the map look dead
+          // rather than quiet.
+          + `<span class="stat" id="liveStat" hidden></span>`;
 
         // 資料備妥 → 嘗試加圖層（樣式若還沒好，map 'load' 事件會再觸發一次）
         courtFeatures = features;
         tryAddLayers();
+        loadLive();
       } catch (e) {
         document.getElementById("stats").innerHTML =
           `<span class="stat">${LANG === "zh" ? "資料載入失敗，請稍後再試" : "Couldn't load the data — please try again"} 🙏</span>`;
@@ -554,6 +927,32 @@
       }
     }
     load();
+
+    // Who is on court right now. A separate request from the courts because it
+    // is the only thing here with a shelf life — and it is re-asked on a timer
+    // so a page left open on a desk does not quietly go stale.
+    async function loadLive() {
+      try {
+        const r = await fetch(SUPABASE_URL + "/rest/v1/rpc/courts_live_now",
+          { method: "POST",
+            headers: { apikey: ANON, Authorization: "Bearer " + ANON,
+                       "Content-Type": "application/json" },
+            body: "{}" });
+        if (!r.ok) return;
+        const rows = await r.json();
+        liveByCourt = {};
+        for (const row of rows || []) liveByCourt[row.court_id] = row;
+        refreshLiveLayer();
+        setPulse(rows && rows.length > 0);
+
+        const el = document.getElementById("liveStat");
+        if (el) {
+          if (rows && rows.length) { el.textContent = T.liveStat(rows.length); el.hidden = false; }
+          else el.hidden = true;
+        }
+      } catch (_) { /* the map is complete without it */ }
+    }
+    setInterval(loadLive, 120000);
 
     (function () {
       try {
