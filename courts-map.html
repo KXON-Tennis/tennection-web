@@ -196,11 +196,67 @@
     .cp-cta:hover { color: var(--ink); }
 
     @media (max-width: 559px) {
+      /* The top panel and the CTA bar together were eating half the phone,
+         and the map is the product. Everything here is the same content,
+         smaller, with the eight-row surface key folded away behind a toggle —
+         it is a reference you consult once, not something to read on arrival. */
+      .top-panel { top: 8px; left: 8px; width: calc(100vw - 16px); padding: 11px 13px 12px; }
+      .top-panel h1 { font-size: 16px; }
+      .top-panel .sub { font-size: 11.5px; margin-top: 2px;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+        overflow: hidden; }
+      .stat-strip { margin-top: 9px; gap: 6px; flex-wrap: nowrap;
+        overflow-x: auto; scrollbar-width: none; }
+      .stat-strip::-webkit-scrollbar { display: none; }
+      .stat { padding: 5px 9px; font-size: 11px; }
+      .stat b { font-size: 13px; }
+      .legend-row { margin-top: 9px; padding-top: 9px; gap: 9px 11px; }
+      .legend-row .it { font-size: 11.5px; }
+
+      .cta-bar { gap: 8px; padding: 11px 13px; }
+      .cta-bar .note { font-size: 11px; line-height: 1.45;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+        overflow: hidden; }
+      .cta-row a { padding: 10px 12px; font-size: 13px; }
+
       .court-panel { top: auto; left: 8px; right: 8px; width: auto;
         bottom: calc(8px + env(safe-area-inset-bottom)); max-height: 76vh;
         border-radius: 20px; }
       body.court-open .cta-bar, body.court-open .style-switch { display: none; }
     }
+
+    /* Shown by default and hidden on wide screens, rather than the other way
+       round: the mobile block sits earlier in this file, so a display:none
+       here would win over it. */
+    .legend-toggle { display: block; margin-top: 11px; appearance: none; cursor: pointer;
+      background: transparent; border: 0; border-top: 1px solid var(--glass-line);
+      width: 100%; text-align: left; padding: 9px 0 0; font: inherit;
+      font-size: 12px; font-weight: 700; color: var(--ink2); }
+    .legend-toggle::after { content: " ▾"; }
+    .legend-toggle[aria-expanded="true"]::after { content: " ▴"; }
+    @media (min-width: 560px) { .legend-toggle { display: none; } }
+
+    /* Your own position. Distinct from the volt rings on live courts — those
+       say "someone is playing here", this says "here is you", and one colour
+       for both would merge two different claims. */
+    /* A ring, not a disc. #4C9BFF was almost exactly the hard-court blue
+       (#4FA8FF), so on the first build "you" looked like one more court — and
+       every court on this map is a filled circle with a thin white stroke.
+       Keeping the blue keeps the convention people already know from every
+       other map; changing the shape is what makes it not a court. */
+    .me-dot { width: 21px; height: 21px; border-radius: 50%;
+      background: transparent; border: 3px solid #FFFFFF;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 1px 5px rgba(0,0,0,.6);
+      animation: me-pulse 2.4s ease-out infinite; }
+    .me-dot::before { content: ""; width: 7px; height: 7px; border-radius: 50%;
+      background: #4C9BFF; }
+    @keyframes me-pulse {
+      0%   { box-shadow: 0 1px 5px rgba(0,0,0,.6), 0 0 0 0 rgba(255,255,255,.5); }
+      70%  { box-shadow: 0 1px 5px rgba(0,0,0,.6), 0 0 0 20px rgba(255,255,255,0); }
+      100% { box-shadow: 0 1px 5px rgba(0,0,0,.6), 0 0 0 0 rgba(255,255,255,0); }
+    }
+    @media (prefers-reduced-motion: reduce) { .me-dot { animation: none; } }
 
     /* ── 底部 CTA bar ── */
     .cta-bar {
@@ -264,6 +320,7 @@
     <h1 id="pageTitle"></h1>
     <p class="sub" id="pageSub"></p>
     <div class="stat-strip" id="stats"><span class="stat">…</span></div>
+    <button class="legend-toggle" id="legendToggle" type="button" hidden></button>
     <div class="legend-row" id="legend" hidden></div>
   </div>
 
@@ -317,6 +374,7 @@
         qrHead: "掃描加入 LINE 官方帳號",
         courtsUnit: n => `${n} 面`, lights: "夜間照明", indoor: "室內",
         styleStreets: "街道", styleDark: "深色", styleSatellite: "衛星",
+        legendLabel: "材質圖例", youAreHere: "你在這裡",
         accessFree: "免費開放", accessPaid: "付費", accessPrivate: "私人",
         parking: n => `步行 ${n} 分鐘有停車場`,
         confirmed: n => `${n} 位球友確認過`,
@@ -356,6 +414,7 @@
         qrHead: "Scan to add our LINE account",
         courtsUnit: n => `${n} court${n === 1 ? "" : "s"}`, lights: "Floodlights", indoor: "Indoor",
         styleStreets: "Streets", styleDark: "Dark", styleSatellite: "Satellite",
+        legendLabel: "Surface key", youAreHere: "You are here",
         accessFree: "Free", accessPaid: "Paid", accessPrivate: "Private",
         parking: n => `Parking ${n} min walk`,
         confirmed: n => `${n} player${n === 1 ? "" : "s"} confirmed`,
@@ -500,6 +559,15 @@
     if (navigator.geolocation && !new URLSearchParams(location.search).get("court")) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
+          // A DOM marker rather than a layer: it has to survive setStyle, and
+          // there is exactly one of it, so a source and a layer would be
+          // machinery for a single point.
+          const el = document.createElement("div");
+          el.className = "me-dot";
+          el.title = T.youAreHere;
+          new mapboxgl.Marker({ element: el })
+            .setLngLat([pos.coords.longitude, pos.coords.latitude])
+            .addTo(map);
           map.flyTo({
             center: [pos.coords.longitude, pos.coords.latitude],
             zoom: 12,
@@ -948,7 +1016,19 @@
           .filter(k => counts[k])
           .map(k => `<span class="it"><span class="dot" style="background:${COLORS[k]};color:${COLORS[k]}"></span>${T.surfaces[k]} <span class="cnt">${counts[k]}</span></span>`)
           .join("");
-        legend.hidden = false;
+        // Shown outright on a wide screen, folded on a phone: eight rows of
+        // surface counts is a reference you consult once, not something to
+        // read past every time the map opens.
+        const legendToggle = document.getElementById("legendToggle");
+        const narrow = window.matchMedia("(max-width: 559px)").matches;
+        legend.hidden = narrow;
+        legendToggle.hidden = false;
+        legendToggle.textContent = T.legendLabel;
+        legendToggle.setAttribute("aria-expanded", String(!narrow));
+        legendToggle.onclick = () => {
+          legend.hidden = !legend.hidden;
+          legendToggle.setAttribute("aria-expanded", String(!legend.hidden));
+        };
 
         const total = Object.values(counts).reduce((a, b) => a + b, 0);
         const known = total - (counts.unknown || 0);
