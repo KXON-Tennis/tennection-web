@@ -45,6 +45,20 @@
     #map { position: fixed; inset: 0; z-index: 0; background: #11151a; }
     /* Mapbox 控制項（右上）玻璃化 + 避開頂部面板由 CSS 位移 */
     .mapboxgl-ctrl-top-right { top: 14px; right: 14px; }
+    /* Mapbox's terms require the wordmark and attribution to stay visible on
+       this plan, so they are moved and dimmed rather than removed — bottom
+       left, out of the corner the eye goes to, at low opacity until hovered. */
+    .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib { opacity: .35; transform: scale(.85);
+      transform-origin: bottom left; transition: opacity .2s; }
+    .mapboxgl-ctrl-logo:hover, .mapboxgl-ctrl-attrib:hover { opacity: .9; }
+    .style-switch { position: absolute; right: 12px; bottom: 148px; z-index: 5;
+      display: flex; flex-direction: column; gap: 2px; padding: 4px;
+      border-radius: 12px; border: 1px solid var(--glass-line); }
+    .style-switch button { appearance: none; border: 0; background: transparent;
+      color: #E7EBEF; font: inherit; font-size: 12px; font-weight: 600;
+      padding: 6px 10px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+    .style-switch button[aria-pressed="true"] { background: rgba(255,255,255,.16); }
+    @media (max-width: 559px) { .style-switch { bottom: 168px; } }
     .mapboxgl-ctrl-group { background: var(--glass) !important; backdrop-filter: blur(8px);
       border: 1px solid var(--glass-line); }
     .mapboxgl-ctrl-group button + button { border-top: 1px solid var(--glass-line); }
@@ -148,11 +162,13 @@
     <div class="legend-row" id="legend" hidden></div>
   </div>
 
+  <!-- 底圖切換（與 App 相同的三種） -->
+  <div class="style-switch glass" id="styleSwitch" hidden></div>
+
   <!-- 桌機 QR -->
   <div class="qr-card glass" id="qrCard" hidden>
     <div class="qr-head" id="qrHead"></div>
     <div class="qr-box" id="qr"></div>
-    <div class="qr-cap" id="qrCap"></div>
   </div>
 
   <!-- 底部 CTA -->
@@ -186,12 +202,13 @@
     const T = {
       zh: {
         title: "Tennection 網球場地圖",
-        sub: "台灣、日本、西班牙、新加坡、美國。材質、夜間照明、停車、球友確認過的資訊。",
+        sub: "材質、夜間照明、停車、以及球友實際確認過的球場資訊。",
         courts: "座球場", markets: "個市場", surfaced: "有材質資料",
         unknown: "未標示", note: "⚠️ 詳細球場資訊難免有缺漏，歡迎加入 LINE/APP 回報球場資訊與狀態。",
         ctaPrimary: "加入 LINE 回報球場", ctaSecondary: "申請試用 App",
-        qrHead: "掃描加入 LINE 官方帳號", qrCap: "先從 LINE 回報球場，解鎖 App 專屬功能",
+        qrHead: "掃描加入 LINE 官方帳號",
         courtsUnit: n => `${n} 面`, lights: "夜間照明", indoor: "室內",
+        styleStreets: "街道", styleDark: "深色", styleSatellite: "衛星",
         accessFree: "免費開放", accessPaid: "付費", accessPrivate: "私人",
         parking: n => `步行 ${n} 分鐘有停車場`,
         confirmed: n => `${n} 位球友確認過`,
@@ -201,12 +218,13 @@
       },
       en: {
         title: "Tennection Tennis Court Map",
-        sub: "Taiwan, Japan, Spain, Singapore and the US. Surface, floodlights, parking, and what players have confirmed.",
+        sub: "Surface, floodlights, parking, and details players have confirmed on the ground.",
         courts: "courts", markets: "markets", surfaced: "with a surface",
         unknown: "not recorded", note: "⚠️ Court details can be incomplete — report info and conditions via LINE or the app.",
         ctaPrimary: "Report a court on LINE", ctaSecondary: "Request the app",
-        qrHead: "Scan to add our LINE account", qrCap: "Report from LINE to unlock the app",
+        qrHead: "Scan to add our LINE account",
         courtsUnit: n => `${n} court${n === 1 ? "" : "s"}`, lights: "Floodlights", indoor: "Indoor",
+        styleStreets: "Streets", styleDark: "Dark", styleSatellite: "Satellite",
         accessFree: "Free", accessPaid: "Paid", accessPrivate: "Private",
         parking: n => `Parking ${n} min walk`,
         confirmed: n => `${n} player${n === 1 ? "" : "s"} confirmed`,
@@ -240,7 +258,11 @@
 
     mapboxgl.accessToken = MAPBOX_TOKEN;
     // 預設帶傾斜＋旋轉視角，更有空間縱深；手機較保守確保台灣框得好
-    // 固定傾斜相機（資料恆為台灣）：手機較保守確保框得好
+    // The tilt stays; the centre no longer does. Taiwan was a safe default
+    // when it was the only data — now a visitor in Madrid or Tokyo would open
+    // the page on the other side of the world and see nothing they can reach.
+    // Geolocation is asked for after the map is up, so a refusal or a slow
+    // fix costs nothing: the map is already usable and simply stays here.
     const isMobile = window.matchMedia("(max-width: 559px)").matches;
     const VIEW = isMobile
       ? { center: [120.95, 23.55], zoom: 6.05, pitch: 30, bearing: -14 }
@@ -252,11 +274,54 @@
       zoom: VIEW.zoom,
       pitch: VIEW.pitch,
       bearing: VIEW.bearing,
-      logoPosition: "top-right",
+      logoPosition: "bottom-left",
       attributionControl: false,
     });
-    map.addControl(new mapboxgl.AttributionControl({ compact: true }), "top-right");
+    map.addControl(new mapboxgl.AttributionControl({ compact: true }), "bottom-left");
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
+
+    // The same three basemaps the app offers, so the two feel like one product.
+    const STYLES = [
+      { key: "streets",   label: () => T.styleStreets,   uri: "mapbox://styles/mapbox/streets-v12" },
+      { key: "dark",      label: () => T.styleDark,      uri: "mapbox://styles/mapbox/dark-v11" },
+      { key: "satellite", label: () => T.styleSatellite, uri: "mapbox://styles/mapbox/satellite-streets-v12" },
+    ];
+    let styleKey = "dark";
+    (function buildSwitch() {
+      const el = document.getElementById("styleSwitch");
+      el.innerHTML = STYLES.map(st =>
+        `<button data-k="${st.key}" aria-pressed="${st.key === styleKey}">${st.label()}</button>`).join("");
+      el.hidden = false;
+      el.addEventListener("click", (ev) => {
+        const b = ev.target.closest("button");
+        if (!b || b.dataset.k === styleKey) return;
+        styleKey = b.dataset.k;
+        [...el.children].forEach(x => x.setAttribute("aria-pressed", String(x.dataset.k === styleKey)));
+        // Changing style wipes every source and layer, so the court layer has
+        // to be added again once the new style is ready.
+        map.setStyle(STYLES.find(x => x.key === styleKey).uri);
+        map.once("style.load", tryAddLayers);
+      });
+    })();
+
+    // Centre on the viewer once we have a fix. flyTo rather than jumpTo so it
+    // reads as the map finding them, and the pitch/bearing are carried over
+    // deliberately — the angle is the look of the page.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          map.flyTo({
+            center: [pos.coords.longitude, pos.coords.latitude],
+            zoom: 12,
+            pitch: VIEW.pitch,
+            bearing: VIEW.bearing,
+            duration: 1400,
+          });
+        },
+        () => { /* denied or unavailable — the default view is fine */ },
+        { enableHighAccuracy: false, timeout: 8000, maximumAge: 600000 },
+      );
+    }
 
     // 圖層需在樣式就緒後才能加。資料與樣式各自非同步，兩者都備妥才加圖層，
     // 並用 getSource 防重複（避免 once('load') 競態導致圖層永遠沒加上）。
@@ -372,7 +437,6 @@
     document.getElementById("ctaPrimary").textContent = T.ctaPrimary;
     document.getElementById("ctaSecondary").textContent = T.ctaSecondary;
     document.getElementById("qrHead").textContent = T.qrHead;
-    document.getElementById("qrCap").textContent = T.qrCap;
 
     async function load() {
       const counts = {};
