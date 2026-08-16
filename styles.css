@@ -1349,3 +1349,12 @@ footer a {
   margin: 16px auto 0;
   max-width: 520px;
 }
+
+/* A second paragraph inside a belief: quieter than the claim it follows,
+   because it is the reason rather than the point. */
+.b-more {
+  margin-top: 8px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
