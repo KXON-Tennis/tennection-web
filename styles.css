@@ -46,6 +46,17 @@ a:hover {
 
 .container {
   max-width: 760px;
+  /* width, not just max-width. body is a flex column, and `margin: 0 auto` is
+     an auto margin on the cross axis, which switches off the default stretch
+     and leaves this sized to its own content instead. That was harmless until
+     the merge brought in the share gallery, which turns into a nowrap
+     3 × 220px scroller on phones: the page became 760px wide on a 412px
+     screen and the browser shrank everything to fit, which is why the whole
+     thing looked tiny. With an explicit width the container is 412 again and
+     the gallery's own overflow-x:auto does the scrolling it was written to do.
+     min-width:0 keeps the flex item from re-inflating to its min-content. */
+  width: 100%;
+  min-width: 0;
   margin: 0 auto;
   padding: 32px 20px 80px;
 }
