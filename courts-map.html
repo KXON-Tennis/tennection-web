@@ -422,9 +422,22 @@
     const VIEW = isMobile
       ? { center: [120.95, 23.55], zoom: 6.05, pitch: 30, bearing: -14 }
       : { center: [121.05, 23.45], zoom: 7.0, pitch: 52, bearing: -26 };
+    // The same three basemaps the app offers, so the two feel like one product.
+    const STYLES = [
+      { key: "streets",   label: () => T.styleStreets,   uri: "mapbox://styles/mapbox/streets-v12" },
+      { key: "dark",      label: () => T.styleDark,      uri: "mapbox://styles/mapbox/dark-v11" },
+      { key: "satellite", label: () => T.styleSatellite, uri: "mapbox://styles/mapbox/satellite-streets-v12" },
+    ];
+    // Dark by default, matching the app. A copied link carries whichever the
+    // sender was looking at: satellite is usually WHY someone shares a court —
+    // you can count the courts and see the surface — and arriving on the dark
+    // basemap loses the thing they meant to show.
+    const styleParam = new URLSearchParams(location.search).get("style");
+    let styleKey = STYLES.some(x => x.key === styleParam) ? styleParam : "dark";
+
     const map = new mapboxgl.Map({
       container: "map",
-      style: "mapbox://styles/mapbox/dark-v11",   // 與 App 內地圖同一套深色樣式
+      style: STYLES.find(x => x.key === styleKey).uri,
       center: VIEW.center,
       zoom: VIEW.zoom,
       pitch: VIEW.pitch,
@@ -435,13 +448,6 @@
     map.addControl(new mapboxgl.AttributionControl({ compact: true }), "bottom-left");
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
 
-    // The same three basemaps the app offers, so the two feel like one product.
-    const STYLES = [
-      { key: "streets",   label: () => T.styleStreets,   uri: "mapbox://styles/mapbox/streets-v12" },
-      { key: "dark",      label: () => T.styleDark,      uri: "mapbox://styles/mapbox/dark-v11" },
-      { key: "satellite", label: () => T.styleSatellite, uri: "mapbox://styles/mapbox/satellite-streets-v12" },
-    ];
-    let styleKey = "dark";
     (function buildSwitch() {
       const el = document.getElementById("styleSwitch");
       el.innerHTML = STYLES.map(st =>
@@ -662,7 +668,7 @@
       document.body.classList.add("court-open");
       document.getElementById("cpClose").onclick = closePanel;
       document.getElementById("cpCopy").onclick = (ev) => {
-        const url = `${location.origin}/courts-map?court=${f.id}&lang=${LANG}`;
+        const url = `${location.origin}/courts-map?court=${f.id}&lang=${LANG}&style=${styleKey}`;
         navigator.clipboard && navigator.clipboard.writeText(url);
         ev.currentTarget.textContent = T.copied;
       };
