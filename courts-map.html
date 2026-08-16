@@ -51,14 +51,18 @@
     .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib { opacity: .35; transform: scale(.85);
       transform-origin: bottom left; transition: opacity .2s; }
     .mapboxgl-ctrl-logo:hover, .mapboxgl-ctrl-attrib:hover { opacity: .9; }
-    .style-switch { position: absolute; right: 12px; bottom: 148px; z-index: 5;
-      display: flex; flex-direction: column; gap: 2px; padding: 4px;
-      border-radius: 12px; border: 1px solid var(--glass-line); }
+    /* Sits directly above the QR card, right-aligned with it. Laid out as a
+       row so the stack stays short — the corner already holds the QR and the
+       CTA bar. On mobile the QR is hidden, so it drops down to fill that gap. */
+    .style-switch { position: fixed; right: 14px; z-index: 3;
+      bottom: calc(298px + env(safe-area-inset-bottom));
+      display: flex; gap: 2px; padding: 4px;
+      border-radius: 12px; }
     .style-switch button { appearance: none; border: 0; background: transparent;
       color: #E7EBEF; font: inherit; font-size: 12px; font-weight: 600;
       padding: 6px 10px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
     .style-switch button[aria-pressed="true"] { background: rgba(255,255,255,.16); }
-    @media (max-width: 559px) { .style-switch { bottom: 168px; } }
+    @media (max-width: 559px) { .style-switch { bottom: calc(150px + env(safe-area-inset-bottom)); } }
     .mapboxgl-ctrl-group { background: var(--glass) !important; backdrop-filter: blur(8px);
       border: 1px solid var(--glass-line); }
     .mapboxgl-ctrl-group button + button { border-top: 1px solid var(--glass-line); }
@@ -205,7 +209,7 @@
         sub: "材質、夜間照明、停車、以及球友實際確認過的球場資訊。",
         courts: "座球場", markets: "個市場", surfaced: "有材質資料",
         unknown: "未標示", note: "⚠️ 詳細球場資訊難免有缺漏，歡迎加入 LINE/APP 回報球場資訊與狀態。",
-        ctaPrimary: "加入 LINE 回報球場", ctaSecondary: "申請試用 App",
+        ctaPrimary: "加入 LINE 回報球場", ctaSecondary: "申請試用 Tennis Nut",
         qrHead: "掃描加入 LINE 官方帳號",
         courtsUnit: n => `${n} 面`, lights: "夜間照明", indoor: "室內",
         styleStreets: "街道", styleDark: "深色", styleSatellite: "衛星",
@@ -221,7 +225,7 @@
         sub: "Surface, floodlights, parking, and details players have confirmed on the ground.",
         courts: "courts", markets: "markets", surfaced: "with a surface",
         unknown: "not recorded", note: "⚠️ Court details can be incomplete — report info and conditions via LINE or the app.",
-        ctaPrimary: "Report a court on LINE", ctaSecondary: "Request the app",
+        ctaPrimary: "Report a court on LINE", ctaSecondary: "Request Tennis Nut",
         qrHead: "Scan to add our LINE account",
         courtsUnit: n => `${n} court${n === 1 ? "" : "s"}`, lights: "Floodlights", indoor: "Indoor",
         styleStreets: "Streets", styleDark: "Dark", styleSatellite: "Satellite",
@@ -307,7 +311,10 @@
     // Centre on the viewer once we have a fix. flyTo rather than jumpTo so it
     // reads as the map finding them, and the pitch/bearing are carried over
     // deliberately — the angle is the look of the page.
-    if (navigator.geolocation) {
+    // ...unless the link already names a court. Someone opening an invitation
+    // is being sent somewhere specific; flying them home instead would undo
+    // the whole point of the link.
+    if (navigator.geolocation && !new URLSearchParams(location.search).get("court")) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
           map.flyTo({
@@ -331,7 +338,16 @@
       addCourtLayers(courtFeatures);
     }
     map.on("load", tryAddLayers);
+    // setStyle throws away every source and layer, so the courts have to go
+    // back on afterwards. Listening for style.load alone was not enough — at
+    // the moment it fires isStyleLoaded() can still be false, tryAddLayers
+    // bailed, and nothing ever called it again, which is why the dots
+    // disappeared the first time anyone changed basemap. styledata keeps
+    // firing until the style really is ready; getSource() stops the repeats
+    // from adding it twice.
+    map.on("styledata", tryAddLayers);
 
+    let wiredUp = false;
     function addCourtLayers(features) {
       map.addSource("courts", { type: "geojson",
         data: { type: "FeatureCollection", features } });
@@ -365,6 +381,32 @@
           "circle-stroke-color": "#fff",
           "circle-stroke-opacity": 0.85,
           "circle-opacity": 0.95,
+        },
+      });
+
+      // The name, once close enough that there is room for it. Below this the
+      // dots are a density picture and labels would be a wall of text; above
+      // it you are looking at somewhere specific and the dot alone means you
+      // have to tap each one to find out what it is.
+      // text-optional + no overlap: where names collide the map drops the
+      // label and keeps the dot, rather than hiding courts to fit words.
+      map.addLayer({
+        id: "courts-label", type: "symbol", source: "courts", minzoom: 12,
+        layout: {
+          "text-field": ["get", "name"],
+          "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
+          "text-size": ["interpolate", ["linear"], ["zoom"], 12, 11, 16, 13.5],
+          "text-anchor": "top",
+          "text-offset": [0, 0.9],
+          "text-optional": true,
+          "text-allow-overlap": false,
+          "text-padding": 4,
+          "text-max-width": 9,
+        },
+        paint: {
+          "text-color": "#FFFFFF",
+          "text-halo-color": "rgba(6,9,13,.9)",
+          "text-halo-width": 1.4,
         },
       });
 
@@ -409,6 +451,11 @@
           }
         } catch (_) { /* the popup is already useful without it */ }
       }
+
+      // Everything below binds to the map, not to the style, so it survives a
+      // restyle and must only happen once.
+      if (wiredUp) return;
+      wiredUp = true;
 
       map.on("click", "courts", (ev) => {
         openCourt(ev.features[0].properties, ev.lngLat);
