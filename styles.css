@@ -1340,3 +1340,12 @@ footer a {
   text-decoration: none;
   box-shadow: 0 6px 18px rgba(92, 154, 70, 0.28);
 }
+
+/* Two portraits where four used to sit, plus the line that explains why. */
+.experts-note {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 16px auto 0;
+  max-width: 520px;
+}
