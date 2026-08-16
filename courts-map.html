@@ -435,6 +435,29 @@
     const styleParam = new URLSearchParams(location.search).get("style");
     let styleKey = STYLES.some(x => x.key === styleParam) ? styleParam : "dark";
 
+    // The copy button was the only thing that knew the basemap, so anyone who
+    // copied out of the address bar — which is how most people copy a link —
+    // got the URL they arrived on. The address bar now tracks the state
+    // instead, and the button just reads it.
+    // forceLang for a link being handed to someone else: their browser may not
+    // settle on the same language, and the sender means "look at this page",
+    // not "look at your own translation of it". The address bar keeps lang
+    // only if the visitor asked for it.
+    function stateUrl(courtId, forceLang) {
+      const q = new URLSearchParams();
+      if (courtId != null) q.set("court", courtId);
+      if (forceLang || new URLSearchParams(location.search).has("lang")) q.set("lang", LANG);
+      if (styleKey !== "dark") q.set("style", styleKey);
+      const qs = q.toString();
+      return location.origin + location.pathname + (qs ? "?" + qs : "");
+    }
+    // replaceState, not pushState: changing basemap or closing a panel is not
+    // a place you navigated to, and filling the back button with it would
+    // make Back stop meaning "the page before this one".
+    function syncUrl(courtId) {
+      try { history.replaceState(null, "", stateUrl(courtId)); } catch (_) {}
+    }
+
     const map = new mapboxgl.Map({
       container: "map",
       style: STYLES.find(x => x.key === styleKey).uri,
@@ -457,6 +480,7 @@
         const b = ev.target.closest("button");
         if (!b || b.dataset.k === styleKey) return;
         styleKey = b.dataset.k;
+        syncUrl(openCourtId);
         [...el.children].forEach(x => x.setAttribute("aria-pressed", String(x.dataset.k === styleKey)));
         // Changing style wipes every source and layer, so the court layer has
         // to be added again once the new style is ready.
@@ -497,6 +521,7 @@
 
     function closePanel() {
       openCourtId = null;
+      syncUrl(null);
       panelEl.hidden = true;
       document.body.classList.remove("court-open");
     }
@@ -665,10 +690,13 @@
 
       panelEl.hidden = false;
       panelEl.scrollTop = 0;
+      syncUrl(f.id);
       document.body.classList.add("court-open");
       document.getElementById("cpClose").onclick = closePanel;
       document.getElementById("cpCopy").onclick = (ev) => {
-        const url = `${location.origin}/courts-map?court=${f.id}&lang=${LANG}&style=${styleKey}`;
+        // The same definition the address bar uses, so the two cannot drift
+        // apart again.
+        const url = stateUrl(f.id, true);
         navigator.clipboard && navigator.clipboard.writeText(url);
         ev.currentTarget.textContent = T.copied;
       };
