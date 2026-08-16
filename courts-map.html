@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Tennis Court Map | Tennection 網球場地圖</title>
+  <title>Tennis Nut 網球場地圖 | Tennis Court Map</title>
   <meta name="description" content="Tennis courts in Taiwan, Japan, Spain, Singapore and the US on one map — surface, floodlights, parking and what other players have confirmed. 台灣、日本、西班牙、新加坡、美國的網球場地圖。" />
 
-  <meta property="og:title" content="Tennection Tennis Court Map" />
+  <meta property="og:title" content="Tennis Nut 網球場地圖 — Tennis Court Map" />
   <meta property="og:description" content="Surface, floodlights, parking and player-confirmed details for courts across five markets." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tennisnut.kxon.net/courts-map" />
@@ -14,7 +14,7 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Tennection Tennis Court Map" />
+  <meta name="twitter:title" content="Tennis Nut 網球場地圖 — Tennis Court Map" />
   <meta name="twitter:description" content="Surface, floodlights, parking and player-confirmed details for courts across five markets." />
   <meta name="twitter:image" content="https://tennisnut.kxon.net/courts-insight-wide.png" />
 
@@ -309,11 +309,11 @@
 
     const T = {
       zh: {
-        title: "Tennection 網球場地圖",
+        title: "Tennis Nut 網球場地圖",
         sub: "材質、夜間照明、停車、以及球友實際確認過的球場資訊。",
         courts: "座球場", markets: "個市場", surfaced: "有材質資料",
         unknown: "未標示", note: "⚠️ 詳細球場資訊難免有缺漏，歡迎加入 LINE/APP 回報球場資訊與狀態。",
-        ctaPrimary: "加入 LINE 回報球場", ctaSecondary: "申請試用 Tennis Nut",
+        ctaPrimary: "加入 LINE 回報球場", ctaSecondary: "申請試用 Tennis Nut App",
         qrHead: "掃描加入 LINE 官方帳號",
         courtsUnit: n => `${n} 面`, lights: "夜間照明", indoor: "室內",
         styleStreets: "街道", styleDark: "深色", styleSatellite: "衛星",
@@ -332,7 +332,8 @@
         verifyCommunityCount: n => `${n} 位球友確認過`,
         verifyFresh: "仍在效期內", verifyStale: "需要重新確認",
         parkingNearby: "附近停車場", parkingWalk: n => `步行 ${n} 分鐘`,
-        parkingUnnamed: "停車場", parkingCar: "汽車", parkingMotorcycle: "機車",
+        parkingUnnamed: "停車場", parkingMore: n => `另有 ${n} 處`,
+        parkingCar: "汽車", parkingMotorcycle: "機車",
         parkingMixed: "汽機車", parkingPaid: "收費", parkingFree: "免費",
         hours: "開放時間", pricing: "費用", rentalLb: "租借",
         callCourt: "打電話", website: "官網",
@@ -347,11 +348,11 @@
                     pu: "PU", carpet: "地毯", other: "其他", unknown: "未標示" },
       },
       en: {
-        title: "Tennection Tennis Court Map",
+        title: "Tennis Nut Court Map",
         sub: "Surface, floodlights, parking, and details players have confirmed on the ground.",
         courts: "courts", markets: "markets", surfaced: "with a surface",
         unknown: "not recorded", note: "⚠️ Court details can be incomplete — report info and conditions via LINE or the app.",
-        ctaPrimary: "Report a court on LINE", ctaSecondary: "Request Tennis Nut",
+        ctaPrimary: "Report a court on LINE", ctaSecondary: "Request the Tennis Nut app",
         qrHead: "Scan to add our LINE account",
         courtsUnit: n => `${n} court${n === 1 ? "" : "s"}`, lights: "Floodlights", indoor: "Indoor",
         styleStreets: "Streets", styleDark: "Dark", styleSatellite: "Satellite",
@@ -371,7 +372,8 @@
         verifyCommunityCount: n => `${n} player${n === 1 ? "" : "s"} confirmed`,
         verifyFresh: "still current", verifyStale: "due a re-check",
         parkingNearby: "Parking nearby", parkingWalk: n => `${n} min walk`,
-        parkingUnnamed: "Car park", parkingCar: "cars", parkingMotorcycle: "motorcycles",
+        parkingUnnamed: "Car park", parkingMore: n => `${n} more nearby`,
+        parkingCar: "cars", parkingMotorcycle: "motorcycles",
         parkingMixed: "cars & motorcycles", parkingPaid: "paid", parkingFree: "free",
         hours: "Opening hours", pricing: "Pricing", rentalLb: "Rental",
         callCourt: "Call", website: "Website",
@@ -452,8 +454,10 @@
         [...el.children].forEach(x => x.setAttribute("aria-pressed", String(x.dataset.k === styleKey)));
         // Changing style wipes every source and layer, so the court layer has
         // to be added again once the new style is ready.
+        styleReady = false;
         map.setStyle(STYLES.find(x => x.key === styleKey).uri);
-        map.once("style.load", tryAddLayers);
+        // No listener here: the permanent style.load handler puts the courts
+        // back. One place that re-adds them, whatever caused the change.
       });
     })();
 
@@ -605,12 +609,20 @@
       // someone arriving by car.
       if (parking && parking.length) {
         const vlabel = { car: T.parkingCar, motorcycle: T.parkingMotorcycle, mixed: T.parkingMixed };
+        // Named car parks are three different answers; unnamed ones are the
+        // same answer three times. The extras become a count on the nearest,
+        // which is the only part of them that is information.
+        const named = parking.filter(pk => pk.name);
+        const anon = parking.filter(pk => !pk.name);
+        const shown = named.concat(anon.slice(0, 1));
+        const extra = anon.length - 1;
         sec.push(`<div class="cp-sec"><div class="cp-lb">${escapeHtml(T.parkingNearby)}</div><ul class="cp-list">` +
-          parking.map(pk => {
+          shown.map(pk => {
             const bits = [T.parkingWalk(Math.max(1, Math.ceil(pk.distance_m / 80)))];
             if (vlabel[pk.vehicle]) bits.push(vlabel[pk.vehicle]);
             if (pk.fee === "yes") bits.push(T.parkingPaid);
             else if (pk.fee === "no") bits.push(T.parkingFree);
+            if (!pk.name && extra > 0) bits.push(T.parkingMore(extra));
             return `<li><span class="k">🅿️</span><span>${escapeHtml(pk.name || T.parkingUnnamed)}` +
                    ` · ${escapeHtml(bits.join(" · "))}</span></li>`;
           }).join("") + `</ul></div>`);
@@ -692,19 +704,25 @@
     }
 
     let courtFeatures = null;
+
+    // setStyle throws away every source and layer, so the courts have to go
+    // back on afterwards, and the data may arrive before or after the style is
+    // ready — hence a flag plus a call from both sides.
+    //
+    // The guard used to be isStyleLoaded(). That was the bug: on a basemap
+    // change GL JS fires style.load and three styledata events, and
+    // isStyleLoaded() is false at every one of them — the sprite and tiles are
+    // still coming. It never fires again once it turns true, so tryAddLayers
+    // bailed each time and nothing called it back. style.load is the correct
+    // signal: it means the style is installed and addSource/addLayer are
+    // legal, which is all this needs. Whether the tiles have arrived is not
+    // this function's business.
+    let styleReady = false;
     function tryAddLayers() {
-      if (!courtFeatures || !map.isStyleLoaded() || map.getSource("courts")) return;
+      if (!courtFeatures || !styleReady || map.getSource("courts")) return;
       addCourtLayers(courtFeatures);
     }
-    map.on("load", tryAddLayers);
-    // setStyle throws away every source and layer, so the courts have to go
-    // back on afterwards. Listening for style.load alone was not enough — at
-    // the moment it fires isStyleLoaded() can still be false, tryAddLayers
-    // bailed, and nothing ever called it again, which is why the dots
-    // disappeared the first time anyone changed basemap. styledata keeps
-    // firing until the style really is ready; getSource() stops the repeats
-    // from adding it twice.
-    map.on("styledata", tryAddLayers);
+    map.on("style.load", () => { styleReady = true; tryAddLayers(); });
 
     let wiredUp = false;
     function addCourtLayers(features) {
