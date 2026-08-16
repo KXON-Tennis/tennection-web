@@ -5,14 +5,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tennis Nut · 記錄每一球，連結每一場</title>
-  <meta name="description" content="Tennis Nut 是專為網球玩家打造的 App：看球場即時狀態、用堅果點數向專業教練團提問、記錄練習與比賽、找球友。" />
+  <title>Tennis Nut · 找得到球場，也找得到人一起打</title>
+  <meta name="description" content="Tennis Nut 是給網球人的 App：兩千多座球場的材質、照明、停車與球友確認過的狀態；約球時先講好打什麼、用哪種球；卡關時用堅果向網球與體能專家提問。" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
   <link rel="canonical" href="https://tennisnut.kxon.net/" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta property="og:title" content="Tennis Nut" />
-  <meta property="og:description" content="球友一起更新球場狀況，用貢獻換取專業網球建議。回報球場、累積堅果，再用堅果向網球/體能/物療/營養專家提問。" />
+  <meta property="og:description" content="兩千多座球場的材質、夜間照明、停車與球友確認過的狀態；約球時先講好打什麼、用哪種球，新手也知道自己可以來。卡關時用堅果向網球與體能專家提問。" />
   <meta property="og:image" content="/icon-512.png" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="/styles.css" />
@@ -29,8 +29,8 @@
     <span class="tag">嘿！熱烈招募中，就缺你一咖 🌰</span>
     <h1>記錄每一球，<br />連結每一場</h1>
     <p class="lead">
-      回報球場、累積堅果、向專家提問。<br />
-      和球友一起更新球場狀況，用貢獻換取專業網球建議。
+      找得到球場，也找得到人一起打。<br />
+      約球時先講好要打什麼、用哪種球，第一次上場的人也知道自己可以來。
     </p>
 
     <!-- App preview (light theme) with Nutty peeking from the side. -->
@@ -106,21 +106,15 @@
           <text x="156" y="160" fill="#8A5A12" font-size="12" font-weight="800"
             font-family="-apple-system, sans-serif">體能訓練</text>
           <text x="156" y="173" fill="#A6772E" font-size="8" font-family="-apple-system, sans-serif">肌力・爆發・核心</text>
-          <!-- 指定專家 -->
+          <!-- 「指定專家」在 App 內是關閉的（供給不足會變成假選項），畫面不該演它。
+               這格改放真的看得到的東西：案子有幾天內會回覆。 -->
           <text x="20" y="214" fill="#3C6E3F" font-size="11" font-weight="800"
-            font-family="-apple-system, sans-serif">諮詢指定專家</text>
-          <circle cx="40" cy="248" r="18" fill="#EFF6E6" stroke="#5C9A46" stroke-width="1.5" />
-          <text x="40" y="253" text-anchor="middle" fill="#3C6E3F" font-size="14" font-weight="800"
-            font-family="-apple-system, sans-serif">C</text>
-          <circle cx="92" cy="248" r="18" fill="#E7E7E0" stroke="#9AA29A" stroke-width="1.5" />
-          <text x="92" y="253" text-anchor="middle" fill="#5E7A60" font-size="12" font-weight="800"
-            font-family="-apple-system, sans-serif">教</text>
-          <circle cx="144" cy="248" r="18" fill="#EFF6E6" stroke="#5C9A46" stroke-width="1.5" />
-          <text x="144" y="253" text-anchor="middle" fill="#3C6E3F" font-size="13" font-weight="800"
-            font-family="-apple-system, sans-serif">J</text>
-          <circle cx="196" cy="248" r="18" fill="none" stroke="#C9CFC9" stroke-width="1.5" stroke-dasharray="3 3" />
-          <text x="196" y="254" text-anchor="middle" fill="#9AA29A" font-size="16"
-            font-family="-apple-system, sans-serif">+</text>
+            font-family="-apple-system, sans-serif">回覆時間</text>
+          <rect x="16" y="224" width="248" height="46" rx="14" fill="#FFFFFF" stroke="#ECEAE2" />
+          <text x="32" y="245" fill="#2E5A34" font-size="11" font-weight="800"
+            font-family="-apple-system, sans-serif">專家會實際看過再回答</text>
+          <text x="32" y="260" fill="#A6A69E" font-size="8.5"
+            font-family="-apple-system, sans-serif">不是即時客服，也不是模板回覆</text>
           <!-- 進行中 -->
           <text x="20" y="304" fill="#3C6E3F" font-size="11" font-weight="800"
             font-family="-apple-system, sans-serif">進行中</text>
@@ -131,7 +125,7 @@
           <rect x="212" y="330" width="38" height="18" rx="9" fill="#5C9A46" />
           <text x="231" y="343" text-anchor="middle" fill="#fff" font-size="9" font-weight="800"
             font-family="-apple-system, sans-serif">Pro</text>
-          <text x="62" y="358" fill="#A6A69E" font-size="8.5" font-family="-apple-system, sans-serif">系統測試教練・網球技術</text>
+          <text x="62" y="358" fill="#A6A69E" font-size="8.5" font-family="-apple-system, sans-serif">網球教練・技術</text>
           <text x="62" y="378" fill="#3C6E3F" font-size="9.5" font-weight="700"
             font-family="-apple-system, sans-serif">已回覆，等你追問</text>
           <!-- bottom nav -->
@@ -144,7 +138,7 @@
       <img src="/nutty.png" alt="Nutty" class="peek" />
     </div>
 
-    <p class="cta-lead">加入 LINE 回報球場、累積堅果，還有不定時專家分享；想要專家專屬問答與進階功能，再申請 App 限量測試</p>
+    <p class="cta-lead">加入 LINE 就能回報球場、累積堅果；約球、日記、向專家提問這些在 App 裡，目前是限量測試</p>
     <div class="cta-row">
       <a class="primary" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">
         加入 LINE 開始回報
@@ -171,6 +165,12 @@
         </div>
         <div class="day-arrow">→</div>
         <div class="day-step">
+          <div class="day-ic">🤝</div>
+          <h4>約球</h4>
+          <p>時間、打法、用球先講好</p>
+        </div>
+        <div class="day-arrow">→</div>
+        <div class="day-step">
           <div class="day-ic">📢</div>
           <h4>回報狀況</h4>
           <p>順手回報，30 秒</p>
@@ -189,12 +189,6 @@
         </div>
         <div class="day-arrow">→</div>
         <div class="day-step">
-          <div class="day-ic">🖼️</div>
-          <h4>做圖卡</h4>
-          <p>把這場變成回憶</p>
-        </div>
-        <div class="day-arrow">→</div>
-        <div class="day-step">
           <div class="day-ic">📈</div>
           <h4>持續變強</h4>
           <p>護照收成就，越打越強</p>
@@ -203,18 +197,29 @@
     </section>
   </div>
 
+  <!-- ── 02b · 球場地圖（不必安裝就能看的那一塊）── -->
+  <section class="sect map-tease">
+    <p class="eyebrow">🗺️ 不用安裝也能看</p>
+    <h2 class="sec-h">網球場地圖</h2>
+    <p class="sec-sub">
+      材質、夜間照明、停車、以及球友實際到場確認過的資訊。
+      多數地圖只知道「這裡有球場」，這張還知道那座球場現在能不能打。
+    </p>
+    <a class="map-cta" href="/courts-map">打開球場地圖 →</a>
+  </section>
+
   <!-- ── 03 · 用堅果問專家（白底，與前後淡綠帶交錯；口袋支援團隊）── -->
   <section class="sect experts experts-plain">
       <p class="eyebrow">🌰 Tennis Nut 最大的不同</p>
       <h2 class="sec-h">你的口袋網球支援團隊</h2>
-      <p class="sec-sub">不只問球技，也能問訓練、恢復與營養。用堅果點數，把日常打球遇到的問題交給合適的專家。</p>
+      <p class="sec-sub">卡關的時候，把問題交給真的懂的人。用堅果點數提問，會有一位專家實際看過你的狀況再回答。</p>
       <div class="expert-band">
         <span>發球一直掛網？</span>
-        <span>手肘痛該休息還是訓練？</span>
-        <span>比賽前怎麼吃比較不會沒力？</span>
+        <span>正拍老是打出界？</span>
         <span>該練核心還是腳步？</span>
+        <span>打完隔天腰很緊，是姿勢問題嗎？</span>
       </div>
-      <div class="expert-row">
+      <div class="expert-row expert-row-2">
         <div class="expert">
           <div class="portrait" data-exp="coach"><img src="expert-coach.jpg" alt="網球教練" /></div>
           <h3>網球教練</h3>
@@ -225,20 +230,12 @@
           <h3>體能訓練師</h3>
           <p>核心・腳步・爆發力</p>
         </div>
-        <div class="expert">
-          <div class="portrait" data-exp="physio"><img src="expert-physio.jpg" alt="物理治療師" /></div>
-          <h3>物理治療師</h3>
-          <p>痠痛・恢復・傷害預防</p>
-        </div>
-        <div class="expert">
-          <div class="portrait" data-exp="nutrition"><img src="expert-nutrition.jpg" alt="營養建議" /></div>
-          <h3>營養建議</h3>
-          <p>賽前飲食・補水・恢復</p>
-        </div>
       </div>
-      <p class="disclaimer">＊專家提供的是訓練與恢復方向的建議，協助你判斷該休息或訓練，並非醫療診斷或治療。身體不適請就醫。</p>
+      <p class="expert-soon">目前開放這兩類。物理治療與運動營養正在洽談中——我們寧可等到真的有人能回答，才把類別放上來。</p>
+      <p class="disclaimer">＊專家提供的是訓練方向的建議，並非醫療診斷或治療。身體不適請就醫。</p>
   </section>
 
+  <!-- 兩個人的一排，用四個人的欄寬會散開 -->
   <!-- ── 04 · App 專屬功能（深綠大色塊；手機 + 標註）── -->
   <section class="appshow-img">
     <img src="app-features.svg" alt="App 專屬功能：把堅果變成你的網球資產" />
@@ -326,8 +323,8 @@
         <img src="/nutty.png" alt="Nutty" class="guardian-nutty" />
         <div>
           <h2>記錄你的網球生活，也幫助下一位球友</h2>
-          <p>Tennis Nut 陪你留下練習、比賽、裝備與球場拜訪紀錄；也透過球友們的場地回報，幫助更多新進球友找到適合自己的球場。</p>
-          <p>遇到技術、體能、恢復或比賽心理上的瓶頸時，也能用堅果點數向專家提問，讓每一次練習都有更清楚的方向。</p>
+          <p>Tennis Nut 陪你留下練習、比賽、裝備與球場拜訪紀錄；也透過球友們的場地回報，讓下一個找球場的人少跑一趟。</p>
+          <p>技術或體能卡住的時候，用堅果點數向專家提問，讓每一次練習都有更清楚的方向。</p>
           <div class="guardian-cta">
             <a class="primary" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">加入 LINE，回報第一筆</a>
           </div>
