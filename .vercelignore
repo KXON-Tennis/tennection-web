@@ -1,0 +1,8 @@
+# Local test APK — served from GitHub Releases, must not be uploaded (70MB)
+tennisnut.apk
+
+# dev cruft
+.DS_Store
+*.log
+node_modules/
+.git/

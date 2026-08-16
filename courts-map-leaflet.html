@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>全台網球場地圖・材質分佈 | Tennection 彈尼松</title>
+  <meta name="description" content="全台網球場材質分佈地圖：北部九成硬地、南部紅土逾四成。站長十年親手蒐集，歡迎一起補完。" />
+
+  <!-- Open Graph / 社群分享卡 -->
+  <meta property="og:title" content="全台網球場地圖・材質分佈" />
+  <meta property="og:description" content="一張地圖看懂台灣網球場的南北差異——越往南，紅土越多。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/courts-map-leaflet" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+
+  <style>
+    :root {
+      --accent: #5C9A46;
+      --accent-d: #3C6E3F;
+      --clay: #FF6A3D; --hard: #4FA8FF; --grass: #7ED957; --other: #AEB6BD;
+      --glass: rgba(16,21,27,.74);
+      --glass-line: rgba(255,255,255,.12);
+      --ink: #F2F5F7; --ink2: #AEBAC4;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+        "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+      background: #11151a; color: var(--ink); overflow: hidden;
+    }
+
+    /* ── 全版地圖 ── */
+    #map { position: fixed; inset: 0; z-index: 0; background: #11151a; }
+    .leaflet-interactive { filter: drop-shadow(0 0 3px rgba(255,255,255,.25)); }
+    .leaflet-control-zoom { margin-top: 14px !important; margin-right: 14px !important; border: none !important; }
+    .leaflet-control-zoom a { background: var(--glass) !important; color: var(--ink) !important;
+      border: 1px solid var(--glass-line) !important; backdrop-filter: blur(8px); }
+    .leaflet-control-attribution { background: rgba(16,21,27,.6) !important; color: var(--ink2) !important; }
+    .leaflet-control-attribution a { color: var(--ink2) !important; }
+
+    /* 上下漸層遮罩，讓浮層文字更清楚 */
+    .scrim { position: fixed; left: 0; right: 0; z-index: 1; pointer-events: none; }
+    .scrim.top { top: 0; height: 230px; background: linear-gradient(180deg, rgba(8,11,15,.72), transparent); }
+    .scrim.bottom { bottom: 0; height: 220px; background: linear-gradient(0deg, rgba(8,11,15,.78), transparent); }
+
+    /* 通用玻璃面板 */
+    .glass {
+      background: var(--glass); backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-line); border-radius: 16px;
+      box-shadow: 0 10px 34px rgba(0,0,0,.40);
+    }
+
+    /* ── 頂部：標題 + 統計 + 圖例 ── */
+    .top-panel {
+      position: fixed; z-index: 3; top: 14px; left: 14px; width: min(440px, calc(100vw - 28px));
+      padding: 15px 17px 14px;
+    }
+    .top-panel .brand { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+    .top-panel .brand .brand-icon { width: 26px; height: 26px; border-radius: 50%; display: block; flex: 0 0 auto; }
+    .top-panel .brand .brand-wm { height: 22px; width: auto; display: block; }
+    .top-panel h1 { margin: 5px 0 0; font-size: 21px; font-weight: 900; letter-spacing: .3px; line-height: 1.2; }
+    .top-panel .sub { margin: 4px 0 0; font-size: 13px; color: var(--ink2); line-height: 1.5; }
+    .stat-strip { display: flex; gap: 7px; margin-top: 12px; flex-wrap: wrap; }
+    .stat { background: rgba(255,255,255,.07); border: 1px solid var(--glass-line); border-radius: 10px;
+      padding: 6px 11px; font-size: 12px; color: var(--ink2); white-space: nowrap; }
+    .stat b { color: var(--ink); font-size: 15px; }
+    .legend-row { display: flex; gap: 13px; flex-wrap: wrap; margin-top: 13px;
+      padding-top: 12px; border-top: 1px solid var(--glass-line); }
+    .legend-row .it { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink2); }
+    .legend-row .dot { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.85);
+      box-shadow: 0 0 6px currentColor; flex: 0 0 auto; }
+    .legend-row .cnt { color: var(--ink); font-weight: 800; font-variant-numeric: tabular-nums; }
+
+    /* ── 底部 CTA bar ── */
+    .cta-bar {
+      position: fixed; z-index: 3; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom));
+      transform: translateX(-50%); width: min(640px, calc(100vw - 28px));
+      padding: 13px 16px; display: flex; align-items: center; gap: 14px;
+    }
+    .cta-bar .note { flex: 1 1 auto; min-width: 0; font-size: 11.5px; color: var(--ink2); line-height: 1.55; margin: 0; }
+    .cta-bar .note b { color: var(--ink); }
+    .cta-row { display: flex; gap: 9px; flex: 0 0 auto; }
+    .cta-row a { text-decoration: none; padding: 12px 16px; border-radius: 999px; font-weight: 800;
+      font-size: 14px; line-height: 1; white-space: nowrap; }
+    .cta-row a.primary { background: var(--accent); color: #fff; }
+    .cta-row a.secondary { background: rgba(255,255,255,.10); color: var(--ink); border: 1.5px solid var(--glass-line); }
+
+    /* 桌機 QR 小卡（右下，獨立漂浮） */
+    .qr-card { position: fixed; z-index: 3; right: 14px; bottom: calc(92px + env(safe-area-inset-bottom));
+      width: 150px; padding: 11px; text-align: center; }
+    .qr-head { font-size: 11px; font-weight: 800; color: var(--ink2); margin-bottom: 7px; }
+    .qr-box { background: #fff; border-radius: 9px; padding: 7px; display: inline-block; line-height: 0; }
+    .qr-box svg, .qr-box img { width: 112px; height: 112px; display: block; }
+    .qr-cap { font-size: 10.5px; color: var(--ink2); line-height: 1.45; margin-top: 7px; }
+
+    .loading { position: fixed; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.75); font-size: 14px; background: rgba(17,21,26,.9); }
+
+    /* leaflet popup → 深色玻璃 */
+    .leaflet-popup-content-wrapper { background: var(--glass); backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-line); border-radius: 12px; color: var(--ink); }
+    .leaflet-popup-tip { background: var(--glass); }
+    .leaflet-popup-content { margin: 12px 14px; font-size: 13.5px; line-height: 1.55; }
+    .leaflet-popup-content .nm { font-weight: 800; font-size: 14.5px; }
+    .leaflet-popup-content .meta { color: var(--ink2); margin-top: 4px; }
+    .leaflet-popup-content .tag { display: inline-block; margin-top: 7px; padding: 2px 9px;
+      border-radius: 999px; font-size: 12px; font-weight: 800; color: #08121f; }
+    .leaflet-popup-content a.leaflet-popup-close-button { color: var(--ink2) !important; }
+
+    /* ── 手機 ── */
+    @media (max-width: 559px) {
+      .qr-card { display: none; }
+      .cta-bar { flex-direction: column; align-items: stretch; gap: 10px; padding: 13px 15px; }
+      .cta-row a { flex: 1 1 0; text-align: center; }
+      .top-panel h1 { font-size: 18px; }
+      .top-panel { padding: 13px 15px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="scrim top"></div>
+  <div class="scrim bottom"></div>
+
+  <!-- 頂部面板 -->
+  <div class="top-panel glass">
+    <div class="brand">
+      <img class="brand-icon" src="/app-icon.png" alt="Tennis Nut" />
+      <img class="brand-wm" src="/wordmark-white.png" alt="Tennis Nut" />
+    </div>
+    <h1>全台網球場・材質地圖</h1>
+    <p class="sub">一張圖看懂台灣網球場的南北差異。</p>
+    <div class="stat-strip" id="stats"><span class="stat">載入中…</span></div>
+    <div class="legend-row" id="legend" hidden>
+      <span class="it"><span class="dot" style="background:var(--clay);color:var(--clay)"></span>紅土 <span class="cnt" id="lc-clay"></span></span>
+      <span class="it"><span class="dot" style="background:var(--hard);color:var(--hard)"></span>硬地 <span class="cnt" id="lc-hard"></span></span>
+      <span class="it"><span class="dot" style="background:var(--grass);color:var(--grass)"></span>草地 <span class="cnt" id="lc-grass"></span></span>
+      <span class="it"><span class="dot" style="background:var(--other);color:var(--other)"></span>其他 <span class="cnt" id="lc-other"></span></span>
+    </div>
+  </div>
+
+  <!-- 桌機 QR -->
+  <div class="qr-card glass" id="qrCard" hidden>
+    <div class="qr-head">掃描加入 LINE 官方帳號</div>
+    <div class="qr-box" id="qr"></div>
+    <div class="qr-cap">先從 LINE 回報球場，解鎖 App 專屬功能</div>
+  </div>
+
+  <!-- 底部 CTA -->
+  <div class="cta-bar glass">
+    <p class="note">⚠️ 這份地圖<b>尚不完美</b>——是站長十年親手蒐集的成果，難免有缺漏。歡迎一起補完、回報球場狀態。</p>
+    <div class="cta-row">
+      <a class="primary" href="https://line.me/R/ti/p/@tennisnut">加入 LINE 一起補完</a>
+      <a class="secondary" href="/install">下載 App</a>
+    </div>
+  </div>
+
+  <div class="loading" id="loading">地圖載入中… 🎾</div>
+
+  <script>
+    const SUPABASE_URL = "https://dwjwisgbpnrxtcvpbkec.supabase.co";
+    const ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3andpc2dicG5yeHRjdnBia2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0NTU2ODQsImV4cCI6MjA4NDAzMTY4NH0.Em6SlZlakgd8WlL-PgFsR-NjpN2HFc38yNUw1zRKB9I";
+
+    const CLAY = "clay", HARD = "hard", GRASS = "grass", OTHER = "other";
+    const COLORS = { clay: "#FF6A3D", hard: "#4FA8FF", grass: "#7ED957", other: "#AEB6BD" };
+
+    function surfaceClass(t) {
+      const s = (t || "").trim();
+      if (s.includes("紅土") || /clay/i.test(s)) return CLAY;
+      if (s.includes("硬地") || /hard/i.test(s)) return HARD;
+      if (s.includes("草") || /grass/i.test(s)) return GRASS;
+      if (!s) return OTHER;
+      return OTHER;
+    }
+
+    const map = L.map("map", { zoomControl: true, attributionControl: true })
+      .setView([23.75, 120.95], 7);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      maxZoom: 19, attribution: '&copy; OpenStreetMap &copy; CARTO',
+    }).addTo(map);
+
+    function popupHtml(c, cls) {
+      const surf = (c.surface_type || c.surface_type_en || "未知").trim() || "未知";
+      const courts = c.court_count ? `・${c.court_count} 面` : "";
+      return `<div class="nm">${escapeHtml(c.name || "")}</div>`
+        + (c.city ? `<div class="meta">${escapeHtml(c.city)}${courts}</div>`
+                  : (courts ? `<div class="meta">${courts.replace("・","")}</div>` : ""))
+        + `<span class="tag" style="background:${COLORS[cls]}">${escapeHtml(surf)}</span>`;
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, m =>
+        ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));
+    }
+
+    async function load() {
+      const counts = { clay: 0, hard: 0, grass: 0, other: 0 };
+      let south = { clay: 0, total: 0 }, north = { hard: 0, total: 0 };
+      try {
+        const url = SUPABASE_URL + "/rest/v1/courts"
+          + "?select=id,name,city,lat,lng,surface_type,surface_type_en,court_count"
+          + "&lat=not.is.null&lng=not.is.null&limit=5000";
+        const r = await fetch(url, { headers: { apikey: ANON, Authorization: "Bearer " + ANON } });
+        const courts = await r.json();
+
+        const bounds = [];
+        for (const c of courts) {
+          if (typeof c.lat !== "number" || typeof c.lng !== "number") continue;
+          const cls = surfaceClass(c.surface_type || c.surface_type_en);
+          counts[cls]++;
+          if (c.lat >= 23.85) { north.total++; if (cls === HARD) north.hard++; }
+          else { south.total++; if (cls === CLAY) south.clay++; }
+
+          L.circleMarker([c.lat, c.lng], {
+            radius: 7, color: "#fff", weight: 1, opacity: .85,
+            fillColor: COLORS[cls], fillOpacity: .95,
+          }).addTo(map).bindPopup(popupHtml(c, cls));
+          bounds.push([c.lat, c.lng]);
+        }
+        if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
+
+        document.getElementById("lc-clay").textContent = counts.clay;
+        document.getElementById("lc-hard").textContent = counts.hard;
+        document.getElementById("lc-grass").textContent = counts.grass;
+        document.getElementById("lc-other").textContent = counts.other;
+        document.getElementById("legend").hidden = false;
+
+        const total = counts.clay + counts.hard + counts.grass + counts.other;
+        const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+        document.getElementById("stats").innerHTML =
+            `<span class="stat">全台 <b>${total}</b> 座</span>`
+          + `<span class="stat">北部硬地 <b>${pct(north.hard, north.total)}%</b></span>`
+          + `<span class="stat">南部紅土 <b>${pct(south.clay, south.total)}%</b></span>`;
+      } catch (e) {
+        document.getElementById("stats").innerHTML =
+          `<span class="stat">資料載入失敗，請稍後再試 🙏</span>`;
+      } finally {
+        const l = document.getElementById("loading");
+        if (l) l.remove();
+      }
+    }
+    load();
+
+    (function () {
+      try {
+        const qr = qrcode(0, "M");
+        qr.addData("https://line.me/R/ti/p/@tennisnut");
+        qr.make();
+        document.getElementById("qr").innerHTML =
+          qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+        document.getElementById("qrCard").hidden = false;
+      } catch (e) { /* QR 函式庫載入失敗 → 維持隱藏 */ }
+    })();
+  </script>
+</body>
+</html>

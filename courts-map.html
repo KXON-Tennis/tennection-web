@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Tennis Court Map | Tennection 網球場地圖</title>
+  <meta name="description" content="Tennis courts in Taiwan, Japan, Spain, Singapore and the US on one map — surface, floodlights, parking and what other players have confirmed. 台灣、日本、西班牙、新加坡、美國的網球場地圖。" />
+
+  <meta property="og:title" content="Tennection Tennis Court Map" />
+  <meta property="og:description" content="Surface, floodlights, parking and player-confirmed details for courts across five markets." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/courts-map" />
+  <meta property="og:image" content="https://tennisnut.kxon.net/courts-insight-wide.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tennection Tennis Court Map" />
+  <meta name="twitter:description" content="Surface, floodlights, parking and player-confirmed details for courts across five markets." />
+  <meta name="twitter:image" content="https://tennisnut.kxon.net/courts-insight-wide.png" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+
+  <style>
+    :root {
+      --accent: #5C9A46;
+      --accent-d: #3C6E3F;
+      --clay: #FF6A3D; --hard: #4FA8FF; --grass: #7ED957; --other: #AEB6BD;
+      --glass: rgba(16,21,27,.74);
+      --glass-line: rgba(255,255,255,.12);
+      --ink: #F2F5F7; --ink2: #AEBAC4;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+        "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+      background: #11151a; color: var(--ink); overflow: hidden;
+    }
+
+    /* ── 全版地圖 ── */
+    #map { position: fixed; inset: 0; z-index: 0; background: #11151a; }
+    /* Mapbox 控制項（右上）玻璃化 + 避開頂部面板由 CSS 位移 */
+    .mapboxgl-ctrl-top-right { top: 14px; right: 14px; }
+    .mapboxgl-ctrl-group { background: var(--glass) !important; backdrop-filter: blur(8px);
+      border: 1px solid var(--glass-line); }
+    .mapboxgl-ctrl-group button + button { border-top: 1px solid var(--glass-line); }
+    .mapboxgl-ctrl-group button .mapboxgl-ctrl-icon { filter: invert(1) brightness(1.4); }
+    .mapboxgl-ctrl-attrib { background: rgba(16,21,27,.6) !important; }
+    .mapboxgl-ctrl-attrib a { color: var(--ink2) !important; }
+
+    /* 上下漸層遮罩，讓浮層文字更清楚 */
+    .scrim { position: fixed; left: 0; right: 0; z-index: 1; pointer-events: none; }
+    .scrim.top { top: 0; height: 230px; background: linear-gradient(180deg, rgba(8,11,15,.72), transparent); }
+    .scrim.bottom { bottom: 0; height: 220px; background: linear-gradient(0deg, rgba(8,11,15,.78), transparent); }
+
+    /* 通用玻璃面板 */
+    .glass {
+      background: var(--glass); backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-line); border-radius: 16px;
+      box-shadow: 0 10px 34px rgba(0,0,0,.40);
+    }
+
+    /* ── 頂部：標題 + 統計 + 圖例 ── */
+    .top-panel {
+      position: fixed; z-index: 3; top: 14px; left: 14px; width: min(440px, calc(100vw - 28px));
+      padding: 15px 17px 14px;
+    }
+    .top-panel h1 { margin: 0; font-size: 21px; font-weight: 900; letter-spacing: .3px; line-height: 1.2; }
+    .top-panel .sub { margin: 4px 0 0; font-size: 13px; color: var(--ink2); line-height: 1.5; }
+    .stat-strip { display: flex; gap: 7px; margin-top: 12px; flex-wrap: wrap; }
+    .stat { background: rgba(255,255,255,.07); border: 1px solid var(--glass-line); border-radius: 10px;
+      padding: 6px 11px; font-size: 12px; color: var(--ink2); white-space: nowrap; }
+    .stat b { color: var(--ink); font-size: 15px; }
+    .legend-row { display: flex; gap: 13px; flex-wrap: wrap; margin-top: 13px;
+      padding-top: 12px; border-top: 1px solid var(--glass-line); }
+    .legend-row[hidden] { display: none; }
+    .legend-row .it { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink2); }
+    .legend-row .dot { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.85);
+      box-shadow: 0 0 6px currentColor; flex: 0 0 auto; }
+    .legend-row .cnt { color: var(--ink); font-weight: 800; font-variant-numeric: tabular-nums; }
+
+    /* ── 底部 CTA bar ── */
+    .cta-bar {
+      position: fixed; z-index: 3; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom));
+      transform: translateX(-50%); width: min(640px, calc(100vw - 28px));
+      padding: 13px 16px; display: flex; align-items: center; gap: 14px;
+    }
+    .cta-bar .note { flex: 1 1 auto; min-width: 0; font-size: 11.5px; color: var(--ink2); line-height: 1.55; margin: 0; }
+    .cta-bar .note b { color: var(--ink); }
+    .cta-row { display: flex; gap: 9px; flex: 0 0 auto; }
+    .cta-row a { text-decoration: none; padding: 12px 16px; border-radius: 999px; font-weight: 800;
+      font-size: 14px; line-height: 1; white-space: nowrap; }
+    .cta-row a.primary { background: var(--accent); color: #fff; }
+    /* 桌機：加 LINE 由右下 QR 負責，底部按鈕只留「下載 App」，避免與 QR 重複 */
+    .cta-bar .cta-row a.primary { display: none; }
+    .cta-row a.secondary { background: rgba(255,255,255,.10); color: var(--ink); border: 1.5px solid var(--glass-line);
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+    .cta-row a.secondary .btn-icon { width: 18px; height: 18px; border-radius: 50%; display: block; flex: 0 0 auto; }
+
+    /* 桌機 QR 小卡（右下，獨立漂浮） */
+    .qr-card { position: fixed; z-index: 3; right: 14px; bottom: calc(92px + env(safe-area-inset-bottom));
+      width: 150px; padding: 11px; text-align: center; }
+    .qr-head { font-size: 11px; font-weight: 800; color: var(--ink2); margin-bottom: 7px; }
+    .qr-box { background: #fff; border-radius: 9px; padding: 7px; display: inline-block; line-height: 0; }
+    .qr-box svg, .qr-box img { width: 112px; height: 112px; display: block; }
+    .qr-cap { font-size: 10.5px; color: var(--ink2); line-height: 1.45; margin-top: 7px; }
+
+    .loading { position: fixed; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.75); font-size: 14px; background: rgba(17,21,26,.9); }
+
+    /* Mapbox popup → 深色玻璃 */
+    .mapboxgl-popup-content { background: var(--glass); backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-line); border-radius: 12px; color: var(--ink);
+      padding: 12px 14px; font-size: 13.5px; line-height: 1.55; box-shadow: 0 10px 34px rgba(0,0,0,.4); }
+    .mapboxgl-popup-tip { display: none; }
+    .mapboxgl-popup-content .nm { font-weight: 800; font-size: 14.5px; }
+    .mapboxgl-popup-content .meta { color: var(--ink2); margin-top: 4px; }
+    .mapboxgl-popup-content .tag { display: inline-block; margin-top: 7px; padding: 2px 9px;
+      border-radius: 999px; font-size: 12px; font-weight: 800; color: #08121f; }
+    .mapboxgl-popup-close-button { color: var(--ink2); font-size: 18px; padding: 0 6px; }
+
+    /* ── 手機 ── */
+    @media (max-width: 559px) {
+      .qr-card { display: none; }
+      .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group { display: none; } /* 手機改用雙指縮放 */
+      .cta-bar { flex-direction: column; align-items: stretch; gap: 10px; padding: 13px 15px; }
+      .cta-row a { flex: 1 1 0; text-align: center; }
+      .cta-bar .cta-row a.primary { display: block; }  /* 手機無 QR → 顯示「加入 LINE」按鈕 */
+      .top-panel h1 { font-size: 18px; }
+      .top-panel { padding: 13px 15px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="scrim top"></div>
+  <div class="scrim bottom"></div>
+
+  <!-- 頂部面板 -->
+  <div class="top-panel glass">
+    <h1 id="pageTitle"></h1>
+    <p class="sub" id="pageSub"></p>
+    <div class="stat-strip" id="stats"><span class="stat">…</span></div>
+    <div class="legend-row" id="legend" hidden></div>
+  </div>
+
+  <!-- 桌機 QR -->
+  <div class="qr-card glass" id="qrCard" hidden>
+    <div class="qr-head" id="qrHead"></div>
+    <div class="qr-box" id="qr"></div>
+    <div class="qr-cap" id="qrCap"></div>
+  </div>
+
+  <!-- 底部 CTA -->
+  <div class="cta-bar glass">
+    <p class="note" id="ctaNote"></p>
+    <div class="cta-row">
+      <a class="primary" id="ctaPrimary" href="https://line.me/R/ti/p/@tennisnut"></a>
+      <a class="secondary" href="https://forms.gle/N7EKJ58FmvhVKQs69" target="_blank" rel="noopener"><img class="btn-icon" src="/app-icon.png" alt="" /><span id="ctaSecondary"></span></a>
+    </div>
+  </div>
+
+  <div class="loading" id="loading">🎾</div>
+
+  <script>
+    // ⚠️ 換成「網頁專用、已綁定 tennisnut.kxon.net 網域」的 Mapbox public token（與 App 分開）
+    const MAPBOX_TOKEN = "pk.eyJ1Ijoia2hjaG8iLCJhIjoiY21xa3M0Y2Q0MDBxMjJ5c2VxeXN2NmQ4eSJ9.nQx2xebi6xQ0zz_JBLYw9Q";
+
+    const SUPABASE_URL = "https://dwjwisgbpnrxtcvpbkec.supabase.co";
+    const ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3andpc2dicG5yeHRjdnBia2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0NTU2ODQsImV4cCI6MjA4NDAzMTY4NH0.Em6SlZlakgd8WlL-PgFsR-NjpN2HFc38yNUw1zRKB9I";
+
+    // ---- language -------------------------------------------------------
+    // Follows the browser, overridable with ?lang=en|zh. The map covers five
+    // markets now; a page that only speaks Chinese excludes most of them.
+    const LANG = (function () {
+      const q = new URLSearchParams(location.search).get("lang");
+      if (q === "en" || q === "zh") return q;
+      return /^zh/i.test(navigator.language || "") ? "zh" : "en";
+    })();
+    document.documentElement.lang = LANG === "zh" ? "zh-Hant" : "en";
+
+    const T = {
+      zh: {
+        title: "Tennection 網球場地圖",
+        sub: "台灣、日本、西班牙、新加坡、美國。材質、夜間照明、停車、球友確認過的資訊。",
+        courts: "座球場", markets: "個市場", surfaced: "有材質資料",
+        unknown: "未標示", note: "⚠️ 詳細球場資訊難免有缺漏，歡迎加入 LINE/APP 回報球場資訊與狀態。",
+        ctaPrimary: "加入 LINE 回報球場", ctaSecondary: "申請試用 App",
+        qrHead: "掃描加入 LINE 官方帳號", qrCap: "先從 LINE 回報球場，解鎖 App 專屬功能",
+        courtsUnit: n => `${n} 面`, lights: "夜間照明", indoor: "室內",
+        accessFree: "免費開放", accessPaid: "付費", accessPrivate: "私人",
+        parking: n => `步行 ${n} 分鐘有停車場`,
+        confirmed: n => `${n} 位球友確認過`,
+        surfaces: { hard: "硬地", clay: "紅土", grass: "草地",
+                    artificial_grass: "人工草", omni: "砂地人工草", concrete: "水泥",
+                    pu: "PU", carpet: "地毯", other: "其他", unknown: "未標示" },
+      },
+      en: {
+        title: "Tennection Tennis Court Map",
+        sub: "Taiwan, Japan, Spain, Singapore and the US. Surface, floodlights, parking, and what players have confirmed.",
+        courts: "courts", markets: "markets", surfaced: "with a surface",
+        unknown: "not recorded", note: "⚠️ Court details can be incomplete — report info and conditions via LINE or the app.",
+        ctaPrimary: "Report a court on LINE", ctaSecondary: "Request the app",
+        qrHead: "Scan to add our LINE account", qrCap: "Report from LINE to unlock the app",
+        courtsUnit: n => `${n} court${n === 1 ? "" : "s"}`, lights: "Floodlights", indoor: "Indoor",
+        accessFree: "Free", accessPaid: "Paid", accessPrivate: "Private",
+        parking: n => `Parking ${n} min walk`,
+        confirmed: n => `${n} player${n === 1 ? "" : "s"} confirmed`,
+        surfaces: { hard: "Hard", clay: "Clay", grass: "Grass",
+                    artificial_grass: "Artificial grass", omni: "Sand-filled turf",
+                    concrete: "Concrete", pu: "PU", carpet: "Carpet",
+                    other: "Other", unknown: "Not recorded" },
+      },
+    }[LANG];
+
+    // Every surface the database can hold, plus the one it cannot: null.
+    // The old legend folded 1,848 courts with NO surface data into "其他",
+    // which reads as a known answer. Not knowing is its own category, and on
+    // a page whose selling point is data quality it has to say so.
+    const SURFACE_ORDER = ["hard", "clay", "grass", "artificial_grass", "omni",
+                           "concrete", "pu", "carpet", "other", "unknown"];
+    const COLORS = {
+      hard: "#4FA8FF", clay: "#FF6A3D", grass: "#7ED957",
+      artificial_grass: "#69C79A", omni: "#C9A66B", concrete: "#9AA3AA",
+      pu: "#B98CD9", carpet: "#E38FB5", other: "#AEB6BD", unknown: "#5B6169",
+    };
+
+    function surfaceClass(code) {
+      const c = (code || "").trim();
+      return SURFACE_ORDER.includes(c) && c ? c : "unknown";
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, m =>
+        ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));
+    }
+
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+    // 預設帶傾斜＋旋轉視角，更有空間縱深；手機較保守確保台灣框得好
+    // 固定傾斜相機（資料恆為台灣）：手機較保守確保框得好
+    const isMobile = window.matchMedia("(max-width: 559px)").matches;
+    const VIEW = isMobile
+      ? { center: [120.95, 23.55], zoom: 6.05, pitch: 30, bearing: -14 }
+      : { center: [121.05, 23.45], zoom: 7.0, pitch: 52, bearing: -26 };
+    const map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/mapbox/dark-v11",   // 與 App 內地圖同一套深色樣式
+      center: VIEW.center,
+      zoom: VIEW.zoom,
+      pitch: VIEW.pitch,
+      bearing: VIEW.bearing,
+      logoPosition: "top-right",
+      attributionControl: false,
+    });
+    map.addControl(new mapboxgl.AttributionControl({ compact: true }), "top-right");
+    map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
+
+    // 圖層需在樣式就緒後才能加。資料與樣式各自非同步，兩者都備妥才加圖層，
+    // 並用 getSource 防重複（避免 once('load') 競態導致圖層永遠沒加上）。
+    let courtFeatures = null;
+    function tryAddLayers() {
+      if (!courtFeatures || !map.isStyleLoaded() || map.getSource("courts")) return;
+      addCourtLayers(courtFeatures);
+    }
+    map.on("load", tryAddLayers);
+
+    function addCourtLayers(features) {
+      map.addSource("courts", { type: "geojson",
+        data: { type: "FeatureCollection", features } });
+
+      const colorExpr = ["match", ["get", "cls"],
+        "clay", COLORS.clay, "hard", COLORS.hard, "grass", COLORS.grass, COLORS.other];
+      // 半徑放大，固定傾斜相機(zoom 較遠)下點才看得清楚
+      const radiusExpr = ["interpolate", ["linear"], ["zoom"],
+        5, 5, 7, 7.5, 10, 10, 14, 13];
+      // 光暈層半徑 ≈ 實心點 ×2.2（不能把 zoom 內插巢狀包在 "*" 裡，需獨立寫死）
+      const glowRadiusExpr = ["interpolate", ["linear"], ["zoom"],
+        5, 11, 7, 16.5, 10, 22, 14, 29];
+
+      // 光暈層（底）
+      map.addLayer({
+        id: "courts-glow", type: "circle", source: "courts",
+        paint: {
+          "circle-color": colorExpr,
+          "circle-radius": glowRadiusExpr,
+          "circle-blur": 1,
+          "circle-opacity": 0.45,
+        },
+      });
+      // 實心點（上）
+      map.addLayer({
+        id: "courts", type: "circle", source: "courts",
+        paint: {
+          "circle-color": colorExpr,
+          "circle-radius": radiusExpr,
+          "circle-stroke-width": 1,
+          "circle-stroke-color": "#fff",
+          "circle-stroke-opacity": 0.85,
+          "circle-opacity": 0.95,
+        },
+      });
+
+      const popup = new mapboxgl.Popup({ closeButton: true, offset: 12, maxWidth: "280px" });
+
+      function popupHtml(f, parking) {
+        const bits = [];
+        if (f.city) bits.push(escapeHtml(f.city));
+        if (f.court_count) bits.push(T.courtsUnit(f.court_count));
+        if (f.light) bits.push(T.lights);
+        if (f.indoor) bits.push(T.indoor);
+        if (f.access === "free") bits.push(T.accessFree);
+        else if (f.access === "paid") bits.push(T.accessPaid);
+        else if (f.access === "private") bits.push(T.accessPrivate);
+
+        let html = `<div class="nm">${escapeHtml(f.name)}</div>`;
+        if (bits.length) html += `<div class="meta">${bits.join(" · ")}</div>`;
+        html += `<span class="tag" style="background:${COLORS[f.cls]}">${T.surfaces[f.cls]}</span>`;
+        // Two things no other court map has, so they are worth the space:
+        // who has actually been there, and where to leave the car.
+        if (f.confirmed > 0) {
+          html += `<div class="meta" style="margin-top:6px">✓ ${T.confirmed(f.confirmed)}</div>`;
+        }
+        if (parking) {
+          html += `<div class="meta">🅿️ ${T.parking(Math.max(1, Math.ceil(parking.distance_m / 80)))}` +
+                  (parking.name ? ` · ${escapeHtml(parking.name)}` : "") + `</div>`;
+        }
+        return html;
+      }
+
+      async function openCourt(f, lngLat) {
+        popup.setLngLat(lngLat).setHTML(popupHtml(f, null)).addTo(map);
+        // Parking is one small request per court rather than 2,900 rows up
+        // front; the popup fills in when it lands.
+        try {
+          const r = await fetch(SUPABASE_URL +
+            `/rest/v1/court_parking?select=name,distance_m&court_id=eq.${f.id}&order=rank&limit=1`,
+            { headers: { apikey: ANON, Authorization: "Bearer " + ANON } });
+          const rows = await r.json();
+          if (rows && rows[0] && popup.isOpen()) {
+            popup.setHTML(popupHtml(f, rows[0]));
+          }
+        } catch (_) { /* the popup is already useful without it */ }
+      }
+
+      map.on("click", "courts", (ev) => {
+        openCourt(ev.features[0].properties, ev.lngLat);
+      });
+
+      // /courts-map?court=451 — what an invitation links to, so the recipient
+      // lands on the court itself rather than on the whole of Taiwan.
+      const wanted = new URLSearchParams(location.search).get("court");
+      if (wanted) {
+        const f = courtFeatures.find(x => String(x.properties.id) === wanted);
+        if (f) {
+          const [lng, lat] = f.geometry.coordinates;
+          map.flyTo({ center: [lng, lat], zoom: 15, duration: 0 });
+          openCourt(f.properties, [lng, lat]);
+        }
+      }
+      map.on("mouseenter", "courts", () => { map.getCanvas().style.cursor = "pointer"; });
+      map.on("mouseleave", "courts", () => { map.getCanvas().style.cursor = ""; });
+
+      // 不用 fitBounds（會重置 pitch/bearing）；資料恆為台灣，採固定傾斜相機（見建構時 VIEW）
+    }
+
+    document.getElementById("pageTitle").textContent = T.title;
+    document.getElementById("pageSub").textContent = T.sub;
+    document.getElementById("ctaNote").textContent = T.note;
+    document.getElementById("ctaPrimary").textContent = T.ctaPrimary;
+    document.getElementById("ctaSecondary").textContent = T.ctaSecondary;
+    document.getElementById("qrHead").textContent = T.qrHead;
+    document.getElementById("qrCap").textContent = T.qrCap;
+
+    async function load() {
+      const counts = {};
+      try {
+        const url = SUPABASE_URL + "/rest/v1/courts"
+          + "?select=id,name,name_en,city,country,lat,lng,surface_code,court_count"
+          + ",light,is_indoor,access,community_verify_count"
+          + "&lat=not.is.null&lng=not.is.null&is_abandoned=eq.false&limit=5000";
+        const r = await fetch(url, { headers: { apikey: ANON, Authorization: "Bearer " + ANON } });
+        const courts = await r.json();
+
+        const features = [];
+        const markets = new Set();
+        for (const c of courts) {
+          if (typeof c.lat !== "number" || typeof c.lng !== "number") continue;
+          const cls = surfaceClass(c.surface_code);
+          counts[cls] = (counts[cls] || 0) + 1;
+          if (c.country) markets.add(c.country);
+          features.push({
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [c.lng, c.lat] },
+            properties: {
+              cls,
+              id: c.id,
+              // An English reader gets name_en where a mapper supplied one;
+              // otherwise the endonym, which is what the place is called.
+              name: (LANG === "en" && c.name_en) ? c.name_en : (c.name || ""),
+              city: c.city || "",
+              court_count: c.court_count || 0,
+              light: c.light === true,
+              indoor: c.is_indoor === true,
+              access: c.access || "",
+              confirmed: c.community_verify_count || 0,
+            },
+          });
+        }
+
+        // Legend: one entry per surface that actually occurs, so a market
+        // with no clay does not carry a permanent zero.
+        const legend = document.getElementById("legend");
+        legend.innerHTML = SURFACE_ORDER
+          .filter(k => counts[k])
+          .map(k => `<span class="it"><span class="dot" style="background:${COLORS[k]};color:${COLORS[k]}"></span>${T.surfaces[k]} <span class="cnt">${counts[k]}</span></span>`)
+          .join("");
+        legend.hidden = false;
+
+        const total = Object.values(counts).reduce((a, b) => a + b, 0);
+        const known = total - (counts.unknown || 0);
+        const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+        // The old strip compared northern and southern Taiwan, which stopped
+        // meaning anything once four other markets were on the map. Coverage
+        // is the honest headline now — including how much of it has no
+        // surface recorded, which is the gap this page is asking help with.
+        document.getElementById("stats").innerHTML =
+            `<span class="stat"><b>${total}</b> ${T.courts}</span>`
+          + `<span class="stat"><b>${markets.size}</b> ${T.markets}</span>`
+          + `<span class="stat">${T.surfaced} <b>${pct(known, total)}%</b></span>`;
+
+        // 資料備妥 → 嘗試加圖層（樣式若還沒好，map 'load' 事件會再觸發一次）
+        courtFeatures = features;
+        tryAddLayers();
+      } catch (e) {
+        document.getElementById("stats").innerHTML =
+          `<span class="stat">${LANG === "zh" ? "資料載入失敗，請稍後再試" : "Couldn't load the data — please try again"} 🙏</span>`;
+      } finally {
+        const l = document.getElementById("loading");
+        if (l) l.remove();
+      }
+    }
+    load();
+
+    (function () {
+      try {
+        const qr = qrcode(0, "M");
+        qr.addData("https://line.me/R/ti/p/@tennisnut");
+        qr.make();
+        document.getElementById("qr").innerHTML =
+          qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+        document.getElementById("qrCard").hidden = false;
+      } catch (e) { /* QR 函式庫載入失敗 → 維持隱藏 */ }
+    })();
+  </script>
+</body>
+</html>

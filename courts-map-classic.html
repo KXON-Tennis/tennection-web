@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>全台網球場地圖・材質分佈 | Tennection 彈尼松</title>
+  <meta name="description" content="全台網球場材質分佈地圖：北部九成硬地、南部紅土逾四成。站長十年親手蒐集，歡迎一起補完。" />
+
+  <!-- Open Graph / 社群分享卡 -->
+  <meta property="og:title" content="全台網球場地圖・材質分佈" />
+  <meta property="og:description" content="一張地圖看懂台灣網球場的南北差異——越往南，紅土越多。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/courts-map-classic" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+
+  <style>
+    :root {
+      --bg: #FBFAF6;
+      --surface: #FFFFFF;
+      --border: #ECEAE2;
+      --text-primary: #2E5A34;
+      --text-secondary: #5E7A60;
+      --text-tertiary: #93A795;
+      --accent: #5C9A46;
+      --accent-d: #3C6E3F;
+      /* 材質色（為深色底圖提亮，視覺更跳） */
+      --clay: #FF6A3D;   /* 紅土 */
+      --hard: #4FA8FF;   /* 硬地 */
+      --grass: #7ED957;  /* 草地 */
+      --other: #AEB6BD;  /* 其他 */
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+        "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+    }
+
+    /* ── 頁首 ── */
+    header {
+      padding: 14px 18px 12px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      flex: 0 0 auto;
+    }
+    header h1 { margin: 0; font-size: 18px; font-weight: 800; letter-spacing: .2px; }
+    header .sub { margin: 3px 0 0; font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .stat-strip {
+      display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
+    }
+    .stat {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+      padding: 6px 11px; font-size: 12.5px; color: var(--text-secondary); white-space: nowrap;
+    }
+    .stat b { color: var(--text-primary); font-size: 15px; }
+
+    /* ── 地圖 ── */
+    .map-wrap { position: relative; flex: 1 1 auto; min-height: 0; }
+    #map { position: absolute; inset: 0; background: #11151a; }
+    /* 每個點加柔光，在深色底圖上更跳 */
+    .leaflet-interactive { filter: drop-shadow(0 0 3px rgba(255,255,255,.25)); }
+
+    /* 圖例 */
+    .legend {
+      position: absolute; left: 12px; bottom: 14px; z-index: 500;
+      background: rgba(20,24,30,.82); backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px; padding: 10px 13px; box-shadow: 0 6px 22px rgba(0,0,0,.35);
+      font-size: 13px; color: #E8ECEF;
+    }
+    .legend .title { font-weight: 800; font-size: 11px; color: rgba(255,255,255,.55);
+      text-transform: uppercase; letter-spacing: .6px; margin-bottom: 7px; }
+    .legend .row { display: flex; align-items: center; gap: 8px; margin: 5px 0; }
+    .legend .dot { width: 13px; height: 13px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.85);
+      box-shadow: 0 0 6px currentColor; flex: 0 0 auto; }
+    .legend .cnt { margin-left: auto; color: rgba(255,255,255,.5); font-variant-numeric: tabular-nums; padding-left: 14px; }
+
+    .loading {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      z-index: 600; color: rgba(255,255,255,.7); font-size: 14px;
+      background: rgba(17,21,26,.85);
+    }
+
+    /* leaflet popup → 品牌淺色 */
+    .leaflet-popup-content-wrapper { border-radius: 12px; }
+    .leaflet-popup-content { margin: 12px 14px; font-size: 13.5px; line-height: 1.55; color: var(--text-primary); }
+    .leaflet-popup-content .nm { font-weight: 800; font-size: 14.5px; }
+    .leaflet-popup-content .tag { display: inline-block; margin-top: 6px; padding: 2px 9px;
+      border-radius: 999px; font-size: 12px; font-weight: 700; color: #fff; }
+    .leaflet-popup-content .meta { color: var(--text-secondary); margin-top: 4px; }
+
+    /* ── 底部 CTA ── */
+    footer {
+      flex: 0 0 auto; background: var(--surface); border-top: 1px solid var(--border);
+      padding: 13px 18px calc(13px + env(safe-area-inset-bottom));
+    }
+    .foot-inner { display: flex; gap: 18px; align-items: center; max-width: 760px; margin: 0 auto; }
+    .foot-main { flex: 1 1 auto; min-width: 0; }
+    footer .note { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; margin: 0 0 11px; }
+
+    /* LINE QR 品牌卡（桌機顯示） */
+    .qr-card {
+      flex: 0 0 auto; width: 168px; text-align: center;
+      background: var(--tint); border: 1px solid var(--border); border-radius: 16px;
+      padding: 12px 12px 13px;
+    }
+    .qr-head { font-size: 12.5px; font-weight: 800; color: var(--accent-d); margin-bottom: 8px; }
+    .qr-box { background: #fff; border-radius: 10px; padding: 8px; display: inline-block; line-height: 0; }
+    .qr-box svg, .qr-box img { width: 124px; height: 124px; display: block; }
+    .qr-cap { font-size: 11.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 9px; }
+    /* 手機已有「加入 LINE」按鈕，掃自己手機無意義 → 隱藏 QR，只在桌機顯示 */
+    @media (max-width: 559px) {
+      .foot-inner { flex-direction: column; gap: 12px; }
+      .qr-card { display: none; }
+    }
+
+    .cta-row { display: flex; gap: 10px; }
+    .cta-row a {
+      flex: 1 1 0; text-align: center; text-decoration: none; padding: 13px 10px;
+      border-radius: 999px; font-weight: 700; font-size: 15px; line-height: 1;
+    }
+    .cta-row a.primary { background: var(--accent); color: #fff; }
+    .cta-row a.secondary { background: var(--bg); color: var(--accent-d); border: 1.5px solid var(--accent); }
+    @media (min-width: 560px) { .cta-row { max-width: 460px; margin: 0 auto; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎾 Tennis Nut 全台網球場・材質地圖</h1>
+    <p class="sub">一張圖看懂台灣網球場的南北差異。</p>
+    <div class="stat-strip" id="stats"><span class="stat">載入中…</span></div>
+  </header>
+
+  <div class="map-wrap">
+    <div id="map"></div>
+    <div class="loading" id="loading">地圖載入中… 🎾</div>
+    <div class="legend" id="legend" hidden>
+      <div class="title">場地材質</div>
+      <div class="row"><span class="dot" style="background:var(--clay);color:var(--clay)"></span>紅土 Clay<span class="cnt" id="lc-clay"></span></div>
+      <div class="row"><span class="dot" style="background:var(--hard);color:var(--hard)"></span>硬地 Hard<span class="cnt" id="lc-hard"></span></div>
+      <div class="row"><span class="dot" style="background:var(--grass);color:var(--grass)"></span>草地 Grass<span class="cnt" id="lc-grass"></span></div>
+      <div class="row"><span class="dot" style="background:var(--other);color:var(--other)"></span>其他／未知<span class="cnt" id="lc-other"></span></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-inner">
+      <div class="qr-card" id="qrCard" hidden>
+        <div class="qr-head">掃描加入 LINE 官方帳號</div>
+        <div class="qr-box" id="qr"></div>
+        <div class="qr-cap">先從 LINE 回報球場，解鎖 App 專屬功能</div>
+      </div>
+      <div class="foot-main">
+        <p class="note">
+          ⚠️ 這份地圖並不完美——它是站長十年來一筆一筆親手蒐集的成果，難免有缺漏或過時的球場。
+          歡迎加入 LINE 或下載 App，一起把這張地圖補完、回報球場最新狀態。
+        </p>
+        <div class="cta-row">
+          <a class="primary" href="https://line.me/R/ti/p/@tennisnut">加入 LINE 一起補完</a>
+          <a class="secondary" href="/install">下載 App</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const SUPABASE_URL = "https://dwjwisgbpnrxtcvpbkec.supabase.co";
+    const ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3andpc2dicG5yeHRjdnBia2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0NTU2ODQsImV4cCI6MjA4NDAzMTY4NH0.Em6SlZlakgd8WlL-PgFsR-NjpN2HFc38yNUw1zRKB9I";
+
+    // 材質 → 分類 / 顏色
+    const CLAY = "clay", HARD = "hard", GRASS = "grass", OTHER = "other";
+    const COLORS = { clay: "#FF6A3D", hard: "#4FA8FF", grass: "#7ED957", other: "#AEB6BD" };
+    const LABELS = { clay: "紅土", hard: "硬地", grass: "草地", other: "其他／未知" };
+
+    function surfaceClass(t) {
+      const s = (t || "").trim();
+      if (s.includes("紅土") || /clay/i.test(s)) return CLAY;
+      if (s.includes("硬地") || /hard/i.test(s)) return HARD;
+      if (s.includes("草") || /grass/i.test(s)) return GRASS; // 草地 + 人工草
+      if (!s) return OTHER;
+      return OTHER; // PU / 其他
+    }
+
+    const map = L.map("map", { zoomControl: true, attributionControl: true })
+      .setView([23.75, 120.95], 7);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+    }).addTo(map);
+
+    function popupHtml(c, cls) {
+      const surf = (c.surface_type || c.surface_type_en || "未知").trim() || "未知";
+      const courts = c.court_count ? `・${c.court_count} 面` : "";
+      return `<div class="nm">${escapeHtml(c.name || "")}</div>`
+        + (c.city ? `<div class="meta">${escapeHtml(c.city)}${courts}</div>`
+                  : (courts ? `<div class="meta">${courts.replace("・","")}</div>` : ""))
+        + `<span class="tag" style="background:${COLORS[cls]}">${escapeHtml(surf)}</span>`;
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, m =>
+        ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));
+    }
+
+    async function load() {
+      const counts = { clay: 0, hard: 0, grass: 0, other: 0 };
+      let south = { clay: 0, total: 0 }, north = { hard: 0, total: 0 };
+      try {
+        const url = SUPABASE_URL + "/rest/v1/courts"
+          + "?select=id,name,city,lat,lng,surface_type,surface_type_en,court_count"
+          + "&lat=not.is.null&lng=not.is.null&limit=5000";
+        const r = await fetch(url, { headers: { apikey: ANON, Authorization: "Bearer " + ANON } });
+        const courts = await r.json();
+
+        const bounds = [];
+        for (const c of courts) {
+          if (typeof c.lat !== "number" || typeof c.lng !== "number") continue;
+          const cls = surfaceClass(c.surface_type || c.surface_type_en);
+          counts[cls]++;
+          // 南北統計（濁水溪緯度 23.85 為界）
+          if (c.lat >= 23.85) { north.total++; if (cls === HARD) north.hard++; }
+          else { south.total++; if (cls === CLAY) south.clay++; }
+
+          L.circleMarker([c.lat, c.lng], {
+            radius: 7, color: "#fff", weight: 1, opacity: .85,
+            fillColor: COLORS[cls], fillOpacity: .95,
+          }).addTo(map).bindPopup(popupHtml(c, cls));
+          bounds.push([c.lat, c.lng]);
+        }
+        if (bounds.length) map.fitBounds(bounds, { padding: [30, 30] });
+
+        // 圖例計數
+        document.getElementById("lc-clay").textContent = counts.clay;
+        document.getElementById("lc-hard").textContent = counts.hard;
+        document.getElementById("lc-grass").textContent = counts.grass;
+        document.getElementById("lc-other").textContent = counts.other;
+        document.getElementById("legend").hidden = false;
+
+        // 統計條
+        const total = counts.clay + counts.hard + counts.grass + counts.other;
+        const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+        document.getElementById("stats").innerHTML =
+            `<span class="stat">全台 <b>${total}</b> 座球場</span>`
+          + `<span class="stat">北部硬地 <b>${pct(north.hard, north.total)}%</b></span>`
+          + `<span class="stat">南部紅土 <b>${pct(south.clay, south.total)}%</b></span>`;
+      } catch (e) {
+        document.getElementById("stats").innerHTML =
+          `<span class="stat">資料載入失敗，請稍後再試 🙏</span>`;
+      } finally {
+        const l = document.getElementById("loading");
+        if (l) l.remove();
+      }
+    }
+    load();
+
+    // LINE 官方帳號 QR（桌機讀者掃描用，編碼 @tennisnut）
+    (function () {
+      try {
+        const qr = qrcode(0, "M");
+        qr.addData("https://line.me/R/ti/p/@tennisnut");
+        qr.make();
+        document.getElementById("qr").innerHTML =
+          qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+        document.getElementById("qrCard").hidden = false;
+      } catch (e) { /* 函式庫載入失敗 → QR 卡維持隱藏，按鈕仍可用 */ }
+    })();
+  </script>
+</body>
+</html>
