@@ -96,6 +96,18 @@
     .expert span { display: block; margin-top: 6px; font-size: 12px;
       color: var(--text-secondary); font-weight: 600; }
 
+    .beliefs-lede { color: var(--text-secondary); font-size: 14.5px; line-height: 1.75;
+      margin: 0 0 16px; }
+    .beliefs-lede b { color: var(--text-primary); }
+    .beliefs { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+    .beliefs li { display: flex; gap: 10px; align-items: flex-start; }
+    .beliefs .b-ic { font-size: 17px; line-height: 1.5; flex-shrink: 0; }
+    .beliefs p { margin: 0; color: var(--text-secondary); font-size: 14px; line-height: 1.65; }
+    .beliefs b { color: var(--text-primary); }
+    .beliefs-close { margin: 16px 0 0; font-size: 14px; line-height: 1.7;
+      color: var(--text-secondary); }
+    .beliefs-close b { color: var(--accent-d); }
+
     .trust { display: grid; gap: 10px; }
     .trust-row {
       display: flex; gap: 12px; align-items: flex-start;
@@ -245,8 +257,38 @@
         <div class="expert"><img src="/expert-fitness.jpg" alt="" /><span>體能訓練</span></div>
       </div>
       <p class="experts-note">
-        目前開放這兩類。物理治療與運動營養正在洽談中——我們寧可等到真的有人能回答，
-        才把類別放上來。
+        目前開放這兩類。物理治療與運動營養正在洽談中。
+      </p>
+    </section>
+
+    <!-- ③.5 理念 -->
+    <section class="section beliefs-section">
+      <h2 class="section-h">打球的樂趣，不該等到技術成熟才開始</h2>
+      <p class="beliefs-lede">
+        網球正在被板式網球、匹克球和羽球拉走人——輸的不是這項運動本身，是它的文化。
+        那些運動讓你<b>第一天就能下場</b>、能笑、能跟人打完一場；
+        網球卻常常要你先上完幾期課、把動作練對，才彷彿「有資格」上場。
+        問題不在教練，<b>在順序</b>。
+      </p>
+      <ul class="beliefs">
+        <li>
+          <span class="b-ic">🎾</span>
+          <p><b>先打，卡關再問。</b>專家該出現在你打不下去的時候，而不是擋在你開始之前。</p>
+        </li>
+        <li>
+          <span class="b-ic">🤝</span>
+          <p><b>程度不對等也能打得開心。</b>前提是約球時就講清楚今天要打什麼、用哪種球——
+            新手才知道自己可以來，老手也不會白跑一趟。</p>
+        </li>
+        <li>
+          <span class="b-ic">📍</span>
+          <p><b>球場資訊不該靠人脈。</b>開不開放、幾點開、多少錢、進不進得去，
+            這些應該是公開的，而不是熟門熟路的人才知道。</p>
+        </li>
+      </ul>
+      <p class="beliefs-close">
+        所以 Tennis Nut 只做三件事：<b>找得到場、找得到人、卡關找得到人問</b>。
+        讓你更早開始打球，也更久留在球場上。
       </p>
     </section>
 
