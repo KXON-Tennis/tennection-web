@@ -16,17 +16,48 @@
   <link rel="canonical" href="https://tennisnut.kxon.net/" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&display=swap" />
   <style>
     /* ── Landing-only styles (reuse shared header/footer/container/tag-line) ── */
-    .hero { text-align: center; padding: 8px 0 4px; }
-    .hero h1 {
-      font-size: 34px; line-height: 1.2; font-weight: 900;
-      color: var(--text-primary); margin: 14px 0 6px; letter-spacing: -0.5px;
+    :root {
+      --ink: #15271B;            /* near-black green — high-contrast display */
+      --volt: #B7F03C;           /* app volt, used sparingly as a live accent */
+      --accent-grad: linear-gradient(135deg, #6BB04E 0%, #3C6E3F 100%);
     }
-    .hero .en { color: var(--text-tertiary); font-size: 14px; font-weight: 700;
-      letter-spacing: 1px; text-transform: lowercase; }
-    .hero .lede { color: var(--text-secondary); font-size: 16px; line-height: 1.6;
-      max-width: 540px; margin: 14px auto 22px; }
+    .hero {
+      position: relative; text-align: center; padding: 26px 0 4px;
+      background:
+        radial-gradient(60% 42% at 50% 8%, rgba(183,240,60,0.13) 0%, rgba(183,240,60,0) 70%),
+        radial-gradient(70% 50% at 50% 0%, var(--accent-soft) 0%, rgba(92,154,70,0) 68%);
+    }
+    /* Editorial kicker above the headline */
+    .eyebrow-kick {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Sora', system-ui, sans-serif; font-size: 11.5px; font-weight: 700;
+      letter-spacing: 1.6px; text-transform: uppercase; color: var(--accent-d);
+      background: rgba(255,255,255,0.7); border: 1px solid #DCEAC9;
+      padding: 7px 15px; border-radius: 999px;
+      box-shadow: 0 2px 10px rgba(45,90,52,0.06); backdrop-filter: blur(4px);
+    }
+    .eyebrow-kick .dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--volt);
+      box-shadow: 0 0 0 3px rgba(183,240,60,0.30);
+    }
+    .hero h1 {
+      font-size: 42px; line-height: 1.12; font-weight: 900;
+      color: var(--ink); margin: 18px 0 10px; letter-spacing: -1.2px;
+    }
+    /* Product-tier brand signature — Sora, the through-line of the whole page */
+    .hero .brandline {
+      font-family: 'Sora', system-ui, sans-serif; font-size: 17px; font-weight: 600;
+      letter-spacing: 0.2px; color: var(--accent-d); margin: 0;
+    }
+    .hero .brandline b { color: var(--ink); font-weight: 700; }
+    .hero .lede { color: var(--text-secondary); font-size: 16.5px; line-height: 1.62;
+      max-width: 520px; margin: 16px auto 24px; }
     .cta-note { margin: 10px 0 0; font-size: 12.5px; color: var(--text-tertiary); font-weight: 600; }
     /* In-app browser (FB/IG/LINE) nudge — their webview blocks/mangles APK downloads */
     .iab-banner { display: none; flex-direction: column; gap: 10px;
@@ -153,8 +184,52 @@
     .faq details[open] summary::after { content: "－"; }
     .faq p { margin: 0 0 14px; color: var(--text-secondary); font-size: 13.5px; line-height: 1.6; }
 
+    /* ── Trendy refresh layer ── */
+    .cta-cue {
+      background: var(--accent-grad);
+      box-shadow: 0 10px 26px rgba(60,110,63,0.30), inset 0 1px 0 rgba(255,255,255,0.22);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .cta-cue:hover { transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(60,110,63,0.36); text-decoration: none; }
+    .hero-art { filter: drop-shadow(0 24px 46px rgba(45,90,52,0.16)); }
+
+    /* Feature cards: quiet by default, lift + accent edge on hover */
+    .feat { border-radius: 20px; transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease; }
+    .feat:hover { transform: translateY(-3px); border-color: #D3E7C4;
+      box-shadow: 0 16px 34px rgba(45,90,52,0.10); }
+    .feat-ic { display: inline-flex; align-items: center; justify-content: center;
+      width: 46px; height: 46px; border-radius: 13px; font-size: 24px;
+      background: var(--accent-soft); }
+
+    /* Section headers get a small Sora eyebrow feel */
+    .section-h { font-family: 'Sora', system-ui, sans-serif; letter-spacing: -0.4px;
+      color: var(--ink); }
+
+    /* Personal-tier brand line — the middle of the product→person→world zoom */
+    .brand-divider { text-align: center; margin: 56px auto 8px; max-width: 620px; }
+    .brand-divider .bd-en {
+      font-family: 'Sora', system-ui, sans-serif; font-size: clamp(24px, 6vw, 34px);
+      font-weight: 800; letter-spacing: -0.8px; color: var(--ink); line-height: 1.2;
+    }
+    .brand-divider .bd-en::after {
+      content: ""; display: block; width: 46px; height: 4px; border-radius: 999px;
+      background: var(--volt); margin: 16px auto 0;
+    }
+    .brand-divider .bd-sub { color: var(--text-secondary); font-size: 15px;
+      margin: 14px auto 0; max-width: 460px; line-height: 1.7; }
+
+    /* World-tier brand line in the footer */
+    .foot-brand {
+      font-family: 'Sora', system-ui, sans-serif; font-size: clamp(18px, 5vw, 24px);
+      font-weight: 800; letter-spacing: -0.5px; color: var(--accent-d);
+      margin: 0 0 20px; line-height: 1.3;
+    }
+
     @media (max-width: 520px) {
-      .hero h1 { font-size: 28px; }
+      .hero h1 { font-size: 31px; letter-spacing: -0.8px; }
+      .hero .brandline { font-size: 15.5px; }
+      .hero .lede { font-size: 15.5px; }
     }
   </style>
 </head>
@@ -199,8 +274,9 @@
 
     <!-- ① HERO -->
     <section class="hero">
+      <span class="eyebrow-kick"><span class="dot"></span>早期測試版 · Early Access</span>
       <h1>問對問題，打得更好</h1>
-      <div class="en">ask better, play better</div>
+      <div class="brandline">Your tennis life, <b>connected.</b></div>
       <p class="lede">
         找得到球場，也<b>找得到人一起打</b>；卡關的時候，直接向專家提問，
         拿到一份為你而寫的解答。Tennis Nut 是為網球人打造的球場夥伴。
@@ -433,6 +509,12 @@
       </div>
     </section>
 
+    <!-- 個人層品牌句（product → person → world 的中段） -->
+    <div class="brand-divider">
+      <div class="bd-en">Your identity in the tennis world.</div>
+      <p class="bd-sub">球風、裝備、征服過的球場、專屬處方箋——你的網球護照,就是你在網球世界裡的身份。</p>
+    </div>
+
     <section class="section">
       <h2 class="section-h">為什麼可以放心</h2>
       <div class="trust">
@@ -510,6 +592,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-text">
+        <div class="foot-brand">Connect the world's tennis community.</div>
         <div style="margin-bottom: 14px; font-weight: 600;">
           追蹤我們：
           <a href="https://www.instagram.com/tennisnut.app/" target="_blank" rel="noopener">Instagram</a> ·
