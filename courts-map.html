@@ -185,6 +185,19 @@
     .cp-text { margin: 0; font-size: 12.5px; color: var(--ink2); line-height: 1.6;
       white-space: pre-wrap; }
 
+    /* Hits arranged here. Volt, like the live ring, because both are about
+       people rather than about the court. */
+    .cp-hit { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; }
+    .cp-hit + .cp-hit { border-top: 1px dashed var(--glass-line); }
+    .cp-hit .dt { flex: 0 0 auto; font-size: 12.5px; font-weight: 800;
+      color: #DFFF8F; min-width: 82px; }
+    .cp-hit .meta { font-size: 12px; color: var(--ink2); line-height: 1.45; }
+    .cp-hit .meta .bg { color: #DFFF8F; font-weight: 700; }
+    .cp-hit .n { margin-left: auto; flex: 0 0 auto; font-size: 11.5px;
+      color: var(--ink3); white-space: nowrap; }
+    .cp-hit-cta { display: inline-block; margin-top: 9px; font-size: 12px;
+      font-weight: 800; color: #DFFF8F; text-decoration: none; }
+
     .cp-acts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
     .cp-acts a, .cp-acts button { appearance: none; cursor: pointer; text-decoration: none;
       font: inherit; font-size: 13px; font-weight: 800; padding: 9px 14px;
@@ -375,6 +388,14 @@
         courtsUnit: n => `${n} 面`, lights: "夜間照明", indoor: "室內",
         styleStreets: "街道", styleDark: "深色", styleSatellite: "衛星",
         legendLabel: "材質圖例", youAreHere: "你在這裡",
+        hitsHere: "有人約在這裡",
+        hitGoing: n => n === 1 ? "1 人要去" : `${n} 人要去`,
+        hitOf: (n, cap) => `${n}/${cap} 人`,
+        hitBeginner: "🌱 新手可",
+        hitJoinCta: "下載 Tennis Nut 就能按參加",
+        hitFormats: { rally: "慢球長來回", crosscourt: "半場對角",
+                      serve_return: "發球與接發", points: "打點／比賽", free: "自由對打" },
+        hitBalls: { yellow: "一般黃球", green: "綠點球", orange: "橘點球", red: "紅點球" },
         accessFree: "免費開放", accessPaid: "付費", accessPrivate: "私人",
         parking: n => `步行 ${n} 分鐘有停車場`,
         confirmed: n => `${n} 位球友確認過`,
@@ -415,6 +436,14 @@
         courtsUnit: n => `${n} court${n === 1 ? "" : "s"}`, lights: "Floodlights", indoor: "Indoor",
         styleStreets: "Streets", styleDark: "Dark", styleSatellite: "Satellite",
         legendLabel: "Surface key", youAreHere: "You are here",
+        hitsHere: "Hits arranged here",
+        hitGoing: n => n === 1 ? "1 going" : `${n} going`,
+        hitOf: (n, cap) => `${n}/${cap}`,
+        hitBeginner: "🌱 Beginners welcome",
+        hitJoinCta: "Get Tennis Nut to join",
+        hitFormats: { rally: "Long rallies", crosscourt: "Half-court crosscourt",
+                      serve_return: "Serve and return", points: "Play points", free: "Just hit" },
+        hitBalls: { yellow: "Regular yellow", green: "Green dot", orange: "Orange dot", red: "Red dot" },
         accessFree: "Free", accessPaid: "Paid", accessPrivate: "Private",
         parking: n => `Parking ${n} min walk`,
         confirmed: n => `${n} player${n === 1 ? "" : "s"} confirmed`,
@@ -641,7 +670,7 @@
     const STATUS_FRESH_MS = 6 * 3600 * 1000;
     const statusFresh = (iso) => !!iso && (Date.now() - new Date(iso).getTime()) <= STATUS_FRESH_MS;
 
-    function renderPanel(f, d, parking, live) {
+    function renderPanel(f, d, parking, live, hits) {
       openCourtId = f.id;
       d = d || {};
       const sec = [];
@@ -657,6 +686,29 @@
         sec.push(`<div class="cp-live"><span class="pulse"></span>` +
           `<span class="n">${escapeHtml(T.playingNow(live.playing_now))}</span>` +
           (arr ? `<span class="ago">· ${escapeHtml(arr)}</span>` : "") + `</div>`);
+      }
+
+      // What is arranged here. This is the only thing on the page that a
+      // reader can act on rather than just read, so it sits directly under
+      // live and above the court's own facts.
+      if (hits && hits.length) {
+        sec.push(`<div class="cp-sec"><div class="cp-lb">${escapeHtml(T.hitsHere)}</div>` +
+          hits.slice(0, 3).map(h => {
+            const when = new Intl.DateTimeFormat(LANG === "zh" ? "zh-Hant" : "en",
+              { weekday: "short", month: "numeric", day: "numeric",
+                hour: "numeric", minute: "2-digit" }).format(new Date(h.starts_at));
+            const bits = [T.hitFormats[h.format] || h.format,
+                          T.hitBalls[h.ball] || h.ball];
+            const count = h.capacity
+              ? T.hitOf(h.participant_count || 0, h.capacity)
+              : T.hitGoing(h.participant_count || 0);
+            return `<div class="cp-hit"><span class="dt">${escapeHtml(when)}</span>` +
+              `<span class="meta">${escapeHtml(bits.join(" · "))}` +
+              (h.beginners_welcome ? ` <span class="bg">${escapeHtml(T.hitBeginner)}</span>` : "") +
+              `</span><span class="n">${escapeHtml(count)}</span></div>`;
+          }).join("") +
+          `<a class="cp-hit-cta" href="/?lang=${LANG}">${escapeHtml(T.hitJoinCta)} →</a>` +
+          `</div>`);
       }
 
       // Reported condition. Silence beats 「未知」: a court nobody has reported
@@ -915,7 +967,7 @@
         // Directions should aim at the court, not at the pixel that was
         // tapped, so the coordinates come off the feature.
         f = Object.assign({}, f, { _lng: lngLat[0], _lat: lngLat[1] });
-        renderPanel(f, null, null, null);
+        renderPanel(f, null, null, null, null);
         map.easeTo({ center: lngLat, offset: panelOffset(), duration: 500 });
 
         // Three requests, all optional. The panel is already on screen with
@@ -925,7 +977,7 @@
         const q = (path, init) => fetch(SUPABASE_URL + path, init || { headers })
           .then(r => r.ok ? r.json() : null).catch(() => null);
 
-        const [detail, parking, live] = await Promise.all([
+        const [detail, parking, live, hits] = await Promise.all([
           q(`/rest/v1/courts_with_status?id=eq.${f.id}&select=name_en,city_en,` +
             `status_light,status_text,status_counts,last_reported_at,` +
             `community_verified_at,community_verify_count,community_fresh,` +
@@ -934,10 +986,12 @@
           q(`/rest/v1/court_parking?court_id=eq.${f.id}&select=name,distance_m,fee,vehicle&order=rank&limit=3`),
           q(`/rest/v1/rpc/court_live_activity`,
             { method: "POST", headers, body: JSON.stringify({ p_court_id: f.id }) }),
+          q(`/rest/v1/rpc/public_hits_at_court`,
+            { method: "POST", headers, body: JSON.stringify({ p_court_id: f.id }) }),
         ]);
         // Someone may have clicked another court while these were in flight.
         if (openCourtId !== f.id) return;
-        renderPanel(f, detail && detail[0], parking || [], live && live[0]);
+        renderPanel(f, detail && detail[0], parking || [], live && live[0], hits || []);
       }
 
       // Everything below binds to the map, not to the style, so it survives a
