@@ -714,21 +714,67 @@ footer a {
   margin: 0 auto;
 }
 
+/* Staggered rather than in a row: three screenshots of different heights side
+   by side left a ragged bottom edge and a hole where the shortest one ended.
+   Left, right-and-lower, left-again reads as a stack of things dropped on a
+   table — which is what a diary is. */
 .share-gallery {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  column-gap: 24px;
+  max-width: 620px;
   margin: 34px auto 0;
-  flex-wrap: wrap;
 }
 
 /* Real records, not mock cards: three screenshots of practice, match and
    court check-in. Heights differ because the screens do; align to the top and
    let them be uneven rather than cropping evidence to a common box. */
 .logshot {
-  width: 220px;
+  --rot: 0deg;
+  width: 100%;
+  max-width: 280px;
   margin: 0;
+  transform: rotate(var(--rot));
+}
+
+.logshot:nth-child(1) {
+  justify-self: end;
+  --rot: -2deg;
+}
+
+.logshot:nth-child(2) {
+  justify-self: start;
+  --rot: 2deg;
+  margin-top: 96px;
+}
+
+/* Back under the first one, pulled up so it overlaps the second's row instead
+   of waiting for it to end. */
+.logshot:nth-child(3) {
+  grid-column: 1;
+  justify-self: end;
+  --rot: -1.5deg;
+  margin-top: -28px;
+}
+
+/* They fall in, one after another, when the section comes into view. The
+   .anim class is added by JS immediately before observing, so a script that
+   never runs leaves three visible screenshots rather than three blank gaps. */
+@media (prefers-reduced-motion: no-preference) {
+  .share-gallery.anim .logshot {
+    opacity: 0;
+    transform: translateY(-26px) rotate(var(--rot));
+  }
+
+  .share-gallery.anim.in .logshot {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--rot));
+    transition: opacity .5s ease, transform .7s cubic-bezier(.2, .75, .3, 1);
+  }
+
+  .share-gallery.anim.in .logshot:nth-child(2) { transition-delay: .12s; }
+  .share-gallery.anim.in .logshot:nth-child(3) { transition-delay: .24s; }
 }
 
 .logshot img {
@@ -1159,8 +1205,19 @@ footer a {
     -webkit-overflow-scrolling: touch;
   }
 
+  /* A phone gets the carousel back: no room to stagger, and a swipe beats a
+     long scroll past three full-width screenshots. */
+  .share-gallery {
+    display: flex;
+    max-width: none;
+  }
+
   .share-gallery .logshot {
     flex: 0 0 auto;
+    width: 220px;
+    max-width: none;
+    margin-top: 0;
+    --rot: 0deg;
     scroll-snap-align: start;
   }
 

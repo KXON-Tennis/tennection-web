@@ -1192,6 +1192,24 @@
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 
+  <!-- 「每一場，都值得留下」的三張紀錄依序落下 -->
+  <script>
+    (function () {
+      var g = document.querySelector('.share-gallery');
+      if (!g || !('IntersectionObserver' in window)) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      g.classList.add('anim');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          g.classList.add('in');
+          io.disconnect();
+        });
+      }, { threshold: 0.2 });
+      io.observe(g);
+    })();
+  </script>
+
   <!-- 被動來源追蹤：/join?ref=dcard 會把 ref 帶到下載連結 + 上報來源事件 -->
   <script>
     (function () {
