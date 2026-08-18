@@ -93,6 +93,32 @@
     .stat { background: rgba(255,255,255,.07); border: 1px solid var(--glass-line); border-radius: 10px;
       padding: 6px 11px; font-size: 12px; color: var(--ink2); white-space: nowrap; }
     .stat b { color: var(--ink); font-size: 15px; }
+    /* Find a court by name. The map answers "what is near here"; this answers
+       "where is the one I already know", which is how someone arrives from a
+       link or a conversation. */
+    .find { display: flex; gap: 6px; margin-top: 11px; position: relative; }
+    .find select, .find input {
+      appearance: none; font: inherit; color: var(--ink);
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16);
+      border-radius: 9px; padding: 7px 9px; font-size: 13px; outline: none;
+    }
+    .find select { flex: 0 0 auto; max-width: 38%; }
+    .find select option { color: #111; }
+    .find input { flex: 1 1 auto; min-width: 0; }
+    .find input::placeholder { color: var(--ink2); }
+    .find input:focus, .find select:focus { border-color: rgba(255,255,255,.4); }
+    .results { position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 5;
+      max-height: 44vh; overflow-y: auto; border-radius: 11px;
+      background: rgba(20,26,20,.96); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.14); }
+    .results[hidden] { display: none; }
+    .results button { display: block; width: 100%; text-align: left; appearance: none;
+      background: none; border: 0; cursor: pointer; padding: 9px 11px;
+      color: var(--ink); font: inherit; font-size: 13px; }
+    .results button:hover, .results button:focus { background: rgba(255,255,255,.08); }
+    .results .m { color: var(--ink2); font-size: 11.5px; }
+    .results .none { padding: 10px 11px; color: var(--ink2); font-size: 12.5px; }
+
     .legend-row { display: flex; gap: 13px; flex-wrap: wrap; margin-top: 13px;
       padding-top: 12px; border-top: 1px solid var(--glass-line); }
     .legend-row[hidden] { display: none; }
@@ -333,6 +359,11 @@
     <h1 id="pageTitle"></h1>
     <p class="sub" id="pageSub"></p>
     <div class="stat-strip" id="stats"><span class="stat">…</span></div>
+    <div class="find">
+      <select id="countrySel" aria-label="country"></select>
+      <input id="courtSearch" type="search" autocomplete="off" />
+      <div class="results" id="searchResults" hidden></div>
+    </div>
     <button class="legend-toggle" id="legendToggle" type="button" hidden></button>
     <div class="legend-row" id="legend" hidden></div>
   </div>
@@ -381,6 +412,8 @@
       zh: {
         title: "Tennis Nut 網球場地圖",
         sub: "材質、夜間照明、停車、以及球友實際確認過的球場資訊。",
+        searchPh: "搜尋球場名稱", noResults: "找不到相符的球場",
+        countries: { TW: "台灣", JP: "日本", ES: "西班牙", SG: "新加坡", US: "美國" },
         courts: "座球場", markets: "個市場", surfaced: "有材質資料",
         unknown: "未標示", note: "⚠️ 詳細球場資訊難免有缺漏，歡迎加入 LINE/APP 回報球場資訊與狀態。",
         ctaPrimary: "加入 LINE 回報球場", ctaSecondary: "申請試用 Tennis Nut App",
@@ -429,6 +462,8 @@
       en: {
         title: "Tennis Nut Court Map",
         sub: "Surface, floodlights, parking, and details players have confirmed on the ground.",
+        searchPh: "Search court names", noResults: "No matching court",
+        countries: { TW: "Taiwan", JP: "Japan", ES: "Spain", SG: "Singapore", US: "USA" },
         courts: "courts", markets: "markets", surfaced: "with a surface",
         unknown: "not recorded", note: "⚠️ Court details can be incomplete — report info and conditions via LINE or the app.",
         ctaPrimary: "Report a court on LINE", ctaSecondary: "Request the Tennis Nut app",
@@ -963,6 +998,76 @@
       // freshness, hours, pricing, rental, phone and site. On a page whose
       // whole claim is data quality, showing a tenth of what is known was the
       // weakest thing about it.
+      // Every court the page loaded, kept for searching. The map already has
+      // them as GeoJSON, but that is a rendering structure — reaching into it
+      // to answer a text query would tie the search to how the layer happens
+      // to be built.
+      const ALL = [];
+
+      // Find a court by name, within one country.
+      //
+      // Country first, and defaulting to Taiwan, because names repeat across
+      // markets — 「中央公園」 exists in more than one of them — and because a
+      // visitor almost always means the country they are in. It scopes the
+      // search rather than the map: the markers stay as they are, so the
+      // answer arrives without the page rearranging itself first.
+      function initFind() {
+        const sel = document.getElementById("countrySel");
+        const box = document.getElementById("courtSearch");
+        const out = document.getElementById("searchResults");
+        box.placeholder = T.searchPh;
+
+        const present = [...new Set(ALL.map((c) => c.country).filter(Boolean))].sort();
+        for (const code of present) {
+          const o = document.createElement("option");
+          o.value = code;
+          o.textContent = (T.countries && T.countries[code]) || code;
+          sel.appendChild(o);
+        }
+        sel.value = present.includes("TW") ? "TW" : (present[0] || "");
+
+        const norm = (v) => (v || "").toString().toLowerCase();
+        const hide = () => { out.hidden = true; out.innerHTML = ""; };
+
+        function run() {
+          const q = norm(box.value).trim();
+          if (q.length < 1) return hide();
+          const country = sel.value;
+          const hits = ALL.filter((c) =>
+            c.country === country &&
+            (norm(c.name).includes(q) || norm(c.name_en).includes(q) || norm(c.city).includes(q))
+          ).slice(0, 8);
+
+          out.innerHTML = "";
+          if (!hits.length) {
+            const d = document.createElement("div");
+            d.className = "none"; d.textContent = T.noResults;
+            out.appendChild(d);
+          } else {
+            for (const c of hits) {
+              const b = document.createElement("button");
+              b.type = "button";
+              b.innerHTML = `${escapeHtml(c.name || "")}<div class="m">${escapeHtml(c.city || "")}</div>`;
+              b.onclick = () => {
+                hide();
+                box.blur();
+                // Same zoom the map uses when a marker is tapped, so arriving
+                // by search and by touch land you in the same place.
+                map.flyTo({ center: [c.lng, c.lat], zoom: 16, duration: 900 });
+                openCourt(c, [c.lng, c.lat]);
+              };
+              out.appendChild(b);
+            }
+          }
+          out.hidden = false;
+        }
+
+        box.addEventListener("input", run);
+        sel.addEventListener("change", () => { box.value = ""; hide(); });
+        box.addEventListener("blur", () => setTimeout(hide, 150));
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") hide(); });
+      }
+
       async function openCourt(f, lngLat) {
         // Directions should aim at the court, not at the pixel that was
         // tapped, so the coordinates come off the feature.
@@ -1070,6 +1175,7 @@
           const cls = surfaceClass(c.surface_code);
           counts[cls] = (counts[cls] || 0) + 1;
           if (c.country) markets.add(c.country);
+          ALL.push(c);
           features.push({
             type: "Feature",
             geometry: { type: "Point", coordinates: [c.lng, c.lat] },
@@ -1125,6 +1231,11 @@
           // is on a court — a permanent "0 live" would make the map look dead
           // rather than quiet.
           + `<span class="stat" id="liveStat" hidden></span>`;
+
+        // The search can only exist once the courts do; the country list is
+        // built from what actually loaded rather than from a hardcoded set, so
+        // a new market appears in the dropdown the day it is imported.
+        initFind();
 
         // 資料備妥 → 嘗試加圖層（樣式若還沒好，map 'load' 事件會再觸發一次）
         courtFeatures = features;
