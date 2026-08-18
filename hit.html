@@ -161,7 +161,7 @@
           omni: "Omni／砂入人工草", concrete: "水泥", pu: "PU", carpet: "地毯",
           other: "其他", unknown: "材質未知" },
         formats: { rally: "慢球長來回", crosscourt: "半場對角", serve_return: "發球與接發",
-          points: "打點／比賽", free: "自由對打" },
+          points: "打點／比賽", free: "自由對打", custom: "自訂" },
         balls: { yellow: "一般黃球", green: "綠點球", orange: "橘點球", red: "紅點球" },
         ballBlurb: { green: "球速慢一點，來回打得比較久", orange: "更慢，適合縮短場地",
           red: "最慢，適合小場地" },
@@ -195,7 +195,7 @@
         surfaces: { hard: "Hard", clay: "Clay", grass: "Grass", artificial_grass: "Artificial grass",
           omni: "Omni / sand-filled", concrete: "Concrete", pu: "PU", carpet: "Carpet",
           other: "Other", unknown: "Surface unknown" },
-        formats: { rally: "Long rallies", crosscourt: "Half-court crosscourt",
+        formats: { custom: "Something else", rally: "Long rallies", crosscourt: "Half-court crosscourt",
           serve_return: "Serve and return", points: "Play points", free: "Just hit" },
         balls: { yellow: "Regular yellow", green: "Green dot", orange: "Orange dot", red: "Red dot" },
         ballBlurb: { green: "A little slower — rallies last longer",
@@ -269,7 +269,10 @@
           <div class="agreed">
             <div class="ag">
               <div class="lb">${esc(T.lbFormat)}</div>
-              <div class="vl">${esc(T.formats[h.format] || h.format)}</div>
+              <div class="vl">${esc(
+                h.format === "custom"
+                  ? ((h.note || "").trim() || T.formats.custom)
+                  : (T.formats[h.format] || h.format))}</div>
             </div>
             <div class="ag">
               <div class="lb">${esc(T.lbBall)}</div>
