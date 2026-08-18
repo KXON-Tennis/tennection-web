@@ -1379,3 +1379,25 @@ footer a {
   font-weight: 800;
   color: var(--accent-d);
 }
+
+/* Real screenshots, not phone mock-ups.
+   No device frame: four identical frames down a page read as a template, and
+   the frame competes with the thing it is supposed to be showing. A rounded
+   crop with a soft edge keeps the eye on the content, which is the only
+   reason these are here — the claims in this section are specific, and a
+   picture is how a stranger checks them. */
+.feat-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 14px 0 2px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 22px rgba(45, 90, 52, 0.10);
+}
+@media (min-width: 720px) {
+  /* Beside the words on a wide screen, under them on a phone — the text is
+     still the argument; the image is the evidence. */
+  .feat { align-items: flex-start; }
+  .feat-shot { max-width: 340px; margin-left: auto; margin-right: auto; }
+}
