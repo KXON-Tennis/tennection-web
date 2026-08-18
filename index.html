@@ -47,8 +47,8 @@
       box-shadow: 0 0 0 3px rgba(183,240,60,0.30);
     }
     .hero h1 {
-      font-size: 42px; line-height: 1.12; font-weight: 900;
-      color: var(--ink); margin: 18px 0 10px; letter-spacing: -1.2px;
+      font-size: clamp(36px, 7.5vw, 58px); line-height: 1.08; font-weight: 900;
+      color: var(--ink); margin: 20px 0 12px; letter-spacing: -1.6px;
     }
     /* Product-tier brand signature — Sora, the through-line of the whole page */
     .hero .brandline {
@@ -201,10 +201,73 @@
     .feat-ic { display: inline-flex; align-items: center; justify-content: center;
       width: 46px; height: 46px; border-radius: 13px; font-size: 24px;
       background: var(--accent-soft); }
+    /* Editorial numerals replace the emoji icons (cleaner, less "AI clip-art") */
+    .feat-no { flex-shrink: 0; min-width: 30px; font-family: 'Sora', system-ui, sans-serif;
+      font-size: 16px; font-weight: 800; color: var(--accent); letter-spacing: 0.5px;
+      line-height: 1.55; }
+    /* Day-flow steps → numbered circles; beliefs → clean text on an accent rail */
+    .day-ic { font-family: 'Sora', system-ui, sans-serif; font-size: 17px;
+      font-weight: 800; color: var(--accent); }
+    .beliefs li { display: block; padding-left: 14px; border-left: 2px solid #DCEAC9; }
 
-    /* Section headers get a small Sora eyebrow feel */
-    .section-h { font-family: 'Sora', system-ui, sans-serif; letter-spacing: -0.4px;
-      color: var(--ink); }
+    /* One heading system across the whole page: ink + Sora, so green reads as
+       an accent (numerals, underlines, links, CTA) rather than a second voice. */
+    .section-h, .sec-h, .why h2, .guardian-box h2 {
+      font-family: 'Sora', system-ui, sans-serif; letter-spacing: -0.4px;
+      color: var(--ink);
+    }
+    /* ── Confidence pass: bigger type scale + more air (the main "潮流感" lever) ── */
+    .hero .brandline { font-size: clamp(15px, 3.4vw, 19px); }
+    .hero .lede { font-size: clamp(15.5px, 2.3vw, 18px); max-width: 560px;
+      margin-top: 18px; margin-bottom: 30px; }
+    .sec-h { font-size: clamp(27px, 5vw, 40px); letter-spacing: -0.9px;
+      line-height: 1.18; margin-top: 68px; }
+    .section-h { font-size: clamp(24px, 4.5vw, 33px); letter-spacing: -0.7px;
+      line-height: 1.2; }
+    .why h2 { font-size: clamp(22px, 4vw, 30px); letter-spacing: -0.5px; }
+    .sec-sub, .section-sub { font-size: clamp(14.5px, 2vw, 16.5px); }
+    .brand-divider { margin-top: 76px; }
+    .brand-divider .bd-en { font-size: clamp(30px, 7vw, 50px); }
+    .section { margin-top: 64px; }
+    .band-tint { padding-top: 40px; padding-bottom: 58px; }
+    @media (max-width: 520px) {
+      .sec-h { margin-top: 52px; }
+      .section { margin-top: 52px; }
+    }
+    /* ── Bolder accent (#4): volt highlight, bigger CTA, larger named avatars ── */
+    .hl {
+      background-image: linear-gradient(120deg,
+        rgba(183,240,60,0) 0%, rgba(183,240,60,0.75) 18%,
+        rgba(183,240,60,0.75) 82%, rgba(183,240,60,0) 100%);
+      background-repeat: no-repeat; background-size: 100% 42%;
+      background-position: 0 82%; padding: 0 4px;
+    }
+    .cta-cue { font-size: clamp(16px, 2.4vw, 18px); padding: 15px 30px; }
+    .cta-cue:hover { transform: translateY(-2px); }
+    /* Coaches are real people — show them bigger, with the role read as a name-line */
+    .experts { gap: 30px; margin-top: 26px; }
+    .experts .expert { width: auto; }
+    .experts .expert img {
+      width: 104px; height: 104px; border: 3px solid #fff;
+      box-shadow: 0 10px 26px rgba(45,90,52,0.18);
+    }
+    .experts .expert span {
+      margin-top: 12px; font-size: 15px; font-weight: 800; color: var(--ink);
+    }
+    /* Beliefs section sat left-aligned between two centred sections (lopsided).
+       Centre it as a readable column so it's symmetric with its neighbours,
+       and give the next heading room so it doesn't crowd. */
+    .beliefs-section { text-align: center; }
+    .beliefs-section .beliefs-lede,
+    .beliefs-section .beliefs-close {
+      max-width: 600px; margin-left: auto; margin-right: auto;
+    }
+    .beliefs-section .beliefs {
+      max-width: 560px; margin: 22px auto 0; text-align: left;
+    }
+    .beliefs-section .beliefs li { padding-top: 2px; padding-bottom: 2px; }
+    .sect.share { margin-top: 46px; }
+    .share h2 { margin-top: 10px; }
 
     /* Personal-tier brand line — the middle of the product→person→world zoom */
     .brand-divider { text-align: center; margin: 56px auto 8px; max-width: 620px; }
@@ -274,8 +337,7 @@
 
     <!-- ① HERO -->
     <section class="hero">
-      <span class="eyebrow-kick"><span class="dot"></span>早期測試版 · Early Access</span>
-      <h1>問對問題，打得更好</h1>
+      <h1>問對問題，<span class="hl">打得更好</span></h1>
       <div class="brandline">Your tennis life, <b>connected.</b></div>
       <p class="lede">
         找得到球場，也<b>找得到人一起打</b>；卡關的時候，直接向專家提問，
@@ -289,14 +351,14 @@
     <section class="section">
       <div class="feat-grid">
         <div class="feat">
-          <span class="feat-ic">🗺️</span>
+          <span class="feat-no">01</span>
           <div>
             <h3>找到球場</h3>
             <p>附近球場地圖、<b>即時狀態</b>（有沒有人、燈亮不亮）、球場熱度——今天想打球，先看哪裡有場、有人。</p>
           </div>
         </div>
         <div class="feat">
-          <span class="feat-ic">🤝</span>
+          <span class="feat-no">02</span>
           <div>
             <h3>約得到球</h3>
             <p>發一則邀約，<b>時間、要打什麼、用哪種球先講好</b>。
@@ -304,14 +366,14 @@
           </div>
         </div>
         <div class="feat">
-          <span class="feat-ic">💬</span>
+          <span class="feat-no">03</span>
           <div>
             <h3>問對教練</h3>
             <p>遇到卡關，直接向專家提問，拿到<b>一份為你而寫的正式解答</b>。平常聊聊不用錢，需要正式解答時才用點數——花費對齊你真正需要的。</p>
           </div>
         </div>
         <div class="feat">
-          <span class="feat-ic">📓</span>
+          <span class="feat-no">04</span>
           <div>
             <h3>記錄成長</h3>
             <p>練球、比賽一鍵記錄，累積你的網球足跡、<b>征服每一座球場</b>。還能<b>追蹤個人諮詢處方箋</b>，隨時複習，更能在比賽前自我提醒。</p>
@@ -327,37 +389,37 @@
         <p class="sec-sub">從想打球到打完，Tennis Nut 一路都在。</p>
         <div class="day-flow">
           <div class="day-step">
-            <div class="day-ic">🔍</div>
+            <div class="day-ic">01</div>
             <h4>查場地</h4>
             <p>出門前先看能不能打</p>
           </div>
           <div class="day-arrow">→</div>
           <div class="day-step">
-            <div class="day-ic">🤝</div>
+            <div class="day-ic">02</div>
             <h4>約球</h4>
             <p>時間、打法、用球先講好</p>
           </div>
           <div class="day-arrow">→</div>
           <div class="day-step">
-            <div class="day-ic">📢</div>
+            <div class="day-ic">03</div>
             <h4>回報狀況</h4>
             <p>順手回報，30 秒</p>
           </div>
           <div class="day-arrow">→</div>
           <div class="day-step">
-            <div class="day-ic">🌰</div>
+            <div class="day-ic">04</div>
             <h4>賺堅果</h4>
             <p>每次貢獻都長出堅果</p>
           </div>
           <div class="day-arrow">→</div>
           <div class="day-step">
-            <div class="day-ic">🎾</div>
+            <div class="day-ic">05</div>
             <h4>問專家</h4>
             <p>用堅果解鎖專業建議</p>
           </div>
           <div class="day-arrow">→</div>
           <div class="day-step">
-            <div class="day-ic">📈</div>
+            <div class="day-ic">06</div>
             <h4>持續變強</h4>
             <p>護照收成就，越打越強</p>
           </div>
@@ -367,13 +429,12 @@
 
     <!-- ── 02b · 球場地圖（不必安裝就能看的那一塊）── -->
     <section class="sect map-tease">
-      <p class="eyebrow">🗺️ 不用安裝也能看</p>
       <h2 class="sec-h">網球場地圖</h2>
       <p class="sec-sub">
         材質、夜間照明、停車、以及球友實際到場確認過的資訊。
         多數地圖只知道「這裡有球場」，這張還知道那座球場現在能不能打。
       </p>
-      <a class="map-cta" href="/courts-map">打開球場地圖 →</a>
+      <a class="map-cta" href="/courts-map">搶先看 WEB 版球場地圖 →</a>
     </section>
 
     <!-- ③ 為什麼不一樣 -->
@@ -385,8 +446,8 @@
         只要願意到球場練球與紀錄，就能<b style="color:var(--accent-d)">持續獲得諮詢的點數</b>！
       </p>
       <div class="experts">
-        <div class="expert"><img src="/expert-coach.jpg" alt="" /><span>網球教練</span></div>
-        <div class="expert"><img src="/expert-fitness.jpg" alt="" /><span>體能訓練</span></div>
+        <div class="expert"><img src="/expert-coach.jpg" alt="網球教練" /><span>網球教練</span></div>
+        <div class="expert"><img src="/expert-fitness.jpg" alt="體能訓練" /><span>體能訓練</span></div>
       </div>
       <p class="experts-note">
         目前開放這兩類。物理治療與運動營養正在洽談中。
@@ -397,34 +458,18 @@
     <section class="section beliefs-section">
       <h2 class="section-h">打球的樂趣，不該等到技術成熟才開始</h2>
       <p class="beliefs-lede">
-        相較於板式網球（Padel）、匹克球（Pickleball）和羽球，這些能讓人
-        <b>第一天就下場</b>、能笑、能和別人打上一場的球拍運動，網球常常讓人以為：
-        要先上幾期課、把動作練對，才彷彿「有資格」真正開始打球。
-      </p>
-      <p class="beliefs-lede">
-        但網球不需要從「把動作練對」開始，也不需要等到準備好了才開始玩。
-        我們想做的，只是<b>把順序重新排回來</b>。
-      </p>
-      <p class="beliefs-lede">
-        所以我們希望所有對網球有興趣的人都能夠：
+        網球不必先「上好幾堂課練習技術」才有資格上場、享受互動的樂趣。所以我們希望：
       </p>
       <ul class="beliefs">
         <li>
-          <span class="b-ic">🎾</span>
-          <p><b>先打球，卡關再問。</b>專家該出現在你打不下去的時候，而不是擋在你開始之前。</p>
-          <p class="b-more">而且專業的教練資源，不一定要花大錢或碰運氣才能得到。
-            你完全可以靠熱愛打球本身——到球場報到、順手貢獻球場資訊——
-            累積的點數來諮詢。</p>
+          <p><b>用對的球拍、對的球、先與人互動打球，卡關馬上可以問。</b>專家出現在你打不下去的時候，而不是讓技術擋在你開始之前。</p>
         </li>
         <li>
-          <span class="b-ic">🤝</span>
           <p><b>和程度不同的人也打得開心。</b>前提是約球時就講清楚今天要打什麼、用哪種球——
             新手才知道自己可以來，老手也不會白跑一趟。</p>
         </li>
         <li>
-          <span class="b-ic">📍</span>
-          <p><b>不靠人脈也找得到球場。</b>開不開放、幾點開、多少錢、進不進得去，
-            這些應該是公開的，而不是熟門熟路的人才知道。</p>
+          <p><b>不靠人脈也找得到球場。</b>開放與否、幾點開、多少錢，都該是易於查詢的。</p>
         </li>
       </ul>
       <p class="beliefs-close">
@@ -511,27 +556,13 @@
 
     <!-- 個人層品牌句（product → person → world 的中段） -->
     <div class="brand-divider">
-      <div class="bd-en">Your identity in the tennis world.</div>
-      <p class="bd-sub">球風、裝備、征服過的球場、專屬處方箋——你的網球護照,就是你在網球世界裡的身份。</p>
+      <div class="bd-en">Not a rating. A record.</div>
+      <p class="bd-sub">
+        網球世界習慣用一個數字介紹你。這裡記的是你去過哪些球場、打了什麼、
+        教練替你寫下什麼——它不評分，它只是記得。<br />
+        <span class="bd-kicker">第一次上場，就有一本。</span>
+      </p>
     </div>
-
-    <section class="section">
-      <h2 class="section-h">為什麼可以放心</h2>
-      <div class="trust">
-        <div class="trust-row">
-          <span class="t-ic">🌰</span>
-          <p><b>一個真心想進步的人，與最熱血的專業教練們</b>做的 App。現在是<b>測試版</b>。</p>
-        </div>
-        <div class="trust-row">
-          <span class="t-ic">🔒</span>
-          <p>iPhone 走 Apple 官方 <b>TestFlight</b>；Android 走 <b>Google Play 測試</b>——留下 Gmail、我們把你加入測試名單後，就能從 Play 安裝並<b>自動更新</b>，不必再手動下載。</p>
-        </div>
-        <div class="trust-row">
-          <span class="t-ic">🚀</span>
-          <p>測試穩定後會正式上架 <b>App Store / Google Play</b>；現在加入的你，就是最早的一批球友。</p>
-        </div>
-      </div>
-    </section>
 
     <!-- ⑤ CTA 三入口 -->
     <section class="section" id="join">
