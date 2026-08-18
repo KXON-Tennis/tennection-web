@@ -912,7 +912,8 @@
           <div>
             <h3>找到球場</h3>
             <p>附近球場地圖、停車場、約球總覽、即時回報、球場熱度——今天想打球，先看哪裡有人。</p>
-            <img class="feat-shot" src="/shot-court.jpg" alt="桃園市中路網球場的球場資訊：5 面硬地、付費開放、照明、開放時間與收費、電話與官網、3 位球友現場驗證過、步行 1 分鐘的停車場" loading="lazy" width="669" />
+            <img class="feat-shot" src="/shot-court-map.jpg" alt="地圖上的鎮海網球場：衛星圖上的球場點位與資訊卡——2 面球場、紅土、2026/6/21 有 2 位球友現場驗證過、步行 3 分鐘的停車場，還缺的欄位可以直接補充" loading="lazy" width="669" />
+            <img class="feat-shot" src="/shot-court-filter.jpg" alt="篩選球場：我的最愛、已拜訪、球友在線；場地類型硬地 427、紅土 124、人工草 2、PU 2、草地 2；縣市高雄 78、台北 46、新北 44、台中 43、彰化 42……" loading="lazy" width="669" />
           </div>
         </div>
         <div class="feat">
@@ -1058,75 +1059,27 @@
     <!-- ── 05 · 每一場都值得分享（奶油白；大圖卡展示）── -->
     <section class="sect share">
       <h2 class="sec-h">每一場，都值得留下</h2>
-      <p class="sec-sub">把練習、比賽和拜訪球場，一鍵做成專屬圖卡。</p>
+      <p class="sec-sub">練習、比賽、拜訪過的球場——上場過的每一次都留在這裡，一鍵就能做成圖卡。</p>
       <p class="sec-sub">不只是紀錄分數，也留下你這次上場的狀態與回憶。</p>
       <p class="sec-sub">收藏你的網球日常，分享給球友或社群。</p>
 
+      <!-- These were three CSS mock-ups with invented courts and opponents.
+           They are now the account's own records: a practice, a match and two
+           court check-ins. Anything a stranger reads here is something that
+           actually happened. -->
       <div class="share-gallery">
-        <!-- 比賽圖卡 -->
-        <div class="sharecard sc-match">
-          <img class="court-photo" src="share-court.jpg" alt="雙打對戰" />
-          <div class="scrim"></div>
-          <div class="ov">
-            <div class="ov-top">
-              <div class="ov-row">
-                <span class="badge"><svg class="bi" viewBox="0 0 16 16">
-                    <circle cx="8" cy="8" r="7" fill="#B6F06A" />
-                    <path d="M2.4 4.2C5 5.6 5 10.4 2.4 11.8M13.6 4.2C11 5.6 11 10.4 13.6 11.8" stroke="#2F6B3A"
-                      stroke-width="1.3" fill="none" />
-                  </svg>勝 · 雙打</span>
-                <span class="mark"><img src="wordmark-white.png" alt="Tennis Nut" class="mark-wm" /></span>
-              </div>
-              <div class="court">臺北市網球中心</div>
-              <div class="vs">我 &amp; 爸爸　vs　阿文 &amp; 阿武</div>
-              <div class="score">6-4</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 練習圖卡 -->
-        <div class="sharecard sc-practice">
-          <img class="court-photo" src="share-practice.jpg" alt="反手練習" />
-          <div class="scrim"></div>
-          <div class="ov">
-            <div class="ov-top">
-              <div class="ov-row">
-                <span class="badge"><svg class="bi" viewBox="0 0 16 16">
-                    <rect x="1.5" y="6.5" width="3" height="3" rx="1" fill="#B6F06A" />
-                    <rect x="11.5" y="6.5" width="3" height="3" rx="1" fill="#B6F06A" />
-                    <rect x="4" y="7.2" width="8" height="1.6" rx="0.8" fill="#B6F06A" />
-                  </svg>練習</span>
-                <span class="mark"><img src="wordmark-white.png" alt="Tennis Nut" class="mark-wm" /></span>
-              </div>
-              <div class="court">反手強化日</div>
-              <div class="vs">反手 200 球</div>
-              <div class="score stat">90<small>min</small></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 拜訪球場圖卡 -->
-        <div class="sharecard sc-visit">
-          <img class="court-photo" src="share-visit.jpg" alt="拜訪球場" />
-          <div class="scrim"></div>
-          <div class="ov">
-            <div class="ov-top">
-              <div class="ov-row">
-                <span class="badge"><svg class="bi" viewBox="0 0 16 16">
-                    <path d="M8 1.5c-2.6 0-4.7 2-4.7 4.6 0 3.3 4.7 8.4 4.7 8.4s4.7-5.1 4.7-8.4C12.7 3.5 10.6 1.5 8 1.5z"
-                      fill="#B6F06A" />
-                    <circle cx="8" cy="6.1" r="1.8" fill="#1F4A2A" />
-                  </svg>拜訪</span>
-                <span class="mark"><img src="wordmark-white.png" alt="Tennis Nut" class="mark-wm" /></span>
-              </div>
-              <div class="court">民宿草地球場</div>
-              <div class="vs">首次拜訪 · 第 12 座球場打卡</div>
-              <div class="score stat">+10
-
-              </div>
-            </div>
-          </div>
-        </div>
+        <figure class="logshot">
+          <img src="/shot-log-practice.jpg" alt="練習紀錄：6/19 民生網球場，07:56、1 小時、Hitting，五顆球的自評，附一張紅土場的照片" loading="lazy" width="669" />
+          <figcaption>練習</figcaption>
+        </figure>
+        <figure class="logshot">
+          <img src="/shot-log-match.jpg" alt="比賽紀錄：7/1 桃園市中路網球場，雙打勝 6-4，附一張發球的照片" loading="lazy" width="669" />
+          <figcaption>比賽</figcaption>
+        </figure>
+        <figure class="logshot">
+          <img src="/shot-log-courts.jpg" alt="我的球場：前鎮高中網球場（紅土）與桃園市中路網球場（硬地），各附一張自己拍的球場照片" loading="lazy" width="669" />
+          <figcaption>球場打卡</figcaption>
+        </figure>
       </div>
     </section>
 
