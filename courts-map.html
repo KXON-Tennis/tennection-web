@@ -892,6 +892,84 @@
       if (on) requestAnimationFrame(pulse);
     }
 
+    // ALL and initFind live here, not inside addCourtLayers.
+    //
+    // They were declared in there and called from load(), which is a sibling
+    // function — so `ALL.push(c)` threw ReferenceError on the very first
+    // court, load()'s single try swallowed it, and the page reported
+    // 「資料載入失敗」. Everything downstream of that line was skipped too:
+    // no markers, no legend, no search box, no live layer. Only the basemap
+    // survived, because its style.load handler is independent.
+    // Every court the page loaded, kept for searching. The map already has
+    // them as GeoJSON, but that is a rendering structure — reaching into it
+    // to answer a text query would tie the search to how the layer happens
+    // to be built.
+    const ALL = [];
+
+    // Find a court by name, within one country.
+    //
+    // Country first, and defaulting to Taiwan, because names repeat across
+    // markets — 「中央公園」 exists in more than one of them — and because a
+    // visitor almost always means the country they are in. It scopes the
+    // search rather than the map: the markers stay as they are, so the
+    // answer arrives without the page rearranging itself first.
+    function initFind() {
+      const sel = document.getElementById("countrySel");
+      const box = document.getElementById("courtSearch");
+      const out = document.getElementById("searchResults");
+      box.placeholder = T.searchPh;
+
+      const present = [...new Set(ALL.map((c) => c.country).filter(Boolean))].sort();
+      for (const code of present) {
+        const o = document.createElement("option");
+        o.value = code;
+        o.textContent = (T.countries && T.countries[code]) || code;
+        sel.appendChild(o);
+      }
+      sel.value = present.includes("TW") ? "TW" : (present[0] || "");
+
+      const norm = (v) => (v || "").toString().toLowerCase();
+      const hide = () => { out.hidden = true; out.innerHTML = ""; };
+
+      function run() {
+        const q = norm(box.value).trim();
+        if (q.length < 1) return hide();
+        const country = sel.value;
+        const hits = ALL.filter((c) =>
+          c.country === country &&
+          (norm(c.name).includes(q) || norm(c.name_en).includes(q) || norm(c.city).includes(q))
+        ).slice(0, 8);
+
+        out.innerHTML = "";
+        if (!hits.length) {
+          const d = document.createElement("div");
+          d.className = "none"; d.textContent = T.noResults;
+          out.appendChild(d);
+        } else {
+          for (const c of hits) {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.innerHTML = `${escapeHtml(c.name || "")}<div class="m">${escapeHtml(c.city || "")}</div>`;
+            b.onclick = () => {
+              hide();
+              box.blur();
+              // Same zoom the map uses when a marker is tapped, so arriving
+              // by search and by touch land you in the same place.
+              map.flyTo({ center: [c.lng, c.lat], zoom: 16, duration: 900 });
+              openCourt(c, [c.lng, c.lat]);
+            };
+            out.appendChild(b);
+          }
+        }
+        out.hidden = false;
+      }
+
+      box.addEventListener("input", run);
+      sel.addEventListener("change", () => { box.value = ""; hide(); });
+      box.addEventListener("blur", () => setTimeout(hide, 150));
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") hide(); });
+    }
+
     let courtFeatures = null;
 
     // setStyle throws away every source and layer, so the courts have to go
@@ -998,75 +1076,6 @@
       // freshness, hours, pricing, rental, phone and site. On a page whose
       // whole claim is data quality, showing a tenth of what is known was the
       // weakest thing about it.
-      // Every court the page loaded, kept for searching. The map already has
-      // them as GeoJSON, but that is a rendering structure — reaching into it
-      // to answer a text query would tie the search to how the layer happens
-      // to be built.
-      const ALL = [];
-
-      // Find a court by name, within one country.
-      //
-      // Country first, and defaulting to Taiwan, because names repeat across
-      // markets — 「中央公園」 exists in more than one of them — and because a
-      // visitor almost always means the country they are in. It scopes the
-      // search rather than the map: the markers stay as they are, so the
-      // answer arrives without the page rearranging itself first.
-      function initFind() {
-        const sel = document.getElementById("countrySel");
-        const box = document.getElementById("courtSearch");
-        const out = document.getElementById("searchResults");
-        box.placeholder = T.searchPh;
-
-        const present = [...new Set(ALL.map((c) => c.country).filter(Boolean))].sort();
-        for (const code of present) {
-          const o = document.createElement("option");
-          o.value = code;
-          o.textContent = (T.countries && T.countries[code]) || code;
-          sel.appendChild(o);
-        }
-        sel.value = present.includes("TW") ? "TW" : (present[0] || "");
-
-        const norm = (v) => (v || "").toString().toLowerCase();
-        const hide = () => { out.hidden = true; out.innerHTML = ""; };
-
-        function run() {
-          const q = norm(box.value).trim();
-          if (q.length < 1) return hide();
-          const country = sel.value;
-          const hits = ALL.filter((c) =>
-            c.country === country &&
-            (norm(c.name).includes(q) || norm(c.name_en).includes(q) || norm(c.city).includes(q))
-          ).slice(0, 8);
-
-          out.innerHTML = "";
-          if (!hits.length) {
-            const d = document.createElement("div");
-            d.className = "none"; d.textContent = T.noResults;
-            out.appendChild(d);
-          } else {
-            for (const c of hits) {
-              const b = document.createElement("button");
-              b.type = "button";
-              b.innerHTML = `${escapeHtml(c.name || "")}<div class="m">${escapeHtml(c.city || "")}</div>`;
-              b.onclick = () => {
-                hide();
-                box.blur();
-                // Same zoom the map uses when a marker is tapped, so arriving
-                // by search and by touch land you in the same place.
-                map.flyTo({ center: [c.lng, c.lat], zoom: 16, duration: 900 });
-                openCourt(c, [c.lng, c.lat]);
-              };
-              out.appendChild(b);
-            }
-          }
-          out.hidden = false;
-        }
-
-        box.addEventListener("input", run);
-        sel.addEventListener("change", () => { box.value = ""; hide(); });
-        box.addEventListener("blur", () => setTimeout(hide, 150));
-        document.addEventListener("keydown", (e) => { if (e.key === "Escape") hide(); });
-      }
 
       async function openCourt(f, lngLat) {
         // Directions should aim at the court, not at the pixel that was
