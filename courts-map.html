@@ -1147,17 +1147,38 @@
     async function fetchAllCourts(query) {
       const PAGE = 1000;
       const headers = { apikey: ANON, Authorization: "Bearer " + ANON };
+
+      // Six round trips at 5,000 courts, and any one of them can come back a
+      // gateway error page instead of JSON while the table is being written
+      // to — which is how this map showed 「資料載入失敗」 on a night when the
+      // API itself was fine. Retry the page, twice, before giving up.
+      async function page(after) {
+        let last;
+        for (let attempt = 0; attempt < 3; attempt++) {
+          if (attempt) await new Promise(s => setTimeout(s, 400 * attempt));
+          try {
+            const r = await fetch(
+              SUPABASE_URL + "/rest/v1/courts" + query
+                + "&id=gt." + after + "&order=id.asc&limit=" + PAGE,
+              { headers });
+            if (!r.ok) { last = new Error("HTTP " + r.status); continue; }
+            const rows = await r.json();
+            if (!Array.isArray(rows)) { last = new Error("not an array"); continue; }
+            return rows;
+          } catch (e) { last = e; }
+        }
+        // Deliberately fatal rather than returning what arrived. A map missing
+        // a page it never mentions is worse than one that says it failed.
+        throw last;
+      }
+
       let all = [], after = 0;
       for (;;) {
-        const r = await fetch(
-          SUPABASE_URL + "/rest/v1/courts" + query
-            + "&id=gt." + after + "&order=id.asc&limit=" + PAGE,
-          { headers });
-        const page = await r.json();
-        if (!Array.isArray(page) || page.length === 0) break;
-        all = all.concat(page);
-        after = page[page.length - 1].id;
-        if (page.length < PAGE) break;
+        const rows = await page(after);
+        if (rows.length === 0) break;
+        all = all.concat(rows);
+        after = rows[rows.length - 1].id;
+        if (rows.length < PAGE) break;
       }
       return all;
     }
