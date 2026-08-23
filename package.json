@@ -4,7 +4,6 @@
   "private": true,
   "description": "Tennis Nut official website",
   "scripts": {
-    "ship": "npx vercel deploy --prod --yes --scope kaysons-projects-cdc6b637",
-    "ship-apk": "bash scripts/ship-apk.sh"
+    "ship": "npx vercel deploy --prod --yes --scope kaysons-projects-cdc6b637"
   }
 }
