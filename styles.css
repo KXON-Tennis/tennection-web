@@ -1056,56 +1056,6 @@ footer a {
   margin-top: 8px;
 }
 
-/* LINE 老用戶入口條 — 琥珀色，跨平台、不撞 iOS 藍 / Android 綠 */
-.line-cue {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 18px 0 2px;
-  padding: 13px 16px;
-  border-radius: 14px;
-  background: #FBF1DF;
-  border: 1px solid #EAD3A8;
-  color: #8A5A14;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.line-cue:hover {
-  text-decoration: none;
-  background: #F8E9CE;
-}
-
-.line-cue-ic {
-  font-size: 20px;
-  flex-shrink: 0;
-}
-
-.line-cue-txt {
-  flex: 1;
-  min-width: 0;
-}
-
-.line-cue-txt b {
-  color: #7A4E10;
-}
-
-.line-cue-go {
-  flex-shrink: 0;
-  font-weight: 800;
-  color: #9A6516;
-  white-space: nowrap;
-}
-
-@media (max-width: 600px) {
-  .line-cue {
-    flex-wrap: wrap;
-  }
-  .line-cue-go {
-    margin-left: 32px;
-  }
-}
-
 /* LINE section — amber theme (區隔 Android 綠；LINE 圖標保留官方綠) */
 .cross-tag {
   display: inline-block;
