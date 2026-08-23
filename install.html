@@ -6,7 +6,7 @@
 
     / and /join merged because they were the same argument twice; this one is
     not an argument, it is a set of instructions for people who are stuck —
-    TestFlight, the Play testing list, sideloading. Folding a troubleshooting
+    the Play testing list and the LINE binding. Folding a troubleshooting
     page into a pitch makes the pitch longer for everyone and the instructions
     harder to find for the few who need them.
 
@@ -16,8 +16,8 @@
   -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>安裝測試版 App · Tennis Nut</title>
-  <meta name="description" content="測試期間如何安裝 Tennis Nut：iPhone 透過 TestFlight、Android 加入 Google Play 測試的步驟教學。" />
+  <title>安裝 App · Tennis Nut</title>
+  <meta name="description" content="如何安裝 Tennis Nut：Android 加入 Google Play 測試的步驟教學；iOS 版正在 App Store 上架審核中。" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
   <link rel="canonical" href="https://tennisnut.kxon.net/install" />
@@ -30,7 +30,7 @@
       <img src="/wordmark.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
-      <a href="/install" class="active">安裝測試版App</a>
+      <a href="/install" class="active">安裝 App</a>
       <a href="/privacy">隱私權</a>
       <a href="/terms">服務條款</a>
     </nav>
@@ -38,10 +38,10 @@
 
   <article class="container guide">
     <span class="tag-line">🌰 測試期間限定</span>
-    <h1>安裝測試版 App</h1>
+    <h1>安裝 App</h1>
     <p class="meta">
-      測試階段 Tennis Nut 還沒上架 App Store / Google Play。iPhone 請用 Apple 官方的
-      <b>TestFlight</b> 安裝；Android 走 <b>Google Play 測試</b>。挑你的手機，照著步驟做就行 🌰
+      <b>iPhone</b> 版正在 App Store 上架審核中，通過後直接搜尋安裝即可。
+      <b>Android</b> 現在就能裝，走 Google Play 測試，照著步驟做就行 🌰
     </p>
 
     <div class="plat-nav">
@@ -55,69 +55,38 @@
       </a>
     </div>
 
-    <!-- ─────────── iOS / TestFlight ─────────── -->
+    <!-- ─────────── iOS ───────────
+         The TestFlight walkthrough lived here: install TestFlight, accept an
+         invite, tap Install, and a note that the build expires every 90 days.
+         It is gone rather than hidden because a public page that still hands
+         out a beta invite while the App Store review is running invites people
+         onto a build that is about to be superseded, and TestFlight builds
+         expire — a visitor who follows it in three weeks gets a dead link and
+         no explanation.
+    -->
     <section id="ios" class="plat">
       <h2 class="plat-h">
         <span class="plat-ic ios">
           <svg viewBox="0 0 814 1000" aria-hidden="true"><path fill="currentColor" d="M788 340c-6 4-114 65-114 199 0 156 137 211 141 212-1 3-22 75-72 148-45 64-91 128-161 128s-88-41-169-41c-79 0-107 42-171 42s-109-59-161-132C26 723 0 597 0 476c0-194 126-297 250-297 66 0 121 43 162 43 39 0 101-46 176-46 28 0 130 3 197 99zM554 116c31-37 53-89 53-141 0-7-1-14-2-20-50 2-110 34-146 75-28 32-55 84-55 137 0 8 1 16 2 19 3 1 8 1 13 1 45 0 102-30 135-71z"/></svg>
         </span>
-        iPhone · 用 TestFlight 安裝
+        iPhone · 等待正式上架
       </h2>
 
-      <ol class="steps">
-        <li class="step">
-          <span class="step-no">1</span>
-          <div class="step-body">
-            <h3>先裝 Apple 官方的「TestFlight」</h3>
-            <p>TestFlight 是 Apple 用來發測試版 App 的官方工具。先到 App Store 搜尋並安裝它（免費）。</p>
-            <a class="mini-btn" href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">前往 App Store 安裝 TestFlight ↗</a>
-          </div>
-          <span class="step-art">
-            <svg class="tf" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="11" fill="#1d1d1f"/><path d="M24 11l11 26-11-6-11 6z" fill="#fff"/></svg>
-          </span>
-        </li>
+      <div class="callout">
+        <b>iOS 版正在 App Store 的上架審核流程中。</b>
+        通過之後可以直接從 App Store 搜尋「Tennis Nut」安裝，不需要測試工具，也不會有到期問題。
+      </div>
 
-        <li class="step">
-          <span class="step-no">2</span>
-          <div class="step-body">
-            <h3>用 iPhone 打開測試邀請連結</h3>
-            <p>點下面的按鈕開啟我們的測試邀請，它會自動跳到 TestFlight，按下「接受（Accept）」即可。</p>
-            <a class="dl-btn ios" href="https://testflight.apple.com/join/UG2pgEPB" target="_blank" rel="noopener">開啟 TestFlight 邀請</a>
-            <p class="hint">還沒拿到邀請？先<a href="https://forms.gle/N7EKJ58FmvhVKQs69" target="_blank" rel="noopener">填表申請體驗資格</a>，我們會把你加進測試名單。</p>
-          </div>
-          <span class="step-art">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 14a4 4 0 0 0 6 0l2-2a4 4 0 0 0-6-6l-1 1"/><path d="M15 10a4 4 0 0 0-6 0l-2 2a4 4 0 0 0 6 6l1-1"/></svg>
-          </span>
-        </li>
-
-        <li class="step">
-          <span class="step-no">3</span>
-          <div class="step-body">
-            <h3>在 TestFlight 點「安裝 / Install」</h3>
-            <p>看到 Tennis Nut 後，按右邊的「安裝」。日後有新版本，回 TestFlight 按「更新」就能拿到最新版。</p>
-          </div>
-          <span class="step-art">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M12 8v6m0 0l-2.2-2.2M12 14l2.2-2.2"/></svg>
-          </span>
-        </li>
-
-        <li class="step">
-          <span class="step-no">4</span>
-          <div class="step-body">
-            <h3>回桌面打開 Tennis Nut，登入開玩</h3>
-            <p>桌面會多一顆 Tennis Nut 圖示，打開用手機號碼 / LINE 登入即可。圖示旁有顆橘點，代表它是測試版。</p>
-          </div>
-          <span class="step-art"><img src="/app-icon.png" alt="" /></span>
-        </li>
-      </ol>
+      <p class="meta">
+        想在上線第一時間知道，<a href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">加 LINE 官方帳號</a>——
+        上架當天會發一則通知。在 LINE 裡也可以先回報球場狀態累積堅果，日後綁定就會一起帶進 App。
+      </p>
 
       <a class="line-cue" href="#line">
         <span class="line-cue-ic">🌰</span>
-        <span class="line-cue-txt"><b>在 LINE 玩過、累積了堅果？</b>裝好 App 後記得綁定，把堅果與回報紀錄一次同步過來。</span>
+        <span class="line-cue-txt"><b>先在 LINE 累積堅果</b>之後裝好 App 綁定，堅果與回報紀錄會一次同步過來。</span>
         <span class="line-cue-go">綁定教學 ↓</span>
       </a>
-
-      <div class="callout">⏳ 測試版每 90 天會到期一次，到期時 TestFlight 會提醒你重新安裝，<b>資料不會不見</b>。</div>
     </section>
 
     <!-- ─────────── Android / APK ─────────── -->
@@ -245,7 +214,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-text">
-        <a href="/install">安裝測試版App</a>·
+        <a href="/install">安裝 App</a>·
         <a href="/privacy">隱私權政策</a>·
         <a href="/terms">服務條款</a>·
         <a href="mailto:kaysoncho@gmail.com">聯絡我們</a>

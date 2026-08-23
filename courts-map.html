@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Tennis Nut 網球場地圖 | Tennis Court Map</title>
-  <meta name="description" content="Tennis courts in Taiwan, Japan, Spain, Singapore and the US on one map — surface, floodlights, parking and what other players have confirmed. 台灣、日本、西班牙、新加坡、美國的網球場地圖。" />
+  <meta name="description" content="Tennis courts across twelve markets on one map — surface, floodlights, parking and what other players have confirmed. 台灣、日本、韓國、香港、澳門、新加坡、馬來西亞、澳洲、紐西蘭、西班牙、美國、加拿大的網球場地圖。" />
 
   <meta property="og:title" content="Tennis Nut 網球場地圖 — Tennis Court Map" />
-  <meta property="og:description" content="Surface, floodlights, parking and player-confirmed details for courts across five markets." />
+  <meta property="og:description" content="Surface, floodlights, parking and player-confirmed details for courts across twelve markets." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tennisnut.kxon.net/courts-map" />
   <meta property="og:image" content="https://tennisnut.kxon.net/courts-insight-wide.png" />
@@ -15,7 +15,7 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tennis Nut 網球場地圖 — Tennis Court Map" />
-  <meta name="twitter:description" content="Surface, floodlights, parking and player-confirmed details for courts across five markets." />
+  <meta name="twitter:description" content="Surface, floodlights, parking and player-confirmed details for courts across twelve markets." />
   <meta name="twitter:image" content="https://tennisnut.kxon.net/courts-insight-wide.png" />
 
   <link rel="icon" href="favicon.ico" sizes="any" />
@@ -399,7 +399,7 @@
     const ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3andpc2dicG5yeHRjdnBia2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0NTU2ODQsImV4cCI6MjA4NDAzMTY4NH0.Em6SlZlakgd8WlL-PgFsR-NjpN2HFc38yNUw1zRKB9I";
 
     // ---- language -------------------------------------------------------
-    // Follows the browser, overridable with ?lang=en|zh. The map covers five
+    // Follows the browser, overridable with ?lang=en|zh. The map covers twelve
     // markets now; a page that only speaks Chinese excludes most of them.
     const LANG = (function () {
       const q = new URLSearchParams(location.search).get("lang");
@@ -413,7 +413,11 @@
         title: "Tennis Nut 網球場地圖",
         sub: "材質、夜間照明、停車、以及球友實際確認過的球場資訊。",
         searchPh: "搜尋球場名稱", noResults: "找不到相符的球場",
-        countries: { TW: "台灣", JP: "日本", ES: "西班牙", SG: "新加坡", US: "美國" },
+        countries: {
+          TW: "台灣", JP: "日本", KR: "韓國", HK: "香港", MO: "澳門",
+          SG: "新加坡", MY: "馬來西亞", AU: "澳洲", NZ: "紐西蘭",
+          ES: "西班牙", US: "美國", CA: "加拿大",
+        },
         courts: "座球場", markets: "個市場", surfaced: "有材質資料",
         unknown: "未標示", note: "⚠️ 詳細球場資訊難免有缺漏，歡迎加入 LINE/APP 回報球場資訊與狀態。",
         ctaPrimary: "加入 LINE 回報球場", ctaSecondary: "申請試用 Tennis Nut App",
@@ -463,7 +467,11 @@
         title: "Tennis Nut Court Map",
         sub: "Surface, floodlights, parking, and details players have confirmed on the ground.",
         searchPh: "Search court names", noResults: "No matching court",
-        countries: { TW: "Taiwan", JP: "Japan", ES: "Spain", SG: "Singapore", US: "USA" },
+        countries: {
+          TW: "Taiwan", JP: "Japan", KR: "South Korea", HK: "Hong Kong", MO: "Macau",
+          SG: "Singapore", MY: "Malaysia", AU: "Australia", NZ: "New Zealand",
+          ES: "Spain", US: "USA", CA: "Canada",
+        },
         courts: "courts", markets: "markets", surfaced: "with a surface",
         unknown: "not recorded", note: "⚠️ Court details can be incomplete — report info and conditions via LINE or the app.",
         ctaPrimary: "Report a court on LINE", ctaSecondary: "Request the Tennis Nut app",
