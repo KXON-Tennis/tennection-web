@@ -8,3 +8,5 @@ node_modules/
 
 # allow this repo's package.json past the global *.json ignore
 !package.json
+!updates.json
+!vercel.json
