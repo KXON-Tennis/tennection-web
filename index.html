@@ -170,29 +170,48 @@
       .hero-cta { justify-content: flex-start; }
     }
 
-    .line-btn {
+    /* LINE is a different ask from downloading the app, so it stops sharing a
+       row with the App Store badge and gets its own line below Android — and
+       LINE's own green, not ours, so it reads as the third-party entry it is. */
+    .line-cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      height: 53px;
-      padding: 0 20px;
+      gap: 10px;
+      margin-top: 16px;
+      padding: 12px 20px;
       border-radius: 12px;
-      border: 1.5px solid #D3E3C4;
-      background: var(--surface);
-      color: var(--accent-d);
+      background: #06C755;
+      color: #FFFFFF;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14.5px;
+      line-height: 1.35;
+      text-align: left;
       text-decoration: none;
-      transition: border-color .14s ease, transform .14s ease;
+      box-shadow: 0 12px 24px -12px rgba(6, 199, 85, 0.6);
+      transition: transform .14s ease, box-shadow .14s ease;
     }
 
-    .line-btn:hover {
+    .line-cta:hover {
       text-decoration: none;
-      border-color: var(--accent);
       transform: translateY(-1px);
+      box-shadow: 0 16px 30px -12px rgba(6, 199, 85, 0.7);
     }
 
-    .line-btn svg { width: 19px; height: 19px; }
+    .line-cta svg {
+      width: 21px;
+      height: 21px;
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 560px) {
+      .line-cta {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        font-size: 13.5px;
+      }
+    }
 
     /* Android has no public Play listing yet — closed testing behind a form.
        A third badge would promise a store page that does not exist, so it is
@@ -1115,26 +1134,28 @@
             Tennis Nut 把球場地圖、約球、練習紀錄與專家諮詢串在一起，讓你的網球生活從此連結。
           </p>
 
-          <!-- iPhone is live on the App Store; Android is still closed testing
-               behind a Google Form, which has no store page to link. So the
-               row is one real badge plus LINE, and Android is the line under
-               it — an honest third option, not a badge that lies. -->
+          <!-- Three asks, three tiers, in descending commitment. iPhone is the
+               only real store link. Android is still closed testing behind a
+               Google Form — a badge there would promise a store page that does
+               not exist. LINE is a different ask altogether (no install), so it
+               sits on its own line in LINE's own green rather than competing
+               with the badge for the same glance. -->
           <div class="hero-cta">
             <a class="as-badge" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener"
                aria-label="從 App Store 下載 Tennis Nut">
               <img src="/app-store-badge-en.svg" alt="從 App Store 下載" width="159" height="53" />
-            </a>
-            <a class="line-btn" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 3C6.9 3 2.8 6.3 2.8 10.4c0 3.7 3.3 6.8 7.7 7.4.3.06.7.2.8.45.08.23.05.58.03.81l-.13.78c-.04.23-.18.9.79.49 1-.42 5.3-3.12 7.2-5.34 1.34-1.47 1.98-2.96 1.98-4.59C21.2 6.3 17.1 3 12 3z" />
-              </svg>
-              先加入 LINE
             </a>
           </div>
           <p class="android-note">
             Android 測試招募中 ·
             <a href="#join">加入 Google Play 測試 →</a>
           </p>
+          <a class="line-cta" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 3C6.9 3 2.8 6.3 2.8 10.4c0 3.7 3.3 6.8 7.7 7.4.3.06.7.2.8.45.08.23.05.58.03.81l-.13.78c-.04.23-.18.9.79.49 1-.42 5.3-3.12 7.2-5.34 1.34-1.47 1.98-2.96 1.98-4.59C21.2 6.3 17.1 3 12 3z" />
+            </svg>
+            加入 LINE 社群，獲取最新活動與 App 更新介紹
+          </a>
         </div>
 
         <div class="hero-device">
