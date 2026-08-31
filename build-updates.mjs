@@ -33,6 +33,10 @@ const PAGE_CSS = `
     .hl-emoji { font-size: 22px; line-height: 1.4; flex-shrink: 0; }
     .hl-body h2 { font-size: 17px; margin: 0 0 6px; }
     .hl-body p { margin: 0; color: var(--text-secondary); font-size: 15px; }
+    .hl-shot { margin: 14px 0 2px; }
+    .hl-shot img { display: block; width: 100%; max-width: 300px; height: auto;
+                   border-radius: 12px; }
+    .hl-shot figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; }
     .fixes { margin: 28px 0 8px; }
     .fixes h2 { font-size: 15px; color: var(--text-tertiary); font-weight: 600; margin: 0 0 8px; }
     .fixes ul { margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 15px; }
@@ -140,6 +144,14 @@ ${r.highlights
       <div class="hl-body">
         <h2>${esc(h.title)}</h2>
         <p>${esc(h.body)}</p>
+${
+  h.shot
+    ? `        <figure class="hl-shot">
+          <img src="${esc(h.shot.src)}" alt="${esc(h.shot.alt || h.title)}" loading="lazy" />
+${h.shot.caption ? `          <figcaption>${esc(h.shot.caption)}</figcaption>` : ''}
+        </figure>`
+    : ''
+}
       </div>
     </section>`
   )

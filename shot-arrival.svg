@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="332" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="324" rx="30" fill="#FBFAF6"/>
+  <rect x="154.0" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+  <text x="28" y="66" font-size="17" fill="#1B5138" font-weight="800" text-anchor="start">早安，Kayson</text>
+  <rect x="20" y="84" width="320" height="236" rx="16" fill="#FFFFFF" stroke="#1B5138" stroke-opacity="0.9"/>
+  <path d="M20 100 a16 16 0 0 1 16 -16 h288 a16 16 0 0 1 16 16 v34 h-320 z" fill="#1B5138"/>
+  <circle cx="42" cy="117" r="5.5" fill="#B8D52A"/>
+  <circle cx="42" cy="117" r="10" fill="#B8D52A" opacity="0.28"/>
+  <text x="58" y="122" font-size="12.5" fill="#FFFFFF" font-weight="800" text-anchor="start">今天 10:00 · 中央大學網球場</text>
+  <text x="330" y="122" font-size="11.5" fill="#FFFFFF" font-weight="700" text-anchor="end">1/2 到場</text>
+  <circle cx="40" cy="158" r="4.5" fill="#3F7C43"/>
+  <text x="54" y="162" font-size="12.5" fill="#6E776F" font-weight="600" text-anchor="start">Kayson CB · 入口 · 白色</text>
+  <text x="36" y="190" font-size="11.5" fill="#9BA29B" font-weight="500" text-anchor="start">還有 1 人沒回報</text>
+  <rect x="36" y="206" width="65" height="30" rx="15" fill="#1B5138" stroke="#1B5138"/>  <text x="68.5" y="226" font-size="12" fill="#FFFFFF" font-weight="700" text-anchor="middle">我到了</text>
+  <rect x="109" y="206" width="78" height="30" rx="15" fill="none" stroke="#9BA29B"/>  <text x="148.0" y="226" font-size="12" fill="#6E776F" font-weight="700" text-anchor="middle">我會晚到</text>
+  <rect x="195" y="206" width="91" height="30" rx="15" fill="none" stroke="#9BA29B"/>  <text x="240.5" y="226" font-size="12" fill="#6E776F" font-weight="700" text-anchor="middle">今天到不了</text>
+  <rect x="36" y="244" width="78" height="30" rx="15" fill="none" stroke="#9BA29B"/>  <text x="75.0" y="264" font-size="12" fill="#6E776F" font-weight="700" text-anchor="middle">找不到你</text>
+</svg>
