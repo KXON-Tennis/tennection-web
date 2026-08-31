@@ -530,38 +530,9 @@ footer a {
   margin-top: 14px;
 }
 
-.plat-nav {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 22px 0 4px;
-}
 
-.plat-btn {
-  flex: 1;
-  min-width: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px;
-  border-radius: 14px;
-  background: var(--surface);
-  border: 1px solid var(--accent);
-  color: var(--accent-d);
-  font-weight: 800;
-}
 
-.plat-btn-ic {
-  height: 22px;
-  width: auto;
-  flex-shrink: 0;
-}
 
-.plat-btn:hover {
-  text-decoration: none;
-  background: var(--tint);
-}
 
 .plat {
   margin-top: 36px;
@@ -727,15 +698,7 @@ footer a {
   background: #3C8E3A;
 }
 
-/* iOS section — neutral dark theme (Android keeps the default green) */
-.plat-btn[href="#ios"] {
-  border-color: #1d1d1f;
-  color: #1d1d1f;
-}
 
-.plat-btn[href="#ios"]:hover {
-  background: #F2F2F4;
-}
 
 #ios .plat-h {
   color: #1d1d1f;
