@@ -561,11 +561,6 @@ footer a {
   height: 19px;
 }
 
-.plat-ic.ios {
-  background: #1d1d1f;
-  color: #fff;
-}
-
 .plat-ic.and {
   background: #EAF4E1;
   color: #3C6E3F;
@@ -700,40 +695,13 @@ footer a {
 
 
 
-#ios .plat-h {
-  color: #1d1d1f;
-}
 
-#ios .step-no {
-  background: #1d1d1f;
-}
 
-#ios .step-body h3 {
-  color: #1d1d1f;
-}
 
-#ios .step-art {
-  color: #3A3A3C;
-}
 
-#ios .mini-btn {
-  color: #1d1d1f;
-  border-color: #D2D2D7;
-}
 
-#ios .mini-btn:hover {
-  background: #F2F2F4;
-}
 
-#ios .hint a {
-  color: #1d1d1f;
-  text-decoration: underline;
-}
 
-#ios .callout {
-  background: #F2F2F4;
-  border-color: #D2D2D7;
-}
 
 .guide .hint {
   font-size: 12.5px;
