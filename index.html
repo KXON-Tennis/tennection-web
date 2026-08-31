@@ -1172,6 +1172,46 @@
       gap: 12px;
     }
 
+    /* Three across once there is room. The row layout (icon | text | arrow)
+       does not survive a 240px column, so the card turns vertical and centred
+       there; the arrow goes, because a downward-stacked arrow points at
+       nothing. On a phone it stays a stacked list of rows, which is the
+       shape a thumb expects. */
+    @media (min-width: 720px) {
+      .cta-cards { grid-template-columns: repeat(3, 1fr); }
+
+      .cta-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 11px;
+        padding: 22px 16px 20px;
+      }
+
+      .cta-card .cta-tx { flex: 0 0 auto; }
+
+      .cta-card .cta-tx b {
+        font-size: 15px;
+        line-height: 1.4;
+      }
+
+      .cta-card .cta-tx span {
+        display: block;
+        margin-top: 3px;
+        line-height: 1.5;
+      }
+
+      .cta-card .cta-go { display: none; }
+
+      /* The LINE card swaps its icon for the code itself — one fewer tap, and
+         on a laptop the phone in your hand is the thing that has to do the
+         joining anyway. */
+      #dl-line .cta-ic { display: none; }
+      #dl-line .cta-qr { display: block; }
+      #dl-line .qr-hint { display: block; }
+      #dl-line .tap-hint { display: none; }
+    }
+
     .cta-card {
       display: flex;
       align-items: center;
@@ -1275,6 +1315,17 @@
       font-weight: 800;
       font-size: 18px;
     }
+
+    .cta-qr {
+      display: none;
+      width: 118px;
+      height: 118px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .qr-hint { display: none; }
 
     .cta-help {
       text-align: center;
@@ -1817,9 +1868,6 @@
     <!-- ⑤ CTA 三入口 -->
     <section class="section" id="join">
       <h2 class="section-h">從第一筆回報開始，加入 Tennis Nut</h2>
-      <p class="section-sub">
-        先加入 LINE 回報球場、累積堅果，也可以直接下載 App，開始記錄你的網球生活。
-      </p>
       <!-- Ordered by how real the destination is: a live store page, a testing
            form, then LINE. dl-* ids are read by the ?ref= tracking below, so
            they travel with the cards. -->
@@ -1851,7 +1899,12 @@
                 d="M12 3C6.9 3 2.8 6.3 2.8 10.4c0 3.7 3.3 6.8 7.7 7.4.3.06.7.2.8.45.08.23.05.58.03.81l-.13.78c-.04.23-.18.9.79.49 1-.42 5.3-3.12 7.2-5.34 1.34-1.47 1.98-2.96 1.98-4.59C21.2 6.3 17.1 3 12 3z" />
             </svg>
           </span>
-          <span class="cta-tx"><b>加入 LINE 官方帳號</b><span>回報球場、累積堅果，不用先裝 App</span></span>
+          <!-- Only shown on a wide screen: on a phone the QR would be a code
+               you cannot scan with the device you are holding, and the card is
+               already a tap away from the same account. -->
+          <img class="cta-qr" src="/line-qr.svg" width="400" height="400" loading="lazy"
+               alt="Tennis Nut LINE 官方帳號的 QR code" />
+          <span class="cta-tx"><b>加入 LINE 官方帳號</b><span class="qr-hint">掃描加入，不用先裝 App</span><span class="tap-hint">回報球場、累積堅果，不用先裝 App</span></span>
           <span class="cta-go">↗</span>
         </a>
       </div>
@@ -1863,7 +1916,7 @@
       <h2 class="section-h">常見問題</h2>
       <details>
         <summary>Tennis Nut 是什麼？</summary>
-        <p>一個給網球人的 App：找球場、約球、記錄練習與比賽，卡關的時候向專家提問。</p>
+        <p>一個給網球人的 App：找球場、約球、記錄練習與比賽，向專家提問，你的網球生活一網打盡。</p>
       </details>
       <details>
         <summary>我一定要打得很好才能用嗎？</summary>
