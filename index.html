@@ -288,12 +288,22 @@
       border-radius: 8px;
       display: grid;
       place-items: center;
-      font-size: 14px;
       background: var(--accent-soft);
+      color: var(--accent-d);
+    }
+
+    /* Flat marks, not emoji: emoji render as a different typeface on every
+       platform and carry their own colour, so two of them side by side never
+       look like one set. These inherit the chip's colour instead. */
+    .float .ic svg {
+      width: 15px;
+      height: 15px;
+      display: block;
     }
 
     .float .ic.volt {
-      background: rgba(183, 240, 60, 0.35);
+      background: rgba(183, 240, 60, 0.38);
+      color: #46701C;
     }
 
     .float .dot-live {
@@ -1165,7 +1175,7 @@
           </div>
 
           <div class="float f-nut">
-            <span class="ic volt">🌰</span>
+            <span class="ic volt" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2c-.62 0-1.06.4-1.32 1.02C9 8.5 4.3 11.3 4.3 15.2c0 2.9 3.35 4.8 7.7 4.8s7.7-1.9 7.7-4.8c0-3.9-4.7-6.7-6.38-10.98C13.06 3.6 12.62 3.2 12 3.2z"/><path d="M7.6 15.4c0-.42.35-.76.78-.76h7.24a.76.76 0 0 1 0 1.52H8.38a.77.77 0 0 1-.78-.76z" fill="#FFFFFF" opacity=".55"/></svg></span>
             <span class="tx"><b>+50 堅果</b><i>回報球場</i></span>
           </div>
           <div class="float f-court">
@@ -1173,7 +1183,7 @@
             <span class="tx"><b>民生網球場</b><i>今天可以打</i></span>
           </div>
           <div class="float f-coach">
-            <span class="ic">💬</span>
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.2 3.8h11.6a3.4 3.4 0 0 1 3.4 3.4v6a3.4 3.4 0 0 1-3.4 3.4h-5.9l-4.5 3.28a.7.7 0 0 1-1.11-.57V16.6H6.2a3.4 3.4 0 0 1-3.4-3.4v-6a3.4 3.4 0 0 1 3.4-3.4z"/></svg></span>
             <span class="tx"><b>教練回覆了</b><i>你的正手問題</i></span>
           </div>
         </div>
