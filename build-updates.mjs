@@ -133,7 +133,7 @@ releases.forEach((r, i) => {
   const older = releases[i + 1];
   const body = `  <article class="container rel">
     <a class="rel-back" href="/whats-new">← 所有更新</a>
-    <span class="tag-line">🌰 版本 ${esc(r.version)} · Build ${esc(r.build)} · ${prettyDate(r.date)}</span>
+    <span class="tag-line">版本 ${esc(r.version)} · Build ${esc(r.build)} · ${prettyDate(r.date)}</span>
     <h1>${esc(r.title)}</h1>
     <p class="rel-lead">${esc(r.summary)}</p>
 
@@ -184,7 +184,7 @@ ${
 }
 
     <div class="guide-foot">
-      用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 上找 Nutty 🌰</a>說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
+      用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 上找 Nutty</a>說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
     </div>
   </article>`;
 
@@ -205,7 +205,7 @@ ${
 // ── 索引 ─────────────────────────────────────────────────────────────────
 const latest = releases[0];
 const indexBody = `  <article class="container">
-    <span class="tag-line">🌰 最新情報</span>
+    <span class="tag-line">最新情報</span>
     <h1>App 更新紀錄</h1>
     <p class="meta">每一次改版做了什麼，都記在這裡。</p>
 
