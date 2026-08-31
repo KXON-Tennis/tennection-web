@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tennis Nut · 找得到球場，也找得到人一起打</title>
   <meta name="description"
-    content="Tennis Nut：找球場、記錄練球與比賽，還能直接向專家提問、拿到一份為你而寫的解答。測試期免費，Android 走 Google Play 測試，iOS 版 App Store 上架審核中，或先加 LINE。" />
+    content="Tennis Nut：找球場、記錄練球與比賽，還能直接向專家提問、拿到一份為你而寫的解答。測試期免費，iPhone 從 App Store 下載，Android 走 Google Play 測試，或先加 LINE。" />
   <meta property="og:title" content="加入 Tennis Nut — 問對問題，打得更好" />
   <meta property="og:description" content="找得到球場，也找得到人一起打。約球時先講好打什麼、用哪種球，新手也知道自己可以來。" />
   <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
@@ -462,18 +462,16 @@
       transition: border-color .15s, transform .05s;
     }
 
-    /* The iOS card is a status while review is running, so it must not read as
-       a button: no lift on hover, no pointer, and the whole thing sits back a
-       step from the two that do something. */
-    .cta-card.is-waiting {
-      cursor: default;
-      opacity: .72;
-      border-style: dashed;
+    /* 官方徽章：Apple 的規範是不改造它，四周留白至少 1/4 高度。 */
+    .as-badge {
+      display: inline-block;
+      margin-top: 22px;
     }
 
-    .cta-card.is-waiting:hover {
-      border-color: var(--border);
-      transform: none;
+    .as-badge img {
+      display: block;
+      height: 53px;
+      width: auto;
     }
 
     .cta-card:hover {
@@ -915,11 +913,15 @@
         找對球場，也<b>找得到場次一起打</b>；卡關的時候，直接向專家提問，
         拿到一份為你而寫的解答。Tennis Nut 是為網球人打造的球場夥伴。
       </p>
-      <!-- The hero CTA is out until the stores are the answer. It pointed at
-           #join, which is now a form and a "wait for review" card — a hero
-           button should send people somewhere they can actually install.
-           Put App Store / Google Play links here the day both are live;
-           the .cta-cue rules below are kept for exactly that. -->
+      <!-- The App Store listing went live, so the hero has somewhere real to
+           send people again. Only one badge: Google Play is still closed
+           testing, which has no public page to link — a Play badge would
+           promise a store page that does not exist. Add it the day the Play
+           listing is public. -->
+      <a class="as-badge" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener"
+         aria-label="從 App Store 下載 Tennis Nut">
+        <img src="/app-store-badge-zh-tw.svg" alt="從 App Store 下載" width="145" height="53" />
+      </a>
       <img class="hero-art" src="/app-features.svg" alt="Tennis Nut 功能一覽" />
     </section>
 
@@ -1136,19 +1138,16 @@
           <span class="cta-tx"><b>Android · 加入測試</b><span>留 Gmail，加入 Google Play 測試（自動更新）</span></span>
           <span class="cta-go">→</span>
         </a>
-        <!-- Not a link. The TestFlight invite used to live here; while the
-             App Store review is running there is nothing to press, and a card
-             that looks pressable and is not reads as a broken button. -->
-        <div class="cta-card is-waiting" id="dl-ios">
+        <a class="cta-card" id="dl-ios" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">
           <span class="cta-ic ios">
             <svg viewBox="0 0 814 1000" aria-hidden="true">
               <path fill="currentColor"
                 d="M788 340c-6 4-114 65-114 199 0 156 137 211 141 212-1 3-22 75-72 148-45 64-91 128-161 128s-88-41-169-41c-79 0-107 42-171 42s-109-59-161-132C26 723 0 597 0 476c0-194 126-297 250-297 66 0 121 43 162 43 39 0 101-46 176-46 28 0 130 3 197 99zM554 116c31-37 53-89 53-141 0-7-1-14-2-20-50 2-110 34-146 75-28 32-55 84-55 137 0 8 1 16 2 19 3 1 8 1 13 1 45 0 102-30 135-71z" />
             </svg>
           </span>
-          <span class="cta-tx"><b>iPhone · 等待正式上架</b><span>App Store 審核中，上架就能直接安裝</span></span>
-          <span class="cta-go">⏳</span>
-        </div>
+          <span class="cta-tx"><b>iPhone · 從 App Store 下載</b><span>已上架，搜尋「Tennis Nut」也找得到</span></span>
+          <span class="cta-go">↗</span>
+        </a>
         <a class="cta-card" id="dl-line" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">
           <span class="cta-ic line">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -1177,12 +1176,12 @@
       </details>
       <details>
         <summary>Android 怎麼安裝？</summary>
-        <p>iPhone 版正在 App Store 上架審核中，通過後直接搜尋「Tennis Nut」安裝即可。Android 走 <b>Google Play 測試</b>——先填表留下
+        <p>iPhone 版<b>已在 App Store 上架</b>，直接搜尋「Tennis Nut」或按上面的按鈕安裝即可。Android 走 <b>Google Play 測試</b>——先填表留下
           Gmail，我們把你加入測試名單後（通常一天內），就能從 Google Play 安裝並<b>自動更新</b>，不需要「未知來源」權限，也不會有 Play Protect 警告。</p>
       </details>
       <details>
         <summary>之後會上架 App Store / Google Play 嗎？</summary>
-        <p>正在上架中。<b>iOS</b> 版已送出 App Store 審核，通過後直接搜尋「Tennis Nut」就能安裝；<b>Android</b> 目前走 Google Play 官方測試，之後會轉為公開上架——你現在裝的版本會直接自動更新過去，<b>不需要重裝，資料也不會不見</b>。</p>
+        <p><b>iOS</b> 版已經上架，搜尋「Tennis Nut」就能安裝；<b>Android</b> 目前走 Google Play 官方測試，之後會轉為公開上架——你現在裝的版本會直接自動更新過去，<b>不需要重裝，資料也不會不見</b>。</p>
       </details>
     </section>
   </main>
