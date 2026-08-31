@@ -555,59 +555,6 @@ tr:last-child td {
   margin-top: 10px;
 }
 
-/* 02 · 一個球友的一天 */
-.day-flow {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.day-step {
-  flex: 1;
-  min-width: 110px;
-  max-width: 160px;
-  text-align: center;
-  padding: 6px 4px;
-}
-
-.day-ic {
-  width: 54px;
-  height: 54px;
-  margin: 0 auto 8px;
-  border-radius: 50%;
-  background: #fff;
-  border: 1px solid #DCEAC9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  box-shadow: 0 2px 6px rgba(45, 90, 52, 0.08);
-}
-
-.day-step h4 {
-  margin: 0 0 2px;
-  font-size: 14.5px;
-  font-weight: 800;
-  color: var(--accent-d);
-}
-
-.day-step p {
-  margin: 0;
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1.45;
-}
-
-.day-arrow {
-  align-self: center;
-  margin-top: 14px;
-  color: var(--accent);
-  font-weight: 800;
-  font-size: 18px;
-}
-
 /* 03 · experts 2-column trust block */
 /* 04 · app showcase (phone + callouts) */
 .appshow-img {
@@ -625,18 +572,6 @@ tr:last-child td {
   .band-tint {
     padding: 8px 0 34px;
   }
-
-  .day-step {
-    flex: 1 1 42%;
-    min-width: 42%;
-    max-width: none;
-  }
-
-  .day-arrow {
-    display: none;
-  }
-
-  
 
 }
 

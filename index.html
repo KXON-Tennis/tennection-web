@@ -225,6 +225,140 @@
 
     .android-note a { color: var(--accent-d); }
 
+    /* ── 堅果飛輪 ─────────────────────────────────────────────────
+       A real ring, not four cards in a row with arrows between them: the
+       claim is that the loop closes, and a row that ends at step 04 shows
+       the opposite. Below 780px the ring cannot hold four readable cards,
+       so it degrades to a vertical list — the loop is then carried by the
+       copy of the last step rather than by the drawing. */
+    .wheel {
+      position: relative;
+      width: min(600px, 100%);
+      aspect-ratio: 1;
+      margin: 30px auto 0;
+    }
+
+    .wheel-ring {
+      position: absolute;
+      inset: 8%;
+      width: 84%;
+      height: 84%;
+      color: var(--accent);
+      opacity: 0.45;
+    }
+
+    .wheel-hub {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 8px 22px -8px rgba(45, 90, 52, 0.4);
+      border: 3px solid #fff;
+    }
+
+    .wheel-hub img { display: block; width: 100%; height: 100%; }
+
+    .spoke {
+      position: absolute;
+      width: 200px;
+      padding: 14px 15px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid #DCEAC9;
+      box-shadow: 0 6px 18px -8px rgba(45, 90, 52, 0.28);
+      text-align: left;
+    }
+
+    .spoke .sp-top {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 6px;
+    }
+
+    .spoke .sp-ic {
+      width: 30px;
+      height: 30px;
+      flex: 0 0 auto;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      color: var(--accent-d);
+    }
+
+    .spoke .sp-ic svg { width: 17px; height: 17px; display: block; }
+
+    /* Third and last use of the volt: hero chip, map-band button, and the nut
+       itself. Any more and it stops being an accent. */
+    .spoke .sp-ic.volt {
+      background: rgba(183, 240, 60, 0.38);
+      color: #46701C;
+    }
+
+    .spoke .sp-n {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-tertiary);
+    }
+
+    .spoke h4 {
+      margin: 0 0 3px;
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--accent-d);
+    }
+
+    .spoke p {
+      margin: 0;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .sp-1 { top: 0; left: 50%; transform: translateX(-50%); }
+    .sp-2 { top: 50%; right: 0; transform: translateY(-50%); }
+    .sp-3 { bottom: 0; left: 50%; transform: translateX(-50%); }
+    .sp-4 { top: 50%; left: 0; transform: translateY(-50%); }
+
+    .wheel-kicker {
+      margin: 30px auto 0;
+      max-width: 30em;
+      text-align: center;
+      font-size: 14.5px;
+      font-weight: 700;
+      line-height: 1.65;
+      color: var(--accent-d);
+    }
+
+    @media (max-width: 779px) {
+      .wheel {
+        aspect-ratio: auto;
+        width: 100%;
+        max-width: 420px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .wheel-ring,
+      .wheel-hub { display: none; }
+
+      .spoke {
+        position: static;
+        transform: none;
+        width: 100%;
+      }
+    }
+
     /* ── Court-map band ──────────────────────────────────────────────
        A full-bleed dark strip between two cream sections. It is the only
        dark block on the page, which is the point: the brief's complaint was
@@ -976,14 +1110,7 @@
       line-height: 1.55;
     }
 
-    /* Day-flow steps → numbered circles; beliefs → clean text on an accent rail */
-    .day-ic {
-      font-family: 'Sora', system-ui, sans-serif;
-      font-size: 17px;
-      font-weight: 800;
-      color: var(--accent);
-    }
-
+    /* Beliefs → clean text on an accent rail */
     .beliefs li {
       display: block;
       padding-left: 14px;
@@ -1203,6 +1330,28 @@
 </head>
 
 <body>
+  <!-- Icon sprite. The nut and the speech bubble are used in both the hero
+       cards and the flywheel; defining the paths once means a redrawn icon
+       changes everywhere, and there is no second copy to drift. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="ic-nut" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 3.2c-.62 0-1.06.4-1.32 1.02C9 8.5 4.3 11.3 4.3 15.2c0 2.9 3.35 4.8 7.7 4.8s7.7-1.9 7.7-4.8c0-3.9-4.7-6.7-6.38-10.98C13.06 3.6 12.62 3.2 12 3.2z" />
+      <path fill="#FFFFFF" opacity=".55" d="M7.6 15.4c0-.42.35-.76.78-.76h7.24a.76.76 0 0 1 0 1.52H8.38a.77.77 0 0 1-.78-.76z" />
+    </symbol>
+    <symbol id="ic-chat" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M6.2 3.8h11.6a3.4 3.4 0 0 1 3.4 3.4v6a3.4 3.4 0 0 1-3.4 3.4h-5.9l-4.5 3.28a.7.7 0 0 1-1.11-.57V16.6H6.2a3.4 3.4 0 0 1-3.4-3.4v-6a3.4 3.4 0 0 1 3.4-3.4z" />
+    </symbol>
+    <symbol id="ic-report" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2.3c-3.75 0-6.8 2.98-6.8 6.65 0 4.85 6.1 12.2 6.36 12.5a.57.57 0 0 0 .88 0c.26-.3 6.36-7.65 6.36-12.5 0-3.67-3.05-6.65-6.8-6.65z" />
+      <path fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9.2 9.05l2.05 2.05 3.55-3.55" />
+    </symbol>
+    <symbol id="ic-ball" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="currentColor" />
+      <path fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" opacity=".9"
+            d="M4.7 6.7A8.1 8.1 0 0 1 9.1 12a8.1 8.1 0 0 1-4.4 5.3M19.3 6.7A8.1 8.1 0 0 0 14.9 12a8.1 8.1 0 0 0 4.4 5.3" />
+    </symbol>
+  </svg>
+
   <header class="site-header">
     <a href="/" class="brand-link">
       <img src="/wordmark.png" alt="Tennis Nut" class="brand-wordmark" />
@@ -1293,7 +1442,7 @@
           </div>
 
           <div class="float f-nut">
-            <span class="ic volt" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2c-.62 0-1.06.4-1.32 1.02C9 8.5 4.3 11.3 4.3 15.2c0 2.9 3.35 4.8 7.7 4.8s7.7-1.9 7.7-4.8c0-3.9-4.7-6.7-6.38-10.98C13.06 3.6 12.62 3.2 12 3.2z"/><path d="M7.6 15.4c0-.42.35-.76.78-.76h7.24a.76.76 0 0 1 0 1.52H8.38a.77.77 0 0 1-.78-.76z" fill="#FFFFFF" opacity=".55"/></svg></span>
+            <span class="ic volt" aria-hidden="true"><svg><use href="#ic-nut" /></svg></span>
             <span class="tx"><b>+50 堅果</b><i>回報球場</i></span>
           </div>
           <div class="float f-court">
@@ -1301,7 +1450,7 @@
             <span class="tx"><b>民生網球場</b><i>今天可以打</i></span>
           </div>
           <div class="float f-coach">
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.2 3.8h11.6a3.4 3.4 0 0 1 3.4 3.4v6a3.4 3.4 0 0 1-3.4 3.4h-5.9l-4.5 3.28a.7.7 0 0 1-1.11-.57V16.6H6.2a3.4 3.4 0 0 1-3.4-3.4v-6a3.4 3.4 0 0 1 3.4-3.4z"/></svg></span>
+            <span class="ic" aria-hidden="true"><svg><use href="#ic-chat" /></svg></span>
             <span class="tx"><b>教練回覆了</b><i>你的正手問題</i></span>
           </div>
         </div>
@@ -1383,48 +1532,68 @@
       </div>
     </a>
 
-    <!-- ── 02 · 一個球友的一天（淡綠帶；合併痛點 + 飛輪）── -->
+    <!-- ── 堅果飛輪（淡綠帶）── -->
     <div class="band band-tint">
-      <section class="sect day">
-        <h2 class="sec-h">Nut 球友的一天</h2>
-        <p class="sec-sub">從想打球到打完，Tennis Nut 一路都在。</p>
-        <div class="day-flow">
-          <div class="day-step">
-            <div class="day-ic">01</div>
-            <h4>查場地</h4>
-            <p>出門前先看能不能打、想打哪種表面、或是收費多少</p>
+      <section class="sect">
+        <h2 class="sec-h">你的貢獻，會變成自己的進步資源</h2>
+        <p class="sec-sub">
+          回報球場、記錄練習、分享資訊，累積堅果點數，再用堅果解鎖專家建議與 App 專屬功能。
+        </p>
+
+        <div class="wheel">
+          <svg class="wheel-ring" viewBox="0 0 100 100" aria-hidden="true">
+            <g id="wheel-seg">
+              <path d="M62.74 18.47A34 34 0 0 1 81.53 37.26" fill="none" stroke="currentColor"
+                    stroke-width="1.6" stroke-linecap="round" />
+              <path d="M82.34 39.49 78.53 35.93 82.61 34.28Z" fill="currentColor" />
+            </g>
+            <use href="#wheel-seg" transform="rotate(90 50 50)" />
+            <use href="#wheel-seg" transform="rotate(180 50 50)" />
+            <use href="#wheel-seg" transform="rotate(270 50 50)" />
+          </svg>
+
+          <div class="wheel-hub"><img src="/app-icon.png" alt="" width="96" height="96" /></div>
+
+          <div class="spoke sp-1">
+            <div class="sp-top">
+              <span class="sp-ic"><svg><use href="#ic-report" /></svg></span>
+              <span class="sp-n">01</span>
+            </div>
+            <h4>回報 · 記錄</h4>
+            <p>回報球場狀況、記錄練習與比賽</p>
           </div>
-          <div class="day-arrow">→</div>
-          <div class="day-step">
-            <div class="day-ic">02</div>
-            <h4>約球</h4>
-            <p>時間、打法、用球先講好，輕鬆加入無負擔；主辦者也能標明「歡迎第一次打的人」</p>
+
+          <div class="spoke sp-2">
+            <div class="sp-top">
+              <span class="sp-ic volt"><svg><use href="#ic-nut" /></svg></span>
+              <span class="sp-n">02</span>
+            </div>
+            <h4>得到堅果</h4>
+            <p>每一筆貢獻都算數</p>
           </div>
-          <div class="day-arrow">→</div>
-          <div class="day-step">
-            <div class="day-ic">03</div>
-            <h4>回報狀況</h4>
-            <p>天氣不佳？場地整修？正在辦比賽？順手回報，30 秒</p>
-          </div>
-          <div class="day-arrow">→</div>
-          <div class="day-step">
-            <div class="day-ic">04</div>
-            <h4>賺堅果</h4>
-            <p>每種對球場、球友的貢獻都能得到堅果點數</p>
-          </div>
-          <div class="day-arrow">→</div>
-          <div class="day-step">
-            <div class="day-ic">05</div>
+
+          <div class="spoke sp-3">
+            <div class="sp-top">
+              <span class="sp-ic"><svg><use href="#ic-chat" /></svg></span>
+              <span class="sp-n">03</span>
+            </div>
             <h4>問專家</h4>
-            <p>用堅果點數解鎖專業建議，包括網球技術與網球專項體能建議</p>
+            <p>換一份為你而寫的解答</p>
           </div>
-          <div class="day-arrow">→</div>
-          <div class="day-step">
-            <div class="day-ic">06</div>
-            <h4>持續變強</h4>
-            <p>護照收成就，越打越強，這是你在網球世界最好的自我介紹</p>
+
+          <div class="spoke sp-4">
+            <div class="sp-top">
+              <span class="sp-ic"><svg><use href="#ic-ball" /></svg></span>
+              <span class="sp-n">04</span>
+            </div>
+            <h4>回到球場</h4>
+            <p>帶著答案繼續打，然後又是一次回報</p>
           </div>
         </div>
+
+        <p class="wheel-kicker">
+          不必每天簽到，也沒有廣告可以看。堅果只從真的去打球來。
+        </p>
       </section>
     </div>
 
