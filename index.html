@@ -225,6 +225,124 @@
 
     .android-note a { color: var(--accent-d); }
 
+    /* ── Court-map band ──────────────────────────────────────────────
+       A full-bleed dark strip between two cream sections. It is the only
+       dark block on the page, which is the point: the brief's complaint was
+       that every section carried the same weight, and a band you cannot
+       mistake for a card is worth more here than another card.
+
+       It is a still image, not an embedded map. /courts-map loads Mapbox GL
+       JS; putting that on the home page costs several hundred KB and one
+       billable map load per visit, and buys nothing — clicking goes to the
+       real map, so this strip never needs to pan or zoom. */
+    .map-band {
+      position: relative;
+      display: block;
+      width: 100vw;
+      margin: 46px 0 46px calc(50% - 50vw);
+      overflow: hidden;
+      background: #0C1418;
+      text-decoration: none;
+    }
+
+    .map-band:hover { text-decoration: none; }
+
+    .map-band img {
+      display: block;
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: 62% 42%;
+      transition: transform .7s cubic-bezier(.2, .7, .2, 1);
+    }
+
+    .map-band:hover img { transform: scale(1.035); }
+
+    .map-band::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(90deg,
+        rgba(9, 17, 21, 0.94) 0%,
+        rgba(9, 17, 21, 0.78) 34%,
+        rgba(9, 17, 21, 0.20) 66%,
+        rgba(9, 17, 21, 0) 100%);
+    }
+
+    .map-band-tx {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .map-band-tx h2 {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: clamp(25px, 4.2vw, 42px);
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      color: #FFFFFF;
+      margin: 0;
+      text-wrap: balance;
+    }
+
+    .map-band-tx p {
+      margin: 0;
+      max-width: 30em;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .map-band-go {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      align-self: flex-start;
+      margin-top: 6px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      background: var(--volt);
+      color: #16241A;
+      font-weight: 800;
+      font-size: 14.5px;
+    }
+
+    .map-band:hover .map-band-go { background: #C6FF52; }
+
+    @media (max-width: 760px) {
+      .map-band { margin-top: 34px; margin-bottom: 34px; }
+
+      .map-band img { height: 320px; object-position: 58% 44%; }
+
+      /* The left-to-right wipe only works when there is width to wipe across.
+         On a phone the text sits over the whole frame, so the gradient turns
+         vertical and the copy drops to the bottom, off the densest pins. */
+      .map-band::after {
+        background: linear-gradient(180deg,
+          rgba(9, 17, 21, 0.30) 0%,
+          rgba(9, 17, 21, 0.72) 48%,
+          rgba(9, 17, 21, 0.95) 100%);
+      }
+
+      .map-band-tx {
+        justify-content: flex-end;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px 26px;
+      }
+
+      .map-band-go { align-self: center; }
+    }
+
     /* ── Device + floating cards ── */
     .hero-device {
       position: relative;
@@ -1253,6 +1371,18 @@
       </div>
     </section>
 
+
+    <!-- ── 球場地圖橫條（滿版深色，整條可點）── -->
+    <a class="map-band" href="/courts-map">
+      <img src="/courts-map-band.jpg" width="1920" height="897" loading="lazy"
+           alt="全台灣的球場點位圖：西部平原與台北盆地連成密集的一片，東岸沿著海岸線排開" />
+      <div class="map-band-tx">
+        <h2>10,000+ 座球場，12 個市場</h2>
+        <p>材質、夜間照明、停車，還有球友實際到場確認過的資訊。不用安裝就能看。</p>
+        <span class="map-band-go">打開球場地圖 →</span>
+      </div>
+    </a>
+
     <!-- ── 02 · 一個球友的一天（淡綠帶；合併痛點 + 飛輪）── -->
     <div class="band band-tint">
       <section class="sect day">
@@ -1297,16 +1427,6 @@
         </div>
       </section>
     </div>
-
-    <!-- ── 02b · 球場地圖（不必安裝就能看的那一塊）── -->
-    <section class="sect map-tease">
-      <h2 class="sec-h">網球場地圖</h2>
-      <p class="sec-sub">
-        包含材質（硬地、紅土、人工草皮等）、夜間照明、停車、以及球友實際到場確認過的資訊。
-        這是一張只為網球人而生的地圖。
-      </p>
-      <a class="map-cta" href="/courts-map">搶先看 WEB 版球場地圖（10,000+ 座球場、12 個市場） →</a>
-    </section>
 
     <!-- ③ 為什麼不一樣 -->
     <section class="section why">
