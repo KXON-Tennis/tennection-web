@@ -225,6 +225,109 @@
 
     .android-note a { color: var(--accent-d); }
 
+    /* ── App 展示 ─────────────────────────────────────────────────
+       One phone, not three. The screenshots in this repo are crops, not
+       whole screens — 669×486 up to 669×1228 — so a row of identical device
+       frames would mean cropping 30% off the sides of the wide ones to make
+       them phone-shaped. Instead the one asset that IS a phone ratio gets the
+       frame, and the other two sit over it as the cards they actually are.
+       That is also the brief's "疊放", and the hero already spent the page's
+       one big device shot. */
+    .show {
+      display: grid;
+      gap: 18px;
+      margin-top: 26px;
+      align-items: center;
+    }
+
+    @media (min-width: 860px) {
+      .show {
+        grid-template-columns: 0.85fr 1fr;
+        gap: 0;
+      }
+    }
+
+    .show-phone {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .show-phone .phone { width: min(258px, 68vw); }
+
+    .show-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    @media (min-width: 860px) {
+      /* Pulled left so the cards overlap the phone rather than sitting beside
+         it — layered, not a three-column catalogue. */
+      .show-cards { margin-left: -34px; }
+    }
+
+    .show-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px -18px rgba(45, 90, 52, 0.34);
+    }
+
+    .show-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .show-cap {
+      padding: 11px 14px 13px;
+    }
+
+    .show-cap b {
+      display: block;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--accent-d);
+    }
+
+    .show-cap span {
+      display: block;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+    }
+
+    .show-phone .show-cap {
+      padding: 12px 0 0;
+      text-align: center;
+    }
+
+    .passport-line {
+      margin: 30px auto 0;
+      max-width: 34em;
+      text-align: center;
+    }
+
+    .passport-line .en {
+      display: block;
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: var(--ink);
+    }
+
+    .passport-line .zh {
+      display: block;
+      margin-top: 4px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
     /* ── 堅果飛輪 ─────────────────────────────────────────────────
        A real ring, not four cards in a row with arrows between them: the
        claim is that the loop closes, and a row that ends at step 04 shows
@@ -1308,14 +1411,6 @@
       font-size: clamp(14.5px, 2vw, 16.5px);
     }
 
-    .brand-divider {
-      margin-top: 76px;
-    }
-
-    .brand-divider .bd-en {
-      font-size: clamp(30px, 7vw, 50px);
-    }
-
     .section {
       margin-top: 64px;
     }
@@ -1413,39 +1508,6 @@
     }
 
     /* Personal-tier brand line — the middle of the product→person→world zoom */
-    .brand-divider {
-      text-align: center;
-      margin: 56px auto 8px;
-      max-width: 620px;
-    }
-
-    .brand-divider .bd-en {
-      font-family: 'Sora', system-ui, sans-serif;
-      font-size: clamp(24px, 6vw, 34px);
-      font-weight: 800;
-      letter-spacing: -0.8px;
-      color: var(--ink);
-      line-height: 1.2;
-    }
-
-    .brand-divider .bd-en::after {
-      content: "";
-      display: block;
-      width: 46px;
-      height: 4px;
-      border-radius: 999px;
-      background: var(--volt);
-      margin: 16px auto 0;
-    }
-
-    .brand-divider .bd-sub {
-      color: var(--text-secondary);
-      font-size: 15px;
-      margin: 14px auto 0;
-      max-width: 460px;
-      line-height: 1.7;
-    }
-
     /* World-tier brand line in the footer */
     .foot-brand {
       font-family: 'Sora', system-ui, sans-serif;
@@ -1745,6 +1807,55 @@
       </section>
     </div>
 
+    <!-- ── App 展示 ── -->
+    <section class="section">
+      <h2 class="section-h">把你的網球生活收進一個 App</h2>
+      <p class="section-sub">
+        從找球場、約球、記錄練習，到向專家提問，Tennis Nut 讓每一次上場都能被留下，
+        也能成為下一次進步的線索。
+      </p>
+
+      <div class="show">
+        <div class="show-phone">
+          <div>
+            <div class="phone">
+              <img src="/shot-hit-create.jpg" width="669" height="1228" loading="lazy"
+                   alt="發起約球：時間、今天要打什麼、用哪一種球、誰看得到，都在送出之前就講好" />
+            </div>
+            <div class="show-cap">
+              <b>約球</b>
+              <span>時間、打法、用球先講好</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-cards">
+          <figure class="show-card">
+            <img src="/shot-coach-answer.jpg" width="669" height="486" loading="lazy"
+                 alt="教練的回覆：利用旋轉動力鍊產生揮擊動能，取代用身體前移的方式；擊球點只有一個有效的點" />
+            <figcaption class="show-cap">
+              <b>專家諮詢</b>
+              <span>一份為你而寫的正式解答，不是罐頭建議</span>
+            </figcaption>
+          </figure>
+
+          <figure class="show-card">
+            <img src="/shot-passport-stats.jpg" width="669" height="1130" loading="lazy"
+                 alt="網球數據：26 次練習、28 小時、5 場比賽、60% 勝率，以及球場征服進度" />
+            <figcaption class="show-cap">
+              <b>護照 · 紀錄</b>
+              <span>練習、比賽、征服過的球場，都留在這裡</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <p class="passport-line">
+        <span class="en">A passport, not a ranking.</span>
+        <span class="zh">第一次上場，就有一本。</span>
+      </p>
+    </section>
+
     <!-- ③ 為什麼不一樣 -->
     <section class="section why">
       <h2>我們不是教學平台，也不是跨運動的約伴平台。我們是陪你開始個人網球之旅的夥伴。</h2>
@@ -1785,45 +1896,6 @@
         讓你更早開始打球，也留在網球運動更長久。
       </p>
     </section>
-
-    <!-- ④ 可信度 -->
-    <!-- ── 05 · 每一場都值得分享（奶油白；大圖卡展示）── -->
-    <section class="sect share">
-      <h2 class="sec-h">每一場，都值得留下</h2>
-      <p class="sec-sub">練習、比賽、拜訪過的球場——上場過的每一次都留在這裡，一鍵就能做成圖卡。</p>
-      <p class="sec-sub">不只是紀錄分數，也留下你這次上場的狀態與回憶。</p>
-      <p class="sec-sub">收藏你的網球日常，分享給球友或社群。</p>
-
-      <!-- These were three CSS mock-ups with invented courts and opponents.
-           They are now the account's own records: a practice, a match and two
-           court check-ins. Anything a stranger reads here is something that
-           actually happened. -->
-      <div class="share-gallery">
-        <figure class="logshot">
-          <img src="/shot-log-practice.jpg" alt="練習紀錄：6/19 民生網球場，07:56、1 小時、Hitting，五顆球的自評，附一張紅土場的照片" loading="lazy" width="669" />
-          <figcaption>練習</figcaption>
-        </figure>
-        <figure class="logshot">
-          <img src="/shot-log-match.jpg" alt="比賽紀錄：7/1 桃園市中路網球場，雙打勝 6-4，附一張發球的照片" loading="lazy" width="669" />
-          <figcaption>比賽</figcaption>
-        </figure>
-        <figure class="logshot">
-          <img src="/shot-log-courts.jpg" alt="我的球場：前鎮高中網球場（紅土）與桃園市中路網球場（硬地），各附一張自己拍的球場照片" loading="lazy" width="669" />
-          <figcaption>球場打卡</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- 個人層品牌句（product → person → world 的中段） -->
-    <div class="brand-divider">
-      <div class="bd-en">A passport, not a ranking.</div>
-      <p class="bd-sub">
-        護照忠實反映你的網球人格：去過的球場、練球與比賽的時數、
-        手上那支拍、腳上那雙鞋，還有你的座右銘。<br />
-        遞給任何一位 Tennis Nut 球友，台北、東京或馬德里，語言不通也能秒懂你。<br />
-        <span class="bd-kicker">第一次上場，就有一本。</span>
-      </p>
-    </div>
 
     <!-- ⑤ CTA 三入口 -->
     <section class="section" id="join">
@@ -1913,24 +1985,6 @@
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
-
-  <!-- 「每一場，都值得留下」的三張紀錄依序落下 -->
-  <script>
-    (function () {
-      var g = document.querySelector('.share-gallery');
-      if (!g || !('IntersectionObserver' in window)) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      g.classList.add('anim');
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (!e.isIntersecting) return;
-          g.classList.add('in');
-          io.disconnect();
-        });
-      }, { threshold: 0.2 });
-      io.observe(g);
-    })();
-  </script>
 
   <!-- 被動來源追蹤：/join?ref=dcard 會把 ref 帶到下載連結 + 上報來源事件 -->
   <script>
