@@ -225,6 +225,63 @@
 
     .android-note a { color: var(--accent-d); }
 
+    /* ── 品牌理念 ─────────────────────────────────────────────────
+       Two long blocks of prose became three cards. The eyebrow carries the
+       negative ("不是只找教練") and the heading carries the positive: three
+       negations stacked in a row read as an argument with someone, and the
+       page has nobody to argue with. */
+    .creed-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    @media (min-width: 820px) {
+      .creed-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .creed {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px 20px 22px;
+      border-top: 3px solid var(--accent);
+    }
+
+    .creed .c-not {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      color: var(--text-tertiary);
+      margin-bottom: 6px;
+    }
+
+    .creed h3 {
+      margin: 0 0 7px;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--accent-d);
+      letter-spacing: -0.3px;
+      line-height: 1.35;
+    }
+
+    .creed p {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    .creed-lede {
+      margin: 0 auto;
+      max-width: 34em;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
     /* ── App 展示 ─────────────────────────────────────────────────
        One phone, not three. The screenshots in this repo are crops, not
        whole screens — 669×486 up to 669×1228 — so a row of identical device
@@ -1060,110 +1117,18 @@
       color: var(--text-secondary);
     }
 
-    .why {
-      background: var(--tint);
-      border: 1px solid #DCEAC9;
-      border-radius: 18px;
-      padding: 24px 22px;
-      text-align: center;
-    }
 
-    .why h2 {
-      font-size: 19px;
-      color: var(--text-primary);
-      margin: 0 0 8px;
-    }
 
-    .why p {
-      color: var(--text-secondary);
-      font-size: 14.5px;
-      line-height: 1.7;
-      max-width: 520px;
-      margin: 0 auto;
-    }
 
-    .experts {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 18px;
-      flex-wrap: wrap;
-    }
 
-    .expert {
-      text-align: center;
-      width: 74px;
-    }
 
-    .expert img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #fff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
 
-    .expert span {
-      display: block;
-      margin-top: 6px;
-      font-size: 12px;
-      color: var(--text-secondary);
-      font-weight: 600;
-    }
 
-    .beliefs-lede {
-      color: var(--text-secondary);
-      font-size: 14.5px;
-      line-height: 1.75;
-      margin: 0 0 16px;
-    }
 
-    .beliefs-lede b {
-      color: var(--text-primary);
-    }
 
-    .beliefs {
-      display: grid;
-      gap: 12px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
 
-    .beliefs li {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
 
-    .beliefs .b-ic {
-      font-size: 17px;
-      line-height: 1.5;
-      flex-shrink: 0;
-    }
 
-    .beliefs p {
-      margin: 0;
-      color: var(--text-secondary);
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
-    .beliefs b {
-      color: var(--text-primary);
-    }
-
-    .beliefs-close {
-      margin: 16px 0 0;
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--text-secondary);
-    }
-
-    .beliefs-close b {
-      color: var(--accent-d);
-    }
 
     .trust {
       display: grid;
@@ -1357,19 +1322,10 @@
       text-decoration: none;
     }
 
-    /* Feature cards: quiet by default, lift + accent edge on hover */
-    /* Beliefs → clean text on an accent rail */
-    .beliefs li {
-      display: block;
-      padding-left: 14px;
-      border-left: 2px solid #DCEAC9;
-    }
-
     /* One heading system across the whole page: ink + Sora, so green reads as
        an accent (numerals, underlines, links, CTA) rather than a second voice. */
     .section-h,
     .sec-h,
-    .why h2,
     .guardian-box h2 {
       font-family: 'Sora', system-ui, sans-serif;
       letter-spacing: -0.4px;
@@ -1399,11 +1355,6 @@
       font-size: clamp(24px, 4.5vw, 33px);
       letter-spacing: -0.7px;
       line-height: 1.2;
-    }
-
-    .why h2 {
-      font-size: clamp(22px, 4vw, 30px);
-      letter-spacing: -0.5px;
     }
 
     .sec-sub,
@@ -1450,54 +1401,13 @@
       transform: translateY(-2px);
     }
 
-    /* Coaches are real people — show them bigger, with the role read as a name-line */
-    .experts {
-      gap: 30px;
-      margin-top: 26px;
-    }
 
-    .experts .expert {
-      width: auto;
-    }
 
-    .experts .expert img {
-      width: 104px;
-      height: 104px;
-      border: 3px solid #fff;
-      box-shadow: 0 10px 26px rgba(45, 90, 52, 0.18);
-    }
 
-    .experts .expert span {
-      margin-top: 12px;
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--ink);
-    }
 
-    /* Beliefs section sat left-aligned between two centred sections (lopsided).
-       Centre it as a readable column so it's symmetric with its neighbours,
-       and give the next heading room so it doesn't crowd. */
-    .beliefs-section {
-      text-align: center;
-    }
 
-    .beliefs-section .beliefs-lede,
-    .beliefs-section .beliefs-close {
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
 
-    .beliefs-section .beliefs {
-      max-width: 560px;
-      margin: 22px auto 0;
-      text-align: left;
-    }
 
-    .beliefs-section .beliefs li {
-      padding-top: 2px;
-      padding-bottom: 2px;
-    }
 
     .sect.share {
       margin-top: 46px;
@@ -1856,45 +1766,31 @@
       </p>
     </section>
 
-    <!-- ③ 為什麼不一樣 -->
-    <section class="section why">
-      <h2>我們不是教學平台，也不是跨運動的約伴平台。我們是陪你開始個人網球之旅的夥伴。</h2>
-      <p>
-        我們只專注一件事 —— 享受網球的樂趣。你可以和球友建立夥伴關係、成立球隊。也能和專家建立長期關係，遇到複雜的問題，
-        還能讓<b style="color:var(--accent-d)">多位專家一起看</b>。
-        只要願意到球場練球與紀錄，就能<b style="color:var(--accent-d)">持續獲得諮詢的點數</b>！
+    <!-- ③ 品牌理念 -->
+    <section class="section">
+      <h2 class="section-h">不是只教你打球，而是讓你更久留在網球裡</h2>
+      <p class="creed-lede">
+        Tennis Nut 專注在網球生活本身：球場、球友、練習、比賽、專家與紀錄。
+        我們希望降低開始網球、持續練習與尋求協助的門檻，讓更多人能更早開始，也更久留下。
       </p>
-      <div class="experts">
-        <div class="expert"><img src="/expert-coach.jpg" alt="網球教練" /><span>網球教練</span></div>
-        <div class="expert"><img src="/expert-fitness.jpg" alt="體能訓練" /><span>體能訓練</span></div>
-      </div>
-      <p class="experts-note">
-        目前開放這兩類，其餘網球相關專家專項持續擴充中。
-      </p>
-    </section>
 
-    <!-- ③.5 理念 -->
-    <section class="section beliefs-section">
-      <h2 class="section-h">打球的樂趣，不該等到技術完美的那一天才能享受</h2>
-      <p class="beliefs-lede">
-        網球有種不成文的距離感，似乎得姿勢漂亮、失誤少才有資格上場、一年半載都還無法享受互動的樂趣，這已經本末倒置，所以我們希望你可以：
-      </p>
-      <ul class="beliefs">
-        <li>
-          <p><b>用對的球拍、對的球、開始與人互動打球，卡關馬上可以問。</b>專家會出現在你打不下去的時候，而不是讓技術門檻擋在你開始享受網球之前。</p>
-        </li>
-        <li>
-          <p><b>和程度不同的人也打得開心。</b>約球時就知道今天要打什麼、用哪種球——
-            新手知道自己可以來，老手自己開專場也不會白跑一趟，免除自報 NTRP 等級的模糊、尷尬問題。</p>
-        </li>
-        <li>
-          <p><b>不靠人脈也找得到球場。</b>開放與否、幾點開、多少錢，都該查得到。網球場已經不多了，需要社群一起維護。</p>
-        </li>
-      </ul>
-      <p class="beliefs-close">
-        所以 Tennis Nut 只做三件事：<b>找得到場、找得到人、卡關找得到人問</b>。
-        讓你更早開始打球，也留在網球運動更長久。
-      </p>
+      <div class="creed-grid">
+        <div class="creed">
+          <span class="c-not">不是只找教練</span>
+          <h3>先問一個問題就好</h3>
+          <p>不必一開始就買一整套課。專家出現在你打不下去的時候，而不是擋在你開始享受網球之前。</p>
+        </div>
+        <div class="creed">
+          <span class="c-not">不是只約人打球</span>
+          <h3>出門前就知道這場適合誰</h3>
+          <p>打什麼、用什麼球、歡不歡迎第一次來的人，發起時就講好，不必自報等級。</p>
+        </div>
+        <div class="creed">
+          <span class="c-not">不是只查地圖</span>
+          <h3>資訊來自真的去過的人</h3>
+          <p>開放與否、幾點開、多少錢，都該查得到。網球場已經不多了，需要社群一起維護。</p>
+        </div>
+      </div>
     </section>
 
     <!-- ⑤ CTA 三入口 -->
