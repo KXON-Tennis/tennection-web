@@ -31,13 +31,66 @@
       --accent-grad: linear-gradient(135deg, #6BB04E 0%, #3C6E3F 100%);
     }
 
+    /* The hero breaks out of the 760px container: the brief asks for a bigger
+       opening and a big device shot, and 760 split in two leaves neither room.
+       body already has overflow-x:hidden, so the 100vw breakout cannot add a
+       horizontal scrollbar. */
     .hero {
       position: relative;
-      text-align: center;
-      padding: 26px 0 4px;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      padding: 30px 20px 8px;
+      overflow: hidden;
       background:
-        radial-gradient(60% 42% at 50% 8%, rgba(183, 240, 60, 0.13) 0%, rgba(183, 240, 60, 0) 70%),
-        radial-gradient(70% 50% at 50% 0%, var(--accent-soft) 0%, rgba(92, 154, 70, 0) 68%);
+        radial-gradient(52% 40% at 22% 6%, rgba(183, 240, 60, 0.16) 0%, rgba(183, 240, 60, 0) 70%),
+        radial-gradient(66% 54% at 78% 24%, var(--accent-soft) 0%, rgba(92, 154, 70, 0) 70%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      display: grid;
+      gap: 30px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero { padding: 54px 20px 30px; }
+
+      .hero-inner {
+        grid-template-columns: 1fr 0.92fr;
+        align-items: center;
+        gap: 44px;
+        justify-items: stretch;
+        text-align: left;
+      }
+    }
+
+    /* Faint court plan behind the copy. Decoration only — aria-hidden, and it
+       sits under .hero-inner's stacking context so it never eats a click. */
+    .hero-court {
+      position: absolute;
+      left: -6%;
+      top: -14%;
+      width: 62%;
+      max-width: 560px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-court line,
+    .hero-court rect {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 0.12;
+      opacity: 0.28;
+    }
+
+    @media (max-width: 899px) {
+      .hero-court { display: none; }
     }
 
     /* Editorial kicker above the headline */
@@ -68,12 +121,13 @@
     }
 
     .hero h1 {
-      font-size: clamp(36px, 7.5vw, 58px);
-      line-height: 1.08;
+      font-size: clamp(34px, 6.6vw, 56px);
+      line-height: 1.1;
       font-weight: 900;
       color: var(--ink);
-      margin: 20px 0 12px;
-      letter-spacing: -1.6px;
+      margin: 0 0 14px;
+      letter-spacing: -1.4px;
+      text-wrap: balance;
     }
 
     /* Product-tier brand signature — Sora, the through-line of the whole page */
@@ -95,8 +149,155 @@
       color: var(--text-secondary);
       font-size: 16.5px;
       line-height: 1.62;
-      max-width: 520px;
-      margin: 16px auto 24px;
+      max-width: 480px;
+      margin: 14px auto 24px;
+    }
+
+    @media (min-width: 900px) {
+      .hero .lede { margin-left: 0; }
+    }
+
+    /* ── CTA row ── */
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-cta { justify-content: flex-start; }
+    }
+
+    .line-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 53px;
+      padding: 0 20px;
+      border-radius: 12px;
+      border: 1.5px solid #D3E3C4;
+      background: var(--surface);
+      color: var(--accent-d);
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: border-color .14s ease, transform .14s ease;
+    }
+
+    .line-btn:hover {
+      text-decoration: none;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .line-btn svg { width: 19px; height: 19px; }
+
+    /* Android has no public Play listing yet — closed testing behind a form.
+       A third badge would promise a store page that does not exist, so it is
+       a text link, sized and worded as the smaller ask it actually is. */
+    .android-note {
+      margin: 12px 0 0;
+      font-size: 13px;
+      color: var(--text-tertiary);
+      font-weight: 600;
+    }
+
+    .android-note a { color: var(--accent-d); }
+
+    /* ── Device + floating cards ── */
+    .hero-device {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 8px 0 4px;
+    }
+
+    .phone {
+      position: relative;
+      width: min(286px, 62vw);
+      padding: 8px;
+      border-radius: 36px;
+      background: linear-gradient(158deg, #33452F 0%, #16241A 100%);
+      box-shadow:
+        0 34px 64px -22px rgba(24, 52, 30, 0.46),
+        0 6px 18px rgba(24, 52, 30, 0.16);
+    }
+
+    .phone img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 28px;
+    }
+
+    .float {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 13px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.93);
+      border: 1px solid #E2EFD6;
+      box-shadow: 0 14px 30px -12px rgba(45, 90, 52, 0.32);
+      backdrop-filter: blur(8px);
+      white-space: nowrap;
+      text-align: left;
+    }
+
+    .float .tx b {
+      display: block;
+      font-size: 13.5px;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .float .tx i {
+      display: block;
+      font-style: normal;
+      font-size: 11.5px;
+      color: var(--text-tertiary);
+      font-weight: 600;
+    }
+
+    .float .ic {
+      width: 26px;
+      height: 26px;
+      flex: 0 0 auto;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      background: var(--accent-soft);
+    }
+
+    .float .ic.volt {
+      background: rgba(183, 240, 60, 0.35);
+    }
+
+    .float .dot-live {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #59B14A;
+      box-shadow: 0 0 0 3px rgba(89, 177, 74, 0.22);
+    }
+
+    .f-nut { top: 8%; left: 0; transform: translateX(-26%); }
+    .f-court { top: 44%; right: 0; transform: translateX(24%); }
+    .f-coach { bottom: 9%; left: 0; transform: translateX(-20%); }
+
+    @media (max-width: 520px) {
+      .float { padding: 7px 10px; border-radius: 12px; }
+      .float .tx b { font-size: 12.5px; }
+      .float .tx i { font-size: 10.5px; }
+      .f-nut { transform: translateX(-8%); }
+      .f-court { transform: translateX(8%); }
+      /* Three cards on a narrow screen crowd the phone and each other; the
+         coach card is the one whose meaning the section below repeats. */
+      .f-coach { display: none; }
     }
 
     .cta-note {
@@ -168,13 +369,6 @@
       background: #fff;
       color: var(--accent-d);
       border: 1px solid var(--accent);
-    }
-
-    .hero-art {
-      margin: 10px auto 0;
-      max-width: 100%;
-      width: 100%;
-      display: block;
     }
 
     /* Team invite (only when ?code=… present) */
@@ -600,10 +794,6 @@
       text-decoration: none;
     }
 
-    .hero-art {
-      filter: drop-shadow(0 24px 46px rgba(45, 90, 52, 0.16));
-    }
-
     /* Feature cards: quiet by default, lift + accent edge on hover */
     .feat {
       border-radius: 20px;
@@ -907,22 +1097,66 @@
 
     <!-- ① HERO -->
     <section class="hero">
-      <h1>問對問題，<span class="hl">打得更好</span></h1>
-      <div class="brandline">Your tennis life, <b>connected.</b></div>
-      <p class="lede">
-        找對球場，也<b>找得到場次一起打</b>；卡關的時候，直接向專家提問，
-        拿到一份為你而寫的解答。Tennis Nut 是為網球人打造的球場夥伴。
-      </p>
-      <!-- The App Store listing went live, so the hero has somewhere real to
-           send people again. Only one badge: Google Play is still closed
-           testing, which has no public page to link — a Play badge would
-           promise a store page that does not exist. Add it the day the Play
-           listing is public. -->
-      <a class="as-badge" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener"
-         aria-label="從 App Store 下載 Tennis Nut">
-        <img src="/app-store-badge-en.svg" alt="從 App Store 下載" width="159" height="53" />
-      </a>
-      <img class="hero-art" src="/app-features.svg" alt="Tennis Nut 功能一覽" />
+      <svg class="hero-court" viewBox="0 0 11 24" aria-hidden="true">
+        <rect x="0" y="0" width="10.97" height="23.77" />
+        <line x1="1.37" y1="0" x2="1.37" y2="23.77" />
+        <line x1="9.60" y1="0" x2="9.60" y2="23.77" />
+        <line x1="1.37" y1="5.485" x2="9.60" y2="5.485" />
+        <line x1="1.37" y1="18.285" x2="9.60" y2="18.285" />
+        <line x1="5.485" y1="5.485" x2="5.485" y2="18.285" />
+        <line x1="0" y1="11.885" x2="10.97" y2="11.885" />
+      </svg>
+
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1>找得到球場，<br />也找得到人一起變強</h1>
+          <div class="brandline">Your tennis life, <b>connected.</b></div>
+          <p class="lede">
+            Tennis Nut 把球場地圖、約球、練習紀錄與專家諮詢串在一起，讓你的網球生活從此連結。
+          </p>
+
+          <!-- iPhone is live on the App Store; Android is still closed testing
+               behind a Google Form, which has no store page to link. So the
+               row is one real badge plus LINE, and Android is the line under
+               it — an honest third option, not a badge that lies. -->
+          <div class="hero-cta">
+            <a class="as-badge" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener"
+               aria-label="從 App Store 下載 Tennis Nut">
+              <img src="/app-store-badge-en.svg" alt="從 App Store 下載" width="159" height="53" />
+            </a>
+            <a class="line-btn" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 3C6.9 3 2.8 6.3 2.8 10.4c0 3.7 3.3 6.8 7.7 7.4.3.06.7.2.8.45.08.23.05.58.03.81l-.13.78c-.04.23-.18.9.79.49 1-.42 5.3-3.12 7.2-5.34 1.34-1.47 1.98-2.96 1.98-4.59C21.2 6.3 17.1 3 12 3z" />
+              </svg>
+              先加入 LINE
+            </a>
+          </div>
+          <p class="android-note">
+            Android 測試招募中 ·
+            <a href="#join">加入 Google Play 測試 →</a>
+          </p>
+        </div>
+
+        <div class="hero-device">
+          <div class="phone">
+            <img src="/shot-court-map.jpg" width="669" height="1239"
+                 alt="Tennis Nut 的球場地圖：衛星圖上的球場點位，點開鎮海網球場——2 面紅土球場、球友驗證過的資訊、步行 3 分鐘的停車場" />
+          </div>
+
+          <div class="float f-nut">
+            <span class="ic volt">🌰</span>
+            <span class="tx"><b>+50 堅果</b><i>回報球場</i></span>
+          </div>
+          <div class="float f-court">
+            <span class="dot-live"></span>
+            <span class="tx"><b>民生網球場</b><i>今天可以打</i></span>
+          </div>
+          <div class="float f-coach">
+            <span class="ic">💬</span>
+            <span class="tx"><b>教練回覆了</b><i>你的正手問題</i></span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ② 三個賣點 -->
