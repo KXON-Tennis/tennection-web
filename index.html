@@ -1200,6 +1200,27 @@
       border-color: var(--accent);
     }
 
+    /* The store link is the one destination that actually exists today, so it
+       is the only filled card; the other two are outlines. */
+    .cta-card.primary {
+      background: var(--accent-d);
+      border-color: var(--accent-d);
+    }
+
+    .cta-card.primary .cta-tx b { color: #fff; }
+    .cta-card.primary .cta-tx span,
+    .cta-card.primary .cta-go { color: rgba(255, 255, 255, 0.72); }
+
+    .cta-card.primary .cta-ic {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+    }
+
+    .cta-card.primary:hover {
+      border-color: var(--accent-d);
+      box-shadow: 0 16px 34px -14px rgba(60, 110, 63, 0.6);
+    }
+
     .cta-card:active {
       transform: scale(0.99);
     }
@@ -1795,20 +1816,15 @@
 
     <!-- ⑤ CTA 三入口 -->
     <section class="section" id="join">
-      <h2 class="section-h">加入 Tennis Nut</h2>
-      <p class="section-sub">依你的手機安裝；還沒想裝也可以先加 LINE，App 更新與活動消息都會在那裡，我們慢慢帶你。</p>
+      <h2 class="section-h">從第一筆回報開始，加入 Tennis Nut</h2>
+      <p class="section-sub">
+        先加入 LINE 回報球場、累積堅果，也可以直接下載 App，開始記錄你的網球生活。
+      </p>
+      <!-- Ordered by how real the destination is: a live store page, a testing
+           form, then LINE. dl-* ids are read by the ?ref= tracking below, so
+           they travel with the cards. -->
       <div class="cta-cards">
-        <a class="cta-card" id="dl-android" href="https://forms.gle/N7EKJ58FmvhVKQs69" target="_blank" rel="noopener">
-          <span class="cta-ic and">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path
-                d="M6 9h12v8.2a1 1 0 0 1-1 1h-1.1V21h-2v-2.8h-3.8V21h-2v-2.8H7a1 1 0 0 1-1-1V9zM3.6 9.6a1.1 1.1 0 0 1 1.1 1.1v4.3a1.1 1.1 0 0 1-2.2 0v-4.3a1.1 1.1 0 0 1 1.1-1.1zm16.8 0a1.1 1.1 0 0 1 1.1 1.1v4.3a1.1 1.1 0 0 1-2.2 0v-4.3a1.1 1.1 0 0 1 1.1-1.1zM7.4 8a4.6 4.6 0 0 1 9.2 0H7.4z" />
-            </svg>
-          </span>
-          <span class="cta-tx"><b>Android · 加入測試</b><span>留 Gmail，加入 Google Play 測試（自動更新）</span></span>
-          <span class="cta-go">→</span>
-        </a>
-        <a class="cta-card" id="dl-ios" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">
+        <a class="cta-card primary" id="dl-ios" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">
           <span class="cta-ic ios">
             <svg viewBox="0 0 814 1000" aria-hidden="true">
               <path fill="currentColor"
@@ -1818,6 +1834,16 @@
           <span class="cta-tx"><b>iPhone · 從 App Store 下載</b><span>已上架，搜尋「Tennis Nut」也找得到</span></span>
           <span class="cta-go">↗</span>
         </a>
+        <a class="cta-card" id="dl-android" href="https://forms.gle/N7EKJ58FmvhVKQs69" target="_blank" rel="noopener">
+          <span class="cta-ic and">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M6 9h12v8.2a1 1 0 0 1-1 1h-1.1V21h-2v-2.8h-3.8V21h-2v-2.8H7a1 1 0 0 1-1-1V9zM3.6 9.6a1.1 1.1 0 0 1 1.1 1.1v4.3a1.1 1.1 0 0 1-2.2 0v-4.3a1.1 1.1 0 0 1 1.1-1.1zm16.8 0a1.1 1.1 0 0 1 1.1 1.1v4.3a1.1 1.1 0 0 1-2.2 0v-4.3a1.1 1.1 0 0 1 1.1-1.1zM7.4 8a4.6 4.6 0 0 1 9.2 0H7.4z" />
+            </svg>
+          </span>
+          <span class="cta-tx"><b>Android · 加入 Google Play 測試</b><span>留 Gmail 加入，之後會自動更新到公開版</span></span>
+          <span class="cta-go">→</span>
+        </a>
         <a class="cta-card" id="dl-line" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">
           <span class="cta-ic line">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -1825,34 +1851,42 @@
                 d="M12 3C6.9 3 2.8 6.3 2.8 10.4c0 3.7 3.3 6.8 7.7 7.4.3.06.7.2.8.45.08.23.05.58.03.81l-.13.78c-.04.23-.18.9.79.49 1-.42 5.3-3.12 7.2-5.34 1.34-1.47 1.98-2.96 1.98-4.59C21.2 6.3 17.1 3 12 3z" />
             </svg>
           </span>
-          <span class="cta-tx"><b>還沒想裝？先加 LINE 官方</b><span>即刻累積點數 · 活動與更新通知</span></span>
+          <span class="cta-tx"><b>加入 LINE 官方帳號</b><span>回報球場、累積堅果，不用先裝 App</span></span>
           <span class="cta-go">↗</span>
         </a>
       </div>
       <p class="cta-help">安裝遇到問題？看<a href="/install">圖文安裝教學</a></p>
     </section>
 
-    <!-- ⑥ 迷你 FAQ -->
+    <!-- ⑥ FAQ -->
     <section class="section faq">
       <h2 class="section-h">常見問題</h2>
       <details>
-        <summary>費用如何？</summary>
-        <p>諮詢用「堅果」點數，平常和教練聊聊、補充說明都免費；只有在你要一份正式解答時才會用到點數。而且<b>堅果本身也能透過各種管道累積</b>（見下一題）——所以你完全可以<b>不花一毛錢</b>就使用完整功能。</p>
+        <summary>Tennis Nut 是什麼？</summary>
+        <p>一個給網球人的 App：找球場、約球、記錄練習與比賽，卡關的時候向專家提問。</p>
       </details>
       <details>
-        <summary>如何獲取點數（堅果）？</summary>
-        <p>堅果有很多免費賺的方式：<b>註冊就送</b>一筆、<b>記錄練習與比賽</b>、<b>到球場打卡</b>、<b>回報球場狀態</b>、<b>新增還沒收錄的球場</b>等——真的去打球、對社群有貢獻就有堅果。累積起來，就能在不付費的情況下向教練提問。</p>
+        <summary>我一定要打得很好才能用嗎？</summary>
+        <p>不用。約球時就會寫明今天要打什麼、用哪一種球、歡不歡迎第一次來的人，所以你出門前就知道自己適不適合，不必自報 NTRP 等級。</p>
       </details>
       <details>
-        <summary>Android 怎麼安裝？</summary>
-        <p>iPhone 版<b>已在 App Store 上架</b>，直接搜尋「Tennis Nut」或按上面的按鈕安裝即可。Android 走 <b>Google Play 測試</b>——先填表留下
-          Gmail，我們把你加入測試名單後（通常一天內），就能從 Google Play 安裝並<b>自動更新</b>，不需要「未知來源」權限，也不會有 Play Protect 警告。</p>
+        <summary>堅果點數是什麼？</summary>
+        <p>App 裡的點數，用來向專家提問。<b>回報球場狀況、記錄練習與比賽、新增還沒收錄的球場</b>都能拿到，註冊也先送你一筆——真的去打球、對社群有貢獻就有堅果，所以你完全可以<b>不花一毛錢</b>用完整功能。</p>
       </details>
       <details>
-        <summary>之後會上架 App Store / Google Play 嗎？</summary>
-        <p><b>iOS</b> 版已經上架，搜尋「Tennis Nut」就能安裝；<b>Android</b> 目前走 Google Play 官方測試，之後會轉為公開上架——你現在裝的版本會直接自動更新過去，<b>不需要重裝，資料也不會不見</b>。</p>
+        <summary>LINE 和 App 有什麼差別？</summary>
+        <p>LINE 不用安裝，可以回報球場、收到更新與活動通知。地圖、約球、護照與專家諮詢都在 App 裡。想先看看的話，從 LINE 開始就好。</p>
+      </details>
+      <details>
+        <summary>專家諮詢怎麼運作？</summary>
+        <p>提出你的問題（可以附影片），專家會給一份<b>為你而寫的正式解答</b>。過程中補充說明、來回討論都免費，只有那份正式解答會用到堅果。目前開放<b>網球教練</b>與<b>體能訓練師</b>兩類，其餘網球相關的專項持續增加中。</p>
+      </details>
+      <details>
+        <summary>現在是正式版還是測試版？</summary>
+        <p><b>iPhone</b> 版已在 App Store 上架，搜尋「Tennis Nut」就能安裝。<b>Android</b> 走 Google Play 官方測試，之後會轉為公開上架——你現在裝的版本會直接自動更新過去，<b>不需要重裝，資料也不會不見</b>。</p>
       </details>
     </section>
+
   </main>
 
   <footer>
