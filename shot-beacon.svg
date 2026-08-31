@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 560" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="552" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="544" rx="30" fill="#3F7C43"/>
+  <!-- 球：tennis_ball.png 的示意。縫線兩端落在圓周上（33²+40²≈52²），
+       所以讀起來是網球，不是星形。 -->
+  <circle cx="180" cy="196" r="52" fill="#D8E64A"/>
+  <path d="M147 156 C168 182 168 210 147 236" fill="none" stroke="#FFFFFF"
+        stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+  <path d="M213 156 C192 182 192 210 213 236" fill="none" stroke="#FFFFFF"
+        stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+  <text x="180.0" y="316" font-size="42" font-weight="900" fill="#FFFFFF"
+        text-anchor="middle">我在這裡</text>
+  <text x="180.0" y="356" font-size="13" fill="#FFFFFF" opacity="0.7"
+        text-anchor="middle">把手機舉起來，點一下關閉</text>
+  <g opacity="0.95" transform="translate(124.0,486)">
+    <text x="56" y="0" font-size="19" font-weight="800" fill="#FFFFFF"
+          text-anchor="middle" letter-spacing="1">TENNIS NUT</text>
+  </g>
+</svg>
