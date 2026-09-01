@@ -561,6 +561,9 @@ footer a {
   height: 19px;
 }
 
+/* Wide-and-short mark; needs a bigger box to match the other icons' weight. */
+.plat-ic.and svg { width: 22px; height: 22px; }
+
 .plat-ic.and {
   background: #EAF4E1;
   color: #3C6E3F;
