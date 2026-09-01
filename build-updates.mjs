@@ -87,6 +87,7 @@ const header = `  <header class="site-header">
       <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">下載 App</a>
       <a href="/whats-new" class="active">最新情報</a>
       <a href="/privacy">隱私權</a>
+      <a href="/terms">服務條款</a>
     </nav>
   </header>`;
 

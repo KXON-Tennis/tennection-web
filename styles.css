@@ -32,7 +32,10 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  /* clip 而不是 hidden：hidden 會讓 body 變成捲動容器，而捲動容器裡的
+     position: sticky 是相對於那個容器黏，容器自己不捲，於是導覽列就不黏了。
+     clip 一樣把橫向溢位切掉，但不建立捲動容器，sticky 才會照預期運作。 */
+  overflow-x: clip;
 }
 
 a {
@@ -69,6 +72,12 @@ a:hover {
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
   background: var(--surface);
+  /* 釘在頂端，因為導覽列的第一項是「下載 App」——讀到頁面中段才被說服的人，
+     需要當下就按得到，而 hero 的徽章那時已經捲出畫面。背景是不透明的
+     var(--surface)，所以底下的內容不會透出來。 */
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .site-header .brand-link {
