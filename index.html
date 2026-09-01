@@ -265,7 +265,7 @@
        page has nobody to argue with. */
     .creed-grid {
       display: grid;
-      gap: 14px;
+      gap: 22px;
       margin-top: 26px;
     }
 
@@ -273,12 +273,12 @@
       .creed-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
+    /* Prose, so no box: an eyebrow, a claim, two lines. The hairline above it
+       is the only rule on the page that still separates narrative — it marks
+       a column, it does not enclose one. */
     .creed {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 20px 20px 22px;
-      border-top: 3px solid var(--accent);
+      padding-top: 14px;
+      border-top: 2px solid var(--accent-soft);
     }
 
     .creed .c-not {
@@ -481,8 +481,7 @@
       padding: 15px 16px 16px;
       border-radius: 18px;
       background: #fff;
-      border: 1px solid #E7EFDD;
-      box-shadow: 0 10px 26px -12px rgba(45, 90, 52, 0.3);
+      box-shadow: 0 10px 26px -14px rgba(45, 90, 52, 0.34);
       text-align: center;
     }
 
@@ -998,28 +997,21 @@
        the claim is about — a status chip, an invitation, a reply. */
     .value-grid {
       display: grid;
-      gap: 16px;
+      gap: 30px;
     }
 
     @media (min-width: 820px) {
-      .value-grid { grid-template-columns: repeat(3, 1fr); }
+      .value-grid { grid-template-columns: repeat(3, 1fr); gap: 26px; }
     }
 
+    /* No outer card. The claim is narrative — it belongs on the page, not in
+       a box — and the vignette below it was already a box, so the old markup
+       was a card inside a card. What is left is the one container that earns
+       itself: a piece of the product. */
     .value {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 13px;
-      transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
-    }
-
-    .value:hover {
-      transform: translateY(-3px);
-      border-color: #D3E7C4;
-      box-shadow: 0 16px 34px rgba(45, 90, 52, 0.10);
+      gap: 10px;
     }
 
     .v-no {
@@ -1039,7 +1031,7 @@
     }
 
     .value > p {
-      margin: 0;
+      margin: 0 0 4px;
       color: var(--text-secondary);
       font-size: 14px;
       line-height: 1.65;
@@ -1048,10 +1040,11 @@
     /* ── the vignettes ── */
     .v-art {
       margin-top: auto;
-      background: var(--tint);
-      border: 1px solid #E1EEDA;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 13px;
+      box-shadow: 0 8px 22px -14px rgba(45, 90, 52, 0.28);
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -1223,41 +1216,11 @@
 
 
 
-    .trust {
-      display: grid;
-      gap: 10px;
-    }
 
-    .trust-row {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 16px;
-    }
 
-    .trust-row .t-ic {
-      font-size: 20px;
-      flex-shrink: 0;
-    }
 
-    .trust-row p {
-      margin: 0;
-      font-size: 13.5px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
 
-    .trust-row p b {
-      color: var(--text-primary);
-    }
 
-    .trust-row a {
-      color: var(--accent-d);
-      font-weight: 700;
-    }
 
     /* CTA — three entries */
     /* ── Final CTA ────────────────────────────────────────────────
@@ -1265,11 +1228,22 @@
        equal cards made the page end with a menu. This ends it with a sentence
        and one obvious next step. The hierarchy is carried by form, not size:
        a store badge, then a link, then a quieter link. */
-    .fc-panel {
+    /* Full-bleed tint instead of a rounded box. The page closes on a change of
+       ground, not on one more frame — by this point the reader has passed the
+       creed columns and is about to reach the FAQ list, and a third outlined
+       block in that run is exactly what made the scroll feel like slides. */
+    .final-cta {
+      width: 100vw;
+      margin: 56px 0 0 calc(50% - 50vw);
+      padding: 54px 20px 58px;
       background: var(--tint);
-      border: 1px solid #DCEAC9;
-      border-radius: 26px;
-      padding: 40px 26px;
+      border-top: 1px solid #E4EFDA;
+      border-bottom: 1px solid #E4EFDA;
+    }
+
+    .fc-panel {
+      max-width: 760px;
+      margin: 0 auto;
       display: grid;
       gap: 28px;
       justify-items: center;
@@ -1277,11 +1251,12 @@
     }
 
     @media (min-width: 820px) {
+      .final-cta { padding: 66px 20px 70px; }
+
       .fc-panel {
         grid-template-columns: 1fr auto;
         align-items: center;
-        gap: 48px;
-        padding: 52px 54px;
+        gap: 52px;
         justify-items: stretch;
         text-align: left;
       }
@@ -1365,10 +1340,9 @@
       display: block;
       width: 128px;
       height: 128px;
-      padding: 9px;
+      padding: 10px;
       border-radius: 14px;
       background: #fff;
-      border: 1px solid #DCEAC9;
     }
 
     .fc-qr figcaption {
@@ -1382,20 +1356,18 @@
       margin-top: 8px;
     }
 
+    /* A list with rules, not a stack of boxes. Six bordered cards after the
+       creed columns and the closing band was the third framed block in a row. */
     .faq details {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2px 16px;
-      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
     }
 
     .faq summary {
       cursor: pointer;
       font-weight: 700;
       color: var(--text-primary);
-      font-size: 14.5px;
-      padding: 13px 0;
+      font-size: 15px;
+      padding: 16px 0;
       list-style: none;
     }
 
@@ -1920,7 +1892,7 @@
     </section>
 
     <!-- ⑤ Final CTA — 頁面的最後一句話，不是第二份下載清單 -->
-    <section class="section" id="join">
+    <section class="final-cta" id="join">
       <div class="fc-panel">
         <div class="fc-copy">
           <span class="fc-kicker">從下一次上場開始。</span>
