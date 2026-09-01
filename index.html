@@ -1169,39 +1169,42 @@
       color: var(--text-secondary);
     }
 
-    /* card 03 — the answer, which is the thing the nuts buy */
-    .vc-head {
+    /* card 03 — the answers, which are the thing the nuts buy. Two rows, one
+       per open specialist type, so the card shows the range rather than
+       claiming it in prose. Both quotes are real replies from closed cases. */
+    .vc-row {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 9px;
     }
 
     .vc-av {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 auto;
       border-radius: 50%;
       object-fit: cover;
+      margin-top: 2px;
     }
 
-    .vc-head b {
-      display: block;
-      font-size: 13px;
-      color: var(--text-primary);
-    }
-
-    .vc-head i {
-      display: block;
-      font-style: normal;
-      font-size: 11px;
-      font-weight: 700;
-      color: #3E7C33;
-    }
-
-    .vc-bubble {
+    .vc-tx {
       background: #fff;
       border: 1px solid #DCEAC9;
       border-radius: 12px 12px 12px 4px;
-      padding: 9px 11px;
+      padding: 8px 10px;
+      min-width: 0;
+    }
+
+    .vc-tx b {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--accent-d);
+      margin-bottom: 2px;
+    }
+
+    .vc-tx span {
+      display: block;
       font-size: 12.5px;
       line-height: 1.55;
       color: var(--text-secondary);
@@ -1788,16 +1791,22 @@
           <h3>卡關找得到專家</h3>
           <p>用堅果向教練、體能訓練師或其他專家提問，先問對一個問題，少走一點彎路。</p>
           <div class="v-art">
-            <div class="vc-head">
-              <img class="vc-av" src="/expert-coach.jpg" alt="" width="30" height="30" loading="lazy" />
-              <div>
+            <div class="vc-row">
+              <img class="vc-av" src="/expert-coach.jpg" alt="" width="28" height="28" loading="lazy" />
+              <div class="vc-tx">
                 <b>網球教練</b>
-                <i>已回覆</i>
+                <span>擊球點只有一個有效的點，讓體軸與頭部安定。</span>
               </div>
             </div>
-            <div class="vc-bubble">擊球點只有一個有效的點，讓體軸與頭部安定。</div>
+            <div class="vc-row">
+              <img class="vc-av" src="/expert-fitness.jpg" alt="" width="28" height="28" loading="lazy" />
+              <div class="vc-tx">
+                <b>體能訓練師</b>
+                <span>呼吸訓練的重點在於吐氣，盡可能把空氣吐乾淨，再輕輕吸氣。</span>
+              </div>
+            </div>
             <div class="v-chips">
-              <span class="chip"><svg><use href="#ic-nut" /></svg>50 堅果</span>
+              <span class="chip"><svg><use href="#ic-nut" /></svg>用堅果提問</span>
             </div>
           </div>
         </div>
