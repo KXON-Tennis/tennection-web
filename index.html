@@ -426,7 +426,7 @@
        copy of the last step rather than by the drawing. */
     .wheel {
       position: relative;
-      width: min(600px, 100%);
+      width: min(620px, 100%);
       aspect-ratio: 1;
       margin: 30px auto 0;
     }
@@ -436,9 +436,28 @@
       inset: 8%;
       width: 84%;
       height: 84%;
-      color: var(--accent);
-      opacity: 0.45;
     }
+
+    /* Two arc styles rather than one continuous ring: the solid half is the
+       part the player does on court, the dashed half is what the app gives
+       back. Same loop, two kinds of effort. */
+    .ring-solid {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+    }
+
+    .ring-dash {
+      fill: none;
+      stroke: var(--volt);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-dasharray: 3 3.4;
+    }
+
+    .ring-head-solid { fill: var(--accent); }
+    .ring-head-dash { fill: var(--volt); }
 
     .wheel-hub {
       position: absolute;
@@ -450,69 +469,73 @@
       border-radius: 50%;
       overflow: hidden;
       background: #fff;
-      box-shadow: 0 8px 22px -8px rgba(45, 90, 52, 0.4);
-      border: 3px solid #fff;
+      box-shadow: 0 10px 26px -8px rgba(45, 90, 52, 0.45);
+      border: 4px solid #fff;
     }
 
     .wheel-hub img { display: block; width: 100%; height: 100%; }
 
     .spoke {
       position: absolute;
-      width: 200px;
-      padding: 14px 15px;
-      border-radius: 16px;
+      width: 210px;
+      padding: 15px 16px 16px;
+      border-radius: 18px;
       background: #fff;
-      border: 1px solid #DCEAC9;
-      box-shadow: 0 6px 18px -8px rgba(45, 90, 52, 0.28);
-      text-align: left;
+      border: 1px solid #E7EFDD;
+      box-shadow: 0 10px 26px -12px rgba(45, 90, 52, 0.3);
+      text-align: center;
     }
 
     .spoke .sp-top {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 9px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .spoke .sp-ic {
-      width: 30px;
-      height: 30px;
+      width: 34px;
+      height: 34px;
       flex: 0 0 auto;
-      border-radius: 9px;
+      border-radius: 11px;
       display: grid;
       place-items: center;
-      background: var(--accent-soft);
+      background: var(--tint);
       color: var(--accent-d);
     }
 
-    .spoke .sp-ic svg { width: 17px; height: 17px; display: block; }
+    .spoke .sp-ic svg { width: 18px; height: 18px; display: block; }
 
-    /* Third and last use of the volt: hero chip, map-band button, and the nut
-       itself. Any more and it stops being an accent. */
-    .spoke .sp-ic.volt {
-      background: rgba(183, 240, 60, 0.38);
-      color: #46701C;
-    }
-
+    /* The step number rides the volt, which is what the nuts are coloured —
+       the numbers are the order in which you earn them. */
     .spoke .sp-n {
+      width: 27px;
+      height: 27px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--volt);
+      color: #2F4A18;
       font-family: 'Sora', system-ui, sans-serif;
       font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: var(--text-tertiary);
+      font-weight: 800;
+      letter-spacing: 0;
+      display: grid;
+      place-items: center;
     }
 
     .spoke h4 {
-      margin: 0 0 3px;
-      font-size: 15.5px;
+      margin: 0 0 4px;
+      font-size: 16px;
       font-weight: 800;
       color: var(--accent-d);
+      letter-spacing: -0.2px;
     }
 
     .spoke p {
       margin: 0;
       font-size: 12.5px;
-      line-height: 1.5;
+      line-height: 1.55;
       color: var(--text-secondary);
     }
 
@@ -521,15 +544,37 @@
     .sp-3 { bottom: 0; left: 50%; transform: translateX(-50%); }
     .sp-4 { top: 50%; left: 0; transform: translateY(-50%); }
 
+    /* The punchline gets a shape of its own so it does not read as one more
+       caption under the diagram. */
     .wheel-kicker {
-      margin: 30px auto 0;
-      max-width: 30em;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      max-width: 100%;
+      margin: 34px auto 0;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: var(--accent-d);
+      color: #fff;
       font-size: 14.5px;
       font-weight: 700;
-      line-height: 1.65;
-      color: var(--accent-d);
+      line-height: 1.5;
+      text-align: left;
     }
+
+    .wheel-kicker .wk-ic {
+      width: 26px;
+      height: 26px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(183, 240, 60, 0.22);
+      color: var(--volt);
+    }
+
+    .wheel-kicker .wk-ic svg { width: 15px; height: 15px; display: block; }
 
     @media (max-width: 779px) {
       .wheel {
@@ -549,6 +594,12 @@
         position: static;
         transform: none;
         width: 100%;
+      }
+
+      .wheel-kicker {
+        margin-top: 24px;
+        padding: 12px 18px;
+        font-size: 13.5px;
       }
     }
 
@@ -1774,14 +1825,21 @@
 
         <div class="wheel">
           <svg class="wheel-ring" viewBox="0 0 100 100" aria-hidden="true">
-            <g id="wheel-seg">
-              <path d="M62.74 18.47A34 34 0 0 1 81.53 37.26" fill="none" stroke="currentColor"
-                    stroke-width="1.6" stroke-linecap="round" />
-              <path d="M82.34 39.49 78.53 35.93 82.61 34.28Z" fill="currentColor" />
-            </g>
-            <use href="#wheel-seg" transform="rotate(90 50 50)" />
-            <use href="#wheel-seg" transform="rotate(180 50 50)" />
-            <use href="#wheel-seg" transform="rotate(270 50 50)" />
+            <!-- Four arcs at r=36, each spanning the gap between two cards and
+                 ending in an arrowhead, so the flow reads clockwise. Solid on
+                 the right half (what you do on court), dashed volt on the left
+                 (what comes back). -->
+            <path class="ring-solid" d="M66.90 18.22A36 36 0 0 1 81.78 33.10" />
+            <path class="ring-head-solid" d="M82.89 35.36 78.41 32.05 82.65 29.79Z" />
+
+            <path class="ring-solid" d="M81.78 66.90A36 36 0 0 1 66.90 81.78" />
+            <path class="ring-head-solid" d="M64.64 82.89 67.95 78.41 70.21 82.65Z" />
+
+            <path class="ring-dash" d="M33.10 81.78A36 36 0 0 1 18.22 66.90" />
+            <path class="ring-head-dash" d="M17.11 64.64 21.59 67.95 17.35 70.21Z" />
+
+            <path class="ring-dash" d="M18.22 33.10A36 36 0 0 1 33.10 18.22" />
+            <path class="ring-head-dash" d="M35.36 17.11 32.05 21.59 29.79 17.35Z" />
           </svg>
 
           <div class="wheel-hub"><img src="/app-icon.png" alt="" width="96" height="96" /></div>
@@ -1824,6 +1882,7 @@
         </div>
 
         <p class="wheel-kicker">
+          <span class="wk-ic" aria-hidden="true"><svg><use href="#ic-nut" /></svg></span>
           不必每天簽到，也沒有廣告可以看。堅果只從真的去打球來。
         </p>
       </section>
