@@ -1260,176 +1260,122 @@
     }
 
     /* CTA — three entries */
-    .cta-cards {
+    /* ── Final CTA ────────────────────────────────────────────────
+       The hero already carries all three ways in, so repeating them as three
+       equal cards made the page end with a menu. This ends it with a sentence
+       and one obvious next step. The hierarchy is carried by form, not size:
+       a store badge, then a link, then a quieter link. */
+    .fc-panel {
+      background: var(--tint);
+      border: 1px solid #DCEAC9;
+      border-radius: 26px;
+      padding: 40px 26px;
       display: grid;
-      gap: 12px;
-    }
-
-    /* Three across once there is room. The row layout (icon | text | arrow)
-       does not survive a 240px column, so the card turns vertical and centred
-       there; the arrow goes, because a downward-stacked arrow points at
-       nothing. On a phone it stays a stacked list of rows, which is the
-       shape a thumb expects. */
-    @media (min-width: 720px) {
-      .cta-cards { grid-template-columns: repeat(3, 1fr); }
-
-      .cta-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 11px;
-        padding: 22px 16px 20px;
-      }
-
-      .cta-card .cta-tx { flex: 0 0 auto; }
-
-      .cta-card .cta-tx b {
-        font-size: 15px;
-        line-height: 1.4;
-      }
-
-      .cta-card .cta-tx span {
-        display: block;
-        margin-top: 3px;
-        line-height: 1.5;
-      }
-
-      .cta-card .cta-go { display: none; }
-
-      /* The LINE card swaps its icon for the code itself — one fewer tap, and
-         on a laptop the phone in your hand is the thing that has to do the
-         joining anyway. */
-      #dl-line .cta-ic { display: none; }
-      #dl-line .cta-qr { display: block; }
-      #dl-line .qr-hint { display: block; }
-      #dl-line .tap-hint { display: none; }
-    }
-
-    .cta-card {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 16px;
-      padding: 16px 18px;
-      transition: border-color .15s, transform .05s;
-    }
-
-    /* 官方徽章：Apple 的規範是不改造它，四周留白至少 1/4 高度。 */
-    .as-badge {
-      display: inline-block;
-      margin-top: 18px;
-    }
-
-    .as-badge img {
-      display: block;
-      height: 53px;
-      width: auto;
-    }
-
-    .cta-card:hover {
-      border-color: var(--accent);
-    }
-
-    /* The store link is the one destination that actually exists today, so it
-       is the only filled card; the other two are outlines. */
-    .cta-card.primary {
-      background: var(--accent-d);
-      border-color: var(--accent-d);
-    }
-
-    .cta-card.primary .cta-tx b { color: #fff; }
-    .cta-card.primary .cta-tx span,
-    .cta-card.primary .cta-go { color: rgba(255, 255, 255, 0.72); }
-
-    .cta-card.primary .cta-ic {
-      background: rgba(255, 255, 255, 0.14);
-      color: #fff;
-    }
-
-    .cta-card.primary:hover {
-      border-color: var(--accent-d);
-      box-shadow: 0 16px 34px -14px rgba(60, 110, 63, 0.6);
-    }
-
-    .cta-card:active {
-      transform: scale(0.99);
-    }
-
-    .cta-ic {
-      width: 40px;
-      height: 40px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 11px;
-    }
-
-    .cta-ic svg {
-      width: 24px;
-      height: 24px;
-    }
-
-    .cta-ic.ios {
-      background: #1d1d1f;
-      color: #fff;
-    }
-
-    .cta-ic.and {
-      background: #EAF6E4;
-      color: #3DDC84;
-    }
-
-    .cta-ic.line {
-      background: #06C755;
-      color: #fff;
-    }
-
-    .cta-tx {
-      flex: 1;
-    }
-
-    .cta-tx b {
-      display: block;
-      font-size: 16px;
-      color: var(--text-primary);
-    }
-
-    .cta-tx span {
-      font-size: 12.5px;
-      color: var(--text-tertiary);
-    }
-
-    .cta-go {
-      color: var(--text-tertiary);
-      font-weight: 800;
-      font-size: 18px;
-    }
-
-    .cta-qr {
-      display: none;
-      width: 118px;
-      height: 118px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: #fff;
-    }
-
-    .qr-hint { display: none; }
-
-    .cta-help {
+      gap: 28px;
+      justify-items: center;
       text-align: center;
-      margin-top: 16px;
+    }
+
+    @media (min-width: 820px) {
+      .fc-panel {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 48px;
+        padding: 52px 54px;
+        justify-items: stretch;
+        text-align: left;
+      }
+    }
+
+    .fc-kicker {
+      display: block;
+      font-family: 'Sora', system-ui, sans-serif;
       font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .fc-panel h2 {
+      font-family: 'Sora', system-ui, sans-serif;
+      font-size: clamp(26px, 4.4vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.9px;
+      line-height: 1.15;
+      color: var(--ink);
+      margin: 0 0 10px;
+    }
+
+    .fc-sub {
+      margin: 0 0 24px;
+      max-width: 26em;
+      font-size: 15.5px;
+      line-height: 1.7;
       color: var(--text-secondary);
     }
 
-    .cta-help a {
-      color: var(--accent-d);
+    .fc-panel .as-badge { margin-top: 0; }
+
+    /* The second and third asks are links, not buttons — that is the whole
+       point of the hierarchy. The arrow does the job button chrome would. */
+    .fc-second {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 15px;
       font-weight: 700;
+      color: var(--accent-d);
+      text-decoration: none;
+      border-bottom: 1.5px solid rgba(60, 110, 63, 0.32);
+      padding-bottom: 1px;
+    }
+
+    .fc-second:hover {
+      text-decoration: none;
+      border-bottom-color: var(--accent-d);
+    }
+
+    .fc-third {
+      display: block;
+      margin-top: 12px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-decoration: none;
+    }
+
+    .fc-third:hover {
+      color: var(--accent-d);
+      text-decoration: none;
+    }
+
+    /* Desktop only: the laptop cannot install the app, the phone in your
+       pocket can. Kept quieter than the badge on purpose. */
+    .fc-qr {
+      display: none;
+      margin: 0;
+      text-align: center;
+    }
+
+    @media (min-width: 820px) {
+      .fc-qr { display: block; }
+    }
+
+    .fc-qr img {
+      display: block;
+      width: 128px;
+      height: 128px;
+      padding: 9px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid #DCEAC9;
+    }
+
+    .fc-qr figcaption {
+      margin-top: 9px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-tertiary);
     }
 
     .faq {
@@ -1973,50 +1919,34 @@
       </div>
     </section>
 
-    <!-- ⑤ CTA 三入口 -->
+    <!-- ⑤ Final CTA — 頁面的最後一句話，不是第二份下載清單 -->
     <section class="section" id="join">
-      <h2 class="section-h">從第一筆回報開始，加入 Tennis Nut</h2>
-      <!-- Ordered by how real the destination is: a live store page, a testing
-           form, then LINE. dl-* ids are read by the ?ref= tracking below, so
-           they travel with the cards. -->
-      <div class="cta-cards">
-        <a class="cta-card primary" id="dl-ios" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">
-          <span class="cta-ic ios">
-            <svg viewBox="0 0 814 1000" aria-hidden="true">
-              <path fill="currentColor"
-                d="M788 340c-6 4-114 65-114 199 0 156 137 211 141 212-1 3-22 75-72 148-45 64-91 128-161 128s-88-41-169-41c-79 0-107 42-171 42s-109-59-161-132C26 723 0 597 0 476c0-194 126-297 250-297 66 0 121 43 162 43 39 0 101-46 176-46 28 0 130 3 197 99zM554 116c31-37 53-89 53-141 0-7-1-14-2-20-50 2-110 34-146 75-28 32-55 84-55 137 0 8 1 16 2 19 3 1 8 1 13 1 45 0 102-30 135-71z" />
-            </svg>
-          </span>
-          <span class="cta-tx"><b>iPhone · 從 App Store 下載</b><span>已上架，搜尋「Tennis Nut」也找得到</span></span>
-          <span class="cta-go">↗</span>
-        </a>
-        <a class="cta-card" id="dl-android" href="https://forms.gle/N7EKJ58FmvhVKQs69" target="_blank" rel="noopener">
-          <span class="cta-ic and">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path
-                d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z" />
-            </svg>
-          </span>
-          <span class="cta-tx"><b>Android · 加入 Google Play 測試</b><span>留 Gmail 加入，之後會自動更新到公開版</span></span>
-          <span class="cta-go">→</span>
-        </a>
-        <a class="cta-card" id="dl-line" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">
-          <span class="cta-ic line">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path
-                d="M12 3C6.9 3 2.8 6.3 2.8 10.4c0 3.7 3.3 6.8 7.7 7.4.3.06.7.2.8.45.08.23.05.58.03.81l-.13.78c-.04.23-.18.9.79.49 1-.42 5.3-3.12 7.2-5.34 1.34-1.47 1.98-2.96 1.98-4.59C21.2 6.3 17.1 3 12 3z" />
-            </svg>
-          </span>
-          <!-- Only shown on a wide screen: on a phone the QR would be a code
-               you cannot scan with the device you are holding, and the card is
-               already a tap away from the same account. -->
-          <img class="cta-qr" src="/line-qr.svg" width="400" height="400" loading="lazy"
-               alt="Tennis Nut LINE 官方帳號的 QR code" />
-          <span class="cta-tx"><b>加入 LINE 官方帳號</b><span class="qr-hint">掃描加入，不用先裝 App</span><span class="tap-hint">回報球場、累積堅果，不用先裝 App</span></span>
-          <span class="cta-go">↗</span>
-        </a>
+      <div class="fc-panel">
+        <div class="fc-copy">
+          <span class="fc-kicker">從下一次上場開始。</span>
+          <h2>建立你的 Tennis Passport</h2>
+          <p class="fc-sub">記錄球場、練習與比賽，讓每一次上場都留下來。</p>
+
+          <!-- dl-* ids are read by the ?ref= tracking at the foot of the page;
+               they move with the links, not with the old cards. -->
+          <a class="as-badge" id="dl-ios" href="https://apps.apple.com/app/id6761720650"
+             target="_blank" rel="noopener" aria-label="從 App Store 下載 Tennis Nut">
+            <img src="/app-store-badge-en.svg" alt="從 App Store 下載" width="159" height="53" />
+          </a>
+
+          <a class="fc-second" id="dl-android" href="https://forms.gle/N7EKJ58FmvhVKQs69"
+             target="_blank" rel="noopener">Android 使用者？加入 Google Play 測試 →</a>
+
+          <a class="fc-third" id="dl-line" href="https://line.me/R/ti/p/@tennisnut"
+             target="_blank" rel="noopener">想先掌握活動與更新？加入 LINE →</a>
+        </div>
+
+        <figure class="fc-qr">
+          <img src="/appstore-qr.svg" width="400" height="400" loading="lazy"
+               alt="App Store 上 Tennis Nut 的 QR code" />
+          <figcaption>用手機掃描下載</figcaption>
+        </figure>
       </div>
-      <p class="cta-help">安裝遇到問題？看<a href="/install">圖文安裝教學</a></p>
     </section>
 
     <!-- ⑥ FAQ -->
