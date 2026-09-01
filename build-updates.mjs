@@ -84,7 +84,6 @@ const header = `  <header class="site-header">
       <img src="/wordmark.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
-      <a href="/install">安裝 App</a>
       <a href="/whats-new" class="active">最新情報</a>
       <a href="/privacy">隱私權</a>
     </nav>
@@ -93,7 +92,6 @@ const header = `  <header class="site-header">
 const footer = `  <footer>
     <div class="footer-inner">
       <div class="footer-text">
-        <a href="/install">安裝 App</a>·
         <a href="/whats-new">最新情報</a>·
         <a href="/privacy">隱私權政策</a>·
         <a href="/terms">服務條款</a>·
@@ -171,7 +169,7 @@ ${r.fixes.map((f) => `        <li>${esc(f)}</li>`).join('\n')}
     <div class="callout">
       <b>怎麼更新？</b>
       Android 走 Google Play 會自動更新；iPhone 從 App Store 更新即可。
-      還沒裝的話看 <a href="/install">安裝教學</a>。
+      還沒裝的話，iPhone 從 <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">App Store</a> 下載。
     </div>
 
 ${
