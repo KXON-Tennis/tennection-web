@@ -101,6 +101,7 @@ a:hover {
 .site-header nav a {
   font-size: 14px;
   color: var(--text-secondary);
+  white-space: nowrap;
 }
 
 .site-header nav a.active,
@@ -846,6 +847,19 @@ footer a {
 
   .site-header .brand-wordmark {
     height: 38px;
+  }
+
+  /* 手機上的導覽列：六個項目換行會把「隱私權」拆成三行。法律頁在頁尾本來就
+     有，這裡收起來；剩下的四項是使用者真的會在頁首找的東西。 */
+  .site-header nav {
+    gap: 14px;
+  }
+
+  .site-header nav a[href="/privacy"],
+  .site-header nav a[href="/terms"],
+  .site-header nav a[href="/en/privacy"],
+  .site-header nav a[href="/en/terms"] {
+    display: none;
   }
 
   .hero .device {
