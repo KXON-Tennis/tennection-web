@@ -93,7 +93,7 @@ a:hover {
 .site-header .brand-wordmark {
   /* 比原本的 46px 高：這顆 logo 帶著光暈，光暈也算在圖高裡，
      所以同樣的框高之下字會比實心版小一截。 */
-  height: 56px;
+  height: 58px;
   width: auto;
   display: block;
 }
