@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>最新情報 · Tennis Nut</title>
-  <meta name="description" content="Tennis Nut 的版本更新與功能介紹。最新版 1.7.0：好友從護照裡的一小塊變成一整頁，還能自己分組；球隊的隊徽出現在地圖上，隊內動態也開始長出來。" />
+  <title>堅果：打球換來的，用來問問題 · Tennis Nut</title>
+  <meta name="description" content="只有一個入口和一個出口：打球與維護球場資料賺，卡住的時候換一份專家解答。買不到。" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="最新情報 · Tennis Nut" />
-  <meta property="og:description" content="Tennis Nut 的版本更新與功能介紹。最新版 1.7.0：好友從護照裡的一小塊變成一整頁，還能自己分組；球隊的隊徽出現在地圖上，隊內動態也開始長出來。" />
-  <meta property="og:url" content="https://tennisnut.kxon.net/blog" />
-  <meta property="og:image" content="https://tennisnut.kxon.net/blog-2210.png" />
+  <meta property="og:title" content="堅果：打球換來的，用來問問題 · Tennis Nut" />
+  <meta property="og:description" content="只有一個入口和一個出口：打球與維護球場資料賺，卡住的時候換一份專家解答。買不到。" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/nuts" />
+  <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
-  <link rel="canonical" href="https://tennisnut.kxon.net/blog" />
+  <link rel="canonical" href="https://tennisnut.kxon.net/nuts" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -108,93 +108,114 @@
     </nav>
   </header>
 
-  <article class="container">
-    <span class="tag-line">🌰 Tennis Nut</span>
-    <h1>Blog</h1>
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    h2 { font-size: 18px; margin: 32px 0 8px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 4px; font-size: 15px; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border);
+             color: var(--text-secondary); }
+    th { font-size: 13px; color: var(--text-tertiary); font-weight: 700; }
+    td:last-child, th:last-child { text-align: right; white-space: nowrap; }
+    td b { color: var(--text-primary); }
+    figure { margin: 16px 0 4px; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto; border-radius: 12px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.6; }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); }
+</style>
+  <article class="container rel">
+    <a class="rel-back" href="/blog">← Blog</a>
+    <span class="tag-line">🌰 功能介紹</span>
+    <h1>堅果：打球換來的，用來問問題</h1>
+    <p class="lead">
+      堅果是 App 裡的點數。它只有一個入口和一個出口：
+      <b>你打球、你讓球場資料變好，就會得到堅果；卡住的時候，用它換一份專家的解答。</b>
+    </p>
+    <p class="lead" style="margin-top:-20px">
+      這個設計要達成一件事：<b>讓認真打球的人問得起專家。</b>
+    </p>
 
-    <div class="sec-eyebrow"><h2>版本更新紀錄</h2></div>
+    <figure>
+      <img src="/shot-nuts.svg" alt="我的堅果：餘額與收支明細" loading="lazy" />
+      <figcaption>護照裡的「我的堅果」：餘額，以及每一筆是怎麼來、怎麼去的。</figcaption>
+    </figure>
 
-    <a class="rel-hero" href="/blog/2210">
-      <img src="/blog-2210.png" alt="" />
-      <div class="rel-hero-body">
-        <span class="rel-badge">最新版本</span>
-        <h3>好友有了自己的一頁，球隊上了地圖</h3>
-        <p>好友從護照裡的一小塊變成一整頁，還能自己分組；球隊的隊徽出現在地圖上，隊內動態也開始長出來。</p>
-        <div class="rel-item-meta">2026.09.06 · 1.7.0 (2210)</div>
-      </div>
-    </a>
+    <h2>怎麼得到</h2>
+    <table>
+      <tr><th>做了什麼</th><th>堅果</th></tr>
+      <tr><td><b>註冊</b></td><td>100</td></tr>
+      <tr><td>記一筆<b>練習</b>（人在球場 200 公尺內）</td><td>5</td></tr>
+      <tr><td>記一場<b>比賽</b>（同上）</td><td>5</td></tr>
+      <tr><td><b>回報球場狀態</b>（客滿、地濕、施工…）</td><td>15</td></tr>
+      <tr><td><b>回報球場資訊</b>（材質、燈光、收費…審核通過）</td><td>15</td></tr>
+      <tr><td><b>新增</b>一座還沒收錄的球場（審核通過）</td><td>50</td></tr>
+      <tr><td><b>首次拜訪</b>一座球場</td><td>15</td></tr>
+      <tr><td>球場<b>打卡</b></td><td>1–2</td></tr>
+      <tr><td>把<b>球拍或球鞋</b>登錄進球袋</td><td>各 5</td></tr>
+      <tr><td>拿到<b>徽章</b></td><td>5–20</td></tr>
+    </table>
+    <p>
+      練習、比賽、首次拜訪這幾項<b>每天各有筆數上限</b>（各 3 筆），打卡也有。
+      這不是為了限制你，是為了讓那個數字有意義——
+      <b>一個可以無限累積的點數，換不到任何人的時間。</b>
+    </p>
 
-    <ul class="rel-past">
-      <li><a href="/blog/2170">
-        <span class="rel-past-d">2026.08.31 · 2170</span>
-        <span class="rel-past-t">我的空檔，還有到了球場怎麼找到彼此</span>
-      </a></li>
-      <li><a href="/blog/2160">
-        <span class="rel-past-d">2026.08.25 · 2160</span>
-        <span class="rel-past-t">通知中心，還有可以認領的比賽</span>
-      </a></li>
-    </ul>
+    <h2>怎麼用</h2>
+    <table>
+      <tr><th>用途</th><th>堅果</th></tr>
+      <tr><td>專家的一份正式解答 · <b>文字回覆</b></td><td>50</td></tr>
+      <tr><td>專家的一份正式解答 · <b>深度建議</b></td><td>100</td></tr>
+      <tr><td>專家的一份正式解答 · <b>影片分析</b></td><td>150</td></tr>
+      <tr><td>向 <b>AI 教練</b>提問</td><td>5</td></tr>
+      <tr><td>諮詢裡上傳<b>較長的影片</b></td><td>30</td></tr>
+      <tr><td>結案後<b>重開</b>同一則諮詢</td><td>20</td></tr>
+    </table>
+    <p>
+      <b>和專家聊天不用堅果。</b>問清楚、補充說明、傳一段影片給他看、他反問你幾句，
+      這些都免費；只有你按「追加專業提問」、要一份正式解答時才扣。
+    </p>
+    <p>
+      而且<b>專家婉拒或逾時沒回，堅果會全額退還</b>。你不會因為等不到答案而損失點數。
+    </p>
 
-    <div class="sec-eyebrow"><h2>功能介紹</h2></div>
-    <ul class="guide-grid">
-      <li><a href="/consultation">
-        <span class="guide-ic" aria-hidden="true">💬</span>
-        <span>
-          <span class="guide-t">諮詢：卡住的時候，有人可以問</span>
-          <p class="guide-s">聊天免費，只有正式解答才用堅果；教練答不了會全額退還。而堅果只從打球來。</p>
-        </span>
-      </a></li>
-      <li><a href="/nuts">
-        <span class="guide-ic" aria-hidden="true">🌰</span>
-        <span>
-          <span class="guide-t">堅果：打球換來的，用來問問題</span>
-          <p class="guide-s">只有一個入口和一個出口：打球與維護球場資料賺，卡住的時候換一份專家解答。買不到。</p>
-        </span>
-      </a></li>
-      <li><a href="/favourites">
-        <span class="guide-ic" aria-hidden="true">❤️</span>
-        <span>
-          <span class="guide-t">那顆愛心到底做了什麼</span>
-          <p class="guide-s">把球場加進最愛，是這個 App 裡唯一一個讓陌生人的球局主動找上你的開關。</p>
-        </span>
-      </a></li>
-      <li><a href="/live-presence">
-        <span class="guide-ic" aria-hidden="true">📍</span>
-        <span>
-          <span class="guide-t">球友在線：地圖上那個數字</span>
-          <p class="guide-s">沒有按鈕，你到了球場它自己會亮。陌生人只看得到數字，好友才知道是你。</p>
-        </span>
-      </a></li>
-      <li><a href="/friends">
-        <span class="guide-ic" aria-hidden="true">👥</span>
-        <span>
-          <span class="guide-t">加好友之後，會多出什麼</span>
-          <p class="guide-s">陌生人看到的是數字，好友看到的是名字。六件事會不一樣，但好友不是門票。</p>
-        </span>
-      </a></li>
-      <li><a href="/practice-log">
-        <span class="guide-ic" aria-hidden="true">📓</span>
-        <span>
-          <span class="guide-t">我的練習：記一次，餵給五個地方</span>
-          <p class="guide-s">必填只有球場和時長。200 公尺內才算征服與堅果，但事後補記一樣留得住時數。</p>
-        </span>
-      </a></li>
-      <li><a href="/teams">
-        <span class="guide-ic" aria-hidden="true">🏳️</span>
-        <span>
-          <span class="guide-t">球隊：把常去的球場變成主場</span>
-          <p class="guide-s">建隊要指定一座主場，那座球場從此列出你們——陌生球友因此找得到你們。</p>
-        </span>
-      </a></li>
-      <li><a href="/match-log">
-        <span class="guide-ic" aria-hidden="true">🏆</span>
-        <span>
-          <span class="guide-t">我的比賽：一場球，兩個人的戰績</span>
-          <p class="guide-s">填完比分勝負自己算。把球友標成搭檔或對手，他確認後這場也會進他的護照。</p>
-        </span>
-      </a></li>
-    </ul>
+    <h2>堅果不能買</h2>
+    <p>
+      App 裡沒有購買堅果的入口。<b>它是打球換來的，不是儲值換來的。</b>
+    </p>
+    <p>
+      理由是這樣的：如果堅果可以買，專家的時間就會流向錢最多的人；
+      而堅果只能從球場上賺，專家的時間就流向<b>真的在打球、也真的在維護球場資訊的人</b>。
+      這兩件事會長出完全不同的社群。
+    </p>
+
+    <div class="callout">
+      <b>大概要打多久才問得起？</b>
+      一次練習 5 顆、順手回報一次球場狀態 15 顆——認真記錄的一個星期，
+      大約就是一份文字回覆。補一座還沒收錄的球場是 50 顆，一次就到。
+    </div>
+
+    <h2>每一顆都要有憑據</h2>
+    <p>
+      堅果不是按一個按鈕就發的。伺服器會回頭確認那件事<b>真的發生過、而且是你做的</b>：
+      練習紀錄要存在、打卡要走完流程、首次拜訪要那座球場真的有你的紀錄、
+      新增的球場要審核通過。
+    </p>
+    <p>
+      這些檢查不是為了防你，是為了讓<b>你賺到的那 50 顆有分量</b>——
+      如果誰都能憑空生出堅果，它就換不到任何東西了。
+    </p>
+
+    <div class="guide-foot">
+      用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
+    </div>
   </article>
+
 
   <footer>
     <div class="footer-inner">

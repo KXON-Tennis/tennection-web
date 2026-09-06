@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 400" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="392" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="384" rx="30" fill="#FBFAF6"/>
+  <rect x="154" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+  <text x="28" y="62" font-size="16" fill="#1B5138" font-weight="800" text-anchor="start">我的堅果</text>
+  <rect x="20" y="78" width="320" height="76" rx="16" fill="#3F7C43" fill-opacity="0.10"/>
+  <text x="180" y="118" font-size="30" fill="#1B5138" font-weight="900" text-anchor="middle">🌰 245</text>
+  <text x="180" y="140" font-size="11.5" fill="#6E776F" font-weight="600" text-anchor="middle">可以問一次深度建議，還有剩</text>
+  <line x1="20" y1="172" x2="340" y2="172" stroke="#ECEAE2"/>
+  <text x="28" y="198" font-size="12.5" fill="#6E776F" font-weight="600" text-anchor="start">紀錄練習 · 中路網球場</text>
+  <text x="332" y="198" font-size="13" fill="#3F7C43" font-weight="800" text-anchor="end">+5</text>
+  <line x1="20" y1="214" x2="340" y2="214" stroke="#ECEAE2"/>
+  <text x="28" y="240" font-size="12.5" fill="#6E776F" font-weight="600" text-anchor="start">回報球場狀態 · 中山公園</text>
+  <text x="332" y="240" font-size="13" fill="#3F7C43" font-weight="800" text-anchor="end">+15</text>
+  <line x1="20" y1="256" x2="340" y2="256" stroke="#ECEAE2"/>
+  <text x="28" y="282" font-size="12.5" fill="#6E776F" font-weight="600" text-anchor="start">文字回覆 · 網球技術</text>
+  <text x="332" y="282" font-size="13" fill="#B07A4A" font-weight="800" text-anchor="end">−50</text>
+  <line x1="20" y1="298" x2="340" y2="298" stroke="#ECEAE2"/>
+  <text x="28" y="324" font-size="12.5" fill="#6E776F" font-weight="600" text-anchor="start">新增球場 · 審核通過</text>
+  <text x="332" y="324" font-size="13" fill="#3F7C43" font-weight="800" text-anchor="end">+50</text>
+  <line x1="20" y1="340" x2="340" y2="340" stroke="#ECEAE2"/>
+  <text x="28" y="366" font-size="12.5" fill="#6E776F" font-weight="600" text-anchor="start">註冊歡迎禮</text>
+  <text x="332" y="366" font-size="13" fill="#3F7C43" font-weight="800" text-anchor="end">+100</text>
+</svg>
