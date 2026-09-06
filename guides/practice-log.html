@@ -1,0 +1,125 @@
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    h2 { font-size: 18px; margin: 32px 0 8px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 18px 14px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; margin: 0 0 6px; }
+    .card p { margin: 0; font-size: 15px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
+    ul.plain { color: var(--text-secondary); font-size: 15px; line-height: 1.9; padding-left: 20px; }
+    ul.plain b { color: var(--text-secondary); }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); }
+</style>
+  <article class="container rel">
+    <a class="rel-back" href="/whats-new">← 最新情報</a>
+    <span class="tag-line">🌰 功能介紹</span>
+    <h1>我的練習：記一次，餵給五個地方</h1>
+    <p class="lead">
+      記一筆練習只要三十秒。但它不是流水帳——<b>同一筆紀錄同時餵給你的護照、
+      地圖上的球場熱度、征服進度、堅果點數，還有球友判斷「今天那裡有沒有人」。</b>
+      這是整個 App 唯一一個「你多做一件事，很多地方一起長」的動作。
+    </p>
+
+    <h2>怎麼記</h2>
+    <p>
+      按底部中間那顆 <b>＋</b>，選「新增練習」。必填的只有兩個：<b>球場</b>和<b>時長</b>。
+      其餘都可以跳過。
+    </p>
+
+    <ul class="plain">
+      <li><b>球場</b>（必填）——如果你人就在球場，它會直接把最近的那座填好</li>
+      <li><b>日期與開始時間</b>——預設今天；忘了記可以補</li>
+      <li><b>時長</b>（必填）</li>
+      <li><b>練習類型</b>——自主練習／對打練習／教練課／定點練習／比賽練習／體能訓練</li>
+      <li><b>強度評分</b>（1–5 顆星）</li>
+      <li><b>筆記</b>——今天狀態怎麼樣、練了什麼、哪裡卡住</li>
+      <li><b>照片</b>——一張，之後做成分享圖卡就有底圖</li>
+      <li><b>匿名顯示</b>——勾了之後，別人只會看到「有人在這裡練習」，不會看到你的名字</li>
+    </ul>
+
+    <h2>那個 200 公尺</h2>
+    <p>
+      存檔的時候，App 會比對你的位置和你選的球場。<b>在 200 公尺內</b>，這筆會：
+    </p>
+    <ul class="plain">
+      <li>算進「去過幾座球場」和征服進度</li>
+      <li>給你 <b>5 顆堅果</b>（每天最多 3 筆，也就是每天 15 顆）</li>
+      <li>讓那座球場在地圖上亮起來，追蹤它的人會知道有人在打</li>
+    </ul>
+    <p>
+      超過 200 公尺（例如回家才想起來要記），<b>紀錄照樣留下來、時數照樣累積</b>，
+      只是不會計入球場征服、也不給堅果。理由很單純：<b>球場征服要證明你真的去了，
+      而只有當下的定位證明得了。</b>
+    </p>
+
+    <div class="callout">
+      <b>那我事後才記怎麼辦？</b>
+      照記。時數、筆記、評分、練習類型全都會留著，護照的總時數也會長。
+      少的只有征服進度和那 5 顆堅果——而那兩樣本來就是「人在現場」的獎勵。
+    </div>
+
+    <h2>記完之後，它去了哪裡</h2>
+
+    <div class="card">
+      <h3>你的網球護照</h3>
+      <p>總練習時數、總筆數、去過幾座不同的球場，還有本週與本月各幾次。</p>
+    </div>
+
+    <div class="card">
+      <h3>地圖上的球場熱度</h3>
+      <p>那座球場會被算進「現在有人」——但別人只看得到數字，看不到是誰。</p>
+    </div>
+
+    <div class="card">
+      <h3>好友的首頁</h3>
+      <p>
+        好友會在首頁看到你去了哪裡、打了多久（近 30 天）。
+        勾了匿名的那幾筆不會出現。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>追蹤那座球場的人</h3>
+      <p>把那座球場加最愛的人會收到「有人在這裡打球」——不含你的名字。</p>
+    </div>
+
+    <div class="card">
+      <h3>一張可以分享的圖卡</h3>
+      <p>
+        每一筆紀錄都能一鍵做成圖卡，球場、時長、你的筆記和照片都在上面，
+        直接貼 IG 限動或群組。
+      </p>
+    </div>
+
+    <h2>記錯了可以改</h2>
+    <p>
+      在「探索 / 紀錄 → 我的練習」裡點開任何一筆都能編輯：日期、時間、時長、
+      類型、評分、筆記、照片。也可以刪除。
+      <b>球場不能改</b>——那筆紀錄的球場已經餵進征服進度和球場熱度了，
+      改掉會讓兩邊對不起來。記錯球場的話，刪掉重記。
+    </p>
+
+    <h2>幾個實際的用法</h2>
+    <p>
+      <b>只填必填的兩格。</b>三十秒的事，不要為了「寫得完整」而放棄記。
+      時長和球場就足以撐起護照、熱度和征服。
+    </p>
+    <p>
+      <b>筆記寫「下次要注意什麼」，不要寫「今天打了什麼」。</b>
+      打了什麼你自己記得，下次要注意什麼你三天後就忘了。
+    </p>
+    <p>
+      <b>離開球場前記，不要回家記。</b>不只是為了那 5 顆堅果——人還在場上的時候，
+      對今天狀態的判斷比較準，而且 200 公尺那條線只有那時候過得了。
+    </p>
+
+    <div class="guide-foot">
+      用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 上找 Nutty 🌰</a>說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
+    </div>
+  </article>
