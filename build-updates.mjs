@@ -128,7 +128,7 @@ const header = `  <header class="site-header">
     </a>
     <nav>
       <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">下載 App</a>
-      <a href="/whats-new" class="active">最新情報</a>
+      <a href="/whats-new" class="active">Blog</a>
       <a href="/privacy">隱私權</a>
       <a href="/terms">服務條款</a>
     </nav>
@@ -137,7 +137,7 @@ const header = `  <header class="site-header">
 const footer = `  <footer>
     <div class="footer-inner">
       <div class="footer-text">
-        <a href="/whats-new">最新情報</a>·
+        <a href="/whats-new">Blog</a>·
         <a href="/privacy">隱私權政策</a>·
         <a href="/terms">服務條款</a>·
         <a href="mailto:kaysoncho@gmail.com">聯絡我們</a>
