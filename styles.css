@@ -69,12 +69,14 @@ a:hover {
   align-items: center;
   gap: 12px;
   padding: 12px 24px;
-  border-bottom: 1px solid var(--border);
   flex-shrink: 0;
-  background: var(--surface);
+  /* 深綠底：第一屏原本沒有任何品牌色的塊面，白色頁首讀起來像預設樣板，
+     換成誰的 logo 都成立。深色也讓底下那條淺綠 hero 有東西可以壓著。
+     wordmark 因此要用白色版，深綠的那顆在這個底色上會消失。 */
+  background: #1B5138;
   /* 釘在頂端，因為導覽列的第一項是「下載 App」——讀到頁面中段才被說服的人，
-     需要當下就按得到，而 hero 的徽章那時已經捲出畫面。背景是不透明的
-     var(--surface)，所以底下的內容不會透出來。 */
+     需要當下就按得到，而 hero 的徽章那時已經捲出畫面。背景不透明，
+     底下的內容不會透出來。 */
   position: sticky;
   top: 0;
   z-index: 50;
@@ -100,13 +102,13 @@ a:hover {
 
 .site-header nav a {
   font-size: 14px;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.72);
   white-space: nowrap;
 }
 
 .site-header nav a.active,
 .site-header nav a:hover {
-  color: var(--text-primary);
+  color: #fff;
   text-decoration: none;
 }
 
