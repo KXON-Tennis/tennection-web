@@ -234,8 +234,7 @@ const indexBody = `  <article class="container">
     <span class="tag-line">🌰 Tennis Nut</span>
     <h1>Blog</h1>
 
-    <h2 class="guide-h">版本更新</h2>
-    <p class="meta">每一次改版做了什麼，都記在這裡。</p>
+    <h2 class="guide-h">版本更新紀錄</h2>
 
     <ul class="rel-list">
 ${releases
