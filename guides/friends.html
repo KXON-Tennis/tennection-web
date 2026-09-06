@@ -1,0 +1,125 @@
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    h2 { font-size: 18px; margin: 32px 0 8px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 18px 14px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; margin: 0 0 6px; }
+    .card p { margin: 0; font-size: 15px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
+    figure { margin: 16px 0 4px; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto; border-radius: 12px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.6; }
+    ul.plain { color: var(--text-secondary); font-size: 15px; line-height: 1.9; padding-left: 20px; }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); }
+</style>
+  <article class="container rel">
+    <a class="rel-back" href="/whats-new">← 最新情報</a>
+    <span class="tag-line">🌰 功能介紹</span>
+    <h1>加好友之後，會多出什麼</h1>
+    <p class="lead">
+      一句話講完：<b>陌生人看到的是數字，好友看到的是名字。</b>
+      這個 App 幾乎每一個「有人在那裡」的地方，都是這樣分的。
+    </p>
+
+    <h2>加了之後，六件事會不一樣</h2>
+
+    <div class="card">
+      <h3>1. 他到球場，你會知道是他</h3>
+      <p>
+        好友到了球場（走進去待滿五分鐘），你會收到「⚪⚪到了中央大學網球場」。
+        同一件事，陌生人只會讓地圖上的數字從 2 變成 3——<b>看不到是誰。</b>
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>2. 首頁看得到他最近打了什麼</h3>
+      <p>
+        好友的練習和比賽會出現在你的首頁（近 30 天）。他去了哪座球場、打了多久、
+        比賽輸贏。記錄的時候勾了「匿名」的那幾筆不會出現——那是他自己的選擇。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>3. 看得到他的空檔，還有你們重疊多久</h3>
+      <p>
+        「我的空檔」貼出來的時段<b>預設只有好友看得到</b>。而且系統會直接告訴你
+        <b>你們重疊了幾個小時</b>，標上一顆星星——按一下就送出一則已經填好時間和
+        球場的邀約，不必從「你哪天有空」開始問。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>4. 可以指名約他</h3>
+      <p>
+        發起約球時的「找誰」，名單來自你的好友。被指名的人收到的是
+        「⚪⚪約你」，不是一則公告。沒加好友，就只能開公開場次等人來。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>5. 記比賽時可以把他標成搭檔或對手</h3>
+      <p>
+        單雙打計分時，搭檔和對手可以從好友裡選。他確認之後，
+        <b>這場也會算進他自己的戰績</b>（對手記相反的勝負）。
+        一場球，兩個人的護照同時長大——這件事只有好友之間做得到。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>6. 看得到他的網球護照</h3>
+      <p>
+        練球與比賽的時數、去過哪些球場、征服進度、手上那支拍。
+        遞護照這個動作，本來就是給認識的人看的。
+      </p>
+    </div>
+
+    <figure>
+      <img src="/shot-availability.svg" alt="好友的空檔與重疊時段" loading="lazy" />
+      <figcaption>好友的空檔是琥珀色的，重疊的部分會標星號，右邊直接可以約他。</figcaption>
+    </figure>
+
+    <h2>不加好友，還是可以做這些</h2>
+    <p>好友不是門票。沒有任何一個好友，這個 App 仍然完整：</p>
+    <ul class="plain">
+      <li>看地圖、查球場的材質、燈光、收費、停車</li>
+      <li>看到每座球場現在有幾個人（只是看不到是誰）</li>
+      <li>記自己的練習、比賽、球場打卡，累積護照與堅果</li>
+      <li>參加陌生人開的公開約球——<b>報名不需要是好友</b></li>
+      <li>把自己的空檔設成公開，讓陌生人也看得到、也能約你</li>
+      <li>向教練與體能專家提問</li>
+      <li>回報球場狀態、補上缺漏的資料</li>
+    </ul>
+    <p>
+      換句話說：<b>好友影響的是「你看到誰」，不是「你能做什麼」。</b>
+    </p>
+
+    <h2>怎麼加</h2>
+    <p>
+      在對方的頭像或護照頁按「加好友」，對方按接受就成立——<b>雙向的，
+      不是單方追蹤。</b>你送出之後，在他接受之前，你的好友清單不會出現他；
+      同樣地，他的清單也不會出現你。
+    </p>
+
+    <div class="callout">
+      <b>有人說加了你，但你的清單裡沒有？</b>
+      那多半是還停在「待確認」。打開護照，「好友」那一列右邊如果有一個綠色數字，
+      就是還沒處理的邀請，點進去按接受就好。
+    </div>
+
+    <h2>移除好友</h2>
+    <p>
+      隨時可以移除，而且是<b>雙向</b>的——你把他移除，你也會從他的名單裡消失。
+      移除之後，上面那六件事同時停止：他到球場你不會再收到通知，
+      他的空檔和動態也不會再出現在你的首頁。已經記下來的比賽紀錄不受影響。
+    </p>
+
+    <div class="guide-foot">
+      用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 上找 Nutty 🌰</a>說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
+    </div>
+  </article>
