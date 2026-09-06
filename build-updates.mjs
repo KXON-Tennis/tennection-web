@@ -232,7 +232,7 @@ ${
 const latest = releases[0];
 const indexBody = `  <article class="container">
     <span class="tag-line">🌰 Tennis Nut</span>
-    <h1>最新情報</h1>
+    <h1>Blog</h1>
 
     <h2 class="guide-h">版本更新</h2>
     <p class="meta">每一次改版做了什麼，都記在這裡。</p>
