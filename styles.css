@@ -91,7 +91,9 @@ a:hover {
 }
 
 .site-header .brand-wordmark {
-  height: 46px;
+  /* 比原本的 46px 高：這顆 logo 帶著光暈，光暈也算在圖高裡，
+     所以同樣的框高之下字會比實心版小一截。 */
+  height: 56px;
   width: auto;
   display: block;
 }
@@ -850,7 +852,7 @@ footer a {
   }
 
   .site-header .brand-wordmark {
-    height: 38px;
+    height: 46px;
   }
 
   /* 手機上的導覽列：六個項目換行會把「隱私權」拆成三行。法律頁在頁尾本來就

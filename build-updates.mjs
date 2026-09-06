@@ -143,7 +143,7 @@ const head = ({ title, description, canonical, image }) => `  <meta charset="UTF
 
 const header = `  <header class="site-header">
     <a href="/" class="brand-link">
-      <img src="/wordmark-white.png" alt="Tennis Nut" class="brand-wordmark" />
+      <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
       <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">下載 App</a>
