@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
-  updates.json → /whats-new (索引) + /whats-new/<build> (每一版一頁)。
+  updates.json → /blog (索引) + /blog/<build> (每一版一頁)。
   無依賴，node build-updates.mjs 就跑得動；`npm run ship` 會先跑一次。
 
   為什麼每版一個檔而不是單頁加錨點：這些網址的用途是貼進 LINE 群，LINE 讀的是
@@ -128,7 +128,7 @@ const header = `  <header class="site-header">
     </a>
     <nav>
       <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">下載 App</a>
-      <a href="/whats-new" class="active">Blog</a>
+      <a href="/blog" class="active">Blog</a>
       <a href="/privacy">隱私權</a>
       <a href="/terms">服務條款</a>
     </nav>
@@ -137,7 +137,7 @@ const header = `  <header class="site-header">
 const footer = `  <footer>
     <div class="footer-inner">
       <div class="footer-text">
-        <a href="/whats-new">Blog</a>·
+        <a href="/blog">Blog</a>·
         <a href="/privacy">隱私權政策</a>·
         <a href="/terms">服務條款</a>·
         <a href="mailto:kaysoncho@gmail.com">聯絡我們</a>
@@ -161,7 +161,7 @@ ${footer}
 </html>
 `;
 
-const relPath = (b) => `/whats-new/${b}`;
+const relPath = (b) => `/blog/${b}`;
 const twoDigits = (n) => String(n).padStart(2, '0');
 const prettyDate = (iso) => {
   const [y, m, d] = iso.split('-');
@@ -169,13 +169,13 @@ const prettyDate = (iso) => {
 };
 
 // ── 每一版一頁 ────────────────────────────────────────────────────────────
-mkdirSync(join(ROOT, 'whats-new'), { recursive: true });
+mkdirSync(join(ROOT, 'blog'), { recursive: true });
 
 releases.forEach((r, i) => {
   const newer = releases[i - 1];
   const older = releases[i + 1];
   const body = `  <article class="container rel">
-    <a class="rel-back" href="/whats-new">← 所有更新</a>
+    <a class="rel-back" href="/blog">← 所有更新</a>
     <span class="tag-line">版本 ${esc(r.version)} · Build ${esc(r.build)} · ${prettyDate(r.date)}</span>
     <h1>${esc(r.title)}</h1>
     <p class="rel-lead">${esc(r.summary)}</p>
@@ -232,7 +232,7 @@ ${
   </article>`;
 
   writeFileSync(
-    join(ROOT, 'whats-new', `${r.build}.html`),
+    join(ROOT, 'blog', `${r.build}.html`),
     page(
       {
         title: `${r.title} · Tennis Nut ${r.version}`,
@@ -322,17 +322,17 @@ ${guides
   </article>`;
 
 writeFileSync(
-  join(ROOT, 'whats-new.html'),
+  join(ROOT, 'blog.html'),
   page(
     {
       title: '最新情報 · Tennis Nut',
       description: `Tennis Nut 的版本更新與功能介紹。最新版 ${latest.version}：${latest.summary}`,
-      canonical: `${SITE}/whats-new`,
+      canonical: `${SITE}/blog`,
       image: latest.image || '/app-features.png',
     },
     indexBody
   )
 );
 
-console.log(`whats-new.html + ${releases.length} 版：${releases.map((r) => r.build).join(', ')}`);
+console.log(`blog.html + ${releases.length} 版：${releases.map((r) => r.build).join(', ')}`);
 console.log(`最新一版網址（貼 LINE 用）：${SITE}${relPath(latest.build)}`);
