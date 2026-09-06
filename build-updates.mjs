@@ -254,7 +254,6 @@ ${
   guides?.length
     ? `
     <h2 class="guide-h">功能介紹</h2>
-    <p class="meta">不綁版本的那些——已經在 App 裡，只是還沒有人告訴你。</p>
     <ul class="rel-list">
 ${guides
   .map(
