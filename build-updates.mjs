@@ -206,6 +206,28 @@ ${
   );
 });
 
+// ── 功能介紹（不綁版本）───────────────────────────────────────────────────
+//
+// 內容放在 guides/<slug>.html，只有 <article> 那一段；<head>、頁首、頁尾一律
+// 由這裡套上，跟每一版的更新頁共用同一個殼。手寫整頁那次，頁首用了站上不存在
+// 的 class，wordmark 沒有寬度限制就把版面撐開了——外殼只能有一個來源。
+(guides ?? []).forEach((g) => {
+  const slug = g.href.replace(/^\//, '');
+  const fragment = readFileSync(join(ROOT, 'guides', `${slug}.html`), 'utf8');
+  writeFileSync(
+    join(ROOT, `${slug}.html`),
+    page(
+      {
+        title: `${g.title} · Tennis Nut`,
+        description: g.blurb,
+        canonical: `${SITE}${g.href}`,
+        image: g.image || '/app-features.png',
+      },
+      fragment
+    )
+  );
+});
+
 // ── 索引 ─────────────────────────────────────────────────────────────────
 const latest = releases[0];
 const indexBody = `  <article class="container">

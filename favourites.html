@@ -5,18 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>那顆愛心到底做了什麼 · Tennis Nut</title>
   <meta name="description" content="把球場加進最愛，是這個 App 裡唯一一個讓陌生人的球局主動找上你的開關。" />
-  <meta property="og:title" content="那顆愛心到底做了什麼" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="那顆愛心到底做了什麼 · Tennis Nut" />
   <meta property="og:description" content="把球場加進最愛，是這個 App 裡唯一一個讓陌生人的球局主動找上你的開關。" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/favourites" />
   <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
+  <link rel="canonical" href="https://tennisnut.kxon.net/favourites" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&display=swap" />
   <link rel="stylesheet" href="/styles.css" />
   <style>
     h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .rel-lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    .hl { display: flex; gap: 14px; align-items: flex-start; background: var(--surface);
+          border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 14px; margin-bottom: 14px; }
+    .hl-emoji { font-size: 22px; line-height: 1.4; flex-shrink: 0; }
+    .hl-body h2 { font-size: 17px; margin: 0 0 6px; }
+    .hl-body p { margin: 0; color: var(--text-secondary); font-size: 15px; }
+    .hl-shot { margin: 14px 0 2px; }
+    .hl-shot img { display: block; width: 100%; max-width: 300px; height: auto;
+                   border-radius: 12px; }
+    .hl-shot figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; }
+    .guide-h { font-size: 19px; margin: 34px 0 2px; padding-top: 4px; }
+    .guide-h + .meta { margin-top: 0; }
+    .fixes { margin: 28px 0 8px; }
+    .fixes h2 { font-size: 15px; color: var(--text-tertiary); font-weight: 600; margin: 0 0 8px; }
+    .fixes ul { margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 15px; }
+    .fixes li { margin-bottom: 4px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 14px 16px; font-size: 15px; margin: 28px 0 0; }
+    .rel-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; font-size: 14px; }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-secondary); }
+    .rel-list { list-style: none; margin: 24px 0 0; padding: 0; }
+    .rel-item { margin-bottom: 12px; }
+    .rel-item a { display: block; background: var(--surface); border: 1px solid var(--border);
+                  border-radius: 14px; padding: 18px; text-decoration: none; }
+    .rel-item a:hover { border-color: var(--accent); text-decoration: none; }
+    .rel-item-meta { font-size: 13px; color: var(--text-tertiary); }
+    .rel-item-title { font-family: "Sora", -apple-system, sans-serif; font-size: 19px;
+                      color: var(--text-primary); margin: 4px 0 6px; }
+    .rel-item-sum { margin: 0; font-size: 15px; color: var(--text-secondary); }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="brand-link">
+      <img src="/wordmark.png" alt="Tennis Nut" class="brand-wordmark" />
+    </a>
+    <nav>
+      <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">下載 App</a>
+      <a href="/whats-new" class="active">最新情報</a>
+      <a href="/privacy">隱私權</a>
+      <a href="/terms">服務條款</a>
+    </nav>
+  </header>
+
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
     .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
     .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
     h2 { font-size: 18px; margin: 32px 0 8px; }
@@ -29,22 +84,10 @@
                padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
     .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
                   font-size: 14px; color: var(--text-tertiary); }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="/"><img src="/wordmark.png" alt="Tennis Nut" class="brand-mark" /></a>
-      <nav class="site-nav">
-        <a href="/install">安裝 App</a>
-        <a href="/whats-new">最新情報</a>
-      </nav>
-    </div>
-  </header>
-
-  <article class="container rel">
-    <a class="rel-back" href="/whats-new">← 所有更新</a>
-    <span class="tag-line">🌰 功能說明</span>
+</style>
+<article class="container rel">
+    <a class="rel-back" href="/whats-new">← 最新情報</a>
+    <span class="tag-line">🌰 功能介紹</span>
     <h1>那顆愛心到底做了什麼</h1>
     <p class="lead">
       球場資訊卡右上角那顆愛心，大部分人以為是書籤。它其實是這個 App 裡
@@ -114,10 +157,10 @@
     </div>
   </article>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="foot-links">
-        <a href="/install">安裝 App</a>·
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-text">
         <a href="/whats-new">最新情報</a>·
         <a href="/privacy">隱私權政策</a>·
         <a href="/terms">服務條款</a>·
