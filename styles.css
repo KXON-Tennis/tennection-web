@@ -107,14 +107,32 @@ a:hover {
 
 .site-header nav a {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.86);
   white-space: nowrap;
+  position: relative;
 }
 
-.site-header nav a.active,
 .site-header nav a:hover {
   color: #fff;
   text-decoration: none;
+}
+
+/* 目前所在的那一項用一條萊姆綠底線標示，不靠亮度差——深綠底上把一個字提到
+   純白、其餘壓到七成，那個字會亮得像被反白選取。 */
+.site-header nav a.active {
+  color: #fff;
+  text-decoration: none;
+}
+
+.site-header nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: #B8D52A;
 }
 
 h1 {
@@ -849,17 +867,21 @@ footer a {
   }
 
   .site-header {
-    padding: 10px 18px;
+    padding: 8px 16px;
   }
 
   .site-header .brand-wordmark {
-    height: 50px;
+    height: 40px;
   }
 
   /* 手機上的導覽列：六個項目換行會把「隱私權」拆成三行。法律頁在頁尾本來就
      有，這裡收起來；剩下的四項是使用者真的會在頁首找的東西。 */
   .site-header nav {
-    gap: 14px;
+    gap: 13px;
+  }
+
+  .site-header nav a {
+    font-size: 13.5px;
   }
 
   .site-header nav a[href="/privacy"],
