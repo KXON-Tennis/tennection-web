@@ -146,8 +146,8 @@ const header = `  <header class="site-header">
       <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
-      <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">下載 App</a>
-      <a href="/install">安裝 App</a>
+      <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">下載</a>
+      <a href="/install">安裝</a>
       <a href="/blog" class="active">Blog</a>
       <a href="/privacy">隱私權</a>
       <a href="/terms">服務條款</a>
