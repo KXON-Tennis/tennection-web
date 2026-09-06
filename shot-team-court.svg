@@ -3,13 +3,13 @@
   <rect x="8" y="8" width="344" height="348" rx="30" fill="#FBFAF6"/>
   <rect x="154.0" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
   <rect x="16" y="44" width="328" height="300" rx="18" fill="#FFFFFF" stroke="#ECEAE2"/>
-  <text x="34" y="80" font-size="16" fill="#1B5138" font-weight="800" text-anchor="start">中央大學網球場</text>
+  <text x="34" y="80" font-size="16" fill="#1B5138" font-weight="800" text-anchor="start">中路網球場</text>
   <line x1="34" y1="98" x2="326" y2="98" stroke="#ECEAE2"/>
   <text x="34" y="124" font-size="13" fill="#6E776F" font-weight="700" text-anchor="start">🏳️  駐紮球團</text>
   <rect x="34" y="140" width="292" height="56" rx="10" fill="#FFFFFF" stroke="#ECEAE2"/>
   <circle cx="60" cy="168" r="16" fill="#3F7C43" opacity="0.15"/>
   <text x="60" y="173" font-size="14" fill="#6E776F" font-weight="500" text-anchor="middle">🎾</text>
-  <text x="86" y="164" font-size="13" fill="#1B5138" font-weight="800" text-anchor="start">中大網球社</text>
+  <text x="86" y="164" font-size="13" fill="#1B5138" font-weight="800" text-anchor="start">Tennis Nut 隊</text>
   <text x="86" y="182" font-size="11" fill="#9BA29B" font-weight="500" text-anchor="start">12 人</text>
   <rect x="248" y="156" width="62" height="26" rx="13" fill="#3F7C43"/>
   <text x="279" y="173" font-size="11.5" fill="#FFFFFF" font-weight="800" text-anchor="middle">加入</text>
@@ -22,5 +22,5 @@
   <text x="279" y="239" font-size="11.5" fill="#FFFFFF" font-weight="800" text-anchor="middle">加入</text>
   <rect x="34" y="276" width="292" height="48" rx="10" fill="#3F7C43" opacity="0.10"/>
   <text x="48" y="296" font-size="12.5" fill="#3F7C43" font-weight="800" text-anchor="start">＋ 在這裡建隊</text>
-  <text x="48" y="313" font-size="10.5" fill="#6E776F" font-weight="500" text-anchor="start">主場就會是中央大學網球場</text>
+  <text x="48" y="313" font-size="10.5" fill="#6E776F" font-weight="500" text-anchor="start">主場就會是中路網球場</text>
 </svg>
