@@ -1,0 +1,133 @@
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    h2 { font-size: 18px; margin: 32px 0 8px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 18px 14px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; margin: 0 0 6px; }
+    .card p { margin: 0; font-size: 15px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
+    figure { margin: 16px 0 4px; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto; border-radius: 12px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.6; }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); }
+</style>
+  <article class="container rel">
+    <a class="rel-back" href="/whats-new">← 最新情報</a>
+    <span class="tag-line">🌰 功能介紹</span>
+    <h1>球友在線：地圖上那個數字</h1>
+    <p class="lead">
+      出門前最想知道的一件事是「現在那裡有沒有人」。地圖上球場旁邊的那個小數字，
+      回答的就是這個。它沒有任何按鈕——<b>你到了球場，它自己會亮。</b>
+    </p>
+
+    <h2>它由什麼啟動</h2>
+    <p>
+      不用打卡、不用按任何東西。App 每兩分鐘看一次你在哪裡，當你
+      <b>進入球場 200 公尺內、而且待滿 5 分鐘</b>，才算你到了。
+    </p>
+    <p>
+      五分鐘這個門檻是刻意的：<b>路過不算。</b>騎車經過球場、在旁邊等紅燈、
+      到隔壁買東西——這些都不會讓你出現在地圖上。要待下來，才算來打球。
+    </p>
+    <p>
+      到場之後，你會被算進那座球場的在線人數<b>兩個小時</b>。兩小時後自動消失，
+      不需要「簽退」。
+    </p>
+
+    <div class="callout">
+      <b>沒開定位怎麼辦？</b>
+      那就不會自動偵測到你——這個功能完全靠定位。你仍然可以手動記練習、記比賽，
+      那些一樣會讓球場亮起來，只是走的是另一條路。
+    </div>
+
+    <h2>誰會看到什麼</h2>
+
+    <div class="card">
+      <h3>陌生人：只看得到數字</h3>
+      <p>
+        地圖上顯示的是「這座球場現在有 3 個人」，<b>不會顯示是誰</b>。
+        這不是介面上藏起來而已——地圖讀的是一個只回傳數字的資料庫函式，
+        身分從頭到尾沒有離開伺服器。就算有人想查，那裡也沒有名字可查。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>好友：會知道是你</h3>
+      <p>
+        你的好友會收到一則「你到了中央大學網球場」的通知。這是好友關係本來的意思——
+        你們互相加了對方，才會知道對方在哪打球。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>把球場加最愛的人：會知道有人來了</h3>
+      <p>
+        追蹤了那座球場的人（不一定是你的好友）會收到「有人在中央大學打球」——
+        <b>一樣不含你的名字</b>。他們訂閱的是那個場地，不是你。
+      </p>
+    </div>
+
+    <h2>不想被看到</h2>
+    <p>
+      設定裡有一個開關：<b>「分享我的球場活動到社群」</b>。關掉之後，
+      你就不會被算進地圖上的數字，陌生人不會因為你而看到那座球場亮起來。
+    </p>
+    <p>
+      要說清楚的是：<b>這個開關管的是地圖上的公開數字，不管好友通知。</b>
+      好友仍然會收到你到場的訊息——那是好友關係的一部分，要停掉的話目前只能移除好友。
+      這兩件事分開是刻意的，但我們也知道它不夠明顯，之後會讓這個開關說得更清楚。
+    </p>
+    <p>
+      另外，記練習和記比賽的時候各有一個「匿名顯示在地圖活動上」的選項。
+      勾了之後，別人只會看到「有人在這裡練習」，不會看到你的名字。
+    </p>
+
+    <h2>地圖上怎麼看</h2>
+
+    <figure>
+      <img src="/shot-live-map.svg" alt="地圖上顯示在線人數的球場標記" loading="lazy" />
+      <figcaption>球場標記上的數字是在線人數；上面那排的「球友在線」按下去，只留下有人的球場。</figcaption>
+    </figure>
+
+    <div class="card">
+      <h3>球場旁邊的數字</h3>
+      <p>過去兩小時內，有幾個人在那裡。沒有人的球場不會有這個數字。</p>
+    </div>
+
+    <div class="card">
+      <h3>「球友在線」篩選</h3>
+      <p>
+        地圖上方的篩選列有一個「球友在線」。按下去，地圖只留下現在有人的球場——
+        今晚想找個確定有人的地方，這一顆最快。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>球場卡上的「X 分鐘前有人抵達」</h3>
+      <p>
+        點開球場，除了人數還會告訴你最近一次有人到是多久以前。
+        「3 個人」和「40 分鐘前有人到」是兩件事——後者告訴你這個數字有多新。
+      </p>
+    </div>
+
+    <h2>為什麼不做「我在這裡打球」按鈕</h2>
+    <p>
+      因為沒有人會按。要一個人在打球前先掏出手機、打開 App、找到按鈕、按下去，
+      為的是讓陌生人知道這裡有人——這件事不會發生。
+    </p>
+    <p>
+      而它必須發生，這張地圖才有意義：<b>只要有人偷懶不按，數字就會低估，
+      而一個會低估的數字，看的人就不會相信。</b>
+      所以我們選擇不要求任何人做任何事——你去打球，它自己就記下來了。
+    </p>
+
+    <div class="guide-foot">
+      用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 上找 Nutty 🌰</a>說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
+    </div>
+  </article>
