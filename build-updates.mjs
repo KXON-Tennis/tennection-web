@@ -50,7 +50,7 @@ const PAGE_CSS = `
     .rel-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; font-size: 14px; }
     .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
                   font-size: 14px; color: var(--text-secondary); }
-    .rel-list { list-style: none; margin: 24px 0 0; padding: 0; }
+    .rel-list { list-style: none; margin: 20px 0 0; padding: 0; }
     .rel-item { margin-bottom: 12px; }
     .rel-item a { display: block; background: var(--surface); border: 1px solid var(--border);
                   border-radius: 14px; padding: 18px; text-decoration: none; }
@@ -59,6 +59,45 @@ const PAGE_CSS = `
     .rel-item-title { font-family: "Sora", -apple-system, sans-serif; font-size: 19px;
                       color: var(--text-primary); margin: 4px 0 6px; }
     .rel-item-sum { margin: 0; font-size: 15px; color: var(--text-secondary); }
+
+    /* 區塊標題：小標籤 + 一條線，兩區才分得開 */
+    .sec-eyebrow { display: flex; align-items: center; gap: 12px; margin: 44px 0 0; }
+    .sec-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .sec-eyebrow h2 { font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
+                      color: var(--accent); margin: 0; white-space: nowrap; }
+
+    /* 最新一版：有圖、字大，跟舊版本明顯不同重量 */
+    .rel-hero { display: block; background: var(--surface); border: 1px solid var(--border);
+                border-radius: 18px; overflow: hidden; text-decoration: none; margin-top: 20px; }
+    .rel-hero:hover { border-color: var(--accent); text-decoration: none; }
+    .rel-hero img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--border); }
+    .rel-hero-body { padding: 20px 20px 22px; }
+    .rel-badge { display: inline-block; background: var(--accent); color: #fff; font-size: 11px;
+                 font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 3px 10px; }
+    .rel-hero h3 { font-family: "Sora", -apple-system, sans-serif; font-size: 24px; line-height: 1.35;
+                   color: var(--text-primary); margin: 12px 0 8px; }
+    .rel-hero p { margin: 0; font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+    .rel-hero .rel-item-meta { margin-top: 12px; }
+
+    /* 舊版本：收成一行，日期與標題並排 */
+    .rel-past { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--border); }
+    .rel-past li a { display: flex; gap: 14px; align-items: baseline; padding: 14px 2px;
+                     border-bottom: 1px solid var(--border); text-decoration: none; }
+    .rel-past li a:hover { text-decoration: none; }
+    .rel-past li a:hover .rel-past-t { color: var(--accent-d); }
+    .rel-past-d { font-size: 13px; color: var(--text-tertiary); white-space: nowrap; }
+    .rel-past-t { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+
+    /* 功能介紹：圖示當錨點，桌機兩欄 */
+    .guide-grid { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+    @media (min-width: 720px) { .guide-grid { grid-template-columns: 1fr 1fr; } }
+    .guide-grid a { display: flex; gap: 14px; height: 100%; background: var(--surface);
+                    border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+                    text-decoration: none; }
+    .guide-grid a:hover { border-color: var(--accent); text-decoration: none; }
+    .guide-ic { font-size: 22px; line-height: 1.3; flex-shrink: 0; }
+    .guide-t { font-size: 17px; font-weight: 700; color: var(--text-primary); margin: 0 0 6px; }
+    .guide-s { margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
 `;
 
 const head = ({ title, description, canonical, image }) => `  <meta charset="UTF-8" />
@@ -230,38 +269,51 @@ ${
 
 // ── 索引 ─────────────────────────────────────────────────────────────────
 const latest = releases[0];
+const [newest, ...past] = releases;
 const indexBody = `  <article class="container">
     <span class="tag-line">🌰 Tennis Nut</span>
     <h1>Blog</h1>
 
-    <h2 class="guide-h">版本更新紀錄</h2>
+    <div class="sec-eyebrow"><h2>版本更新紀錄</h2></div>
 
-    <ul class="rel-list">
-${releases
+    <a class="rel-hero" href="${relPath(newest.build)}">
+      ${newest.image ? `<img src="${esc(newest.image)}" alt="" />` : ''}
+      <div class="rel-hero-body">
+        <span class="rel-badge">最新版本</span>
+        <h3>${esc(newest.title)}</h3>
+        <p>${esc(newest.summary)}</p>
+        <div class="rel-item-meta">${prettyDate(newest.date)} · ${esc(newest.version)} (${esc(newest.build)})</div>
+      </div>
+    </a>
+
+${
+  past.length
+    ? `    <ul class="rel-past">
+${past
   .map(
-    (r) => `      <li class="rel-item">
-        <a href="${relPath(r.build)}">
-          <div class="rel-item-meta">${prettyDate(r.date)} · ${esc(r.version)} (${esc(r.build)})</div>
-          <div class="rel-item-title">${esc(r.title)}</div>
-          <p class="rel-item-sum">${esc(r.summary)}</p>
-        </a>
-      </li>`
+    (r) => `      <li><a href="${relPath(r.build)}">
+        <span class="rel-past-d">${prettyDate(r.date)} · ${esc(r.build)}</span>
+        <span class="rel-past-t">${esc(r.title)}</span>
+      </a></li>`
   )
   .join('\n')}
-    </ul>
+    </ul>`
+    : ''
+}
 ${
   guides?.length
     ? `
-    <h2 class="guide-h">功能介紹</h2>
-    <ul class="rel-list">
+    <div class="sec-eyebrow"><h2>功能介紹</h2></div>
+    <ul class="guide-grid">
 ${guides
   .map(
-    (g) => `      <li class="rel-item">
-        <a href="${esc(g.href)}">
-          <div class="rel-item-title">${esc(g.title)}</div>
-          <p class="rel-item-sum">${esc(g.blurb)}</p>
-        </a>
-      </li>`
+    (g) => `      <li><a href="${esc(g.href)}">
+        <span class="guide-ic" aria-hidden="true">${esc(g.icon || '🌰')}</span>
+        <span>
+          <span class="guide-t">${esc(g.title)}</span>
+          <p class="guide-s">${esc(g.blurb)}</p>
+        </span>
+      </a></li>`
   )
   .join('\n')}
     </ul>`

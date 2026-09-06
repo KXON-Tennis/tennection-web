@@ -119,22 +119,26 @@
     {
       "title": "那顆愛心到底做了什麼",
       "blurb": "把球場加進最愛，是這個 App 裡唯一一個讓陌生人的球局主動找上你的開關。",
-      "href": "/favourites"
+      "href": "/favourites",
+      "icon": "❤️"
     },
     {
       "title": "球友在線：地圖上那個數字",
       "blurb": "沒有按鈕，你到了球場它自己會亮。陌生人只看得到數字，好友才知道是你。",
-      "href": "/live-presence"
+      "href": "/live-presence",
+      "icon": "📍"
     },
     {
       "title": "加好友之後，會多出什麼",
       "blurb": "陌生人看到的是數字，好友看到的是名字。六件事會不一樣，但好友不是門票。",
-      "href": "/friends"
+      "href": "/friends",
+      "icon": "👥"
     },
     {
       "title": "我的練習：記一次，餵給五個地方",
       "blurb": "必填只有球場和時長。200 公尺內才算征服與堅果，但事後補記一樣留得住時數。",
-      "href": "/practice-log"
+      "href": "/practice-log",
+      "icon": "📓"
     }
   ]
 }
