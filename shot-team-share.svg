@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 376" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="368" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="360" rx="30" fill="#FBFAF6"/>
+  <rect x="154.0" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+  <rect x="40" y="52" width="280" height="300" rx="18" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="180" y="88" font-size="17" fill="#1B5138" font-weight="800" text-anchor="middle">中大網球社</text>
+  <text x="180" y="110" font-size="11" fill="#9BA29B" font-weight="500" text-anchor="middle">主場 · 中央大學網球場</text>
+  <rect x="120" y="126" width="120" height="120" rx="8" fill="#FBFAF6" stroke="#ECEAE2"/>
+  <rect x="128" y="134" width="9" height="9" fill="#1B5138"/>
+  <rect x="140" y="134" width="9" height="9" fill="#1B5138"/>
+  <rect x="164" y="134" width="9" height="9" fill="#1B5138"/>
+  <rect x="188" y="134" width="9" height="9" fill="#1B5138"/>
+  <rect x="200" y="134" width="9" height="9" fill="#1B5138"/>
+  <rect x="224" y="134" width="9" height="9" fill="#1B5138"/>
+  <rect x="128" y="146" width="9" height="9" fill="#1B5138"/>
+  <rect x="140" y="146" width="9" height="9" fill="#1B5138"/>
+  <rect x="152" y="146" width="9" height="9" fill="#1B5138"/>
+  <rect x="164" y="146" width="9" height="9" fill="#1B5138"/>
+  <rect x="188" y="146" width="9" height="9" fill="#1B5138"/>
+  <rect x="200" y="146" width="9" height="9" fill="#1B5138"/>
+  <rect x="140" y="158" width="9" height="9" fill="#1B5138"/>
+  <rect x="164" y="158" width="9" height="9" fill="#1B5138"/>
+  <rect x="188" y="158" width="9" height="9" fill="#1B5138"/>
+  <rect x="200" y="158" width="9" height="9" fill="#1B5138"/>
+  <rect x="212" y="158" width="9" height="9" fill="#1B5138"/>
+  <rect x="224" y="158" width="9" height="9" fill="#1B5138"/>
+  <rect x="140" y="170" width="9" height="9" fill="#1B5138"/>
+  <rect x="176" y="170" width="9" height="9" fill="#1B5138"/>
+  <rect x="200" y="170" width="9" height="9" fill="#1B5138"/>
+  <rect x="212" y="170" width="9" height="9" fill="#1B5138"/>
+  <rect x="224" y="170" width="9" height="9" fill="#1B5138"/>
+  <rect x="140" y="182" width="9" height="9" fill="#1B5138"/>
+  <rect x="152" y="182" width="9" height="9" fill="#1B5138"/>
+  <rect x="188" y="182" width="9" height="9" fill="#1B5138"/>
+  <rect x="224" y="182" width="9" height="9" fill="#1B5138"/>
+  <rect x="176" y="194" width="9" height="9" fill="#1B5138"/>
+  <rect x="200" y="194" width="9" height="9" fill="#1B5138"/>
+  <rect x="212" y="194" width="9" height="9" fill="#1B5138"/>
+  <rect x="128" y="206" width="9" height="9" fill="#1B5138"/>
+  <rect x="152" y="206" width="9" height="9" fill="#1B5138"/>
+  <rect x="212" y="206" width="9" height="9" fill="#1B5138"/>
+  <rect x="212" y="218" width="9" height="9" fill="#1B5138"/>
+  <rect x="164" y="230" width="9" height="9" fill="#1B5138"/>
+  <rect x="176" y="230" width="9" height="9" fill="#1B5138"/>
+  <rect x="200" y="230" width="9" height="9" fill="#1B5138"/>
+  <rect x="224" y="230" width="9" height="9" fill="#1B5138"/>
+  <rect x="128" y="134" width="28" height="28" rx="4" fill="#FFFFFF" stroke="#1B5138" stroke-width="4"/>
+  <rect x="212" y="134" width="28" height="28" rx="4" fill="#FFFFFF" stroke="#1B5138" stroke-width="4"/>
+  <rect x="128" y="218" width="28" height="28" rx="4" fill="#FFFFFF" stroke="#1B5138" stroke-width="4"/>
+  <text x="180" y="278" font-size="11" fill="#9BA29B" font-weight="600" text-anchor="middle">加入碼</text>
+  <text x="180" y="306" font-size="26" fill="#1B5138" font-weight="900" text-anchor="middle">TN4K9P</text>
+  <text x="180" y="332" font-size="11" fill="#6E776F" font-weight="500" text-anchor="middle">掃描或輸入代碼即可加入</text>
+</svg>
