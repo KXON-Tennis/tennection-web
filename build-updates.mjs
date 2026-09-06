@@ -17,7 +17,9 @@ import { fileURLToPath } from 'node:url';
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const SITE = 'https://tennisnut.kxon.net';
 
-const { releases } = JSON.parse(readFileSync(join(ROOT, 'updates.json'), 'utf8'));
+const { releases, guides } = JSON.parse(
+  readFileSync(join(ROOT, 'updates.json'), 'utf8')
+);
 if (!releases?.length) throw new Error('updates.json 裡沒有任何 release');
 
 const esc = (s) =>
@@ -37,6 +39,8 @@ const PAGE_CSS = `
     .hl-shot img { display: block; width: 100%; max-width: 300px; height: auto;
                    border-radius: 12px; }
     .hl-shot figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; }
+    .guide-h { font-size: 19px; margin: 34px 0 2px; padding-top: 4px; }
+    .guide-h + .meta { margin-top: 0; }
     .fixes { margin: 28px 0 8px; }
     .fixes h2 { font-size: 15px; color: var(--text-tertiary); font-weight: 600; margin: 0 0 8px; }
     .fixes ul { margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 15px; }
@@ -205,8 +209,10 @@ ${
 // ── 索引 ─────────────────────────────────────────────────────────────────
 const latest = releases[0];
 const indexBody = `  <article class="container">
-    <span class="tag-line">最新情報</span>
-    <h1>App 更新紀錄</h1>
+    <span class="tag-line">🌰 Tennis Nut</span>
+    <h1>最新情報</h1>
+
+    <h2 class="guide-h">版本更新</h2>
     <p class="meta">每一次改版做了什麼，都記在這裡。</p>
 
     <ul class="rel-list">
@@ -222,14 +228,33 @@ ${releases
   )
   .join('\n')}
     </ul>
+${
+  guides?.length
+    ? `
+    <h2 class="guide-h">功能介紹</h2>
+    <p class="meta">不綁版本的那些——已經在 App 裡，只是還沒有人告訴你。</p>
+    <ul class="rel-list">
+${guides
+  .map(
+    (g) => `      <li class="rel-item">
+        <a href="${esc(g.href)}">
+          <div class="rel-item-title">${esc(g.title)}</div>
+          <p class="rel-item-sum">${esc(g.blurb)}</p>
+        </a>
+      </li>`
+  )
+  .join('\n')}
+    </ul>`
+    : ''
+}
   </article>`;
 
 writeFileSync(
   join(ROOT, 'whats-new.html'),
   page(
     {
-      title: 'App 更新紀錄 · Tennis Nut',
-      description: `Tennis Nut 每一次改版的內容。最新版 ${latest.version}：${latest.summary}`,
+      title: '最新情報 · Tennis Nut',
+      description: `Tennis Nut 的版本更新與功能介紹。最新版 ${latest.version}：${latest.summary}`,
       canonical: `${SITE}/whats-new`,
       image: latest.image || '/app-features.png',
     },
