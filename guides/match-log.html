@@ -1,0 +1,111 @@
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    h2 { font-size: 18px; margin: 32px 0 8px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 18px 14px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; margin: 0 0 6px; }
+    .card p { margin: 0; font-size: 15px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
+    ul.plain { color: var(--text-secondary); font-size: 15px; line-height: 1.9; padding-left: 20px; }
+    figure { margin: 16px 0 4px; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto; border-radius: 12px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.6; }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); }
+</style>
+  <article class="container rel">
+    <a class="rel-back" href="/whats-new">← Blog</a>
+    <span class="tag-line">🌰 功能介紹</span>
+    <h1>我的比賽：一場球，兩個人的戰績</h1>
+    <p class="lead">
+      記比賽跟記練習最大的不同，是<b>比賽有別人在場</b>。所以這裡多了一件事：
+      你可以把球友標成搭檔或對手，他確認之後，<b>這場也會算進他自己的戰績</b>——
+      對手記的是相反的勝負。一場球，兩本護照一起長。
+    </p>
+
+    <h2>怎麼記</h2>
+    <p>
+      按底部中間那顆 <b>＋</b>，選「新增比賽」。單打或雙打、球場、比分，
+      就足以成立一筆。
+    </p>
+    <ul class="plain">
+      <li><b>單打／雙打</b></li>
+      <li><b>球場</b>——人在球場的話會自動帶入最近的那座</li>
+      <li><b>比分</b>——一盤一盤填，搶七也可以填</li>
+      <li><b>對手／搭檔</b>——好友可以直接選；不是好友就打名字</li>
+      <li><b>日期、開始時間、時長</b></li>
+      <li><b>筆記與照片</b></li>
+      <li><b>賽事名稱</b>——這場屬於哪個盃賽（選填）</li>
+      <li><b>匿名顯示</b>——別人只看得到「有人在這裡比賽」</li>
+    </ul>
+    <p>
+      勝負<b>不用自己選</b>：填完比分，系統自己算。平手和未完成也記得下來——
+      下雨中斷的那種。
+    </p>
+
+    <figure>
+      <img src="/shot-match-card.svg" alt="我的比賽：戰績統計與一場比賽的紀錄" loading="lazy" />
+      <figcaption>上面是總場數、勝、敗、勝率；底下每一場都看得到比分、搭檔與對手。</figcaption>
+    </figure>
+
+    <h2>標記球友：這篇的重點</h2>
+    <p>
+      在好友清單裡把人選成搭檔或對手，他會收到一則通知，然後看到這張卡片：
+      <b>誰記的、什麼比分、他是搭檔還是對手，以及「確認後會記成你的『勝』」。</b>
+      在他按下去之前，什麼都不會進他的戰績。
+    </p>
+
+    <figure>
+      <img src="/shot-match-confirm.svg" alt="等待確認的比賽，說明確認後會計入什麼" loading="lazy" />
+      <figcaption>確認之前先告訴他這一按會變成什麼——同意的是這個，不是一個空白的邀請。</figcaption>
+    </figure>
+
+    <p>他有三個選擇：</p>
+    <ul class="plain">
+      <li><b>確認，計入戰績</b>——這場成為他的一勝或一敗</li>
+      <li><b>確認，但不計入戰績</b>——他承認打過，但不想算進數字</li>
+      <li><b>這不是我</b>——標錯人了</li>
+    </ul>
+    <p>
+      而且<b>比分只有記錄的人能改</b>。他改了比分或結果，會再問對方一次——
+      因為那時候對方同意過的東西已經不一樣了。
+    </p>
+
+    <div class="callout">
+      <b>對手不用是 Tennis Nut 的使用者。</b>
+      直接打名字就好，這場一樣是你的紀錄、一樣算你的戰績。
+      標記只是多一個功能：讓對方的護照也長大。
+    </div>
+
+    <h2>戰績怎麼算</h2>
+    <p>
+      護照上會有總場數、勝、敗、勝率，以及單打和雙打各幾場。
+      別人記的、你確認並選擇計入的那些，也都算在裡面。
+    </p>
+    <p>
+      這裡刻意<b>沒有排名，也沒有積分</b>。護照是一份紀錄，不是一張排行榜——
+      跟誰打、在哪裡打、打了多少，本來就比一個名次更能說明一個人的網球。
+    </p>
+
+    <h2>那個 200 公尺</h2>
+    <p>
+      跟練習一樣：存檔時如果你人在球場 <b>200 公尺內</b>，這場會計入球場征服、
+      也會給你 <b>5 顆堅果</b>（每天最多 3 筆）。回家才記的話，
+      <b>紀錄和戰績照樣留著</b>，只是沒有征服和堅果。
+    </p>
+
+    <h2>記錯了可以改</h2>
+    <p>
+      在「探索 / 紀錄 → 我的比賽」點開任何一場都能編輯或刪除。
+      <b>球場不能改</b>——那筆的球場已經餵進征服進度和球場熱度了。記錯球場就刪掉重記。
+    </p>
+
+    <div class="guide-foot">
+      用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 上找 Nutty 🌰</a>說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
+    </div>
+  </article>

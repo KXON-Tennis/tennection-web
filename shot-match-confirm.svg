@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 336" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="328" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="320" rx="30" fill="#FBFAF6"/>
+  <rect x="154.0" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+  <rect x="20" y="52" width="320" height="52" rx="14" fill="#3F7C43" opacity="0.12"/>
+  <text x="36" y="84" font-size="13" fill="#3F7C43" font-weight="800" text-anchor="start">🎾  有 1 場比賽等你確認</text>
+  <rect x="20" y="118" width="320" height="196" rx="16" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="36" y="146" font-size="11.5" fill="#9BA29B" font-weight="600" text-anchor="start">由 Kayson 記錄</text>
+  <text x="36" y="172" font-size="13.5" fill="#1B5138" font-weight="800" text-anchor="start">雙打 · 9/2 · 中路網球場</text>
+  <text x="36" y="196" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="start">你是搭檔 · 6-4 3-6 7-5</text>
+  <rect x="36" y="210" width="288" height="30" rx="8" fill="#3F7C43" opacity="0.12"/>
+  <text x="48" y="230" font-size="12.5" fill="#3F7C43" font-weight="800" text-anchor="start">確認後會記成你的「勝」</text>
+  <rect x="36" y="250" width="288" height="32" rx="16" fill="#3F7C43"/>
+  <text x="180" y="271" font-size="12.5" fill="#FFFFFF" font-weight="800" text-anchor="middle">確認，計入戰績</text>
+  <text x="180" y="300" font-size="11" fill="#9BA29B" font-weight="600" text-anchor="middle">確認，但不計入戰績　·　這不是我</text>
+</svg>
