@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="Tennis Nut 1.7.0：好友頁重做、球隊上地圖"
+     font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1200" height="630" fill="#FBFAF6"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#1B5138"/>
+  <text x="64" y="92" font-size="40" font-weight="800" fill="#1B5138">好友有了自己的一頁，球隊上了地圖</text>
+  <text x="64" y="132" font-size="20" fill="#6E776F">Tennis Nut 1.7.0 · Build 2210</text>
+  <g transform="translate(90,300.88888888888886) scale(0.7777777777777778)">
+  <rect x="4" y="4" width="352" height="356" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="348" rx="30" fill="#FBFAF6"/>
+  <rect x="154.0" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+  <rect x="16" y="44" width="328" height="300" rx="18" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="34" y="80" font-size="16" fill="#1B5138" font-weight="800" text-anchor="start">中路網球場</text>
+  <line x1="34" y1="98" x2="326" y2="98" stroke="#ECEAE2"/>
+  <text x="34" y="124" font-size="13" fill="#6E776F" font-weight="700" text-anchor="start">🏳️  駐紮球團</text>
+  <rect x="34" y="140" width="292" height="56" rx="10" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <circle cx="60" cy="168" r="16" fill="#3F7C43" opacity="0.15"/>
+  <text x="60" y="173" font-size="14" fill="#6E776F" font-weight="500" text-anchor="middle">🎾</text>
+  <text x="86" y="164" font-size="13" fill="#1B5138" font-weight="800" text-anchor="start">Tennis Nut 隊</text>
+  <text x="86" y="182" font-size="11" fill="#9BA29B" font-weight="500" text-anchor="start">12 人</text>
+  <rect x="248" y="156" width="62" height="26" rx="13" fill="#3F7C43"/>
+  <text x="279" y="173" font-size="11.5" fill="#FFFFFF" font-weight="800" text-anchor="middle">加入</text>
+  <rect x="34" y="206" width="292" height="56" rx="10" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <circle cx="60" cy="234" r="16" fill="#3F7C43" opacity="0.15"/>
+  <text x="60" y="239" font-size="14" fill="#6E776F" font-weight="500" text-anchor="middle">🎾</text>
+  <text x="86" y="230" font-size="13" fill="#1B5138" font-weight="800" text-anchor="start">週三早球團</text>
+  <text x="86" y="248" font-size="11" fill="#9BA29B" font-weight="500" text-anchor="start">6 人</text>
+  <rect x="248" y="222" width="62" height="26" rx="13" fill="#3F7C43"/>
+  <text x="279" y="239" font-size="11.5" fill="#FFFFFF" font-weight="800" text-anchor="middle">加入</text>
+  <rect x="34" y="276" width="292" height="48" rx="10" fill="#3F7C43" opacity="0.10"/>
+  <text x="48" y="296" font-size="12.5" fill="#3F7C43" font-weight="800" text-anchor="start">＋ 在這裡建隊</text>
+  <text x="48" y="313" font-size="10.5" fill="#6E776F" font-weight="500" text-anchor="start">主場就會是中路網球場</text>
+</g>
+  <text x="230" y="286.88888888888886" font-size="16" fill="#6E776F" font-weight="700" text-anchor="middle">球團駐紮</text>
+  <g transform="translate(430,286.88888888888886) scale(0.7777777777777778)">
+  <rect x="4" y="4" width="352" height="374" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="366" rx="30" fill="#E8EDE6"/>
+  <rect x="154.0" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+  <circle cx="104" cy="120" r="14" fill="#3F7C43"/>
+  <path d="M98 132 L104 144 L110 132 Z" fill="#3F7C43"/>
+  <rect x="80" y="96" width="20" height="18" rx="6" fill="#D4AF37" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="90" y="109" font-size="11" fill="#3A2E00" font-weight="800" text-anchor="middle">2</text>
+  <circle cx="117" cy="107" r="7" fill="#4CAF50" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="104" y="162" font-size="10.5" fill="#6E776F" font-weight="700" text-anchor="middle">中路網球場</text>
+  <circle cx="250" cy="164" r="14" fill="#3F7C43"/>
+  <path d="M244 176 L250 188 L256 176 Z" fill="#3F7C43"/>
+  <rect x="226" y="140" width="20" height="18" rx="6" fill="#D4AF37" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="236" y="153" font-size="11" fill="#3A2E00" font-weight="800" text-anchor="middle">1</text>
+  <text x="250" y="206" font-size="10.5" fill="#6E776F" font-weight="700" text-anchor="middle">中山公園</text>
+  <circle cx="180" cy="222" r="14" fill="#3F7C43"/>
+  <path d="M174 234 L180 246 L186 234 Z" fill="#3F7C43"/>
+  <text x="180" y="264" font-size="10.5" fill="#6E776F" font-weight="700" text-anchor="middle">中壢運動公園</text>
+  <rect x="22" y="286" width="316" height="72" rx="12" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <rect x="36" y="300" width="20" height="18" rx="6" fill="#D4AF37"/>
+  <text x="46" y="313" font-size="11" fill="#3A2E00" font-weight="800" text-anchor="middle">2</text>
+  <text x="66" y="313" font-size="12" fill="#1B5138" font-weight="700" text-anchor="start">左上角：駐紮了幾支球隊</text>
+  <circle cx="46" cy="338" r="7" fill="#4CAF50"/>
+  <text x="66" y="342" font-size="12" fill="#1B5138" font-weight="700" text-anchor="start">右上角：球場現在的狀態</text>
+</g>
+  <text x="570" y="272.88888888888886" font-size="16" fill="#6E776F" font-weight="700" text-anchor="middle">地圖上的球隊</text>
+  <g transform="translate(770,327.3333333333333) scale(0.7777777777777778)">
+  <rect x="4" y="4" width="352" height="322" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="314" rx="30" fill="#FBFAF6"/>
+  <rect x="154.0" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+  <rect x="20" y="46" width="320" height="34" rx="10" fill="#3F7C43" fill-opacity="0.10"/>
+  <text x="36" y="68" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="start">和教練自由聊天免費</text>
+  <rect x="112" y="94" width="228" height="52" rx="14" fill="#3F7C43"/>
+  <text x="128" y="116" font-size="12" fill="#FFFFFF" font-weight="500" text-anchor="start">二發常常打出界，</text>
+  <text x="128" y="136" font-size="12" fill="#FFFFFF" font-weight="500" text-anchor="start">是不是拋球的問題？</text>
+  <rect x="20" y="158" width="240" height="52" rx="14" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="36" y="180" font-size="12" fill="#6E776F" font-weight="500" text-anchor="start">拋球位置先拍一段影片</text>
+  <text x="36" y="200" font-size="12" fill="#6E776F" font-weight="500" text-anchor="start">我看看，正面和側面各一</text>
+  <rect x="20" y="228" width="320" height="76" rx="14" fill="#FFFFFF" stroke="#3F7C43" stroke-opacity="0.5"/>
+  <text x="36" y="254" font-size="12.5" fill="#1B5138" font-weight="800" text-anchor="start">需要一份正式解答？</text>
+  <rect x="36" y="266" width="130" height="28" rx="14" fill="#3F7C43"/>
+  <text x="101" y="285" font-size="11.5" fill="#FFFFFF" font-weight="800" text-anchor="middle">追加專業提問</text>
+  <text x="178" y="285" font-size="12" fill="#6E776F" font-weight="700" text-anchor="start">50 🌰 起</text>
+</g>
+  <text x="910" y="313.3333333333333" font-size="16" fill="#6E776F" font-weight="700" text-anchor="middle">聊天免費</text>
+</svg>
