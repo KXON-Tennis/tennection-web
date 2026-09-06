@@ -1,0 +1,137 @@
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    h2 { font-size: 18px; margin: 32px 0 8px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 18px 14px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; margin: 0 0 6px; }
+    .card p { margin: 0; font-size: 15px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
+    ul.plain { color: var(--text-secondary); font-size: 15px; line-height: 1.9; padding-left: 20px; }
+    figure { margin: 16px 0 4px; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto; border-radius: 12px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.6; }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 4px; font-size: 15px; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border);
+             color: var(--text-secondary); }
+    th { font-size: 13px; color: var(--text-tertiary); font-weight: 700; }
+    td b { color: var(--text-primary); }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); }
+</style>
+  <article class="container rel">
+    <a class="rel-back" href="/whats-new">← Blog</a>
+    <span class="tag-line">🌰 功能介紹</span>
+    <h1>諮詢：卡住的時候，有人可以問</h1>
+    <p class="lead">
+      網球最難的地方不是練習，是<b>你不知道自己哪裡錯了</b>。
+      二發老是出界、正手一急就打飛、打完膝蓋痛——這些問題自己想三個月，
+      不如問對的人三句話。
+    </p>
+    <p class="lead" style="margin-top:-20px">
+      Tennis Nut 的諮詢就是為了這一刻。<b>而且用的是你打球賺來的堅果，不是錢。</b>
+    </p>
+
+    <h2>目前開放兩類專家</h2>
+    <p>
+      <b>網球技術</b>（抽球、發球、步法）和 <b>網球體能</b>（肌力、爆發力、核心）。
+      物理治療、營養、運動心理在陸續加入中。
+    </p>
+    <p>
+      你不用挑人。<b>系統會幫你指派</b>——測試期間每個類別的專家還不多，
+      給你一個看起來可以選、實際上只有一個選項的清單，是假的選擇。
+      想先看看是誰，護照頁的「瀏覽全部專家」看得到整個聯診團隊。
+    </p>
+
+    <figure>
+      <img src="/shot-case-pick.svg" alt="諮詢首頁：兩個類別與瀏覽全部專家" loading="lazy" />
+      <figcaption>選一個類別就開始，不必先挑人。</figcaption>
+    </figure>
+
+    <h2>聊天免費，正式解答才要堅果</h2>
+    <p>
+      這是整個設計最重要的一件事：<b>你跟教練的對話是免費的。</b>
+      問清楚、補充說明、傳一段影片給他看、他反問你幾句——這些都不用點數。
+    </p>
+    <p>
+      只有當你需要<b>一份正式的解答</b>時，才按「追加專業提問」，那一次才扣點。
+      教練標記為正式回答，這份解答就成立。
+    </p>
+
+    <figure>
+      <img src="/shot-case-thread.svg" alt="諮詢對話與追加專業提問按鈕" loading="lazy" />
+      <figcaption>上面那條說明一直在：聊天免費。要正式解答時才按下面那顆。</figcaption>
+    </figure>
+
+    <table>
+      <tr><th>方式</th><th>堅果</th><th>教練回覆時限</th></tr>
+      <tr><td><b>文字回覆</b></td><td>50 🌰</td><td>5 天</td></tr>
+      <tr><td><b>深度建議</b></td><td>100 🌰</td><td>48 小時</td></tr>
+      <tr><td><b>影片分析</b></td><td>150 🌰</td><td>72 小時</td></tr>
+    </table>
+    <p>
+      <b>每一次正式提問各自計價</b>，不是包月、也不是綁一整個案子。
+      同一段對話裡可以問第二次、第三次，各自付費。
+    </p>
+
+    <h2>教練答不了會退款</h2>
+    <p>
+      如果這個問題超出他的守備範圍，教練可以按「婉拒此提問」，
+      <b>堅果全額退還給你</b>，而對話還可以繼續——
+      他仍然可以告訴你這該找誰、或者你該補什麼資訊。
+    </p>
+    <p>
+      教練逾時沒有回覆也一樣：系統會自動結案並把堅果退回。
+      <b>你不會因為等不到答案而損失點數。</b>
+    </p>
+
+    <h2>結案會給你一份處方箋</h2>
+    <p>
+      諮詢結束時，教練會留下一份結構化的紀錄：<b>主要問題、教練評語、後續追蹤</b>。
+      這不是聊天記錄的摘要，是一份你三個月後翻出來還看得懂的東西。
+    </p>
+
+    <figure>
+      <img src="/shot-case-rx.svg" alt="結案處方箋：主要問題、教練評語、後續追蹤" loading="lazy" />
+      <figcaption>處方箋留在護照裡，賽前或練習前可以翻出來對照。</figcaption>
+    </figure>
+
+    <h2>堅果從哪裡來</h2>
+    <p>
+      <b>從打球來。</b>記一筆練習或比賽（在球場 200 公尺內）5 顆、球場打卡、
+      回報球場狀態 5 顆、補上一座還沒收錄的球場 30 顆、回報球場資訊 15 顆、
+      註冊就送 100 顆。
+    </p>
+    <p>
+      這裡沒有簽到、沒有每日領取、沒有看廣告——<b>堅果只從「你真的去打了球」
+      或「你讓球場資料變好了」來</b>。所以一份正式解答的代價，
+      大致是你認真記錄幾次上場。
+    </p>
+
+    <div class="callout">
+      <b>為什麼要用點數，不直接收錢？</b>
+      因為這樣一來，<b>對社群有貢獻的人問得起</b>。
+      一個會記錄、會回報球場狀況的人，堅果自己會累積；
+      而那些紀錄與回報，正好也是讓下一個人少走冤枉路的東西。
+    </div>
+
+    <h2>怎麼開始</h2>
+    <ul class="plain">
+      <li>底部導覽列的<b>「諮詢」</b>→ 選網球技術或網球體能</li>
+      <li>把問題寫清楚，可以附照片或影片</li>
+      <li>系統指派專家，先聊——問清楚不用錢</li>
+      <li>需要正式解答時按「追加專業提問」</li>
+    </ul>
+    <p>
+      學習收藏裡的教學影片片段也可以直接開諮詢：<b>在片段上按「問教練」</b>，
+      影片連結、時間區間和你的筆記會一起帶過去，教練看得到你卡在哪一秒。
+    </p>
+
+    <div class="guide-foot">
+      用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
+    </div>
+  </article>

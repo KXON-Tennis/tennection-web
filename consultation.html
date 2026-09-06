@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>諮詢：卡住的時候，有人可以問 · Tennis Nut</title>
+  <meta name="description" content="聊天免費，只有正式解答才用堅果；教練答不了會全額退還。而堅果只從打球來。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="諮詢：卡住的時候，有人可以問 · Tennis Nut" />
+  <meta property="og:description" content="聊天免費，只有正式解答才用堅果；教練答不了會全額退還。而堅果只從打球來。" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/consultation" />
+  <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
+  <link rel="canonical" href="https://tennisnut.kxon.net/consultation" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .rel-lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    .hl { display: flex; gap: 14px; align-items: flex-start; background: var(--surface);
+          border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 14px; margin-bottom: 14px; }
+    .hl-emoji { font-size: 22px; line-height: 1.4; flex-shrink: 0; }
+    .hl-body h2 { font-size: 17px; margin: 0 0 6px; }
+    .hl-body p { margin: 0; color: var(--text-secondary); font-size: 15px; }
+    .hl-shot { margin: 14px 0 2px; }
+    .hl-shot img { display: block; width: 100%; max-width: 300px; height: auto;
+                   border-radius: 12px; }
+    .hl-shot figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; }
+    .guide-h { font-size: 19px; margin: 34px 0 2px; padding-top: 4px; }
+    .guide-h + .meta { margin-top: 0; }
+    .fixes { margin: 28px 0 8px; }
+    .fixes h2 { font-size: 15px; color: var(--text-tertiary); font-weight: 600; margin: 0 0 8px; }
+    .fixes ul { margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 15px; }
+    .fixes li { margin-bottom: 4px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 14px 16px; font-size: 15px; margin: 28px 0 0; }
+    .rel-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; font-size: 14px; }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-secondary); }
+    .rel-list { list-style: none; margin: 20px 0 0; padding: 0; }
+    .rel-item { margin-bottom: 12px; }
+    .rel-item a { display: block; background: var(--surface); border: 1px solid var(--border);
+                  border-radius: 14px; padding: 18px; text-decoration: none; }
+    .rel-item a:hover { border-color: var(--accent); text-decoration: none; }
+    .rel-item-meta { font-size: 13px; color: var(--text-tertiary); }
+    .rel-item-title { font-family: "Sora", -apple-system, sans-serif; font-size: 19px;
+                      color: var(--text-primary); margin: 4px 0 6px; }
+    .rel-item-sum { margin: 0; font-size: 15px; color: var(--text-secondary); }
+
+    /* 區塊標題：小標籤 + 一條線，兩區才分得開 */
+    .sec-eyebrow { display: flex; align-items: center; gap: 12px; margin: 44px 0 0; }
+    .sec-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .sec-eyebrow h2 { font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
+                      color: var(--accent); margin: 0; white-space: nowrap; }
+
+    /* 最新一版：有圖、字大，跟舊版本明顯不同重量 */
+    .rel-hero { display: block; background: var(--surface); border: 1px solid var(--border);
+                border-radius: 18px; overflow: hidden; text-decoration: none; margin-top: 20px; }
+    .rel-hero:hover { border-color: var(--accent); text-decoration: none; }
+    .rel-hero img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--border); }
+    .rel-hero-body { padding: 20px 20px 22px; }
+    .rel-badge { display: inline-block; background: var(--accent); color: #fff; font-size: 11px;
+                 font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 3px 10px; }
+    .rel-hero h3 { font-family: "Sora", -apple-system, sans-serif; font-size: 24px; line-height: 1.35;
+                   color: var(--text-primary); margin: 12px 0 8px; }
+    .rel-hero p { margin: 0; font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+    .rel-hero .rel-item-meta { margin-top: 12px; }
+
+    /* 舊版本：收成一行，日期與標題並排 */
+    .rel-past { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--border); }
+    .rel-past li a { display: flex; gap: 14px; align-items: baseline; padding: 14px 2px;
+                     border-bottom: 1px solid var(--border); text-decoration: none; }
+    .rel-past li a:hover { text-decoration: none; }
+    .rel-past li a:hover .rel-past-t { color: var(--accent-d); }
+    .rel-past-d { font-size: 13px; color: var(--text-tertiary); white-space: nowrap; }
+    .rel-past-t { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+
+    /* 功能介紹：圖示當錨點，桌機兩欄 */
+    .guide-grid { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+    @media (min-width: 720px) { .guide-grid { grid-template-columns: 1fr 1fr; } }
+    .guide-grid a { display: flex; gap: 14px; height: 100%; background: var(--surface);
+                    border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+                    text-decoration: none; }
+    .guide-grid a:hover { border-color: var(--accent); text-decoration: none; }
+    .guide-ic { font-size: 22px; line-height: 1.3; flex-shrink: 0; }
+    .guide-t { font-size: 17px; font-weight: 700; color: var(--text-primary); margin: 0 0 6px; }
+    .guide-s { margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="brand-link">
+      <img src="/wordmark.png" alt="Tennis Nut" class="brand-wordmark" />
+    </a>
+    <nav>
+      <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">下載 App</a>
+      <a href="/whats-new" class="active">Blog</a>
+      <a href="/privacy">隱私權</a>
+      <a href="/terms">服務條款</a>
+    </nav>
+  </header>
+
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    h2 { font-size: 18px; margin: 32px 0 8px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 18px 14px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; margin: 0 0 6px; }
+    .card p { margin: 0; font-size: 15px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
+    ul.plain { color: var(--text-secondary); font-size: 15px; line-height: 1.9; padding-left: 20px; }
+    figure { margin: 16px 0 4px; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto; border-radius: 12px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.6; }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 4px; font-size: 15px; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border);
+             color: var(--text-secondary); }
+    th { font-size: 13px; color: var(--text-tertiary); font-weight: 700; }
+    td b { color: var(--text-primary); }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); }
+</style>
+  <article class="container rel">
+    <a class="rel-back" href="/whats-new">← Blog</a>
+    <span class="tag-line">🌰 功能介紹</span>
+    <h1>諮詢：卡住的時候，有人可以問</h1>
+    <p class="lead">
+      網球最難的地方不是練習，是<b>你不知道自己哪裡錯了</b>。
+      二發老是出界、正手一急就打飛、打完膝蓋痛——這些問題自己想三個月，
+      不如問對的人三句話。
+    </p>
+    <p class="lead" style="margin-top:-20px">
+      Tennis Nut 的諮詢就是為了這一刻。<b>而且用的是你打球賺來的堅果，不是錢。</b>
+    </p>
+
+    <h2>目前開放兩類專家</h2>
+    <p>
+      <b>網球技術</b>（抽球、發球、步法）和 <b>網球體能</b>（肌力、爆發力、核心）。
+      物理治療、營養、運動心理在陸續加入中。
+    </p>
+    <p>
+      你不用挑人。<b>系統會幫你指派</b>——測試期間每個類別的專家還不多，
+      給你一個看起來可以選、實際上只有一個選項的清單，是假的選擇。
+      想先看看是誰，護照頁的「瀏覽全部專家」看得到整個聯診團隊。
+    </p>
+
+    <figure>
+      <img src="/shot-case-pick.svg" alt="諮詢首頁：兩個類別與瀏覽全部專家" loading="lazy" />
+      <figcaption>選一個類別就開始，不必先挑人。</figcaption>
+    </figure>
+
+    <h2>聊天免費，正式解答才要堅果</h2>
+    <p>
+      這是整個設計最重要的一件事：<b>你跟教練的對話是免費的。</b>
+      問清楚、補充說明、傳一段影片給他看、他反問你幾句——這些都不用點數。
+    </p>
+    <p>
+      只有當你需要<b>一份正式的解答</b>時，才按「追加專業提問」，那一次才扣點。
+      教練標記為正式回答，這份解答就成立。
+    </p>
+
+    <figure>
+      <img src="/shot-case-thread.svg" alt="諮詢對話與追加專業提問按鈕" loading="lazy" />
+      <figcaption>上面那條說明一直在：聊天免費。要正式解答時才按下面那顆。</figcaption>
+    </figure>
+
+    <table>
+      <tr><th>方式</th><th>堅果</th><th>教練回覆時限</th></tr>
+      <tr><td><b>文字回覆</b></td><td>50 🌰</td><td>5 天</td></tr>
+      <tr><td><b>深度建議</b></td><td>100 🌰</td><td>48 小時</td></tr>
+      <tr><td><b>影片分析</b></td><td>150 🌰</td><td>72 小時</td></tr>
+    </table>
+    <p>
+      <b>每一次正式提問各自計價</b>，不是包月、也不是綁一整個案子。
+      同一段對話裡可以問第二次、第三次，各自付費。
+    </p>
+
+    <h2>教練答不了會退款</h2>
+    <p>
+      如果這個問題超出他的守備範圍，教練可以按「婉拒此提問」，
+      <b>堅果全額退還給你</b>，而對話還可以繼續——
+      他仍然可以告訴你這該找誰、或者你該補什麼資訊。
+    </p>
+    <p>
+      教練逾時沒有回覆也一樣：系統會自動結案並把堅果退回。
+      <b>你不會因為等不到答案而損失點數。</b>
+    </p>
+
+    <h2>結案會給你一份處方箋</h2>
+    <p>
+      諮詢結束時，教練會留下一份結構化的紀錄：<b>主要問題、教練評語、後續追蹤</b>。
+      這不是聊天記錄的摘要，是一份你三個月後翻出來還看得懂的東西。
+    </p>
+
+    <figure>
+      <img src="/shot-case-rx.svg" alt="結案處方箋：主要問題、教練評語、後續追蹤" loading="lazy" />
+      <figcaption>處方箋留在護照裡，賽前或練習前可以翻出來對照。</figcaption>
+    </figure>
+
+    <h2>堅果從哪裡來</h2>
+    <p>
+      <b>從打球來。</b>記一筆練習或比賽（在球場 200 公尺內）5 顆、球場打卡、
+      回報球場狀態 5 顆、補上一座還沒收錄的球場 30 顆、回報球場資訊 15 顆、
+      註冊就送 100 顆。
+    </p>
+    <p>
+      這裡沒有簽到、沒有每日領取、沒有看廣告——<b>堅果只從「你真的去打了球」
+      或「你讓球場資料變好了」來</b>。所以一份正式解答的代價，
+      大致是你認真記錄幾次上場。
+    </p>
+
+    <div class="callout">
+      <b>為什麼要用點數，不直接收錢？</b>
+      因為這樣一來，<b>對社群有貢獻的人問得起</b>。
+      一個會記錄、會回報球場狀況的人，堅果自己會累積；
+      而那些紀錄與回報，正好也是讓下一個人少走冤枉路的東西。
+    </div>
+
+    <h2>怎麼開始</h2>
+    <ul class="plain">
+      <li>底部導覽列的<b>「諮詢」</b>→ 選網球技術或網球體能</li>
+      <li>把問題寫清楚，可以附照片或影片</li>
+      <li>系統指派專家，先聊——問清楚不用錢</li>
+      <li>需要正式解答時按「追加專業提問」</li>
+    </ul>
+    <p>
+      學習收藏裡的教學影片片段也可以直接開諮詢：<b>在片段上按「問教練」</b>，
+      影片連結、時間區間和你的筆記會一起帶過去，教練看得到你卡在哪一秒。
+    </p>
+
+    <div class="guide-foot">
+      用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-text">
+        <a href="/whats-new">Blog</a>·
+        <a href="/privacy">隱私權政策</a>·
+        <a href="/terms">服務條款</a>·
+        <a href="mailto:kaysoncho@gmail.com">聯絡我們</a>
+        <div style="margin-top: 12px;">© 2026 Tennis Nut · KXON</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

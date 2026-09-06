@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="334" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="326" rx="30" fill="#FBFAF6"/>
+  <rect x="154.0" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+  <rect x="20" y="46" width="320" height="270" rx="16" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <rect x="20" y="46" width="320" height="44" rx="16" fill="#3F7C43"/>
+  <rect x="20" y="74" width="320" height="16" fill="#3F7C43"/>
+  <text x="38" y="74" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="start">結案處方箋</text>
+  <text x="38" y="122" font-size="11" fill="#9BA29B" font-weight="700" text-anchor="start">主要問題</text>
+  <text x="38" y="144" font-size="12.5" fill="#1B5138" font-weight="700" text-anchor="start">二發拋球偏後，導致擊球點落在身後</text>
+  <text x="38" y="180" font-size="11" fill="#9BA29B" font-weight="700" text-anchor="start">教練評語</text>
+  <text x="38" y="202" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="start">拋球點往前半個身位，先用慢速練</text>
+  <text x="38" y="222" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="start">20 球，不要追求力量。</text>
+  <text x="38" y="258" font-size="11" fill="#9BA29B" font-weight="700" text-anchor="start">後續追蹤</text>
+  <text x="38" y="280" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="start">兩週後再拍一段同角度的影片</text>
+  <text x="38" y="300" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="start">對照看看擊球點有沒有往前。</text>
+</svg>
