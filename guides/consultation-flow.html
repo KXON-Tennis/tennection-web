@@ -1,0 +1,129 @@
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    h2 { font-size: 18px; margin: 32px 0 8px; }
+    h3 { font-size: 16px; margin: 22px 0 6px; color: var(--text-primary); }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 18px 14px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; margin: 0 0 6px; }
+    .card p { margin: 0; font-size: 15px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
+    ul.plain { color: var(--text-secondary); font-size: 15px; line-height: 1.9; padding-left: 20px; }
+    figure { margin: 16px 0 4px; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto; border-radius: 12px; }
+    figure.wide img { max-width: 100%; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.6; }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 4px; font-size: 15px; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border);
+             color: var(--text-secondary); }
+    th { font-size: 13px; color: var(--text-tertiary); font-weight: 700; }
+    td:last-child, th:last-child { text-align: right; white-space: nowrap; }
+    td b { color: var(--text-primary); }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); }
+</style>
+  <article class="container rel">
+    <a class="rel-back" href="/blog">← Blog</a>
+    <span class="tag-line">🌰 功能介紹</span>
+    <h1>一則諮詢從頭到尾會發生什麼</h1>
+    <p class="lead">
+      從你按下「新諮詢」到拿著一份處方箋離開，中間有四個階段。
+      這一篇把每一步會看到什麼、要做什麼、什麼時候扣堅果，全部走一遍。
+    </p>
+
+    <figure class="wide">
+      <img src="/shot-case-flow.svg" alt="諮詢的四個階段：送出、專家閱覽中、等你追問、已結案" loading="lazy" />
+      <figcaption>案件上方會標示現在走到哪一階段。</figcaption>
+    </figure>
+
+    <h2>一、開一則諮詢</h2>
+    <p>
+      底部導覽列的<b>「諮詢」</b>，選一個類別：<b>網球技術</b>或<b>網球體能</b>。
+      接著填兩格：
+    </p>
+    <ul class="plain">
+      <li><b>標題</b>——一句話總結問題，例如「二發常常出界」</li>
+      <li><b>詳細描述</b>——越具體越好：什麼時候發生、你已經試過什麼、想要什麼結果</li>
+    </ul>
+    <p>
+      可以附上<b>照片或影片</b>。一段揮拍影片通常比三段文字有用，
+      而且專家會直接指給你看是哪一格出了問題。
+    </p>
+    <p>
+      送出後，系統會指派一位這個類別的專家。
+      開案會先計一次<b>文字回覆（50 🌰）</b>，那是這串對話的第一份正式解答。
+    </p>
+
+    <div class="callout">
+      也可以從<b>學習收藏</b>開始：在一段教學影片的片段上按「問教練」，
+      影片連結、時間區間和你的筆記會一起帶進描述欄，
+      專家看得到你卡在哪一秒。
+    </div>
+
+    <h2>二、先聊，再決定要不要正式解答</h2>
+    <p>
+      專家接手後，你們就在同一頁對話。<b>這段對話不扣堅果。</b>
+      他可能會先問你幾句——什麼球、什麼場地、平常怎麼練——
+      也可能請你補一段影片。你回得越清楚，後面那份解答越準。
+    </p>
+
+    <h3>要一份正式解答時</h3>
+    <p>
+      按<b>「追加專業提問」</b>，選一種方式：
+    </p>
+    <table>
+      <tr><th>方式</th><th>堅果</th><th>專家回覆時限</th></tr>
+      <tr><td><b>文字回覆</b></td><td>50</td><td>5 天</td></tr>
+      <tr><td><b>深度建議</b></td><td>100</td><td>48 小時</td></tr>
+      <tr><td><b>影片分析</b></td><td>150</td><td>72 小時</td></tr>
+    </table>
+    <p>
+      專家回覆時會把那則標記為正式回答，這份解答就成立。
+      <b>同一串對話可以問第二次、第三次</b>，各自計價——
+      通常是第一份解答讀完之後，發現真正想問的是別的事。
+    </p>
+
+    <h3>如果專家答不了</h3>
+    <p>
+      他可以婉拒這一次提問，<b>堅果全額退還</b>，而對話還可以繼續——
+      他仍然會告訴你這該找誰、或你該補什麼。
+      逾時沒有回覆也一樣退還。
+    </p>
+
+    <h2>三、案件的四種狀態</h2>
+    <table>
+      <tr><td><b>已送出</b></td><td>等待專家接手</td></tr>
+      <tr><td><b>專家閱覽中</b></td><td>球在專家那邊</td></tr>
+      <tr><td><b>等你追問</b></td><td>他回覆了，換你</td></tr>
+      <tr><td><b>已結案</b></td><td>結束，處方箋留著</td></tr>
+    </table>
+    <p>
+      案件太久沒有動靜會自動結束；如果那時候還沒有拿到解答，堅果會退回。
+    </p>
+
+    <h2>四、結案與處方箋</h2>
+    <p>
+      問完了，任一方都可以結束這則諮詢。結束之後不能再對話或請專家回答，
+      <b>但已完成的回答隨時可以回顧</b>。之後還想問，開一則新的就好。
+    </p>
+    <p>
+      結束時，專家會留下一份<b>處方箋</b>：主要問題、教練評語、後續追蹤。
+      它留在案件裡，也可以在賽前或練習前翻出來對照。
+    </p>
+
+    <h3>會問你要不要公開</h3>
+    <p>
+      結案時會問一句：願不願意讓這則問答幫到下一個人。
+      同意的話，這則問答會被<b>改寫成一段不帶個人資訊的內容</b>放進答案庫，
+      改寫後會先經過人工檢查；<b>原始對話永遠不公開</b>。
+      不想公開就選「這則不要」，不影響任何事。
+    </p>
+
+    <div class="guide-foot">
+      用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
+    </div>
+  </article>

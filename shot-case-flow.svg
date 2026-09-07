@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="760" height="270" fill="#FBFAF6"/>
+  <line x1="88" y1="132" x2="620" y2="132" stroke="#3F7C43" stroke-width="4" opacity="0.35"/>
+  <circle cx="88" cy="132" r="12" fill="#3F7C43" stroke="#FBFAF6" stroke-width="4"/>
+  <text x="88" y="102" font-size="16" fill="#1B5138" font-weight="800" text-anchor="middle">送出</text>
+  <text x="88" y="170" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="middle">標題、描述</text>
+  <text x="88" y="190" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="middle">可附照片或影片</text>
+  <circle cx="256" cy="132" r="12" fill="#3F7C43" stroke="#FBFAF6" stroke-width="4"/>
+  <text x="256" y="102" font-size="16" fill="#1B5138" font-weight="800" text-anchor="middle">專家閱覽中</text>
+  <text x="256" y="170" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="middle">系統指派了一位</text>
+  <text x="256" y="190" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="middle">他會先跟你聊</text>
+  <circle cx="424" cy="132" r="12" fill="#3F7C43" stroke="#FBFAF6" stroke-width="4"/>
+  <text x="424" y="102" font-size="16" fill="#1B5138" font-weight="800" text-anchor="middle">等你追問</text>
+  <text x="424" y="170" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="middle">拿到正式解答</text>
+  <text x="424" y="190" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="middle">可以再問下一個</text>
+  <circle cx="620" cy="132" r="12" fill="#3F7C43" stroke="#FBFAF6" stroke-width="4"/>
+  <text x="620" y="102" font-size="16" fill="#1B5138" font-weight="800" text-anchor="middle">已結案</text>
+  <text x="620" y="170" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="middle">留下一份處方箋</text>
+  <text x="620" y="190" font-size="12.5" fill="#6E776F" font-weight="500" text-anchor="middle">之後仍可回顧</text>
+  <text x="380.0" y="246" font-size="13" fill="#6E776F" font-weight="600" text-anchor="middle">和專家的一般對話不扣點；只有請他寫一份正式解答時才用堅果</text>
+</svg>
