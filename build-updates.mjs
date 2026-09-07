@@ -80,8 +80,7 @@ const PAGE_CSS = `
     .rel-hero-body { transition: background-color .15s ease; }
     .rel-hero:hover h3, .rel-hero:hover .rel-item-meta { color: #fff; }
     .rel-hero:hover p { color: rgba(255, 255, 255, .82); }
-    .rel-hero img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--border); }
-    .rel-hero-body { padding: 20px 20px 22px; }
+    .rel-hero-body { padding: 26px 22px 28px; }
     .rel-badge { display: inline-block; background: var(--accent); color: #fff; font-size: 11px;
                  font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 3px 10px; }
     .rel-hero h3 { font-family: "Sora", -apple-system, sans-serif; font-size: 24px; line-height: 1.35;
@@ -296,8 +295,10 @@ const indexBody = `  <article class="container">
 
     <div class="sec-eyebrow"><h2>版本更新紀錄</h2></div>
 
+    <!-- 分享圖不放在這裡：那張圖上印的就是底下這幾行字（標題、副標、版本），
+         擺在一起是同一句話說兩次。它的用途是貼進 LINE／FB 的預覽卡，
+         留在 og:image 就好。 -->
     <a class="rel-hero" href="${relPath(newest.build)}">
-      ${newest.image ? `<img src="${esc(newest.image)}" alt="" />` : ''}
       <div class="rel-hero-body">
         <span class="rel-badge">最新版本</span>
         <h3>${esc(newest.title)}</h3>
