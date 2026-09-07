@@ -461,7 +461,8 @@
         rentals: { yes: "可租借", no: "不開放租借" },
         surfaces: { hard: "硬地", clay: "紅土", grass: "草地",
                     artificial_grass: "人工草", omni: "砂地人工草", concrete: "水泥",
-                    pu: "PU", carpet: "地毯", other: "其他", unknown: "未標示" },
+                    pu: "PU", carpet: "地毯", other: "其他",
+                    indoor_practice: "練習場", unknown: "未標示" },
       },
       en: {
         title: "Tennis Nut Court Map",
@@ -517,7 +518,8 @@
         surfaces: { hard: "Hard", clay: "Clay", grass: "Grass",
                     artificial_grass: "Artificial grass", omni: "Sand-filled turf",
                     concrete: "Concrete", pu: "PU", carpet: "Carpet",
-                    other: "Other", unknown: "Not recorded" },
+                    other: "Other", indoor_practice: "Practice studio",
+                    unknown: "Not recorded" },
       },
     }[LANG];
 
@@ -525,16 +527,29 @@
     // The old legend folded 1,848 courts with NO surface data into "其他",
     // which reads as a known answer. Not knowing is its own category, and on
     // a page whose selling point is data quality it has to say so.
+    // indoor_practice is not a surface. A ball-machine room has a floor, but
+    // what a player needs to know about it is that it is not a court — so it
+    // takes the surface slot and answers there, exactly as the app does.
     const SURFACE_ORDER = ["hard", "clay", "grass", "artificial_grass", "omni",
-                           "concrete", "pu", "carpet", "other", "unknown"];
+                           "concrete", "pu", "carpet", "other",
+                           "indoor_practice", "unknown"];
     const COLORS = {
       hard: "#4FA8FF", clay: "#FF6A3D", grass: "#7ED957",
       artificial_grass: "#69C79A", omni: "#C9A66B", concrete: "#9AA3AA",
-      pu: "#B98CD9", carpet: "#E38FB5", other: "#AEB6BD", unknown: "#5B6169",
+      pu: "#B98CD9", carpet: "#E38FB5", other: "#AEB6BD",
+      // Teal, the one hue this palette never spends — the same value the app
+      // uses, so a studio is the same colour on both maps.
+      indoor_practice: "#0FB5AE", unknown: "#5B6169",
     };
 
-    function surfaceClass(code) {
-      const c = (code || "").trim();
+    // Takes the court, not just its surface_code: venue_kind answers first
+    // when there is one.
+    function surfaceClass(court) {
+      const kind = (court.venue_kind || "court").trim();
+      if (kind !== "court") {
+        return SURFACE_ORDER.includes(kind) ? kind : "other";
+      }
+      const c = (court.surface_code || "").trim();
       return SURFACE_ORDER.includes(c) && c ? c : "unknown";
     }
     function escapeHtml(s) {
@@ -1204,13 +1219,13 @@
     async function load() {
       const counts = {};
       try {
-        const courts = await fetchAllCourts("?select=id,name,name_en,city,country,lat,lng,surface_code,court_count,light,is_indoor,access,community_verify_count&lat=not.is.null&lng=not.is.null&is_abandoned=eq.false");
+        const courts = await fetchAllCourts("?select=id,name,name_en,city,country,lat,lng,surface_code,venue_kind,court_count,light,is_indoor,access,community_verify_count&lat=not.is.null&lng=not.is.null&is_abandoned=eq.false");
 
         const features = [];
         const markets = new Set();
         for (const c of courts) {
           if (typeof c.lat !== "number" || typeof c.lng !== "number") continue;
-          const cls = surfaceClass(c.surface_code);
+          const cls = surfaceClass(c);
           counts[cls] = (counts[cls] || 0) + 1;
           if (c.country) markets.add(c.country);
           ALL.push(c);
