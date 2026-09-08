@@ -1,23 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
-  <rect x="4" y="4" width="352" height="312" rx="30" fill="#DEDACE"/>
-  <rect x="8" y="8" width="344" height="304" rx="26" fill="#FBFAF6"/>
-  <text x="180" y="42" font-size="15" fill="#1B5138" font-weight="800" text-anchor="middle">我的好友</text>
-  <rect x="24" y="60" width="312" height="44" rx="10" fill="#FFFFFF" stroke="#3F7C43" stroke-width="1.6"/>
-  <circle cx="46" cy="82" r="7" fill="none" stroke="#3F7C43" stroke-width="1.6"/>
-  <line x1="51" y1="87" x2="56" y2="92" stroke="#3F7C43" stroke-width="1.6"/>
-  <text x="66" y="88" font-size="14" fill="#1B5138" font-weight="700" letter-spacing="1">ABCD1234</text>
-  <line x1="196" y1="70" x2="196" y2="94" stroke="#3F7C43" stroke-width="1.6"/>
-  <circle cx="180" cy="82" r="30" fill="none" stroke="#3F7C43" stroke-width="2" stroke-dasharray="4 3"/>
-  <text x="234" y="88" font-size="11" fill="#3F7C43" font-weight="800">貼在這裡</text>
-  <rect x="24" y="122" width="312" height="72" rx="12" fill="#FFFFFF" stroke="#ECEAE2"/>
-  <circle cx="60" cy="158" r="22" fill="#EDF3EA"/>
-  <text x="60" y="165" font-size="17" fill="#3F7C43" font-weight="800" text-anchor="middle">王</text>
-  <text x="94" y="152" font-size="15" fill="#1B5138" font-weight="800">王小明</text>
-  <text x="94" y="174" font-size="12" fill="#9BA29B">ID · ABCD1234</text>
-  <rect x="240" y="142" width="80" height="32" rx="8" fill="#3F7C43"/>
-  <text x="280" y="163" font-size="12.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">加入好友</text>
-  <circle cx="280" cy="158" r="26" fill="none" stroke="#3F7C43" stroke-width="2" stroke-dasharray="4 3"/>
-  <text x="24" y="230" font-size="12.5" fill="#6E776F">按下去就送出了，接著等對方按勾勾確認。</text>
-  <rect x="24" y="248" width="312" height="44" rx="10" fill="#EDF3EA" stroke="#D4E3D2"/>
-  <text x="44" y="276" font-size="12.5" fill="#3F7C43" font-weight="700">已送出好友邀請給 王小明</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="422" rx="30" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="414" rx="26" fill="#EFEDE6"/>
+
+  <!-- 好友頁的標題列，右上角那顆人＋圖示 -->
+  <rect x="8" y="8" width="344" height="62" rx="26" fill="#FBFAF6"/>
+  <rect x="8" y="52" width="344" height="18" fill="#FBFAF6"/>
+  <text x="28" y="46" font-size="15" fill="#1B5138" font-weight="800">我的好友</text>
+  <g stroke="#1B5138" stroke-width="1.9" fill="none" stroke-linecap="round">
+    <circle cx="303" cy="34" r="6"/>
+    <path d="M293 48 c0 -6 5 -9 10 -9 c3 0 6 1 8 3"/>
+    <path d="M315 40 v11 M309.5 45.5 h11"/>
+  </g>
+  <circle cx="303" cy="40" r="24" fill="none" stroke="#3F7C43" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="303" y="82" font-size="11" fill="#3F7C43" font-weight="800" text-anchor="middle">加好友按這裡</text>
+
+  <!-- 跳出來的視窗 -->
+  <rect x="8" y="98" width="344" height="324" rx="24" fill="#FBFAF6"/>
+  <rect x="158" y="110" width="44" height="4" rx="2" fill="#D8D5CB"/>
+  <text x="24" y="144" font-size="15" fill="#1B5138" font-weight="800">搜尋好友</text>
+  <text x="336" y="144" font-size="13" fill="#3F7C43" text-anchor="end">關閉</text>
+  <rect x="24" y="158" width="312" height="44" rx="10" fill="#FFFFFF" stroke="#3F7C43" stroke-width="1.6"/>
+  <circle cx="46" cy="180" r="7" fill="none" stroke="#3F7C43" stroke-width="1.6"/>
+  <line x1="51" y1="185" x2="56" y2="190" stroke="#3F7C43" stroke-width="1.6"/>
+  <text x="66" y="186" font-size="14" fill="#1B5138" font-weight="700" letter-spacing="1">ABCD1234</text>
+  <line x1="196" y1="168" x2="196" y2="192" stroke="#3F7C43" stroke-width="1.6"/>
+  <circle cx="180" cy="180" r="30" fill="none" stroke="#3F7C43" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="236" y="186" font-size="11" fill="#3F7C43" font-weight="800">ID 貼這裡</text>
+  <rect x="24" y="216" width="150" height="38" rx="9" fill="none" stroke="#C9C5B8"/>
+  <text x="99" y="240" font-size="12.5" fill="#1B5138" font-weight="700" text-anchor="middle">我的 QR Code</text>
+  <rect x="186" y="216" width="150" height="38" rx="9" fill="none" stroke="#C9C5B8"/>
+  <text x="261" y="240" font-size="12.5" fill="#1B5138" font-weight="700" text-anchor="middle">掃描加好友</text>
+  <rect x="24" y="272" width="312" height="72" rx="12" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <circle cx="60" cy="308" r="22" fill="#EDF3EA"/>
+  <text x="60" y="315" font-size="17" fill="#3F7C43" font-weight="800" text-anchor="middle">王</text>
+  <text x="94" y="302" font-size="15" fill="#1B5138" font-weight="800">王小明</text>
+  <text x="94" y="324" font-size="12" fill="#9BA29B">ID · ABCD1234</text>
+  <rect x="240" y="292" width="80" height="32" rx="8" fill="#3F7C43"/>
+  <text x="280" y="313" font-size="12.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">加入好友</text>
+  <circle cx="280" cy="308" r="26" fill="none" stroke="#3F7C43" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="24" y="374" font-size="12.5" fill="#6E776F">按下去就送出了，接著等對方按勾勾確認。</text>
 </svg>
