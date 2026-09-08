@@ -1098,13 +1098,16 @@
       // it you are looking at somewhere specific and the dot alone means you
       // have to tap each one to find out what it is.
       // text-optional + no overlap: where names collide the map drops the
-      // label and keeps the dot, rather than hiding courts to fit words.
+      // label and keeps the dot, rather than hiding courts to fit words —
+      // which is why this can start two zoom levels earlier than it did
+      // (12 → 10) without turning a city into a wall of text: at 10 the
+      // collision test leaves only the courts with room around them.
       map.addLayer({
-        id: "courts-label", type: "symbol", source: "courts", minzoom: 12,
+        id: "courts-label", type: "symbol", source: "courts", minzoom: 10,
         layout: {
           "text-field": ["get", "name"],
           "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
-          "text-size": ["interpolate", ["linear"], ["zoom"], 12, 11, 16, 13.5],
+          "text-size": ["interpolate", ["linear"], ["zoom"], 10, 10.5, 16, 13.5],
           "text-anchor": "top",
           "text-offset": [0, 0.9],
           "text-optional": true,
