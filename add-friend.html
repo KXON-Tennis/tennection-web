@@ -147,6 +147,15 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
                  line-height: 1.6; }
     .path { font-size: 14px; color: var(--text-tertiary); margin: 4px 0 0; }
     .path b { color: var(--text-secondary); }
+    /* 文章結尾指向另一篇的連結。內文裡的一般連結在一段字中間認不太出來，
+       這一條是「讀完這篇之後該去哪」，值得長得像一顆按鈕。 */
+    .next-link { display: inline-flex; align-items: center; gap: 8px;
+                 background: var(--accent); color: #fff; text-decoration: none;
+                 font-size: 15px; font-weight: 700; border-radius: 999px;
+                 padding: 11px 20px; margin-top: 8px;
+                 transition: background-color .15s ease, transform .15s ease; }
+    .next-link:hover { background: var(--accent-d); transform: translateY(-1px); }
+    .next-link .arrow { font-size: 14px; opacity: .85; }
     .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
                   font-size: 14px; color: var(--text-tertiary); }
 </style>
@@ -203,6 +212,11 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       </p>
     </div>
 
+    <figure>
+      <img src="/shot-friend-line.svg" alt="LINE 上收到的邀請訊息，裡面有球員 ID" loading="lazy" />
+      <figcaption>對方在 LINE 收到的樣子。ID 就在訊息裡，長按就能複製。</figcaption>
+    </figure>
+
     <div class="card">
       <h3>3. 對方把 ID 貼進搜尋框</h3>
       <p>
@@ -210,6 +224,11 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
         貼進去，你的名字就會跳出來，按<b>加入好友</b>。
       </p>
     </div>
+
+    <figure>
+      <img src="/shot-friend-paste.svg" alt="把球員 ID 貼進搜尋框後跳出的名字與加入好友按鈕" loading="lazy" />
+      <figcaption>貼進去就會跳出人。按「加入好友」送出，接著等對方確認。</figcaption>
+    </figure>
 
     <div class="card">
       <h3>4. 你按下勾勾</h3>
@@ -261,7 +280,10 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       對方去了哪座球場、記了什麼練習，你的日記裡會看得到；
       他開的約球會出現在你的首頁；他打的比賽如果標到你，
       確認之後會同時進兩個人的戰績。
-      <a href="/friends">加好友之後，會多出什麼</a> 那篇講得比較細。
+    </p>
+
+    <p>
+      <a class="next-link" href="/friends">加好友之後，會多出什麼<span class="arrow">→</span></a>
     </p>
 
     <div class="guide-foot">

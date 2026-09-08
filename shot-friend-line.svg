@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="312" rx="30" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="304" rx="26" fill="#8CABD9"/>
+  <rect x="8" y="8" width="344" height="40" rx="26" fill="#7C9CCB"/>
+  <rect x="8" y="34" width="344" height="14" fill="#7C9CCB"/>
+  <text x="180" y="34" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">王小明</text>
+  <rect x="86" y="62" width="252" height="196" rx="14" fill="#8DE055"/>
+  <path d="M338 76 l12 -6 l-12 10 z" fill="#8DE055"/>
+  <text x="102" y="88" font-size="12.5" fill="#1B2B18">我在 Tennis Nut 記錄打球，加我當球友：</text>
+  <text x="102" y="118" font-size="12.5" fill="#1B2B18">1. 下載 Tennis Nut</text>
+  <text x="102" y="140" font-size="12.5" fill="#1B2B18">2. 到「護照 → 我的好友」</text>
+  <text x="102" y="162" font-size="12.5" fill="#1B2B18">3. 貼上我的球員 ID：</text>
+  <rect x="102" y="172" width="112" height="26" rx="6" fill="#FFFFFF" fill-opacity="0.65"/>
+  <text x="158" y="190" font-size="13.5" fill="#1B2B18" font-weight="800" letter-spacing="1" text-anchor="middle">FDD66DD2</text>
+  <text x="102" y="222" font-size="12.5" fill="#1B2B18">App Store 搜尋 Tennis Nut</text>
+  <text x="330" y="248" font-size="10.5" fill="#3F5C33" text-anchor="end">已讀 11:14</text>
+  <text x="24" y="290" font-size="11.5" fill="#FFFFFF" opacity="0.92">訊息裡已經帶著步驟，對方照著做就好</text>
+</svg>
