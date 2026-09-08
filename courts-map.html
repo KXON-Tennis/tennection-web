@@ -935,9 +935,9 @@
     //
     // Country first, and defaulting to Taiwan, because names repeat across
     // markets — 「中央公園」 exists in more than one of them — and because a
-    // visitor almost always means the country they are in. It scopes the
-    // search rather than the map: the markers stay as they are, so the
-    // answer arrives without the page rearranging itself first.
+    // visitor almost always means the country they are in. Picking one both
+    // scopes the search and moves the map to that market, so the dropdown
+    // answers "show me somewhere else" as well as "search there".
     function initFind() {
       const sel = document.getElementById("countrySel");
       const box = document.getElementById("courtSearch");
@@ -989,8 +989,33 @@
         out.hidden = false;
       }
 
+      // Switching country moves the map there. Before this the dropdown only
+      // scoped the text search, so picking 日本 from a view of Taiwan left you
+      // looking at Taiwan and searching Japan — the one place the answer
+      // wasn't. The frame comes from the courts themselves, not a table of
+      // capitals, so a market lands correctly the day it is imported.
+      function flyToCountry(code) {
+        const pts = ALL.filter((c) => c.country === code && c.lat != null && c.lng != null);
+        if (!pts.length) return;
+        const b = new mapboxgl.LngLatBounds();
+        for (const c of pts) b.extend([c.lng, c.lat]);
+        // Keep the frame clear of the two panels that sit over the map: the
+        // header on the left (full width on a phone) and the CTA bar below.
+        const r = document.querySelector(".top-panel").getBoundingClientRect();
+        const narrow = window.matchMedia("(max-width: 559px)").matches;
+        const cv = map.getCanvas();
+        const w = cv.clientWidth, h = cv.clientHeight;
+        let pad = narrow
+          ? { top: r.bottom + 16, bottom: 200, left: 20, right: 20 }
+          : { top: 24, bottom: 170, left: r.right + 20, right: 60 };
+        // fitBounds needs somewhere left to draw in; on a small window the
+        // panels alone can exceed the canvas.
+        if (pad.left + pad.right > w - 80 || pad.top + pad.bottom > h - 80) pad = 40;
+        map.fitBounds(b, { padding: pad, maxZoom: 12, duration: 1100 });
+      }
+
       box.addEventListener("input", run);
-      sel.addEventListener("change", () => { box.value = ""; hide(); });
+      sel.addEventListener("change", () => { box.value = ""; hide(); flyToCountry(sel.value); });
       box.addEventListener("blur", () => setTimeout(hide, 150));
       document.addEventListener("keydown", (e) => { if (e.key === "Escape") hide(); });
     }
