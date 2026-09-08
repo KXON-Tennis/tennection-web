@@ -29,9 +29,9 @@
   <rect x="186" y="212" width="150" height="38" rx="9" fill="none" stroke="#C9C5B8"/>
   <text x="261" y="236" font-size="12.5" fill="#1B5138" font-weight="700" text-anchor="middle">掃描加好友</text>
 
-  <rect x="94" y="262" width="172" height="34" rx="17" fill="#FFF3EC" stroke="#E8590C" stroke-width="3"/>
-  <text x="180" y="284" font-size="13" fill="#C24A08" font-weight="800" text-anchor="middle">或用 LINE 傳邀請給他</text>
-  <circle cx="94" cy="262" r="13" fill="#E8590C"/>
-  <text x="94" y="267" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">2</text>
+  <rect x="118" y="262" width="124" height="34" rx="17" fill="#FFF3EC" stroke="#E8590C" stroke-width="3"/>
+  <text x="180" y="284" font-size="13" fill="#C24A08" font-weight="800" text-anchor="middle">傳邀請給他</text>
+  <circle cx="118" cy="262" r="13" fill="#E8590C"/>
+  <text x="118" y="267" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">2</text>
   <text x="180" y="322" font-size="12" fill="#E8590C" font-weight="800" text-anchor="middle">按這裡，訊息會自己寫好</text>
 </svg>
