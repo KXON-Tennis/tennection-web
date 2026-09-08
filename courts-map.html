@@ -1021,8 +1021,12 @@
       map.addSource("courts", { type: "geojson",
         data: { type: "FeatureCollection", features } });
 
+      // Built from COLORS itself, not a hand-written list of three. The old
+      // expression named clay/hard/grass and dropped the other eight classes
+      // into the fallback, so 練習場 was violet in the legend and grey on the
+      // map — the legend and the dots must read off the same table.
       const colorExpr = ["match", ["get", "cls"],
-        "clay", COLORS.clay, "hard", COLORS.hard, "grass", COLORS.grass, COLORS.other];
+        ...SURFACE_ORDER.flatMap(k => [k, COLORS[k]]), COLORS.other];
       // 半徑放大，固定傾斜相機(zoom 較遠)下點才看得清楚
       const radiusExpr = ["interpolate", ["linear"], ["zoom"],
         5, 5, 7, 7.5, 10, 10, 14, 13];
