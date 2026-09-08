@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>球友在線：地圖上那個數字 · Tennis Nut</title>
-  <meta name="description" content="沒有按鈕，你到了球場它自己會亮。陌生人只看得到數字，好友才知道是你。" />
+  <title>怎麼加球友 · Tennis Nut</title>
+  <meta name="description" content="面對面掃一下，或把球員 ID 用 LINE 傳過去。找不到好友頁的話，它在護照往下滑。" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="球友在線：地圖上那個數字 · Tennis Nut" />
-  <meta property="og:description" content="沒有按鈕，你到了球場它自己會亮。陌生人只看得到數字，好友才知道是你。" />
-  <meta property="og:url" content="https://tennisnut.kxon.net/live-presence" />
+  <meta property="og:title" content="怎麼加球友 · Tennis Nut" />
+  <meta property="og:description" content="面對面掃一下，或把球員 ID 用 LINE 傳過去。找不到好友頁的話，它在護照往下滑。" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/add-friend" />
   <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
-  <link rel="canonical" href="https://tennisnut.kxon.net/live-presence" />
+  <link rel="canonical" href="https://tennisnut.kxon.net/add-friend" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -129,7 +129,7 @@
 
 <!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
 <style>
-    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
     .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
     .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
     h2 { font-size: 18px; margin: 32px 0 8px; }
@@ -141,127 +141,128 @@
     .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
                padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
     figure { margin: 16px 0 4px; }
-    figure img { display: block; width: 100%; max-width: 300px; height: auto; border-radius: 12px; }
-    figure.wide img { max-width: 100%; }
-    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; line-height: 1.6; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto;
+                 border-radius: 12px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px;
+                 line-height: 1.6; }
+    .path { font-size: 14px; color: var(--text-tertiary); margin: 4px 0 0; }
+    .path b { color: var(--text-secondary); }
     .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
                   font-size: 14px; color: var(--text-tertiary); }
 </style>
-  <article class="container rel">
+<article class="container rel">
     <a class="rel-back" href="/blog">← 最新情報</a>
-    <span class="tag-line">🌰 功能介紹</span>
-    <h1>球友在線：地圖上那個數字</h1>
+    <span class="tag-line">🌰 使用說明</span>
+    <h1>怎麼加球友</h1>
     <p class="lead">
-      出門前最想知道的一件事是「現在那裡有沒有人」。地圖上球場旁邊的那個小數字，
-      回答的就是這個。<b>你到了球場，它自己會亮</b>——不必按任何東西，
-      所以那個數字不會因為有人懶得按而低估。
+      面對面掃一下、或把你的球員 ID 用 LINE 傳過去。
+      兩條路，看你們現在是不是在同一個球場。
     </p>
 
-    <h2>它由什麼啟動</h2>
     <p>
-      不用打卡、不用按任何東西。App 每兩分鐘看一次你在哪裡，當你
-      <b>進入球場 200 公尺內、而且待滿 5 分鐘</b>，才算你到了。
+      球友名單在<b>護照</b>那一頁，往下滑就是「我的好友」。
+      點那張卡會打開完整的名單，加人的按鈕都在最上面。
     </p>
-    <p>
-      這五分鐘是為了把「經過」和「來打球」分開：<b>路過不算。</b>騎車經過球場、在旁邊等紅燈、
-      到隔壁買東西——這些都不會讓你出現在地圖上。要待下來，才算來打球。
-    </p>
-    <p>
-      到場之後，你會被算進那座球場的在線人數<b>兩個小時</b>。兩小時後自動消失，
-      不需要「簽退」。
+    <p class="path">
+      路徑：底部的 <b>護照</b> → 往下滑到 <b>我的好友</b> → 點卡片
     </p>
 
-    <figure class="wide">
-      <img src="/shot-live-timeline.svg" alt="從走進球場到消失在地圖上的時間軸" loading="lazy" />
-      <figcaption>整個機制只有三個時間點，中間那一刻就是你出現在地圖上的時候。</figcaption>
+    <h2>剛裝好 App 的時候</h2>
+
+    <p>
+      第一次設定會走到一頁叫「把一起打球的人加進來」，中間就是你的碼。
+      當下身邊有人，請他點「改掃對方的碼」對著你的畫面掃一下，就加好了。
+      身邊沒有人也可以先按「傳邀請給球友」，那會產生一段訊息，貼到 LINE 傳給誰都行。
+    </p>
+
+    <figure>
+      <img src="/shot-friend-onboard.svg" alt="第一次設定時的加球友畫面" loading="lazy" />
+      <figcaption>第一次設定會經過這一頁。跳過了也沒關係，下面兩種方式隨時都能用。</figcaption>
     </figure>
+
+    <h2>方法一：不在同一個球場，用 LINE 傳</h2>
+
+    <div class="card">
+      <h3>1. 找到你的球員 ID</h3>
+      <p>
+        打開<b>護照</b>，上面那張球員證上寫著「ID · 」加八個字，
+        例如 <b>FDD66DD2</b>。右邊有個複製的小圖示，按一下就複製起來了。
+      </p>
+    </div>
+
+    <figure>
+      <img src="/shot-friend-id.svg" alt="護照上的球員證，ID 與複製按鈕" loading="lazy" />
+      <figcaption>球員證就在護照最上面。按 ID 右邊的圖示複製。</figcaption>
+    </figure>
+
+    <div class="card">
+      <h3>2. 貼到 LINE 傳給對方</h3>
+      <p>
+        直接貼給他就好。也可以走「我的好友 → 或用 LINE 傳邀請給他」，
+        那會連下載連結和步驟一起帶著，對方照著做就行。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>3. 對方把 ID 貼進搜尋框</h3>
+      <p>
+        他打開 <b>護照 → 我的好友</b>，最上面那格寫著「貼上 ID 搜尋」。
+        貼進去，你的名字就會跳出來，按<b>加入好友</b>。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>4. 你按下勾勾</h3>
+      <p>
+        他送出之後，你的好友頁最上面會出現一列「想加你為好友」，
+        右邊一個綠色勾勾、一個叉。按勾勾就互相加好了。
+        你也會收到一則通知，點開直接到這一頁。
+      </p>
+    </div>
+
+    <figure>
+      <img src="/shot-friend-accept.svg" alt="好友頁上的待確認邀請與勾勾" loading="lazy" />
+      <figcaption>邀請會排在名單前面。按綠色勾勾就完成，兩邊同時加好。</figcaption>
+    </figure>
+
+    <h2>方法二：人就在旁邊，掃一下</h2>
+
+    <p>
+      兩個人各拿各的手機，都到 <b>護照 → 我的好友</b>：
+    </p>
+
+    <div class="card">
+      <h3>一個人按「我的條碼」</h3>
+      <p>畫面會跳出一個 QR，把手機拿給對方。</p>
+    </div>
+
+    <div class="card">
+      <h3>另一個人按「掃描」</h3>
+      <p>
+        對著那個畫面掃一下就好，不用打任何字。
+        掃的那一邊會直接送出，另一邊按勾勾確認。
+      </p>
+    </div>
+
+    <p>
+      誰掃誰都可以，結果一樣。護照最上面那張球員證上本來就有一個一樣的 QR，
+      直接拿那個給人掃也行。
+    </p>
 
     <div class="callout">
-      <b>沒開定位怎麼辦？</b>
-      那就不會自動偵測到你——這個功能完全靠定位。你仍然可以手動記練習、記比賽，
-      那些一樣會讓球場亮起來，只是走的是另一條路。
+      <b>找不到好友頁？</b>
+      它不在設定裡，也不在首頁。
+      底部最右邊的<b>護照</b>，往下滑過「網球數據」，下一格就是「我的好友」。
     </div>
 
-    <h2>誰會看到什麼</h2>
+    <h2>加好之後</h2>
 
-    <div class="card">
-      <h3>陌生人：只看得到數字</h3>
-      <p>
-        地圖上顯示的是「這座球場現在有 3 個人」，<b>不會顯示是誰</b>。
-        這不是介面上藏起來而已——地圖讀的是一個只回傳數字的資料庫函式，
-        身分從頭到尾沒有離開伺服器。就算有人想查，那裡也沒有名字可查。
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>好友：會知道是你</h3>
-      <p>
-        你的好友會收到一則「你到了中央大學網球場」的通知。這是好友關係本來的意思——
-        你們互相加了對方，才會知道對方在哪打球。
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>把球場加最愛的人：會知道有人來了</h3>
-      <p>
-        追蹤了那座球場的人（不一定是你的好友）會收到「有人在中央大學打球」——
-        <b>一樣不含你的名字</b>。他們訂閱的是那個場地，不是你。
-      </p>
-    </div>
-
-    <h2>不想被看到</h2>
     <p>
-      設定裡有一個開關：<b>「分享我的球場活動到社群」</b>。關掉之後，
-      你就不會被算進地圖上的數字，陌生人不會因為你而看到那座球場亮起來。
+      對方去了哪座球場、記了什麼練習，你的日記裡會看得到；
+      他開的約球會出現在你的首頁；他打的比賽如果標到你，
+      確認之後會同時進兩個人的戰績。
+      <a href="/friends">加好友之後，會多出什麼</a> 那篇講得比較細。
     </p>
-    <p>
-      要說清楚的是：<b>這個開關管的是地圖上的公開數字，不管好友通知。</b>
-      好友仍然會收到你到場的訊息——那是好友關係的一部分，
-      要完全停掉的話只能移除好友。開關底下那行小字寫的就是這件事。
-    </p>
-
-    <figure>
-      <img src="/shot-live-setting.svg" alt="設定裡的分享球場活動開關" loading="lazy" />
-      <figcaption>設定 →「分享我的球場活動到社群」。關掉之後，你就不在地圖的數字裡。</figcaption>
-    </figure>
-    <p>
-      另外，記練習和記比賽的時候各有一個「匿名顯示在地圖活動上」的選項。
-      勾了之後，別人只會看到「有人在這裡練習」，不會看到你的名字。
-      這是<b>單筆</b>的決定——今天想低調，不影響其他任何一天。
-    </p>
-
-    <figure>
-      <img src="/shot-live-anon.svg" alt="記錄練習時的匿名顯示選項" loading="lazy" />
-      <figcaption>記練習與記比賽的表單裡各有一個，只影響那一筆。</figcaption>
-    </figure>
-
-    <h2>地圖上怎麼看</h2>
-
-    <figure>
-      <img src="/shot-live-map.svg" alt="地圖上顯示在線人數的球場標記" loading="lazy" />
-      <figcaption>球場標記上的數字是在線人數；上面那排的「球友在線」按下去，只留下有人的球場。</figcaption>
-    </figure>
-
-    <div class="card">
-      <h3>球場旁邊的數字</h3>
-      <p>過去兩小時內，有幾個人在那裡。沒有人的球場不會有這個數字。</p>
-    </div>
-
-    <div class="card">
-      <h3>「球友在線」篩選</h3>
-      <p>
-        地圖上方的篩選列有一個「球友在線」。按下去，地圖只留下現在有人的球場——
-        今晚想找個確定有人的地方，這一顆最快。
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>球場卡上的「X 分鐘前有人抵達」</h3>
-      <p>
-        點開球場，除了人數還會告訴你最近一次有人到是多久以前。
-        「3 個人」和「40 分鐘前有人到」是兩件事——後者告訴你這個數字有多新。
-      </p>
-    </div>
 
     <div class="guide-foot">
       用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。

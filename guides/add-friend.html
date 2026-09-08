@@ -1,0 +1,141 @@
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    h2 { font-size: 18px; margin: 32px 0 8px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 18px 14px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; margin: 0 0 6px; }
+    .card p { margin: 0; font-size: 15px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
+    figure { margin: 16px 0 4px; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto;
+                 border-radius: 12px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px;
+                 line-height: 1.6; }
+    .path { font-size: 14px; color: var(--text-tertiary); margin: 4px 0 0; }
+    .path b { color: var(--text-secondary); }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); }
+</style>
+<article class="container rel">
+    <a class="rel-back" href="/blog">← 最新情報</a>
+    <span class="tag-line">🌰 使用說明</span>
+    <h1>怎麼加球友</h1>
+    <p class="lead">
+      面對面掃一下、或把你的球員 ID 用 LINE 傳過去。
+      兩條路，看你們現在是不是在同一個球場。
+    </p>
+
+    <p>
+      球友名單在<b>護照</b>那一頁，往下滑就是「我的好友」。
+      點那張卡會打開完整的名單，加人的按鈕都在最上面。
+    </p>
+    <p class="path">
+      路徑：底部的 <b>護照</b> → 往下滑到 <b>我的好友</b> → 點卡片
+    </p>
+
+    <h2>剛裝好 App 的時候</h2>
+
+    <p>
+      第一次設定會走到一頁叫「把一起打球的人加進來」，中間就是你的碼。
+      當下身邊有人，請他點「改掃對方的碼」對著你的畫面掃一下，就加好了。
+      身邊沒有人也可以先按「傳邀請給球友」，那會產生一段訊息，貼到 LINE 傳給誰都行。
+    </p>
+
+    <figure>
+      <img src="/shot-friend-onboard.svg" alt="第一次設定時的加球友畫面" loading="lazy" />
+      <figcaption>第一次設定會經過這一頁。跳過了也沒關係，下面兩種方式隨時都能用。</figcaption>
+    </figure>
+
+    <h2>方法一：不在同一個球場，用 LINE 傳</h2>
+
+    <div class="card">
+      <h3>1. 找到你的球員 ID</h3>
+      <p>
+        打開<b>護照</b>，上面那張球員證上寫著「ID · 」加八個字，
+        例如 <b>FDD66DD2</b>。右邊有個複製的小圖示，按一下就複製起來了。
+      </p>
+    </div>
+
+    <figure>
+      <img src="/shot-friend-id.svg" alt="護照上的球員證，ID 與複製按鈕" loading="lazy" />
+      <figcaption>球員證就在護照最上面。按 ID 右邊的圖示複製。</figcaption>
+    </figure>
+
+    <div class="card">
+      <h3>2. 貼到 LINE 傳給對方</h3>
+      <p>
+        直接貼給他就好。也可以走「我的好友 → 或用 LINE 傳邀請給他」，
+        那會連下載連結和步驟一起帶著，對方照著做就行。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>3. 對方把 ID 貼進搜尋框</h3>
+      <p>
+        他打開 <b>護照 → 我的好友</b>，最上面那格寫著「貼上 ID 搜尋」。
+        貼進去，你的名字就會跳出來，按<b>加入好友</b>。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>4. 你按下勾勾</h3>
+      <p>
+        他送出之後，你的好友頁最上面會出現一列「想加你為好友」，
+        右邊一個綠色勾勾、一個叉。按勾勾就互相加好了。
+        你也會收到一則通知，點開直接到這一頁。
+      </p>
+    </div>
+
+    <figure>
+      <img src="/shot-friend-accept.svg" alt="好友頁上的待確認邀請與勾勾" loading="lazy" />
+      <figcaption>邀請會排在名單前面。按綠色勾勾就完成，兩邊同時加好。</figcaption>
+    </figure>
+
+    <h2>方法二：人就在旁邊，掃一下</h2>
+
+    <p>
+      兩個人各拿各的手機，都到 <b>護照 → 我的好友</b>：
+    </p>
+
+    <div class="card">
+      <h3>一個人按「我的條碼」</h3>
+      <p>畫面會跳出一個 QR，把手機拿給對方。</p>
+    </div>
+
+    <div class="card">
+      <h3>另一個人按「掃描」</h3>
+      <p>
+        對著那個畫面掃一下就好，不用打任何字。
+        掃的那一邊會直接送出，另一邊按勾勾確認。
+      </p>
+    </div>
+
+    <p>
+      誰掃誰都可以，結果一樣。護照最上面那張球員證上本來就有一個一樣的 QR，
+      直接拿那個給人掃也行。
+    </p>
+
+    <div class="callout">
+      <b>找不到好友頁？</b>
+      它不在設定裡，也不在首頁。
+      底部最右邊的<b>護照</b>，往下滑過「網球數據」，下一格就是「我的好友」。
+    </div>
+
+    <h2>加好之後</h2>
+
+    <p>
+      對方去了哪座球場、記了什麼練習，你的日記裡會看得到；
+      他開的約球會出現在你的首頁；他打的比賽如果標到你，
+      確認之後會同時進兩個人的戰績。
+      <a href="/friends">加好友之後，會多出什麼</a> 那篇講得比較細。
+    </p>
+
+    <div class="guide-foot">
+      用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
+    </div>
+  </article>
