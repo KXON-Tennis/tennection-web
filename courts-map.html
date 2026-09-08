@@ -308,9 +308,6 @@
     .cta-row { display: flex; gap: 9px; flex: 0 0 auto; }
     .cta-row a { text-decoration: none; padding: 12px 16px; border-radius: 999px; font-weight: 800;
       font-size: 14px; line-height: 1; white-space: nowrap; }
-    .cta-row a.primary { background: var(--accent); color: #fff; }
-    /* 桌機：加 LINE 由右下 QR 負責，底部按鈕只留「下載 App」，避免與 QR 重複 */
-    .cta-bar .cta-row a.primary { display: none; }
     .cta-row a.secondary { background: rgba(255,255,255,.10); color: var(--ink); border: 1.5px solid var(--glass-line);
       display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
     .cta-row a.secondary .btn-icon { width: 18px; height: 18px; border-radius: 50%; display: block; flex: 0 0 auto; }
@@ -343,7 +340,6 @@
       .mapboxgl-ctrl-top-right .mapboxgl-ctrl-group { display: none; } /* 手機改用雙指縮放 */
       .cta-bar { flex-direction: column; align-items: stretch; gap: 10px; padding: 13px 15px; }
       .cta-row a { flex: 1 1 0; text-align: center; }
-      .cta-bar .cta-row a.primary { display: block; }  /* 手機無 QR → 顯示「加入 LINE」按鈕 */
       .top-panel h1 { font-size: 18px; }
       .top-panel { padding: 13px 15px 12px; }
     }
@@ -384,7 +380,6 @@
   <div class="cta-bar glass">
     <p class="note" id="ctaNote"></p>
     <div class="cta-row">
-      <a class="primary" id="ctaPrimary" href="https://line.me/R/ti/p/@tennisnut"></a>
       <a class="secondary" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener"><img class="btn-icon" src="/app-icon.png" alt="" /><span id="ctaSecondary"></span></a>
     </div>
   </div>
@@ -420,7 +415,7 @@
         },
         courts: "座球場", markets: "個市場", surfaced: "有材質資料",
         unknown: "未標示", note: "⚠️ 詳細球場資訊難免有缺漏，歡迎加入 APP 回報球場資訊與狀態。",
-        ctaPrimary: "加入 LINE 回報球場", ctaSecondary: "下載 Tennis Nut App（iOS）",
+        ctaSecondary: "下載 Tennis Nut App（iOS）",
         qrHead: "掃描加入 LINE 官方帳號",
         courtsUnit: n => `${n} 面`, lights: "夜間照明", indoor: "室內",
         styleStreets: "街道", styleDark: "深色", styleSatellite: "衛星",
@@ -475,7 +470,7 @@
         },
         courts: "courts", markets: "markets", surfaced: "with a surface",
         unknown: "not recorded", note: "⚠️ Court details can be incomplete — report info and conditions in the app.",
-        ctaPrimary: "Report a court on LINE", ctaSecondary: "Download the Tennis Nut app (iOS)",
+        ctaSecondary: "Download the Tennis Nut app (iOS)",
         qrHead: "Scan to add our LINE account",
         courtsUnit: n => `${n} court${n === 1 ? "" : "s"}`, lights: "Floodlights", indoor: "Indoor",
         styleStreets: "Streets", styleDark: "Dark", styleSatellite: "Satellite",
@@ -1191,7 +1186,6 @@
     document.getElementById("pageTitle").textContent = T.title;
     document.getElementById("pageSub").textContent = T.sub;
     document.getElementById("ctaNote").textContent = T.note;
-    document.getElementById("ctaPrimary").textContent = T.ctaPrimary;
     document.getElementById("ctaSecondary").textContent = T.ctaSecondary;
     document.getElementById("qrHead").textContent = T.qrHead;
 
