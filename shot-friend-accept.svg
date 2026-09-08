@@ -5,7 +5,7 @@
   <rect x="24" y="62" width="312" height="42" rx="10" fill="#FFFFFF" stroke="#ECEAE2"/>
   <circle cx="46" cy="83" r="7" fill="none" stroke="#9BA29B" stroke-width="1.6"/>
   <line x1="51" y1="88" x2="56" y2="93" stroke="#9BA29B" stroke-width="1.6"/>
-  <text x="66" y="88" font-size="13" fill="#9BA29B">貼上 ID 搜尋</text>
+  <text x="66" y="88" font-size="13" fill="#9BA29B">用名字搜尋好友</text>
   <rect x="24" y="116" width="150" height="44" rx="10" fill="none" stroke="#ECEAE2"/>
   <text x="99" y="143" font-size="13" fill="#1B5138" font-weight="700" text-anchor="middle">我的條碼</text>
   <rect x="186" y="116" width="150" height="44" rx="10" fill="#3F7C43"/>
@@ -21,7 +21,9 @@
   <path d="M263 267 l5 5 l9 -10" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
   <circle cx="308" cy="267" r="15" fill="none" stroke="#C9C5B8" stroke-width="1.6"/>
   <path d="M302 261 l12 12 M314 261 l-12 12" stroke="#9BA29B" stroke-width="1.8" stroke-linecap="round"/>
-  <circle cx="270" cy="267" r="24" fill="none" stroke="#3F7C43" stroke-width="2" stroke-dasharray="4 3"/>
-  <text x="270" y="316" font-size="11" fill="#3F7C43" font-weight="800" text-anchor="middle">按 ✓ 就互相加好了</text>
-  <text x="24" y="356" font-size="12.5" fill="#6E776F">名單在這行底下，加好之後就會出現。</text>
+  <circle cx="270" cy="267" r="26" fill="none" stroke="#E8590C" stroke-width="3"/>
+  <circle cx="243" cy="245" r="13" fill="#E8590C"/>
+  <text x="243" y="250" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">1</text>
+  <text x="270" y="320" font-size="12" fill="#E8590C" font-weight="800" text-anchor="middle">按 ✓ 就互相加好了</text>
+  <text x="24" y="358" font-size="12.5" fill="#6E776F">名單在這行底下，加好之後就會出現。</text>
 </svg>

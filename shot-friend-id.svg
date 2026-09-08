@@ -20,8 +20,10 @@
   <text x="148" y="156" font-size="14" fill="#9BA29B" font-weight="700" letter-spacing="1">ID · ABCD1234</text>
   <rect x="268" y="141" width="19" height="19" rx="4" fill="none" stroke="#3F7C43" stroke-width="1.6"/>
   <rect x="272" y="137" width="19" height="19" rx="4" fill="#EDF3EA" stroke="#3F7C43" stroke-width="1.6"/>
-  <circle cx="281" cy="147" r="26" fill="none" stroke="#3F7C43" stroke-width="2" stroke-dasharray="4 3"/>
-  <text x="281" y="192" font-size="11" fill="#3F7C43" font-weight="800" text-anchor="middle">按這裡複製 ID</text>
+  <circle cx="281" cy="147" r="27" fill="none" stroke="#E8590C" stroke-width="3"/>
+  <circle cx="252" cy="124" r="13" fill="#E8590C"/>
+  <text x="252" y="129" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">1</text>
+  <text x="281" y="194" font-size="12" fill="#E8590C" font-weight="800" text-anchor="middle">按這裡複製 ID</text>
   <rect x="24" y="216" width="312" height="56" rx="12" fill="#FFFFFF" stroke="#ECEAE2"/>
   <text x="42" y="240" font-size="12.5" fill="#6E776F">複製之後貼進 LINE 傳給對方就好，</text>
   <text x="42" y="260" font-size="12.5" fill="#6E776F">不用兩個人同時在球場。</text>
