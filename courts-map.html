@@ -537,9 +537,11 @@
       hard: "#4FA8FF", clay: "#FF6A3D", grass: "#7ED957",
       artificial_grass: "#69C79A", omni: "#C9A66B", concrete: "#9AA3AA",
       pu: "#B98CD9", carpet: "#E38FB5", other: "#AEB6BD",
-      // Teal, the one hue this palette never spends — the same value the app
-      // uses, so a studio is the same colour on both maps.
-      indoor_practice: "#0FB5AE", unknown: "#5B6169",
+      // Violet, the same value the app uses, so a studio is the same colour on
+      // both maps. It was teal until that measured ΔE 22 from 人工草 #69C79A —
+      // the closest pair in this palette, and on dots this small an
+      // artificial-grass court and a ball-machine room read alike.
+      indoor_practice: "#7C3AED", unknown: "#5B6169",
     };
 
     // Takes the court, not just its surface_code: venue_kind answers first
