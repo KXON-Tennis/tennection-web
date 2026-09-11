@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="Tennis Nut 1.8.0：加球友，兩步就到" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1200" height="630" fill="#FBFAF6"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#1B5138"/>
+  <text x="80" y="270" font-size="54" font-weight="800" fill="#1B5138">加球友，兩步就到</text>
+  <text x="80" y="330" font-size="24" fill="#6E776F">掃一下、傳個 ID，或把別人給你的貼上</text>
+  <text x="80" y="404" font-size="20" fill="#9BA29B">Tennis Nut 1.8.0 · Build 2270</text>
+  <circle cx="1010" cy="300" r="96" fill="#D8E64A"/>
+  <path d="M914 300 c40 -30 40 -78 0 -108" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" opacity="0.9"/>
+  <path d="M1106 300 c-40 -30 -40 -78 0 -108" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" opacity="0.9"/>
+  <path d="M914 300 c40 30 40 78 0 108" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" opacity="0.9"/>
+  <path d="M1106 300 c-40 30 -40 78 0 108" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" opacity="0.9"/>
+</svg>
