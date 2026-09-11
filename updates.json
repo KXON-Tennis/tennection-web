@@ -211,6 +211,12 @@
   ],
   "guides": [
     {
+      "title": "剛裝好 Tennis Nut，先做這五件事",
+      "blurb": "裝備、好友、最愛球場、地圖、諮詢——十分鐘走完一遍，App 才會開始替你做事。",
+      "href": "/getting-started",
+      "icon": "🚀"
+    },
+    {
       "title": "怎麼加球友",
       "blurb": "面對面掃一下、把 ID 傳給他，或把別人給你的 ID 貼上。入口在中間那顆＋裡。",
       "href": "/add-friend",
