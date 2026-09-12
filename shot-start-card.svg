@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="312" rx="30" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="304" rx="26" fill="#FBFAF6"/>
+  <text x="180" y="40" font-size="14" fill="#1B5138" font-weight="800" text-anchor="middle">分享圖卡</text>
+
+  <!-- 卡片本體：照片 + 疊字 -->
+  <rect x="70" y="58" width="220" height="176" rx="14" fill="#2F3A33"/>
+  <path d="M70 150 q40 -34 78 -10 q34 22 62 -12 q28 -32 80 6 v86 a14 14 0 0 1 -14 14 h-192 a14 14 0 0 1 -14 -14 z" fill="#3E5B45"/>
+  <circle cx="238" cy="92" r="16" fill="#4A6B52"/>
+  <text x="86" y="96" font-size="12" fill="#C6FF3C" font-weight="800">桃園市中路網球場</text>
+  <text x="86" y="196" font-size="26" fill="#FFFFFF" font-weight="800">90 分鐘</text>
+  <text x="86" y="216" font-size="11.5" fill="#D8E4D8">正手 · 反手 · 發球</text>
+  <rect x="86" y="112" width="58" height="20" rx="10" fill="#C6FF3C"/>
+  <text x="115" y="126" font-size="11" fill="#1B2B18" font-weight="800" text-anchor="middle">練習</text>
+
+  <circle cx="180" cy="146" r="102" fill="none" stroke="#E8590C" stroke-width="3"/>
+  <circle cx="108" cy="74" r="13" fill="#E8590C"/>
+  <text x="108" y="79" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">1</text>
+  <text x="180" y="258" font-size="11.5" fill="#E8590C" font-weight="800" text-anchor="middle">照片是你記錄練習時拍的那一張</text>
+
+  <rect x="52" y="272" width="118" height="34" rx="10" fill="#3F7C43"/>
+  <text x="111" y="294" font-size="12.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">分享</text>
+  <rect x="190" y="272" width="118" height="34" rx="10" fill="none" stroke="#C9C5B8"/>
+  <text x="249" y="294" font-size="12.5" fill="#1B5138" font-weight="700" text-anchor="middle">另存為圖片</text>
+</svg>

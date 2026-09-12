@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="292" rx="30" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="284" rx="26" fill="#FBFAF6"/>
+  <rect x="158" y="24" width="44" height="4" rx="2" fill="#D8D5CB"/>
+  <text x="24" y="62" font-size="16" fill="#1B5138" font-weight="800">桃園市中路網球場</text>
+  <line x1="24" y1="80" x2="336" y2="80" stroke="#ECEAE2"/>
+  <text x="24" y="106" font-size="12.5" fill="#6E776F" font-weight="700">🏳️ 還沒有球團駐紮在這裡</text>
+  <g>
+    <circle cx="40" cy="150" r="15" fill="#EDF3EA" stroke="#FBFAF6" stroke-width="3"/>
+    <text x="40" y="156" font-size="13" fill="#3F7C43" font-weight="800" text-anchor="middle">王</text>
+    <circle cx="60" cy="150" r="15" fill="#E3F0FF" stroke="#FBFAF6" stroke-width="3"/>
+    <text x="60" y="156" font-size="13" fill="#005DB8" font-weight="800" text-anchor="middle">陳</text>
+    <circle cx="80" cy="150" r="15" fill="#FFF3EC" stroke="#FBFAF6" stroke-width="3"/>
+    <text x="80" y="156" font-size="13" fill="#C24A08" font-weight="800" text-anchor="middle">林</text>
+  </g>
+  <text x="110" y="155" font-size="13.5" fill="#1B5138" font-weight="700">另外 5 位球友也在這裡打過</text>
+  <text x="336" y="155" font-size="15" fill="#9BA29B" text-anchor="end">›</text>
+  <rect x="24" y="126" width="312" height="48" rx="12" fill="none" stroke="#E8590C" stroke-width="3"/>
+  <circle cx="24" cy="126" r="13" fill="#E8590C"/>
+  <text x="24" y="131" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">1</text>
+  <text x="24" y="212" font-size="12.5" fill="#6E776F">你在這座球場留下過紀錄，才看得到這份名單</text>
+  <text x="24" y="234" font-size="12.5" fill="#6E776F">——同樣地，也只有他們看得到你。</text>
+  <rect x="24" y="252" width="312" height="34" rx="10" fill="#EDF3EA"/>
+  <text x="180" y="274" font-size="12.5" fill="#3F7C43" font-weight="700" text-anchor="middle">點開可以直接送出好友邀請</text>
+</svg>
