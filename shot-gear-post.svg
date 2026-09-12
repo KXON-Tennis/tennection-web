@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 400" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="392" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="384" rx="30" fill="#FBFAF6"/>
+  <rect x="154" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+
+  <text x="26" y="60" font-size="16" fill="#1B5138" font-weight="800">裝備投稿</text>
+
+  <!-- 一篇心得 -->
+  <rect x="16" y="76" width="328" height="150" rx="16" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <circle cx="44" cy="106" r="14" fill="#E3E9D8"/>
+  <text x="44" y="111" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">老</text>
+  <text x="68" y="103" font-size="13" fill="#2E5A34" font-weight="700">老皮</text>
+  <text x="68" y="119" font-size="10.5" fill="#9BA29B">台灣 · 2 天前</text>
+
+  <rect x="26" y="130" width="150" height="24" rx="7" fill="#F3F8EC"/>
+  <text x="38" y="146" font-size="11" fill="#3F7C43" font-weight="700">🎾 Wilson Blade V9</text>
+  <rect x="182" y="130" width="120" height="24" rx="7" fill="#F1F0EA"/>
+  <text x="192" y="146" font-size="10.5" fill="#6E776F">跟 Pure Drive 比</text>
+
+  <text x="26" y="176" font-size="11.5" fill="#5E7A60">拍面小了一點，但落點比以前準很多。</text>
+  <text x="26" y="194" font-size="11.5" fill="#5E7A60">穿 53 磅之後彈性剛好，截擊不會震手。</text>
+
+  <rect x="26" y="206" width="66" height="26" rx="13" fill="#FFFFFF" stroke="#5C9A46"/>
+  <text x="59" y="223" font-size="11.5" fill="#3C6E3F" font-weight="700" text-anchor="middle">👍 有用 3</text>
+
+  <!-- 第二篇（截斷示意） -->
+  <rect x="16" y="238" width="328" height="86" rx="16" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <circle cx="44" cy="268" r="14" fill="#E3E9D8"/>
+  <text x="44" y="273" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">J</text>
+  <text x="68" y="265" font-size="13" fill="#2E5A34" font-weight="700">Jenny</text>
+  <text x="68" y="281" font-size="10.5" fill="#9BA29B">台灣 · 5 天前</text>
+  <rect x="26" y="292" width="132" height="22" rx="7" fill="#F3F8EC"/>
+  <text x="38" y="307" font-size="10.5" fill="#3F7C43" font-weight="700">👟 Asics Court FF 3</text>
+
+  <!-- 寫一篇 -->
+  <rect x="232" y="340" width="112" height="36" rx="18" fill="#1B5138"/>
+  <text x="288" y="363" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">✎ 寫一篇</text>
+</svg>
