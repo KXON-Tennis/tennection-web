@@ -5,7 +5,7 @@
   <text x="80" y="168" font-size="64" font-weight="800" fill="#1B5138">你的球場上還有誰</text>
   <text x="80" y="228" font-size="30" fill="#6E776F">打過的球場，看得到誰也在這裡打</text>
 
-  <rect x="80" y="290" width="920" height="512" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <rect x="80" y="290" width="920" height="482" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
   <text x="128" y="358" font-size="34" fill="#1B5138" font-weight="800">也在這裡打過的球友</text>
 
   <line x1="128" y1="396" x2="952" y2="396" stroke="#F1F0EA" stroke-width="2"/>
@@ -27,9 +27,10 @@
   <text x="952" y="709" font-size="30" fill="#9BA29B" font-weight="700" text-anchor="end">已送出</text>
 
   <!-- 名單是對等的，所以這句得講明白：先留下紀錄，才看得到人 -->
-  <rect x="80" y="832" width="920" height="98" rx="28" fill="#F3F8EC"/>
-  <text x="124" y="879" font-size="30" fill="#3C6E3F" font-weight="700">要看到是誰，先去球場記一次練習 🎾</text>
-  <text x="124" y="915" font-size="24" fill="#6E776F">你在名單上，才看得到名單</text>
+  <rect x="80" y="796" width="920" height="146" rx="28" fill="#F3F8EC"/>
+  <text x="124" y="846" font-size="30" fill="#3C6E3F" font-weight="700">想看到還有誰嗎？趕快去那座球場打球，</text>
+  <text x="124" y="888" font-size="30" fill="#3C6E3F" font-weight="700">記錄一次練習或比賽吧！🎾</text>
+  <text x="124" y="924" font-size="24" fill="#6E776F">你在名單上，才看得到名單</text>
 
   <text x="540" y="1010" font-size="30" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
 </svg>
