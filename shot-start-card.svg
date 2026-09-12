@@ -1,25 +1,104 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
-  <rect x="4" y="4" width="352" height="312" rx="30" fill="#DEDACE"/>
-  <rect x="8" y="8" width="344" height="304" rx="26" fill="#FBFAF6"/>
-  <text x="180" y="40" font-size="14" fill="#1B5138" font-weight="800" text-anchor="middle">分享圖卡</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 410" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="402" rx="30" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="394" rx="26" fill="#FBFAF6"/>
+  <text x="180" y="38" font-size="14" fill="#1B5138" font-weight="800" text-anchor="middle">分享圖卡</text>
 
-  <!-- 卡片本體：照片 + 疊字 -->
-  <rect x="70" y="58" width="220" height="176" rx="14" fill="#2F3A33"/>
-  <path d="M70 150 q40 -34 78 -10 q34 22 62 -12 q28 -32 80 6 v86 a14 14 0 0 1 -14 14 h-192 a14 14 0 0 1 -14 -14 z" fill="#3E5B45"/>
-  <circle cx="238" cy="92" r="16" fill="#4A6B52"/>
-  <text x="86" y="96" font-size="12" fill="#C6FF3C" font-weight="800">桃園市中路網球場</text>
-  <text x="86" y="196" font-size="26" fill="#FFFFFF" font-weight="800">90 分鐘</text>
-  <text x="86" y="216" font-size="11.5" fill="#D8E4D8">正手 · 反手 · 發球</text>
-  <rect x="86" y="112" width="58" height="20" rx="10" fill="#C6FF3C"/>
-  <text x="115" y="126" font-size="11" fill="#1B2B18" font-weight="800" text-anchor="middle">練習</text>
+  <defs>
+    <clipPath id="cardClip"><rect x="80" y="54" width="200" height="266" rx="16"/></clipPath>
+    <linearGradient id="scrim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0.45" stop-color="#0E1A12" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0E1A12" stop-opacity="0.82"/>
+    </linearGradient>
+  </defs>
 
-  <circle cx="180" cy="146" r="102" fill="none" stroke="#E8590C" stroke-width="3"/>
-  <circle cx="108" cy="74" r="13" fill="#E8590C"/>
-  <text x="108" y="79" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">1</text>
-  <text x="180" y="258" font-size="11.5" fill="#E8590C" font-weight="800" text-anchor="middle">照片是你記錄練習時拍的那一張</text>
+  <g clip-path="url(#cardClip)">
+    <!-- 後牆與球場 -->
+    <rect x="80" y="54" width="200" height="266" fill="#2E4A38"/>
+    <rect x="80" y="182" width="200" height="138" fill="#3E7BC4"/>
+    <rect x="80" y="182" width="200" height="10" fill="#2E4A38" opacity="0.35"/>
+    <g stroke="#FFFFFF" stroke-opacity="0.65" stroke-width="2" fill="none">
+      <path d="M92 312 H268"/>
+      <path d="M108 254 H252"/>
+      <path d="M180 254 V312"/>
+      <path d="M100 282 H260"/>
+    </g>
+    <!-- 圍網 -->
+    <g stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="1">
+      <path d="M80 80 H280 M80 100 H280 M80 120 H280 M80 140 H280 M80 160 H280"/>
+      <path d="M100 54 V182 M130 54 V182 M160 54 V182 M190 54 V182 M220 54 V182 M250 54 V182"/>
+    </g>
 
-  <rect x="52" y="272" width="118" height="34" rx="10" fill="#3F7C43"/>
-  <text x="111" y="294" font-size="12.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">分享</text>
-  <rect x="190" y="272" width="118" height="34" rx="10" fill="none" stroke="#C9C5B8"/>
-  <text x="249" y="294" font-size="12.5" fill="#1B5138" font-weight="700" text-anchor="middle">另存為圖片</text>
+    <!-- 女生 -->
+    <g transform="translate(-8,-18)">
+      <!-- 影子 -->
+      <ellipse cx="172" cy="268" rx="30" ry="6" fill="#0E1A12" opacity="0.22"/>
+      <!-- 腿 -->
+      <path d="M162 232 l-4 34" stroke="#F3D3B8" stroke-width="9" stroke-linecap="round"/>
+      <path d="M182 232 l5 34" stroke="#F3D3B8" stroke-width="9" stroke-linecap="round"/>
+      <!-- 襪子與鞋 -->
+      <path d="M158 258 l-1 8" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+      <path d="M187 258 l1 8" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+      <ellipse cx="156" cy="269" rx="10" ry="5" fill="#FFFFFF"/>
+      <ellipse cx="189" cy="269" rx="10" ry="5" fill="#FFFFFF"/>
+      <path d="M146 269 a10 5 0 0 1 20 0" fill="#C6FF3C"/>
+      <path d="M179 269 a10 5 0 0 1 20 0" fill="#C6FF3C"/>
+      <!-- 裙 -->
+      <path d="M152 214 h40 l7 22 q-27 7 -54 0 z" fill="#FFFFFF"/>
+      <path d="M166 214 v22 M180 214 v23 M193 215 l2 21" stroke="#E7ECEA" stroke-width="1.6"/>
+      <!-- 上衣 -->
+      <path d="M156 180 q16 -8 32 0 l4 36 q-20 7 -40 0 z" fill="#FFE3EC"/>
+      <path d="M172 178 v38" stroke="#F7CBDA" stroke-width="1.6"/>
+      <!-- 左手（自然垂下） -->
+      <path d="M158 190 l-10 24" stroke="#F3D3B8" stroke-width="8" stroke-linecap="round"/>
+      <!-- 右手舉拍 -->
+      <path d="M188 188 l24 -20" stroke="#F3D3B8" stroke-width="8" stroke-linecap="round"/>
+      <!-- 球拍 -->
+      <g transform="rotate(-28 224 150)">
+        <path d="M212 166 l8 -14" stroke="#1B5138" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="224" cy="144" rx="15" ry="19" fill="#EDF7E2" stroke="#1B5138" stroke-width="4"/>
+        <g stroke="#9BB98A" stroke-width="1.2">
+          <path d="M216 128 V160 M224 126 V162 M232 128 V160"/>
+          <path d="M211 136 H237 M210 144 H238 M211 152 H237"/>
+        </g>
+      </g>
+      <!-- 頭 -->
+      <path d="M154 168 q-6 -30 18 -30 q24 0 18 30 z" fill="#4A3328"/>
+      <circle cx="172" cy="162" r="15" fill="#F6DCC6"/>
+      <path d="M157 158 q3 -20 15 -20 q12 0 15 20 q-8 -10 -15 -8 q-8 -2 -15 8 z" fill="#4A3328"/>
+      <!-- 馬尾 -->
+      <path d="M187 152 q16 6 12 26 q-3 10 -12 8 q8 -14 0 -34 z" fill="#4A3328"/>
+      <circle cx="188" cy="154" r="4" fill="#C6FF3C"/>
+      <!-- 五官 -->
+      <circle cx="166" cy="163" r="2.1" fill="#2B2018"/>
+      <circle cx="178" cy="163" r="2.1" fill="#2B2018"/>
+      <path d="M168 170 q4 4 8 0" stroke="#2B2018" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <circle cx="160" cy="169" r="3" fill="#FFB3C7" opacity="0.6"/>
+      <circle cx="184" cy="169" r="3" fill="#FFB3C7" opacity="0.6"/>
+    </g>
+
+    <!-- 網球 -->
+    <circle cx="118" cy="206" r="7" fill="#DFFF6B"/>
+    <path d="M112 203 q6 3 0 6 M124 203 q-6 3 0 6" stroke="#B8D94A" stroke-width="1.4" fill="none"/>
+
+    <!-- 底部壓字用的暗角 -->
+    <rect x="80" y="54" width="200" height="266" fill="url(#scrim)"/>
+  </g>
+
+  <rect x="80" y="54" width="200" height="266" rx="16" fill="none" stroke="#C9C5B8"/>
+
+  <!-- 圖卡上的字 -->
+  <rect x="94" y="70" width="50" height="20" rx="10" fill="#C6FF3C"/>
+  <text x="119" y="84" font-size="11" fill="#1B2B18" font-weight="800" text-anchor="middle">練習</text>
+  <text x="94" y="268" font-size="11.5" fill="#C6FF3C" font-weight="800">桃園市中路網球場</text>
+  <text x="94" y="296" font-size="25" fill="#FFFFFF" font-weight="800">90 分鐘</text>
+  <text x="94" y="312" font-size="10.5" fill="#D8E4D8">正手 · 反手 · 發球　｜　9/12</text>
+
+
+  <rect x="46" y="338" width="130" height="46" rx="14" fill="none" stroke="#E8590C" stroke-width="3"/>
+  <circle cx="46" cy="338" r="13" fill="#E8590C"/>
+  <text x="46" y="343" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">1</text>
+  <rect x="52" y="344" width="118" height="34" rx="10" fill="#3F7C43"/>
+  <text x="111" y="366" font-size="12.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">分享</text>
+  <rect x="190" y="344" width="118" height="34" rx="10" fill="none" stroke="#C9C5B8"/>
+  <text x="249" y="366" font-size="12.5" fill="#1B5138" font-weight="700" text-anchor="middle">另存為圖片</text>
 </svg>
