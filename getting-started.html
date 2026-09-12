@@ -141,6 +141,17 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
               box-decoration-break: clone; -webkit-box-decoration-break: clone;
               border-radius: 3px; }
     h3 { font-size: 17px; margin: 28px 0 6px; }
+    /* 第 0 步。這篇會被貼進 LINE、貼給還沒裝的人，所以「去哪裡拿」不能
+       只寫在別的頁面上。 */
+    .get-app { display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+               background: var(--tint); border: 1px solid var(--accent-soft);
+               border-radius: 14px; padding: 18px 20px; margin: 24px 0 8px; }
+    .get-app-text { flex: 1 1 190px; }
+    .get-app-text b { display: block; font-size: 15px; margin-bottom: 2px; }
+    .get-app-text span { font-size: 13.5px; color: var(--text-tertiary);
+                         line-height: 1.6; }
+    .get-app img { display: block; }
+    .get-app-android { display: inline-block; margin-top: 10px; font-size: 13px; }
     figure { margin: 16px 0 4px; }
     figure img { display: block; width: 100%; max-width: 300px; height: auto;
                  border-radius: 12px; }
@@ -183,6 +194,22 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       底下五個分頁由左到右是：<b>首頁</b>、<b>諮詢</b>、中間那顆綠色的 <b>＋</b>、
       <b>探索</b>、<b>護照</b>。下面每一步都會說清楚在哪一個分頁。
     </p>
+
+    <h2><span>0. 先把 App 裝起來</span></h2>
+
+    <div class="get-app">
+      <div class="get-app-text">
+        <b>Tennis Nut</b>
+        <span>iPhone 在 App Store 上就下載得到。</span>
+        <a class="get-app-android" href="https://forms.gle/N7EKJ58FmvhVKQs69"
+           target="_blank" rel="noopener">Android 使用者？加入 Google Play 測試 →</a>
+      </div>
+      <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener"
+         aria-label="從 App Store 下載 Tennis Nut">
+        <img src="/app-store-badge-en.svg" alt="從 App Store 下載"
+             width="159" height="53" />
+      </a>
+    </div>
 
     <!-- 1 ─────────────────────────────────────────────────────────── -->
     <h2><span>1. 設定裝備</span></h2>
