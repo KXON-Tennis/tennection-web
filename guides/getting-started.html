@@ -3,8 +3,20 @@
 h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
     .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
     .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
-    h2 { font-size: 20px; margin: 40px 0 8px; }
-    h3 { font-size: 16px; margin: 24px 0 6px; }
+    /* 六個步驟是這篇的骨架，讀者常常是回來找其中一步，所以標題要在捲動時
+       一眼跳出來。螢光筆的底色只包住文字本身（display:inline + box-decoration
+       -break），換行時兩行各自有底，不會變成一大塊色塊。 */
+    h2 { font-size: 26px; line-height: 1.45; margin: 52px 0 14px; }
+    h2 span { display: inline; padding: 2px 10px 3px;
+              background: linear-gradient(transparent 12%, #E9F47C 12%, #E9F47C 88%, transparent 88%);
+              box-decoration-break: clone; -webkit-box-decoration-break: clone;
+              border-radius: 3px; }
+    h3 { font-size: 17px; margin: 28px 0 6px; }
+    figure { margin: 16px 0 4px; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto;
+                 border-radius: 12px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px;
+                 line-height: 1.6; }
     p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
     ul, ol { color: var(--text-secondary); font-size: 15px; line-height: 1.8; padding-left: 1.3em; }
     li { margin-bottom: 4px; }
@@ -32,10 +44,10 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
 <article class="container rel">
     <a class="rel-back" href="/blog">← 最新情報</a>
     <span class="tag-line">🌰 新手入門</span>
-    <h1>剛裝好 Tennis Nut，先做這六件事</h1>
+    <h1>剛裝好 Tennis Nut 的快速入門</h1>
     <p class="lead">
-      這六件事加起來大概十分鐘，之後 App 才會開始替你做事——
-      球場有狀況會提前告訴你、球友到球場你會知道、卡住的時候有人可以問。
+      做完這六件，App 就會開始替你做事——球場有狀況會提前告訴你、
+      球友到球場你會知道、卡住的時候有人可以問。
     </p>
 
     <p>
@@ -44,27 +56,36 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
     </p>
 
     <!-- 1 ─────────────────────────────────────────────────────────── -->
-    <h2>1. 設定裝備</h2>
+    <h2><span>1. 設定裝備</span></h2>
     <p>
       在 <b>護照</b> 分頁往下滑到最底，有一區叫 <b>我的球袋</b>，分成 <b>球拍</b> 和
       <b>球鞋</b>，各自右邊有一顆 <b>＋ 新增</b>。
     </p>
+    <figure>
+      <img src="/shot-start-bag.svg" alt="護照裡的我的球袋，球拍和球鞋各有新增按鈕" loading="lazy" />
+      <figcaption>球袋在護照最底下。球拍和球鞋各有一顆「＋ 新增」。</figcaption>
+    </figure>
+
 
     <h3>球拍可以用拍的</h3>
     <p>
-      按 ＋ 新增之後，最上面有一顆 <b>掃描球拍（AI 辨識）</b>。對著拍子拍一張，
-      品牌、系列、年份會自動填好，你只要確認。認不出來的欄位它會直接告訴你
-      「請手動確認」，不會硬猜。
+      按 ＋ 新增之後，最上面有一顆 <b>掃描球拍</b>。對著拍子拍一張，
+      品牌、系列、年份就會填好，你只要確認一下。
     </p>
     <p>
       手動填的話，必要的其實只有品牌和系列。<b>穿線的部分建議填</b>：填了穿線日期，
-      到該換線的時候護照上那支拍子會自己標「建議重新穿線」——這是唯一一個
-      不用你記在腦子裡的提醒。
+      到該換線的時候護照上那支拍子會自己標「建議重新穿線」。
     </p>
 
     <h3>球鞋只有四格</h3>
+    <figure>
+      <img src="/shot-start-scan.svg" alt="新增球拍時最上面的掃描球拍" loading="lazy" />
+      <figcaption>拍一張，品牌、系列、年份就填好了。穿線日期建議一起填。</figcaption>
+    </figure>
+
+    <h3>球鞋只有四格</h3>
     <p>
-      品牌、型號、年份、開始使用日期。沒有掃描，因為鞋子的型號拍不出來。
+      品牌、型號、年份、開始使用日期，四格填完就好。
     </p>
 
     <div class="callout">
@@ -75,19 +96,25 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
     <h3>填了之後會怎樣</h3>
     <ul>
       <li>長按可以把一支設成 <b>主要球拍</b>／<b>主要球鞋</b>，護照上會有個「主」字</li>
-      <li><b>你的球友看得到你的主拍和主鞋</b>（品牌、型號、年份），但看不到你的穿線磅數</li>
+      <li><b>你的球友看得到你的主拍和主鞋</b>（品牌、型號、年份）</li>
       <li>球袋上方有一個 <b>大家的裝備心得</b>，寫一篇所有人都看得到——
         被三個不同的人按「有用」，拿 <span class="nut">+10 🌰</span></li>
     </ul>
 
     <!-- 2 ─────────────────────────────────────────────────────────── -->
-    <h2>2. 加好友</h2>
+    <h2><span>2. 加好友</span></h2>
     <p>
       <b>護照</b> 分頁的 <b>我的好友</b>，或中間那顆 <b>＋</b> 裡的 <b>加球友</b>，
       兩個入口到的是同一頁。
     </p>
 
-    <h3>面對面：十秒，不用打字</h3>
+
+    <figure>
+      <img src="/shot-friend-paste.svg" alt="好友頁右上角的人＋圖示，以及貼 ID 的視窗" loading="lazy" />
+      <figcaption>加好友的入口是好友頁右上角的「人＋」。面對面掃碼、或把球員 ID 傳給對方都在這裡。</figcaption>
+    </figure>
+
+    <h3>面對面：掃一下就好</h3>
     <ol class="steps">
       <li>你按 <b>我的條碼</b>，把畫面拿給對方</li>
       <li>對方按 <b>掃描</b>，對著你的畫面掃一下</li>
@@ -129,7 +156,7 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
     <a class="more" href="/friends">加好友之後會多出什麼 →</a>
 
     <!-- 3 ─────────────────────────────────────────────────────────── -->
-    <h2>3. 標記最愛的球場</h2>
+    <h2><span>3. 標記最愛的球場</span></h2>
     <p>
       在 <b>探索</b> 分頁點開任何一座球場，卡片右上角有一顆 <b>愛心</b>，按下去就是。
       再按一次取消。
@@ -139,25 +166,37 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       「這座球場看起來是你的主場」，按 <b>釘成主場</b> 就好。
     </p>
 
+
+    <figure>
+      <img src="/shot-start-fav.svg" alt="球場資訊卡右上角的愛心" loading="lazy" />
+      <figcaption>在地圖上點開任何一座球場，右上角那顆愛心按下去就好。</figcaption>
+    </figure>
+
     <h3>這顆愛心做了四件事</h3>
     <ul>
-      <li><b>球場出狀況會通知你</b>——有人回報客滿、溼滑、損壞、暫停開放，你會提前知道，
-        不用白跑一趟</li>
+      <li><b>球場出狀況會通知你</b>——有人回報客滿、溼滑、損壞、暫停開放，
+        你會在出門前就知道</li>
       <li><b>有人在那裡打球會通知你</b>——不限於好友</li>
-      <li><b>陌生人開在那裡的公開約球，會出現在你的首頁</b>。沒有這顆愛心，
-        你的首頁只看得到好友和球團的球局</li>
+      <li><b>陌生人開在那裡的公開約球，會出現在你的首頁</b>——把常去的球場
+        加進最愛，那裡的球局就會自己找上你</li>
       <li>首頁的 <b>我的最愛球場</b> 卡片會列出這幾座場，各自顯示現在幾個人在打</li>
     </ul>
     <a class="more" href="/favourites">那顆愛心到底做了什麼 →</a>
 
     <!-- 4 ─────────────────────────────────────────────────────────── -->
-    <h2>4. 地圖怎麼看</h2>
+    <h2><span>4. 地圖怎麼看</span></h2>
     <p><b>探索</b> 分頁就是地圖。上面最搞不清楚的是點的顏色，先講這個。</p>
+
+
+    <figure>
+      <img src="/shot-start-map.svg" alt="地圖上不同顏色的球場點位" loading="lazy" />
+      <figcaption>點的顏色就是材質。有人在打球的時候會蓋成亮橘色，上面直接寫幾個人。</figcaption>
+    </figure>
 
     <h3>顏色是場地材質，不是狀態</h3>
     <p>
       藍色是硬地、橘紅是紅土、綠色是草地、紫色是 PU⋯⋯
-      材質不明的是灰色（那些場地還沒有人補上資料，你可以順手補，見下面）。
+      灰色的是還等著有人補上材質的場地，你可以順手補（見下面）。
     </p>
     <p>
       <b>只有三種情況顏色會被蓋掉</b>：現在有人在打球會變成亮橘色、
@@ -199,34 +238,40 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       <span class="nut">+30 🌰</span>。</p>
 
     <!-- 5 ─────────────────────────────────────────────────────────── -->
-    <h2>5. 記錄第一次練習或比賽</h2>
+    <h2><span>5. 記錄第一次練習或比賽</span></h2>
     <p>
       中間那顆 <b>＋</b>，最上面兩格就是 <b>新練習</b> 和 <b>新比賽</b>。
       同一頁上方有一張 <b>今日進度</b>，記錄練習、記錄比賽、回報球場狀態，
       三件事每天各 <span class="nut">+5 🌰</span>。
     </p>
 
+
+    <figure>
+      <img src="/shot-start-log.svg" alt="記錄練習的表單，只有球場是必填" loading="lazy" />
+      <figcaption>必填只有球場。練習重點點一下就進筆記，最後那五顆球記得誠實給分。</figcaption>
+    </figure>
+
     <h3>練習：必填只有球場</h3>
     <p>
       其他全部可以不填。時長預設 60 分鐘，拉一下就好（15 到 180）。
       如果你是從打卡的「打完球」那張卡進來的，時長會直接帶入實際待的時間。
     </p>
-    <p>選填的部分，有兩個值得花三十秒：</p>
+    <p>選填的部分，有兩個值得填：</p>
     <ul>
       <li><b>練習重點</b>——筆記上方有一排詞：發球、正手、反手、截擊、發球上網、
-        高壓、切球、腳步、落點、體能、心態。點一下就加進筆記裡，不用打字</li>
+        高壓、切球、腳步、落點、體能、心態。點一下就加進筆記裡</li>
       <li><b>照片</b>——<b>之後要做圖卡的話，這張照片是必要的</b>（見下面）</li>
     </ul>
     <p>
       最後會問「這次練習感覺如何」，五顆球。
       <b>打得不順的時候記得誠實給分</b>：給了低分，存檔後 App 會問你是哪裡卡住，
-      幫你把問題寫好帶去問教練，不用自己從頭組織一遍。
+      並且把問題整理好帶去問教練。
     </p>
 
     <h3>比賽：球場、對手、至少一盤比分</h3>
     <p>
-      比分不用自己打——底下有一排常用比分（6-4、7-5、6-3⋯⋯）點一下就帶進去，
-      <b>勝負是自動算的</b>，你不用選。
+      底下有一排常用比分（6-4、7-5、6-3⋯⋯）點一下就帶進去，
+      <b>勝負是自動算的</b>。
     </p>
     <p>
       <b>如果對手是你的球友，記得標記他。</b>打上名字時 App 會問
@@ -248,7 +293,7 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       那是你的球場征服進度，護照上會多一座。
     </p>
 
-    <h2>把它做成一張圖卡</h2>
+    <h2><span>把它做成一張圖卡</span></h2>
     <p>
       練習或比賽<b>附了照片</b>的話，就可以做成一張直式圖卡分享出去。
       入口有兩個：剛存完的那一刻會問你「要把這次做成圖片分享嗎？」，
@@ -281,7 +326,7 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
     </p>
 
     <!-- 6 ─────────────────────────────────────────────────────────── -->
-    <h2>6. 卡住的時候，問專家</h2>
+    <h2><span>6. 卡住的時候，問專家</span></h2>
     <p>
       <b>諮詢</b> 分頁。上面是 <b>新諮詢</b>，五個類別：
       <b>網球技術</b>、<b>網球體能</b>、<b>物理治療</b>、<b>運動營養</b>、<b>運動心理</b>。
@@ -296,6 +341,12 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
         動作的問題，一段影片勝過三百字</li>
       <li>圖片、標籤、年齡都是選填</li>
     </ul>
+
+
+    <figure>
+      <img src="/shot-start-ask.svg" alt="開一則諮詢：選專家類型並寫下問題" loading="lazy" />
+      <figcaption>選一種專家，把問題寫下來。照片、影片、球場紀錄都可以一起帶上。</figcaption>
+    </figure>
 
     <h3>要多少堅果</h3>
     <p>
@@ -321,7 +372,6 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
     <div class="callout">
       <b>堅果從哪裡來？</b>
       打球、打卡、記錄練習、維護球場資料——都是你本來就會做的事。
-      買不到，也沒有簽到或看廣告可以領。
       <a href="/nuts">堅果怎麼賺、怎麼用 →</a>
     </div>
 

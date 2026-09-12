@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="312" rx="30" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="304" rx="26" fill="#FBFAF6"/>
+  <rect x="158" y="24" width="44" height="4" rx="2" fill="#D8D5CB"/>
+  <text x="24" y="58" font-size="16" fill="#1B5138" font-weight="800">新增球拍</text>
+  <rect x="24" y="76" width="312" height="46" rx="10" fill="#EDF3EA" stroke="#3F7C43" stroke-width="1.6"/>
+  <rect x="42" y="90" width="20" height="17" rx="3" fill="none" stroke="#3F7C43" stroke-width="1.8"/>
+  <circle cx="52" cy="99" r="4.5" fill="none" stroke="#3F7C43" stroke-width="1.8"/>
+  <text x="74" y="105" font-size="14" fill="#1B5138" font-weight="700">掃描球拍</text>
+  <circle cx="180" cy="99" r="32" fill="none" stroke="#E8590C" stroke-width="3"/>
+  <circle cx="146" cy="78" r="13" fill="#E8590C"/>
+  <text x="146" y="83" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">1</text>
+  <text x="336" y="105" font-size="11.5" fill="#E8590C" font-weight="800" text-anchor="end">對著拍子拍一張</text>
+  <text x="24" y="152" font-size="12" fill="#9BA29B">拍完自動填好，確認一下就好</text>
+  <rect x="24" y="166" width="150" height="44" rx="10" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="36" y="184" font-size="10.5" fill="#9BA29B">品牌</text>
+  <text x="36" y="201" font-size="13.5" fill="#1B5138" font-weight="700">Wilson</text>
+  <rect x="186" y="166" width="150" height="44" rx="10" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="198" y="184" font-size="10.5" fill="#9BA29B">系列</text>
+  <text x="198" y="201" font-size="13.5" fill="#1B5138" font-weight="700">Blade 98</text>
+  <rect x="24" y="220" width="150" height="44" rx="10" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="36" y="238" font-size="10.5" fill="#9BA29B">年份</text>
+  <text x="36" y="255" font-size="13.5" fill="#1B5138" font-weight="700">2024</text>
+  <rect x="186" y="220" width="150" height="44" rx="10" fill="#FFFFFF" stroke="#E8590C" stroke-width="2"/>
+  <text x="198" y="238" font-size="10.5" fill="#9BA29B">穿線日期</text>
+  <text x="198" y="255" font-size="13.5" fill="#1B5138" font-weight="700">建議填</text>
+  <text x="24" y="290" font-size="11.5" fill="#6E776F">填了穿線日期，該換線時護照會自己提醒</text>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 330" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="322" rx="30" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="314" rx="26" fill="#FBFAF6"/>
+  <text x="180" y="42" font-size="15" fill="#1B5138" font-weight="800" text-anchor="middle">網球護照</text>
+  <rect x="24" y="62" width="4" height="22" rx="2" fill="#3F7C43"/>
+  <text x="38" y="80" font-size="17" fill="#1B5138" font-weight="800">我的球袋</text>
+  <text x="336" y="80" font-size="12" fill="#3F7C43" font-weight="600" text-anchor="end">大家的裝備心得 ›</text>
+  <text x="24" y="116" font-size="13" fill="#6E776F" font-weight="700">球拍 (0/5)</text>
+  <rect x="270" y="100" width="66" height="26" rx="8" fill="#3F7C43"/>
+  <text x="303" y="118" font-size="12.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">＋ 新增</text>
+  <circle cx="303" cy="113" r="24" fill="none" stroke="#E8590C" stroke-width="3"/>
+  <circle cx="278" cy="95" r="13" fill="#E8590C"/>
+  <text x="278" y="100" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">1</text>
+  <rect x="24" y="136" width="312" height="60" rx="12" fill="#FFFFFF" stroke="#ECEAE2" stroke-dasharray="5 4"/>
+  <text x="180" y="172" font-size="12.5" fill="#9BA29B" text-anchor="middle">還沒有球拍</text>
+  <text x="24" y="230" font-size="13" fill="#6E776F" font-weight="700">球鞋 (0/3)</text>
+  <rect x="270" y="214" width="66" height="26" rx="8" fill="#3F7C43"/>
+  <text x="303" y="232" font-size="12.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">＋ 新增</text>
+  <rect x="24" y="250" width="312" height="56" rx="12" fill="#FFFFFF" stroke="#ECEAE2" stroke-dasharray="5 4"/>
+  <text x="180" y="284" font-size="12.5" fill="#9BA29B" text-anchor="middle">還沒有球鞋</text>
+</svg>
