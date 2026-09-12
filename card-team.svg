@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+
+  <text x="80" y="168" font-size="64" font-weight="800" fill="#1B5138">建一個自己的球隊</text>
+  <text x="80" y="228" font-size="30" fill="#6E776F">分享一張卡，球友掃了就進來</text>
+
+  <!-- 球隊分享卡 -->
+  <rect x="80" y="290" width="920" height="512" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+
+  <circle cx="176" cy="386" r="42" fill="#1E88E5"/>
+  <text x="176" y="400" font-size="36" fill="#FFFFFF" font-weight="800" text-anchor="middle">晨</text>
+  <text x="242" y="378" font-size="36" fill="#2E5A34" font-weight="800">晨光網球隊</text>
+  <text x="242" y="416" font-size="25" fill="#9BA29B">主場 桃園市中路網球場 · 8 位隊員</text>
+
+  <!-- QR 示意 -->
+  <rect x="128" y="452" width="230" height="230" rx="20" fill="#FBFAF6" stroke="#ECEAE2" stroke-width="2"/>
+  <g fill="#1B5138">
+    <rect x="152" y="476" width="54" height="54" rx="8"/><rect x="280" y="476" width="54" height="54" rx="8"/>
+    <rect x="152" y="604" width="54" height="54" rx="8"/>
+    <rect x="222" y="476" width="20" height="20"/><rect x="222" y="516" width="20" height="20"/>
+    <rect x="262" y="556" width="20" height="20"/><rect x="222" y="596" width="20" height="20"/>
+    <rect x="302" y="556" width="20" height="20"/><rect x="182" y="556" width="20" height="20"/>
+    <rect x="262" y="636" width="20" height="20"/><rect x="302" y="616" width="20" height="20"/>
+  </g>
+
+  <text x="398" y="500" font-size="26" fill="#9BA29B">邀請碼</text>
+  <text x="398" y="560" font-size="56" fill="#3C6E3F" font-weight="800" letter-spacing="8">TN4K9P</text>
+  <rect x="398" y="596" width="240" height="60" rx="16" fill="#1B5138"/>
+  <text x="518" y="636" font-size="27" fill="#FFFFFF" font-weight="700" text-anchor="middle">複製邀請碼</text>
+
+  <text x="128" y="736" font-size="27" fill="#5E7A60">相機掃一下就打得開，還沒裝 App 的人也進得來。</text>
+
+  <text x="540" y="1010" font-size="30" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

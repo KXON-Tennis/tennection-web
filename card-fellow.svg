@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+
+  <text x="80" y="168" font-size="64" font-weight="800" fill="#1B5138">你的球場上還有誰</text>
+  <text x="80" y="228" font-size="30" fill="#6E776F">打過的球場，看得到誰也在這裡打</text>
+
+  <rect x="80" y="290" width="920" height="512" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="358" font-size="34" fill="#1B5138" font-weight="800">也在這裡打過的球友</text>
+
+  <line x1="128" y1="396" x2="952" y2="396" stroke="#F1F0EA" stroke-width="2"/>
+  <circle cx="164" cy="456" r="36" fill="#E3E9D8"/>
+  <text x="164" y="469" font-size="30" fill="#3F7C43" font-weight="800" text-anchor="middle">林</text>
+  <text x="224" y="469" font-size="32" fill="#2E5A34" font-weight="700">林家瑋</text>
+  <text x="952" y="469" font-size="30" fill="#5C9A46" font-weight="800" text-anchor="end">加入好友</text>
+
+  <line x1="128" y1="516" x2="952" y2="516" stroke="#F1F0EA" stroke-width="2"/>
+  <circle cx="164" cy="576" r="36" fill="#E3E9D8"/>
+  <text x="164" y="589" font-size="30" fill="#3F7C43" font-weight="800" text-anchor="middle">小</text>
+  <text x="224" y="589" font-size="32" fill="#2E5A34" font-weight="700">小葉</text>
+  <text x="952" y="589" font-size="30" fill="#5C9A46" font-weight="800" text-anchor="end">加入好友</text>
+
+  <line x1="128" y1="636" x2="952" y2="636" stroke="#F1F0EA" stroke-width="2"/>
+  <circle cx="164" cy="696" r="36" fill="#E3E9D8"/>
+  <text x="164" y="709" font-size="30" fill="#3F7C43" font-weight="800" text-anchor="middle">A</text>
+  <text x="224" y="709" font-size="32" fill="#2E5A34" font-weight="700">Amy Chen</text>
+  <text x="952" y="709" font-size="30" fill="#9BA29B" font-weight="700" text-anchor="end">已送出</text>
+
+  <text x="540" y="1010" font-size="30" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

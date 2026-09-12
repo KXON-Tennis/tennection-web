@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+
+  <text x="80" y="168" font-size="64" font-weight="800" fill="#1B5138">說說你手上那支拍</text>
+  <text x="80" y="228" font-size="30" fill="#6E776F">從球袋挑一件就能寫，不用打型號</text>
+
+  <!-- 一篇心得 -->
+  <rect x="80" y="290" width="920" height="380" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <circle cx="146" cy="366" r="34" fill="#E3E9D8"/>
+  <text x="146" y="379" font-size="30" fill="#3F7C43" font-weight="800" text-anchor="middle">張</text>
+  <text x="200" y="358" font-size="31" fill="#2E5A34" font-weight="700">張大維</text>
+  <text x="200" y="394" font-size="24" fill="#9BA29B">台灣 · 2 天前</text>
+
+  <rect x="120" y="424" width="330" height="56" rx="16" fill="#F3F8EC"/>
+  <text x="148" y="461" font-size="26" fill="#3F7C43" font-weight="700">🎾 Wilson Blade V9</text>
+  <rect x="466" y="424" width="266" height="56" rx="16" fill="#F1F0EA"/>
+  <text x="492" y="461" font-size="25" fill="#6E776F">跟 Pure Drive 比</text>
+
+  <text x="120" y="528" font-size="27" fill="#5E7A60">拍面小了一點，但落點比以前準很多。</text>
+  <text x="120" y="570" font-size="27" fill="#5E7A60">穿 53 磅之後彈性剛好，截擊不會震手。</text>
+
+  <rect x="120" y="596" width="182" height="56" rx="28" fill="#FFFFFF" stroke="#5C9A46" stroke-width="2"/>
+  <text x="211" y="633" font-size="26" fill="#3C6E3F" font-weight="700" text-anchor="middle">👍 有用 3</text>
+
+  <!-- 獎勵 -->
+  <rect x="80" y="704" width="920" height="98" rx="28" fill="#F3F8EC"/>
+  <text x="124" y="765" font-size="30" fill="#3C6E3F" font-weight="700">被 3 個人說有用，作者拿 10 顆堅果 🌰</text>
+
+  <text x="540" y="1010" font-size="30" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>
