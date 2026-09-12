@@ -2,8 +2,8 @@
   <rect width="1080" height="1080" fill="#FBFAF6"/>
   <rect width="1080" height="14" fill="#1B5138"/>
 
-  <text x="80" y="168" font-size="64" font-weight="800" fill="#1B5138">說說你手上那支拍</text>
-  <text x="80" y="228" font-size="30" fill="#6E776F">從球袋挑一件就能寫，不用打型號</text>
+  <text x="80" y="168" font-size="64" font-weight="800" fill="#1B5138">說說你的裝備</text>
+  <text x="80" y="228" font-size="30" fill="#6E776F">拍子、鞋子、球線都可以</text>
 
   <!-- 一篇心得 -->
   <rect x="80" y="290" width="920" height="380" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+
+  <text x="80" y="168" font-size="64" font-weight="800" fill="#1B5138">還有一件事</text>
+
+  <rect x="80" y="242" width="920" height="268" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="330" font-size="46">🇦🇺</text>
+  <text x="196" y="330" font-size="34" fill="#2E5A34" font-weight="800">應球友需求，新增布里斯本</text>
+  <text x="128" y="412" font-size="76" fill="#3C6E3F" font-weight="800">373</text>
+  <text x="284" y="412" font-size="34" fill="#6E776F">個場館</text>
+  <text x="128" y="466" font-size="27" fill="#9BA29B">澳洲總計 3,831 座球場</text>
+
+  <text x="80" y="612" font-size="38" fill="#2E5A34" font-weight="700">更新後重開 App 就好</text>
+  <text x="80" y="678" font-size="38" fill="#2E5A34" font-weight="700">下次上場見！🎾</text>
+
+  <clipPath id="ballOutro"><circle cx="850" cy="700" r="92"/></clipPath>
+  <circle cx="850" cy="700" r="92" fill="#D8E64A"/>
+  <g clip-path="url(#ballOutro)" fill="none" stroke="#FFFFFF" stroke-width="8" opacity="0.92">
+    <path d="M772 596 c44 66 44 142 0 208"/>
+    <path d="M928 596 c-44 66 -44 142 0 208"/>
+  </g>
+
+  <text x="540" y="1010" font-size="30" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>
