@@ -27,10 +27,9 @@
   <text x="952" y="709" font-size="30" fill="#9BA29B" font-weight="700" text-anchor="end">已送出</text>
 
   <!-- 名單是對等的，所以這句得講明白：先留下紀錄，才看得到人 -->
-  <rect x="80" y="796" width="920" height="146" rx="28" fill="#F3F8EC"/>
-  <text x="124" y="846" font-size="30" fill="#3C6E3F" font-weight="700">想看到還有誰嗎？趕快去那座球場打球，</text>
-  <text x="124" y="888" font-size="30" fill="#3C6E3F" font-weight="700">記錄一次練習或比賽吧！🎾</text>
-  <text x="124" y="924" font-size="24" fill="#6E776F">你在名單上，才看得到名單</text>
+  <rect x="80" y="810" width="920" height="126" rx="28" fill="#F3F8EC"/>
+  <text x="124" y="862" font-size="30" fill="#3C6E3F" font-weight="700">想看到還有誰嗎？趕快去那座球場打球，</text>
+  <text x="124" y="904" font-size="30" fill="#3C6E3F" font-weight="700">記錄一次練習或比賽吧！🎾</text>
 
   <text x="540" y="1010" font-size="30" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
 </svg>
