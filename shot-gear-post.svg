@@ -8,8 +8,8 @@
   <!-- 一篇心得 -->
   <rect x="16" y="76" width="328" height="150" rx="16" fill="#FFFFFF" stroke="#ECEAE2"/>
   <circle cx="44" cy="106" r="14" fill="#E3E9D8"/>
-  <text x="44" y="111" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">老</text>
-  <text x="68" y="103" font-size="13" fill="#2E5A34" font-weight="700">老皮</text>
+  <text x="44" y="111" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">張</text>
+  <text x="68" y="103" font-size="13" fill="#2E5A34" font-weight="700">張大維</text>
   <text x="68" y="119" font-size="10.5" fill="#9BA29B">台灣 · 2 天前</text>
 
   <rect x="26" y="130" width="150" height="24" rx="7" fill="#F3F8EC"/>
@@ -26,8 +26,8 @@
   <!-- 第二篇（截斷示意） -->
   <rect x="16" y="238" width="328" height="86" rx="16" fill="#FFFFFF" stroke="#ECEAE2"/>
   <circle cx="44" cy="268" r="14" fill="#E3E9D8"/>
-  <text x="44" y="273" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">J</text>
-  <text x="68" y="265" font-size="13" fill="#2E5A34" font-weight="700">Jenny</text>
+  <text x="44" y="273" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">R</text>
+  <text x="68" y="265" font-size="13" fill="#2E5A34" font-weight="700">Ray Lin</text>
   <text x="68" y="281" font-size="10.5" fill="#9BA29B">台灣 · 5 天前</text>
   <rect x="26" y="292" width="132" height="22" rx="7" fill="#F3F8EC"/>
   <text x="38" y="307" font-size="10.5" fill="#3F7C43" font-weight="700">👟 Asics Court FF 3</text>

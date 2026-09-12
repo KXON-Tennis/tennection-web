@@ -17,19 +17,19 @@
 
   <line x1="34" y1="186" x2="326" y2="186" stroke="#F1F0EA"/>
   <circle cx="52" cy="212" r="15" fill="#E3E9D8"/>
-  <text x="52" y="217" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">方</text>
-  <text x="78" y="217" font-size="13.5" fill="#2E5A34" font-weight="700">方洺諭</text>
+  <text x="52" y="217" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">林</text>
+  <text x="78" y="217" font-size="13.5" fill="#2E5A34" font-weight="700">林家瑋</text>
   <text x="326" y="217" font-size="12.5" fill="#5C9A46" font-weight="800" text-anchor="end">加入好友</text>
 
   <line x1="34" y1="240" x2="326" y2="240" stroke="#F1F0EA"/>
   <circle cx="52" cy="266" r="15" fill="#E3E9D8"/>
-  <text x="52" y="271" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">阿</text>
-  <text x="78" y="271" font-size="13.5" fill="#2E5A34" font-weight="700">阿布</text>
+  <text x="52" y="271" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">小</text>
+  <text x="78" y="271" font-size="13.5" fill="#2E5A34" font-weight="700">小葉</text>
   <text x="326" y="271" font-size="12.5" fill="#5C9A46" font-weight="800" text-anchor="end">加入好友</text>
 
   <line x1="34" y1="294" x2="326" y2="294" stroke="#F1F0EA"/>
   <circle cx="52" cy="320" r="15" fill="#E3E9D8"/>
-  <text x="52" y="325" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">P</text>
-  <text x="78" y="325" font-size="13.5" fill="#2E5A34" font-weight="700">Peggy Wu</text>
+  <text x="52" y="325" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">A</text>
+  <text x="78" y="325" font-size="13.5" fill="#2E5A34" font-weight="700">Amy Chen</text>
   <text x="326" y="325" font-size="12.5" fill="#9BA29B" font-weight="700" text-anchor="end">已送出</text>
 </svg>
