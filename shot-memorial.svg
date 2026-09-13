@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 480" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <clipPath id="cardClip"><rect x="0" y="0" width="330" height="440" rx="22"/></clipPath>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#BBD7E8"/><stop offset="1" stop-color="#E6EFE2"/>
+    </linearGradient>
+    <linearGradient id="scrimTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="scrimBottom" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.55" stop-color="#000" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.72"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 3:4 的卡，背景是「你跟球場的合照」示意 -->
+  <g clip-path="url(#cardClip)">
+    <rect x="0" y="0" width="330" height="440" fill="url(#sky)"/>
+    <!-- 遠方樹線 -->
+    <rect x="0" y="150" width="330" height="26" fill="#7FA07A" opacity="0.55"/>
+    <!-- 球場：一個底色 + 跟著透視收斂的線，不要兩層藍疊出對不上的邊 -->
+    <rect x="0" y="176" width="330" height="264" fill="#35739B"/>
+    <g stroke="#FFFFFF" stroke-width="2" opacity="0.8" fill="none">
+      <path d="M86 196 L244 196"/>
+      <path d="M66 252 L264 252"/>
+      <path d="M22 350 L308 350"/>
+      <path d="M86 196 L22 440"/>
+      <path d="M244 196 L308 440"/>
+      <path d="M165 252 L165 350"/>
+    </g>
+    <!-- 網子 -->
+    <rect x="52" y="240" width="226" height="24" fill="#EFEFEA" opacity="0.92"/>
+    <rect x="52" y="238" width="226" height="4" fill="#FFFFFF"/>
+    <!-- 一個人（背影剪影），球拍握在手上 -->
+    <g fill="#243026" opacity="0.9">
+      <circle cx="152" cy="292" r="15"/>
+      <path d="M134 314 q18 -12 36 0 l7 64 q-25 10 -50 0 z"/>
+      <path d="M168 322 l30 -14" stroke="#243026" stroke-width="6" stroke-linecap="round"/>
+      <ellipse cx="210" cy="298" rx="12" ry="16" transform="rotate(-24 210 298)"
+               fill="none" stroke="#243026" stroke-width="4"/>
+    </g>
+
+    <rect x="0" y="0" width="330" height="120" fill="url(#scrimTop)"/>
+    <rect x="0" y="230" width="330" height="210" fill="url(#scrimBottom)"/>
+
+    <!-- 疊在照片上的字 -->
+    <text x="20" y="330" font-size="13" fill="#FFFFFF" font-weight="600">🎾 桃園市中壢區</text>
+    <text x="20" y="364" font-size="25" fill="#FFFFFF" font-weight="800">中央大學網球場</text>
+
+    <text x="20" y="404" font-size="13" fill="#FFFFFF" opacity="0.9">第</text>
+    <text x="38" y="406" font-size="30" fill="#D8E64A" font-weight="800">7</text>
+    <text x="60" y="404" font-size="13" fill="#FFFFFF" opacity="0.9">座 · 累計征服 7 座</text>
+
+    <text x="20" y="428" font-size="11" fill="#FFFFFF" opacity="0.85" font-weight="700">TENNIS NUT</text>
+    <text x="310" y="428" font-size="11" fill="#FFFFFF" opacity="0.85" text-anchor="end">2026.09.13 · 09:40</text>
+  </g>
+
+  <!-- 底下兩顆按鈕 -->
+  <rect x="0" y="454" width="158" height="26" rx="13" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="79" y="472" font-size="12" fill="#3C6E3F" font-weight="700" text-anchor="middle">另存至相簿</text>
+  <rect x="172" y="454" width="158" height="26" rx="13" fill="#1B5138"/>
+  <text x="251" y="472" font-size="12" fill="#FFFFFF" font-weight="700" text-anchor="middle">儲存</text>
+</svg>
