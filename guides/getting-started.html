@@ -23,6 +23,16 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
                          line-height: 1.6; }
     .get-app img { display: block; }
     .get-app-android { display: inline-block; margin-top: 10px; font-size: 13px; }
+    .get-app-note { display: block; margin-top: 10px; font-size: 13px;
+                    color: var(--text-tertiary); }
+    .android-box { background: var(--surface); border: 1px solid var(--border);
+                   border-radius: 14px; padding: 18px 20px 14px; margin: 16px 0 28px; }
+    .android-box h3 { font-size: 16px; margin: 0 0 10px; }
+    .android-steps { margin: 0; padding-left: 1.3em; }
+    .android-steps li { margin-bottom: 12px; font-size: 14.5px; line-height: 1.8;
+                        color: var(--text-secondary); }
+    .android-steps a { word-break: break-all; }
+    .android-foot { margin: 6px 0 0; font-size: 13px; color: var(--text-tertiary); }
     figure { margin: 16px 0 4px; }
     figure img { display: block; width: 100%; max-width: 300px; height: auto;
                  border-radius: 12px; }
@@ -68,14 +78,34 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       <div class="get-app-text">
         <b>Tennis Nut</b>
         <span>iPhone 在 App Store 上就下載得到。</span>
-        <a class="get-app-android" href="https://forms.gle/N7EKJ58FmvhVKQs69"
-           target="_blank" rel="noopener">Android 使用者？加入 Google Play 測試 →</a>
+        <span class="get-app-note">Android 走 Google Play 封閉測試，見下方兩步。</span>
       </div>
       <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener"
          aria-label="從 App Store 下載 Tennis Nut">
         <img src="/app-store-badge-en.svg" alt="從 App Store 下載"
              width="159" height="53" />
       </a>
+    </div>
+
+    <div class="android-box">
+      <h3>Android 強力募集測試者中</h3>
+      <ol class="android-steps">
+        <li>
+          <b>加入 Google 測試群組</b><br />
+          <a href="https://groups.google.com/g/tennis-nut-testers"
+             target="_blank" rel="noopener">groups.google.com/g/tennis-nut-testers</a>
+          ，按「<b>加入群組</b>」。
+        </li>
+        <li>
+          <b>到 Play 領測試版</b><br />
+          <a href="https://play.google.com/apps/testing/com.tns.passport"
+             target="_blank" rel="noopener">play.google.com/apps/testing/com.tns.passport</a>
+          ，點「<b>Become a tester</b>」，再點「<b>download it on Google Play</b>」。
+        </li>
+      </ol>
+      <p class="android-foot">
+        兩步都要做：沒有先加入群組，第二步會說你沒有測試資格。
+      </p>
     </div>
 
     <p>
@@ -116,7 +146,7 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       <figcaption>拍一張，品牌、系列、年份就填好了。穿線日期建議一起填。</figcaption>
     </figure>
 
-    <h3>球鞋只有四格</h3>
+    <h3>球鞋</h3>
     <p>
       品牌、型號、年份、開始使用日期，四格填完就好。
     </p>
