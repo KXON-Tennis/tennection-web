@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">這一帶的球友</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">在你打過的球場附近出沒，還不是你的好友</text>
+
+  <rect x="80" y="286" width="920" height="440" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+
+  <circle cx="168" cy="376" r="40" fill="#E3E9D8"/>
+  <text x="168" y="390" font-size="34" fill="#3F7C43" font-weight="800" text-anchor="middle">林</text>
+  <text x="234" y="366" font-size="36" fill="#2E5A34" font-weight="700">林家瑋</text>
+  <text x="234" y="408" font-size="27" fill="#9BA29B">也在中路網球場打過 · 程度 高級</text>
+  <text x="952" y="382" font-size="30" fill="#5C9A46" font-weight="800" text-anchor="end">加好友</text>
+  <line x1="128" y1="444" x2="952" y2="444" stroke="#F1F0EA" stroke-width="2"/>
+
+  <circle cx="168" cy="518" r="40" fill="#E3E9D8"/>
+  <text x="168" y="532" font-size="34" fill="#3F7C43" font-weight="800" text-anchor="middle">小</text>
+  <text x="234" y="508" font-size="36" fill="#2E5A34" font-weight="700">小葉</text>
+  <text x="234" y="550" font-size="27" fill="#9BA29B">也在桃園市打球 · 程度 中級</text>
+  <text x="952" y="524" font-size="30" fill="#5C9A46" font-weight="800" text-anchor="end">加好友</text>
+  <line x1="128" y1="586" x2="952" y2="586" stroke="#F1F0EA" stroke-width="2"/>
+
+  <circle cx="168" cy="660" r="40" fill="#E3E9D8"/>
+  <text x="168" y="674" font-size="34" fill="#3F7C43" font-weight="800" text-anchor="middle">A</text>
+  <text x="234" y="650" font-size="36" fill="#2E5A34" font-weight="700">Amy Chen</text>
+  <text x="234" y="692" font-size="27" fill="#9BA29B">也在中路網球場打過 · 程度 中級</text>
+  <text x="952" y="666" font-size="30" fill="#9BA29B" font-weight="700" text-anchor="end">已送出</text>
+
+  <rect x="80" y="760" width="920" height="150" rx="30" fill="#F3F8EC"/>
+  <text x="128" y="820" font-size="34" fill="#3C6E3F" font-weight="700">想看到還有誰嗎？趕快去那座球場打球，</text>
+  <text x="128" y="868" font-size="34" fill="#3C6E3F" font-weight="700">記錄一次練習或比賽吧！🎾</text>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

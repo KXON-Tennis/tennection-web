@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">還有一件事</text>
+
+  <rect x="80" y="240" width="920" height="300" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="330" font-size="44">🏆</text>
+  <text x="196" y="330" font-size="38" fill="#2E5A34" font-weight="800">球場征服更準確了</text>
+  <text x="128" y="404" font-size="31" fill="#5E7A60">GPS 驗證過的打卡也算進去了，</text>
+  <text x="128" y="452" font-size="31" fill="#5E7A60">護照上的座數和紀念圖的「第 N 座」</text>
+  <text x="128" y="500" font-size="31" fill="#5E7A60">終於是同一個數字。</text>
+
+  <text x="80" y="628" font-size="40" fill="#2E5A34" font-weight="700">iPhone 從 App Store 更新</text>
+  <text x="80" y="694" font-size="40" fill="#2E5A34" font-weight="700">Android 走 Play 自動更新</text>
+  <text x="80" y="766" font-size="40" fill="#2E5A34" font-weight="700">下次上場見！🎾</text>
+
+  <clipPath id="ballOutro"><circle cx="856" cy="690" r="96"/></clipPath>
+  <circle cx="856" cy="690" r="96" fill="#D8E64A"/>
+  <g clip-path="url(#ballOutro)" fill="none" stroke="#FFFFFF" stroke-width="8" opacity="0.92">
+    <path d="M774 582 c46 68 46 148 0 216"/>
+    <path d="M938 582 c-46 68 -46 148 0 216"/>
+  </g>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>
