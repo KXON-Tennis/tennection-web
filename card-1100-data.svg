@@ -2,7 +2,7 @@
   <rect width="1080" height="1080" fill="#FBFAF6"/>
   <rect width="1080" height="14" fill="#1B5138"/>
 
-  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">資料由誰補上</text>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">球場資料貢獻者</text>
   <text x="80" y="228" font-size="34" fill="#6E776F">球場資料是誰補齊的，寫在卡片上</text>
 
   <rect x="80" y="286" width="920" height="450" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
