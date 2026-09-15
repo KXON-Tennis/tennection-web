@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="332" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="324" rx="30" fill="#FBFAF6"/>
+  <rect x="154" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+
+  <rect x="16" y="46" width="328" height="270" rx="18" fill="#FFFFFF" stroke="#ECEAE2"/>
+
+  <text x="34" y="82" font-size="17" fill="#1B5138" font-weight="800">中央大學網球場</text>
+  <text x="34" y="102" font-size="11.5" fill="#9BA29B">桃園市中壢區</text>
+
+  <!-- 事實列 -->
+  <rect x="34" y="118" width="74" height="26" rx="8" fill="#ECEAE2"/>
+  <text x="71" y="136" font-size="11" fill="#6E776F" font-weight="600" text-anchor="middle">7 面球場</text>
+  <rect x="116" y="118" width="58" height="26" rx="8" fill="#ECEAE2"/>
+  <text x="145" y="136" font-size="11" fill="#6E776F" font-weight="600" text-anchor="middle">硬地</text>
+  <rect x="182" y="118" width="74" height="26" rx="8" fill="#ECEAE2"/>
+  <text x="219" y="136" font-size="11" fill="#6E776F" font-weight="600" text-anchor="middle">免費開放</text>
+
+  <line x1="34" y1="162" x2="326" y2="162" stroke="#F1F0EA"/>
+
+  <!-- 驗證徽章 -->
+  <text x="34" y="190" font-size="13">✅</text>
+  <text x="58" y="190" font-size="12.5" fill="#3C6E3F" font-weight="700">現場驗證 · 21 小時前</text>
+  <text x="212" y="190" font-size="11.5" fill="#9BA29B">4 位球友確認過</text>
+
+  <!-- 署名 -->
+  <text x="34" y="222" font-size="13">📝</text>
+  <text x="58" y="222" font-size="12.5" fill="#5E7A60">資料由 <tspan font-weight="700" fill="#2E5A34">張大維</tspan>、<tspan font-weight="700" fill="#2E5A34">小葉</tspan>、<tspan font-weight="700" fill="#2E5A34">Ray Lin</tspan> 補上</text>
+
+  <line x1="34" y1="248" x2="326" y2="248" stroke="#F1F0EA"/>
+
+  <text x="34" y="278" font-size="13">👥</text>
+  <text x="58" y="278" font-size="12.5" fill="#5E7A60" font-weight="600">另外 3 位球友也在這一帶打球</text>
+  <path d="M318 271 l7 6 l-7 6" fill="none" stroke="#9BA29B" stroke-width="2" stroke-linecap="round"/>
+</svg>
