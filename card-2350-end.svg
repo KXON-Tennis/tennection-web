@@ -8,7 +8,8 @@
   <rect x="56" y="172" width="248" height="42" rx="21" fill="#D8E64A"/>
   <text x="180" y="199" font-size="13.5" fill="#1B3B24" font-weight="800" text-anchor="middle">tennisnut.kxon.net/blog/2350</text>
 
-  <line x1="80" y1="256" x2="280" y2="256" stroke="#2F6B48"/>
+  <line x1="80" y1="250" x2="280" y2="250" stroke="#2F6B48"/>
 
-  <text x="180" y="292" font-size="13" fill="#D8E64A" text-anchor="middle">用起來怪怪的，歡迎在群組說一聲 🌰</text>
+  <text x="180" y="284" font-size="12.5" fill="#B9C9BD" text-anchor="middle">用起來怪怪的，歡迎在群組說一聲</text>
+  <text x="180" y="318" font-size="17" fill="#D8E64A" font-weight="800" text-anchor="middle">上場見！🎾</text>
 </svg>
