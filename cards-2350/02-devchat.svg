@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">可以直接跟開發者說話</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">諮詢頁多了一條線</text>
+  <rect x="80" y="286" width="920" height="420" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="360" font-size="44">💬</text>
+  <text x="196" y="360" font-size="38" fill="#2E5A34" font-weight="800">與開發者的對話</text>
+  <text x="128" y="438" font-size="31" fill="#5E7A60">想要的功能、用不順的地方，或任何想法，</text>
+  <text x="128" y="486" font-size="31" fill="#5E7A60">直接在 App 裡說，我會回。</text>
+  <text x="128" y="560" font-size="31" fill="#5E7A60">這裡只有你跟開發者本人——沒有客服編號，</text>
+  <text x="128" y="608" font-size="31" fill="#5E7A60">也不會有其他使用者看到。</text>
+  <rect x="128" y="644" width="300" height="52" rx="26" fill="#ECEAE2"/>
+  <text x="278" y="679" font-size="27" fill="#6E776F" font-weight="600" text-anchor="middle">諮詢頁最下面</text>
+  <rect x="80" y="760" width="920" height="100" rx="30" fill="#F3F8EC"/>
+  <text x="128" y="826" font-size="34" fill="#3C6E3F" font-weight="700">有想法不用等我問——想到就說 🙌</text>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

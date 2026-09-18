@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">首頁重做</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">一打開就知道接下來可以做什麼</text>
+  <rect x="80" y="286" width="920" height="420" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="360" font-size="38" fill="#1B5138" font-weight="800">本週 Tennis Nut 球友動態</text>
+  <text x="222" y="474" font-size="66" fill="#1B5138" font-weight="800" text-anchor="middle">33</text>
+  <text x="222" y="518" font-size="28" fill="#9BA29B" text-anchor="middle">練習</text>
+  <text x="434" y="474" font-size="66" fill="#1B5138" font-weight="800" text-anchor="middle">21</text>
+  <text x="434" y="518" font-size="28" fill="#9BA29B" text-anchor="middle">比賽</text>
+  <text x="646" y="474" font-size="66" fill="#1B5138" font-weight="800" text-anchor="middle">17</text>
+  <text x="646" y="518" font-size="28" fill="#9BA29B" text-anchor="middle">球場回報</text>
+  <text x="858" y="474" font-size="66" fill="#1B5138" font-weight="800" text-anchor="middle">4</text>
+  <text x="858" y="518" font-size="28" fill="#9BA29B" text-anchor="middle">新球場</text>
+  <line x1="128" y1="568" x2="952" y2="568" stroke="#F1F0EA" stroke-width="2"/>
+  <text x="128" y="632" font-size="31" fill="#5E7A60">最後一行是你自己的——同一週你做了多少。</text>
+  <text x="128" y="680" font-size="31" fill="#5E7A60">沒有名次，也不是排行榜。</text>
+  <rect x="80" y="760" width="920" height="154" rx="30" fill="#F3F8EC"/>
+  <text x="128" y="826" font-size="34" fill="#3C6E3F" font-weight="700">還有這一帶的球友、你的最愛球場、</text>
+  <text x="128" y="880" font-size="34" fill="#3C6E3F" font-weight="700">以及接下來可以做的一兩件事</text>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

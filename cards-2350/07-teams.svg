@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">地圖上看得到每一支球隊</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">一座球場有幾支隊，就畫幾顆隊徽</text>
+  <rect x="80" y="286" width="920" height="360" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <circle cx="380" cy="440" r="74" fill="#15291D"/>
+  <circle cx="380" cy="440" r="74" fill="none" stroke="#D4AF37" stroke-width="7"/>
+  <text x="380" y="466" font-size="64" text-anchor="middle">🎾</text>
+  <circle cx="530" cy="440" r="74" fill="#15291D"/>
+  <circle cx="530" cy="440" r="74" fill="none" stroke="#D4AF37" stroke-width="7"/>
+  <text x="530" y="466" font-size="64" text-anchor="middle">🏸</text>
+  <text x="128" y="588" font-size="31" fill="#5E7A60">以前只畫第一支，第二支之後縮成一顆「+1」——</text>
+  <text x="128" y="636" font-size="31" fill="#5E7A60">看得到有別人，卻看不出是誰。</text>
+  <rect x="80" y="700" width="920" height="154" rx="30" fill="#F3F8EC"/>
+  <text x="128" y="766" font-size="34" fill="#3C6E3F" font-weight="700">一座球場有兩支隊，</text>
+  <text x="128" y="820" font-size="34" fill="#3C6E3F" font-weight="700">是兩個可以加入的對象 🏅</text>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

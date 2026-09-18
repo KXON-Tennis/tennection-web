@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">好友邀請可以說一句話</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">不再是一個空白的請求</text>
+  <rect x="80" y="286" width="920" height="340" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="360" font-size="44">✉️</text>
+  <rect x="196" y="322" width="756" height="76" rx="24" fill="#F3F8EC"/>
+  <text x="228" y="372" font-size="32" fill="#3C6E3F" font-weight="700">「上次在中路遇到，下次一起打？」</text>
+  <text x="128" y="470" font-size="31" fill="#5E7A60">收到邀請的人終於知道你是誰，</text>
+  <text x="128" y="518" font-size="31" fill="#5E7A60">也比較願意按下接受。</text>
+  <text x="128" y="586" font-size="31" fill="#5E7A60">邀請底下還會寫「你們都在○○網球場打過」。</text>
+  <rect x="80" y="680" width="920" height="100" rx="30" fill="#F3F8EC"/>
+  <text x="128" y="746" font-size="34" fill="#3C6E3F" font-weight="700">在球場上遇到的人，這樣就接得起來 🤝</text>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">影片傳得出去了</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">想問一個動作，錄一段直接傳給教練</text>
+  <rect x="80" y="286" width="920" height="300" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="360" font-size="44">🎬</text>
+  <text x="196" y="360" font-size="38" fill="#2E5A34" font-weight="800">免費方案的影片額度</text>
+  <rect x="128" y="404" width="250" height="60" rx="18" fill="#ECEAE2"/>
+  <text x="253" y="444" font-size="27" fill="#6E776F" font-weight="600" text-anchor="middle">每月 2 支</text>
+  <rect x="392" y="404" width="250" height="60" rx="18" fill="#ECEAE2"/>
+  <text x="517" y="444" font-size="27" fill="#6E776F" font-weight="600" text-anchor="middle">每支 30 秒</text>
+  <rect x="656" y="404" width="250" height="60" rx="18" fill="#ECEAE2"/>
+  <text x="781" y="444" font-size="27" fill="#6E776F" font-weight="600" text-anchor="middle">保存 30 天</text>
+  <text x="128" y="528" font-size="31" fill="#5E7A60">太大或太長會先告訴你，不用等上傳跑完。</text>
+  <rect x="80" y="626" width="920" height="208" rx="30" fill="#F3F8EC"/>
+  <text x="128" y="692" font-size="34" fill="#3C6E3F" font-weight="700">想傳長一點的？把影片放 YouTube 設「不公開」，</text>
+  <text x="128" y="746" font-size="34" fill="#3C6E3F" font-weight="700">或 Google 雲端硬碟改成「知道連結的任何人」，</text>
+  <text x="128" y="800" font-size="34" fill="#3C6E3F" font-weight="700">把連結貼進去就沒有長度限制 🔗</text>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

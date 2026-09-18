@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">比賽可以記搶七了</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">小分直接填，不用從選項裡挑</text>
+  <rect x="80" y="286" width="920" height="380" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="360" font-size="44">🎾</text>
+  <text x="196" y="360" font-size="38" fill="#2E5A34" font-weight="800">第三盤 7–6</text>
+  <rect x="128" y="404" width="260" height="66" rx="20" fill="#FFF3DC"/>
+  <text x="258" y="448" font-size="30" fill="#B07A2A" font-weight="800" text-anchor="middle">搶七 9–7</text>
+  <text x="128" y="534" font-size="31" fill="#5E7A60">只打一局搶七決勝負的場次，現在也記得起來。</text>
+  <text x="128" y="596" font-size="31" fill="#5E7A60">記比賽時，好友會直接出現在「最近對手」那排，</text>
+  <text x="128" y="644" font-size="31" fill="#5E7A60">不用再從灰圖示裡找。</text>
+  <rect x="80" y="720" width="920" height="100" rx="30" fill="#F3F8EC"/>
+  <text x="128" y="786" font-size="34" fill="#3C6E3F" font-weight="700">一場球打完，比分留得下來 🏆</text>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>
