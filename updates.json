@@ -7,6 +7,70 @@
   ],
   "releases": [
     {
+      "build": 2360,
+      "version": "1.12.4",
+      "date": "2026-09-19",
+      "title": "約球可以取消了",
+      "summary": "主揪的取消原本是一個沒有文字的灰色圖示，很多人沒認出那是取消。現在它是一顆寫著「取消約球」的按鈕，首頁那一列也能直接取消。",
+      "image": "/blog-2360.png",
+      "highlights": [
+        {
+          "emoji": "🗓",
+          "title": "約球可以取消了",
+          "body": "主揪原本看到的是一個沒有標籤的小圖示，而參加者看到的是「我要去」「不去了」——兩邊都是收回自己的決定，形狀卻不一樣。現在主揪拿到的也是一顆有文字的按鈕。\n\n首頁「接下來的約球」那一列也能直接取消，不用先點進球場再找一次。"
+        },
+        {
+          "emoji": "⏱",
+          "title": "收回可打球時間會先問一次",
+          "body": "那顆按鈕原本緊鄰「編輯」，按錯就直接刪掉了。現在會先把那段時間顯示出來，再問你一次。"
+        },
+        {
+          "emoji": "🎥",
+          "title": "教練可以傳十分鐘的影片",
+          "body": "三分鐘講不完一個動作的調整，教練端的單支長度上限放寬到 10 分鐘。\n\n學員這邊維持每月 2 支、每支 30 秒；要傳長的，貼 YouTube 或雲端硬碟連結一樣可以。"
+        },
+        {
+          "emoji": "🏅",
+          "title": "每一支球隊各有自己的顏色",
+          "body": "沒有上傳隊徽的球隊，以前在地圖上長得一模一樣：同一顆藍圓圈加一個字。現在每支隊有自己的底色，外圈維持藍色——環說「這是球隊」，底色說「是哪一支」。"
+        }
+      ],
+      "fixes": [
+        "鍵盤跳出來的時候，部分畫面的排版不會再爆出邊界",
+        "從通知點進「學習收藏」和「賽前複習」有返回鍵了"
+      ],
+      "en": {
+        "title": "You can cancel a hit now",
+        "summary": "The host's cancel control was an unlabelled grey icon, and people didn't read it as cancel. It is now a button that says so — and the row on your home screen can cancel too.",
+        "highlights": [
+          {
+            "emoji": "🗓",
+            "title": "You can cancel a hit now",
+            "body": "Hosts saw a small icon with no label, while people who had joined saw “I'm going” and “Can't make it”. All three are you taking back your own decision, but they looked nothing alike. Hosts now get a button with words on it.\n\nThe “Upcoming hits” row on the home screen can cancel as well, so you don't have to open the court and find it again."
+          },
+          {
+            "emoji": "⏱",
+            "title": "Taking back your free time asks once",
+            "body": "That button sat right beside Edit, and a mis-tap deleted the slot outright. It now shows you which hours you are about to remove, and asks again."
+          },
+          {
+            "emoji": "🎥",
+            "title": "Coaches can send ten-minute videos",
+            "body": "Three minutes is not enough to walk someone through a change to their stroke, so the per-video limit on the coach side is now 10 minutes.\n\nFor players it stays at 2 videos a month, 30 seconds each. To send something longer, paste a YouTube or Google Drive link — coaches can open those too."
+          },
+          {
+            "emoji": "🏅",
+            "title": "Every team has its own colour",
+            "body": "Teams without a crest used to look identical on the map: the same blue circle with one character inside. Each team now has its own fill, and the blue ring stays — the ring says “this is a team”, the fill says which one."
+          }
+        ],
+        "fixes": [
+          "Layouts no longer spill past the edge on some screens when the keyboard opens",
+          "Learning saves and Pre-match review have a back button when opened from a notification"
+        ]
+      }
+    },
+    {
       "build": 2350,
       "version": "1.12.3",
       "date": "2026-09-16",
@@ -42,7 +106,7 @@
       ],
       "fixes": [
         "記比賽時，好友直接出現在「最近對手」那排，不用再從灰圖示裡找",
-        "護照、球場、好友那些畫面的資料更新得更即時（補齊了 26 個資料模型的比對欄位）"
+        "護照、球場、好友那些畫面的資料更新得更即時"
       ]
     },
     {
@@ -238,7 +302,7 @@
         {
           "emoji": "🛠",
           "title": "出錯的時候，我們終於看得見",
-          "body": "先前有位使用者按分享沒有反應，而我們花了一整個下午才把範圍縮到十行程式碼——因為那個錯誤只發生在他的手機上，我們什麼都看不到。這一版加了錯誤回報：App 出錯時把錯誤訊息傳回來，不含你的紀錄、照片或位置，而且在設定的隱私那一區可以關掉。"
+          "body": "先前有位使用者按分享沒有反應，而那個狀況只發生在他的手機上，我們這邊怎麼試都是好的。\n\n這一版加了錯誤回報：App 出錯時把錯誤訊息傳回來，不含你的紀錄、照片或位置，而且在設定的隱私那一區可以關掉。"
         }
       ],
       "fixes": [
@@ -402,7 +466,7 @@
       "fixes": [
         "修正雙打選搭檔的好友清單：不再破圖、看得到全部好友",
         "球場卡重新設計，導航與紀錄回到卡片上",
-        "附近球場改用資料庫的地理索引，載入更快",
+        "附近球場載入更快",
         "回報球場時的球場選擇器可以搜尋，並依距離排序",
         "新增馬來西亞、澳門的球場",
         "註冊禮金調整為足夠支付第一次諮詢",
@@ -423,6 +487,12 @@
       "blurb": "面對面掃一下、把 ID 傳給他，或把別人給你的 ID 貼上。入口在中間那顆＋裡。",
       "href": "/add-friend",
       "icon": "🤝"
+    },
+    {
+      "title": "約球：從開一場球，到在球場上找到彼此",
+      "blurb": "開球、報名、出門、到場、找不到人，一起來看看吧！含到場確認卡和全螢幕舉牌模式。",
+      "href": "/hit",
+      "icon": "🎾"
     },
     {
       "title": "諮詢：卡住的時候，有人可以問",
