@@ -3,86 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>一起打球？ · Tennis Nut</title>
-  <meta name="description" content="有人約你打球。時間、場地、要打什麼、用哪種球，都已經先講好了。" />
-  <meta property="og:title" content="一起打球？" />
-  <meta property="og:description" content="時間、場地、要打什麼、用哪種球，都已經先講好了。" />
+  <title>約球：從開一場球，到在球場上找到彼此 · Tennis Nut</title>
+  <meta name="description" content="開球、報名、出門、到場、找不到人，一起來看看吧！含到場確認卡和全螢幕舉牌模式。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="約球：從開一場球，到在球場上找到彼此 · Tennis Nut" />
+  <meta property="og:description" content="開球、報名、出門、到場、找不到人，一起來看看吧！含到場確認卡和全螢幕舉牌模式。" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/hit" />
   <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <!-- An invitation is for one person and expires; keeping it out of search
-       results costs nothing and avoids stale links ranking. -->
-  <meta name="robots" content="noindex" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
+  <link rel="canonical" href="https://tennisnut.kxon.net/hit" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&display=swap" />
   <link rel="stylesheet" href="/styles.css" />
   <style>
-    .wrap { max-width: 460px; margin: 0 auto; }
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .rel-lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    .hl { display: flex; gap: 14px; align-items: flex-start; background: var(--surface);
+          border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 14px; margin-bottom: 14px; }
+    .hl-emoji { font-size: 22px; line-height: 1.4; flex-shrink: 0; }
+    .hl-body h2 { font-size: 17px; margin: 0 0 6px; }
+    .hl-body p { margin: 0; color: var(--text-secondary); font-size: 15px; }
+    .hl-shot { margin: 14px 0 2px; }
+    .hl-shot img { display: block; width: 100%; max-width: 300px; height: auto;
+                   border-radius: 12px; }
+    .hl-shot figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; }
+    .guide-h { font-size: 19px; margin: 34px 0 2px; padding-top: 4px; }
+    .guide-h + .meta { margin-top: 0; }
+    .fixes { margin: 28px 0 8px; }
+    .fixes h2 { font-size: 15px; color: var(--text-tertiary); font-weight: 600; margin: 0 0 8px; }
+    .fixes ul { margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 15px; }
+    .fixes li { margin-bottom: 4px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 14px 16px; font-size: 15px; margin: 28px 0 0; }
+    .rel-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; font-size: 14px; }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-secondary); }
+    .rel-list { list-style: none; margin: 20px 0 0; padding: 0; }
+    .rel-item { margin-bottom: 12px; }
+    .rel-item a { display: block; background: var(--surface); border: 1px solid var(--border);
+                  border-radius: 14px; padding: 18px; text-decoration: none;
+                  transition: background-color .15s ease, border-color .15s ease; }
+    .rel-item a:hover { background: var(--accent-d); border-color: var(--accent-d);
+                        text-decoration: none; }
+    .rel-item a:hover .rel-item-title,
+    .rel-item a:hover .rel-item-meta { color: #fff; }
+    .rel-item a:hover .rel-item-sum { color: rgba(255, 255, 255, .82); }
+    .rel-item-meta { font-size: 13px; color: var(--text-tertiary); }
+    .rel-item-title { font-family: "Sora", -apple-system, sans-serif; font-size: 19px;
+                      color: var(--text-primary); margin: 4px 0 6px; }
+    .rel-item-sum { margin: 0; font-size: 15px; color: var(--text-secondary); }
 
-    .state { text-align: center; padding: 60px 10px; color: var(--text-tertiary); font-size: 14px; }
-    .state .big { font-size: 34px; line-height: 1; margin-bottom: 12px; }
-    .state h1 { font-size: 19px; color: var(--text-primary); margin: 0 0 8px; }
-    .state p { margin: 0 auto 20px; max-width: 320px; line-height: 1.65;
-      color: var(--text-secondary); font-size: 14px; }
+    /* 區塊標題：小標籤 + 一條線，兩區才分得開 */
+    .sec-eyebrow { display: flex; align-items: center; gap: 12px; margin: 44px 0 0; }
+    .sec-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .sec-eyebrow h2 { font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
+                      color: var(--accent); margin: 0; white-space: nowrap; }
 
-    /* ── The session ── */
-    .invite { background: var(--surface); border: 2px solid var(--accent);
-      border-radius: 20px; padding: 22px 20px; }
-    .from { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; }
-    .from b { color: var(--text-primary); }
-    .when { font-size: 25px; font-weight: 900; color: var(--text-primary);
-      line-height: 1.25; margin: 0 0 2px; letter-spacing: -.3px; }
-    .when-rel { font-size: 13px; font-weight: 700; color: var(--accent-d); margin: 0 0 16px; }
+    /* 最新一版：有圖、字大，跟舊版本明顯不同重量 */
+    .rel-hero { display: block; background: var(--surface); border: 1px solid var(--border);
+                border-radius: 18px; overflow: hidden; text-decoration: none; margin-top: 20px; }
+    .rel-hero { transition: border-color .15s ease; }
+    .rel-hero:hover { border-color: var(--accent-d); text-decoration: none; }
+    .rel-hero:hover .rel-hero-body { background: var(--accent-d); }
+    .rel-hero-body { transition: background-color .15s ease; }
+    .rel-hero:hover h3, .rel-hero:hover .rel-item-meta { color: #fff; }
+    .rel-hero:hover p { color: rgba(255, 255, 255, .82); }
+    .rel-hero-body { padding: 26px 22px 28px; }
+    .rel-badge { display: inline-block; background: var(--accent); color: #fff; font-size: 11px;
+                 font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 3px 10px; }
+    .rel-hero h3 { font-family: "Sora", -apple-system, sans-serif; font-size: 24px; line-height: 1.35;
+                   color: var(--text-primary); margin: 12px 0 8px; }
+    .rel-hero p { margin: 0; font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+    .rel-hero .rel-item-meta { margin-top: 12px; }
 
-    /* What we're going to do — the two things agreed in advance, which is the
-       whole reason this invitation exists. Given the visual weight to match. */
-    .agreed { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-    .ag { background: var(--tint); border: 1px solid #DCEAC9; border-radius: 14px;
-      padding: 12px 13px; }
-    .ag .lb { font-size: 11px; font-weight: 800; letter-spacing: .4px;
-      color: var(--text-tertiary); text-transform: uppercase; margin-bottom: 5px; }
-    .ag .vl { font-size: 15.5px; font-weight: 800; color: var(--text-primary); line-height: 1.3; }
-    .ag .bl { font-size: 12px; color: var(--text-secondary); line-height: 1.45; margin-top: 4px; }
+    /* 舊版本：收成一行，日期與標題並排 */
+    .rel-past { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--border); }
+    .rel-past li a { display: flex; gap: 14px; align-items: baseline; padding: 14px 2px;
+                     border-bottom: 1px solid var(--border); text-decoration: none; }
+    .rel-past li a { transition: background-color .15s ease; border-radius: 8px; }
+    .rel-past li a:hover { background: var(--accent-d); text-decoration: none;
+                           padding-left: 10px; padding-right: 10px; }
+    .rel-past li a:hover .rel-past-t { color: #fff; }
+    .rel-past li a:hover .rel-past-d { color: rgba(255, 255, 255, .75); }
+    .rel-past-d { font-size: 13px; color: var(--text-tertiary); white-space: nowrap; }
+    .rel-past-t { font-size: 16px; font-weight: 700; color: var(--text-primary); }
 
-    .beginner { display: flex; gap: 10px; align-items: flex-start;
-      background: #FFF9E8; border: 1px solid #EBDCA9; border-radius: 14px;
-      padding: 12px 14px; margin-bottom: 14px; }
-    .beginner .ic { font-size: 18px; line-height: 1.2; flex: 0 0 auto; }
-    .beginner b { display: block; font-size: 14px; color: var(--text-primary); }
-    .beginner span { font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; }
-
-    .going { font-size: 13px; color: var(--text-secondary); margin: 0; }
-
-    /* ── The court ── */
-    .court { background: var(--surface); border: 1px solid var(--border);
-      border-radius: 18px; padding: 18px 18px 16px; margin-top: 16px; }
-    .court h2 { margin: 0 0 2px; font-size: 17px; color: var(--text-primary); }
-    .court .city { margin: 0 0 12px; font-size: 13px; color: var(--text-tertiary); }
-    .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
-    .chip { font-size: 12px; font-weight: 700; color: var(--text-secondary);
-      background: var(--bg); border: 1px solid var(--border);
-      border-radius: 999px; padding: 5px 11px; }
-    .chip.ok { color: var(--accent-d); background: var(--accent-soft); border-color: transparent; }
-    .maplink { display: inline-flex; align-items: center; gap: 7px;
-      font-size: 14px; font-weight: 800; color: var(--accent-d); text-decoration: none; }
-
-    /* ── Getting in ── */
-    .act { margin-top: 22px; text-align: center; }
-    .act .btn { display: block; background: var(--accent); color: #fff;
-      font-weight: 800; font-size: 16px; padding: 14px 22px; border-radius: 999px;
-      text-decoration: none; box-shadow: 0 6px 18px rgba(92,154,70,.28); }
-    .act .how { margin: 14px 0 0; font-size: 12.5px; color: var(--text-tertiary);
-      line-height: 1.7; }
-    .act .how b { color: var(--text-secondary); }
-
-    .langbar { text-align: center; margin: 26px 0 0; font-size: 12px; }
-    .langbar a { color: var(--text-tertiary); text-decoration: none; font-weight: 700; }
-    .langbar a[aria-current] { color: var(--accent-d); }
-
-    @media (max-width: 380px) { .agreed { grid-template-columns: 1fr; } }
-  </style>
+    /* 功能介紹：圖示當錨點，桌機兩欄 */
+    .guide-grid { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+    @media (min-width: 720px) { .guide-grid { grid-template-columns: 1fr 1fr; } }
+    .guide-grid a { display: flex; gap: 14px; height: 100%; background: var(--surface);
+                    border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+                    text-decoration: none;
+                    transition: background-color .15s ease, border-color .15s ease; }
+    /* 滑過整張卡就翻成品牌綠底白字——卡片本來就是一整個連結，
+       只換邊框顏色的話，游標在卡片中間時看不出它可以點。 */
+    .guide-grid a:hover { background: var(--accent-d); border-color: var(--accent-d);
+                          text-decoration: none; }
+    .guide-grid a:hover .guide-t { color: #fff; }
+    .guide-grid a:hover .guide-s { color: rgba(255, 255, 255, .82); }
+    .guide-ic { font-size: 22px; line-height: 1.3; flex-shrink: 0; }
+    .guide-t { font-size: 17px; font-weight: 700; color: var(--text-primary); margin: 0 0 6px; }
+    .guide-s { margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -90,270 +119,385 @@
       <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
-      <a href="/">加入</a>
-      <a href="/courts-map">球場地圖</a>
-      <a href="/blog">Blog</a>
+      <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">下載</a>
+      <a href="/install">安裝</a>
+      <a href="/blog" class="active">Blog</a>
       <a href="/privacy">隱私權</a>
+      <a href="/terms">服務條款</a>
+      <a href="/en/blog">EN</a>
     </nav>
   </header>
 
-  <main class="container">
-    <div class="wrap" id="wrap">
-      <div class="state" id="loading"><div class="big">🎾</div><span id="loadingTx"></span></div>
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    h2 { font-size: 18px; margin: 32px 0 8px; }
+    h3 { font-size: 16px; margin: 24px 0 6px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 18px 14px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; margin: 0 0 6px; }
+    .card p { margin: 0; font-size: 15px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
+    .callout p { margin: 0; }
+    .callout p + p { margin-top: 10px; }
+    ul.plain { color: var(--text-secondary); font-size: 15px; line-height: 1.9; padding-left: 20px; }
+    figure { margin: 18px 0 4px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 8px; line-height: 1.6; }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); }
+
+    /* ── 畫面示意圖 ─────────────────────────────────────────────
+       用 CSS 畫，不出圖檔：這幾張圖的內容就是 App 上的字，出成點陣圖
+       之後改一個字就要重畫一次，而按鈕文案是最常動的東西。 */
+    .shots { display: flex; flex-wrap: wrap; gap: 18px; margin: 18px 0 4px; }
+    .phone { width: 246px; border-radius: 26px; padding: 9px; background: #2A332D;
+             box-shadow: 0 8px 24px rgba(27,81,56,.10); }
+    .phone.wide { width: 292px; }
+    .screen { border-radius: 18px; overflow: hidden; background: #FBFAF6; color: #1B5138;
+              font-size: 12px; line-height: 1.6; }
+    .shot { flex: 0 0 auto; }
+    .shot figcaption { max-width: 246px; text-align: center; }
+    .shot .phone.wide + figcaption { max-width: 292px; }
+
+    .grip { width: 34px; height: 4px; border-radius: 2px; background: #D6D3C9; margin: 10px auto 12px; }
+    .sc { padding: 14px 13px 15px; }
+    .sc-t { font-size: 13px; font-weight: 800; color: #1B5138; margin: 0 0 11px; }
+    .lb { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: #6E776F; margin: 13px 0 7px; }
+    .lb:first-child { margin-top: 0; }
+    .fd { border: 1px solid #ECEAE2; border-radius: 9px; padding: 8px 10px; font-size: 11.5px;
+          font-weight: 600; color: #1B5138; background: #fff; display: flex; align-items: center; gap: 7px; }
+    .fd.ghost { color: #9BA29B; font-weight: 400; }
+    .cs { display: flex; flex-wrap: wrap; gap: 5px; }
+    .cp { border: 1px solid #ECEAE2; border-radius: 13px; padding: 3.5px 9px; font-size: 10.5px;
+          font-weight: 600; color: #6E776F; background: #fff; white-space: nowrap; }
+    .cp.on { background: #E7F1E1; border-color: #3F7C43; color: #1B5138; font-weight: 700; }
+    .cta { margin-top: 15px; border-radius: 11px; background: #3F7C43; color: #fff;
+           text-align: center; padding: 10px; font-size: 12.5px; font-weight: 800; }
+    .rd { display: flex; gap: 8px; align-items: flex-start; padding: 7px 0; }
+    .rd .o { width: 13px; height: 13px; border-radius: 50%; flex: none; margin-top: 3px;
+             border: 1.5px solid #C6C3B8; background: #fff; }
+    .rd.on .o { border: 4px solid #3F7C43; }
+    .rd .rt { font-size: 11.5px; font-weight: 700; color: #1B5138; line-height: 1.45; }
+    .rd .rs { font-size: 10px; color: #9BA29B; line-height: 1.5; }
+
+    .acard { border: 1px solid #1B5138; border-radius: 13px; overflow: hidden; background: #fff; }
+    .aband { background: #1B5138; color: #fff; padding: 8px 11px; display: flex; align-items: center; gap: 7px; }
+    .pulse { width: 9px; height: 9px; border-radius: 50%; background: #fff; flex: none;
+             animation: tnpulse 1.6s ease-in-out infinite; }
+    @keyframes tnpulse {
+      0%   { box-shadow: 0 0 0 0 rgba(255,255,255,.7); }
+      100% { box-shadow: 0 0 0 7px rgba(255,255,255,0); }
+    }
+    @media (prefers-reduced-motion: reduce) { .pulse { animation: none; } }
+    .aband .aw { flex: 1; font-size: 11.5px; font-weight: 800; }
+    .aband .an { font-size: 10.5px; font-weight: 700; }
+    .abody { padding: 10px 11px; }
+    .ar { display: flex; align-items: center; gap: 7px; padding: 3px 0; font-size: 11px;
+          font-weight: 600; color: #6E776F; }
+    .ar .ad { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+    .ar .ad.here { background: #4CAF50; }
+    .ar .ad.late { background: #FF9800; }
+    .ar.gone { color: #9BA29B; }
+    .ar .ax { width: 9px; flex: none; text-align: center; color: #9BA29B; font-size: 11px; line-height: 1; }
+    .apend { font-size: 10.5px; color: #9BA29B; padding: 4px 0 0; }
+
+    .beacon { background: #3F7C43; color: #fff; text-align: center; padding: 44px 16px 28px;
+              min-height: 372px; display: flex; flex-direction: column; align-items: center;
+              justify-content: center; }
+    .ball { width: 92px; height: 92px; border-radius: 50%; background: #DCE96B;
+            position: relative; overflow: hidden; flex: none;
+            box-shadow: inset 0 -6px 16px rgba(0,0,0,.12); }
+    .ball::before, .ball::after { content: ""; position: absolute; width: 92px; height: 92px;
+            border: 3px solid #FBFAF6; border-radius: 50%; }
+    .ball::before { top: -50px; left: -46px; }
+    .ball::after  { top:  50px; left: -46px; }
+    .beacon .bg { font-size: 30px; font-weight: 800; margin: 20px 0 0; line-height: 1.2; }
+    .beacon .bs { font-size: 11px; color: rgba(255,255,255,.72); margin: 13px 0 0; }
+    .beacon .bm { margin-top: 32px; font-size: 12px; font-weight: 800; letter-spacing: .13em;
+                  color: rgba(255,255,255,.9); }
+
+    /* 時間軸 */
+    .tl { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+          padding: 24px 18px 18px; margin: 22px 0; overflow-x: auto; }
+    .tl-bar { position: relative; height: 46px; min-width: 440px; }
+    .tl-track { position: absolute; top: 20px; left: 0; right: 0; height: 5px; border-radius: 3px;
+                background: var(--border); }
+    .tl-live { position: absolute; top: 20px; left: 8%; width: 76%; height: 5px; border-radius: 3px;
+               background: var(--accent); }
+    .tl-play { position: absolute; top: 14px; left: 31%; width: 30%; height: 17px; border-radius: 4px;
+               background: #1B5138; opacity: .17; }
+    .tl-m { position: absolute; top: 0; transform: translateX(-50%); text-align: center; }
+    .tl-m i { display: block; width: 2px; height: 32px; background: var(--text-tertiary); margin: 0 auto; }
+    .tl-m span { display: block; font-size: 10px; font-weight: 700; color: var(--text-tertiary);
+                 margin-top: 4px; white-space: nowrap; }
+    .tl-k { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 20px; font-size: 13px;
+            color: var(--text-secondary); }
+    .tl-k span { display: inline-flex; align-items: center; gap: 7px; }
+    .tl-k i { width: 15px; height: 7px; border-radius: 3px; flex: none; }
+
+    /* 按鈕說明 */
+    .btn-row { display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: start;
+               background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+               padding: 16px 18px; margin-bottom: 12px; }
+    .btn-row .k { border: 1.5px solid var(--accent-d); border-radius: 15px; padding: 5px 0;
+                  text-align: center; font-size: 12.5px; font-weight: 700; color: var(--accent-d); }
+    .btn-row .v p { margin: 0; }
+    .btn-row .v p + p { margin-top: 8px; }
+    @media (max-width: 560px) {
+      .btn-row { grid-template-columns: 1fr; gap: 10px; }
+      .btn-row .k { justify-self: start; padding: 5px 18px; }
+    }
+</style>
+  <article class="container rel">
+    <a class="rel-back" href="/blog">← 最新情報</a>
+    <span class="tag-line">🌰 功能介紹</span>
+    <h1>約球：從開一場球，到在球場上找到彼此</h1>
+    <p class="lead">
+      約球是 Tennis Nut 裡唯一一個<b>會跟著你走到球場上</b>的功能。
+      開球、報名、出門、到場、找不到人，一起來看看吧！
+    </p>
+
+    <h2>一、開一場球</h2>
+    <p>
+      約球一定綁在一座球場上，所以任何入口的第一件事都是先有球場。三個入口：
+    </p>
+    <ul class="plain">
+      <li><b>中間那顆＋</b>：選「約球」，接著挑一座球場。</li>
+      <li><b>球場頁面</b>：點「約在這裡」，球場已經幫你帶好了。</li>
+      <li><b>首頁看到誰有空</b>：點「約他」，連時間都先填好。</li>
+    </ul>
+
+    <h3>時間</h3>
+    <p>
+      點一下就能選日期和起訖。預設 <b>90 分鐘</b>，可以改成任何長度——
+      這個長度等一下會決定到場確認卡在首頁上待多久，所以值得填準。
+    </p>
+
+    <h3>想打什麼</h3>
+    <p>
+      可以複選，一場球通常不只一件事。
+      <b>人數是從這裡算出來的，不用另外填：</b>勾「單打」就是 2 人，勾「雙打」就是 4 人；
+      兩個都勾或都不勾，就是不限人數。
+    </p>
+
+    <div class="shots">
+      <figure class="shot">
+        <div class="phone"><div class="screen">
+          <div class="grip"></div>
+          <div class="sc" style="padding-top:0">
+            <p class="sc-t">約在 桃園市中路網球場</p>
+            <div class="lb">時間</div>
+            <div class="fd">🕐 9/23 (三) 09:00–10:30</div>
+            <div class="lb">想打什麼（可複選）</div>
+            <div class="cs">
+              <span class="cp on">對抽／練球</span><span class="cp">多球／餵球</span>
+              <span class="cp on">雙打</span><span class="cp">單打</span>
+              <span class="cp">計分／比賽</span><span class="cp">截擊／網前</span>
+              <span class="cp">發球／接發</span>
+            </div>
+            <div class="lb">用球</div>
+            <div class="fd">一般黃球 <span style="margin-left:auto;color:#9BA29B">▾</span></div>
+          </div>
+        </div></div>
+        <figcaption>勾了「雙打」，這場球就是 4 人。用球除了黃球，還有綠、橘、紅三種慢速球。</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="phone"><div class="screen">
+          <div class="sc">
+            <div class="lb">找誰（選填）</div>
+            <div class="cs"><span class="cp on">阿明 ✕</span><span class="cp">＋ 指名球友</span></div>
+            <div class="lb">誰看得到</div>
+            <div class="rd on"><div class="o"></div><div><div class="rt">只有好友</div><div class="rs">只有你的好友看得到、收得到通知</div></div></div>
+            <div class="rd"><div class="o"></div><div><div class="rt">所有加這座球場為最愛的人</div><div class="rs">他們會收到主動通知</div></div></div>
+            <div class="rd"><div class="o"></div><div><div class="rt">只有受邀的人</div><div class="rs">不廣播給其他人</div></div></div>
+            <div class="fd ghost" style="margin-top:12px">想補充的（選填）</div>
+            <div class="cta">發出邀約</div>
+          </div>
+        </div></div>
+        <figcaption>發出去之後，你自己已經在名單上了——主揪不用再報名一次。</figcaption>
+      </figure>
     </div>
-  </main>
+
+    <div class="callout">
+      <p><b>「指名」和「誰看得到」是兩件事。</b></p>
+      <p>
+        指名說的是<b>誰會被告知</b>——被指名的人收到的是「你約他」，不是一則公告。
+        誰看得到說的是<b>誰可以來</b>。
+        所以「我約了阿明，其他好友也歡迎」講得出來。
+      </p>
+    </div>
+
+    <h2>二、別人怎麼參加</h2>
+    <p>
+      看得到這場球的人，點進那座球場，在約球那一列按 <b>「我要去」</b> 就進名單了，
+      按鈕會變成「已報名」。人數滿了會顯示「已滿」。
+    </p>
+    <p>
+      想退出按 <b>「不去了」</b>——會先問一次，因為主揪會收到通知、位子也會空出來給別人。
+      如果這個時間你已經答應了另一場球，App 會直接告訴你撞期。
+    </p>
+
+    <h2>三、到場確認卡</h2>
+    <p>
+      球快開始的時候，<b>首頁會自己長出一張卡</b>。它是整個首頁唯一會自己動的東西：
+      深綠色的橫帶，配一顆會呼吸的白點。
+    </p>
+
+    <div class="tl">
+      <div class="tl-bar">
+        <div class="tl-track"></div>
+        <div class="tl-live"></div>
+        <div class="tl-play"></div>
+        <div class="tl-m" style="left:8%"><i></i><span>開始前 2 小時</span></div>
+        <div class="tl-m" style="left:31%"><i></i><span>開打</span></div>
+        <div class="tl-m" style="left:61%"><i></i><span>結束</span></div>
+        <div class="tl-m" style="left:84%"><i></i><span>結束後 1 小時</span></div>
+      </div>
+      <div class="tl-k">
+        <span><i style="background:var(--accent)"></i>卡片在首頁上</span>
+        <span><i style="background:#1B5138;opacity:.35"></i>球局進行中</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>什麼時候出現</h3>
+      <p>
+        開始前 2 小時，到<b>結束</b>後 1 小時。結束是從你設的時長算的——
+        一場 09:00 開始、90 分鐘的球，卡片會在 07:00 出現，10:30 打完之後再撐一小時。
+      </p>
+    </div>
+    <div class="card">
+      <h3>誰看得到</h3>
+      <p>
+        只有<b>名單上的人</b>，主揪也算。你看得到但沒報名的球
+        （好友開的、你最愛球場上的公開約球）不會給你這張卡——
+        那上面的按鈕是給要去的人按的。
+      </p>
+    </div>
+
+    <figure class="shot" style="margin-top:20px">
+      <div class="phone wide"><div class="screen">
+        <div style="padding:11px">
+          <div class="acard">
+            <div class="aband">
+              <span class="pulse"></span>
+              <span class="aw">今天 09:00 · 中路網球場</span>
+              <span class="an">2/4 已到場</span>
+            </div>
+            <div class="abody">
+              <div class="ar"><span class="ad here"></span>小宇 · 球場邊 · 白色</div>
+              <div class="ar"><span class="ad here"></span>阿明 · 停車場 · 戴紅色帽子</div>
+              <div class="ar"><span class="ad late"></span>阿凱 · 晚 15 分鐘</div>
+              <div class="ar gone"><span class="ax">✕</span>小美 · 今天到不了</div>
+              <div class="apend">1 人還沒回報</div>
+              <div class="cs" style="margin-top:10px">
+                <span class="cp on">我到了</span><span class="cp">我會晚到</span>
+                <span class="cp">今天到不了</span><span class="cp">找不到你</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <figcaption>
+        綠點是到了，橘點是會晚到，✕ 是今天到不了。還沒按任何按鈕的人
+        只會被算進最下面那句「N 人還沒回報」。這張卡每 30 秒自己更新一次。
+      </figcaption>
+    </figure>
+
+    <h3>四顆按鈕</h3>
+    <div class="btn-row">
+      <div class="k">我到了</div>
+      <div class="v">
+        <p>按下去<b>立刻</b>就簽到了，同時幫你留下這一場的練習紀錄。</p>
+        <p>
+          接著會問兩件事：<b>你在球場的哪裡</b>（入口／停車場／球場邊／看台）、
+          <b>今天穿什麼顏色</b>。兩題都可以直接關掉不答——你已經簽到了。
+          也可以自己打字，像「在小七旁邊」「戴紅色帽子」，那通常比選項更好找。
+        </p>
+      </div>
+    </div>
+    <div class="btn-row">
+      <div class="k">我會晚到</div>
+      <div class="v"><p>選一個分鐘數：5、10、15、20、30、45。你那一列會變成橘點加「晚 15 分鐘」，大家就知道要不要先開始。</p></div>
+    </div>
+    <div class="btn-row">
+      <div class="k">今天到不了</div>
+      <div class="v">
+        <p><b>這不等於退出報名。</b>你還在名單上，位子也還留著，只是告訴其他人不用等你。</p>
+        <p>要把位子讓出來給別人，得回球場頁面按「不去了」。</p>
+      </div>
+    </div>
+    <div class="btn-row">
+      <div class="k">找不到你</div>
+      <div class="v"><p>人到了球場卻找不到對方的時候按這個。下一段整段在講它。</p></div>
+    </div>
+
+    <h2>四、找人模式：把手機舉起來</h2>
+    <p>
+      在到場確認卡上按 <b>「找不到你」</b>。就這樣，沒有第二層選單。
+      按下去會同時發生兩件事：
+    </p>
+    <p>
+      <b>一、對方的手機會響。</b>如果場上只有另外一個人回報過狀態，
+      他會收到一則推播——標題是「<b>某某某 找不到你</b>」，
+      內容是「在球場找你，點開舉牌讓他看到你」。他點開，看到的就是同一面綠色牌子。
+    </p>
+    <p>
+      <b>二、你自己的手機立刻變成一整面綠色。</b>
+      這件事不管推播有沒有送到都會發生——所以就算對方沒開通知、手機還在包包裡，
+      這個方法一樣有用。
+    </p>
+
+    <figure class="shot">
+      <div class="phone"><div class="screen">
+        <div class="beacon">
+          <div class="ball"></div>
+          <div class="bg">我在這裡</div>
+          <div class="bs">把手機舉起來，點一下關閉</div>
+          <div class="bm">TENNIS NUT</div>
+        </div>
+      </div></div>
+      <figcaption>全螢幕，螢幕會保持明亮不會中途變暗。看完點一下畫面就關掉。</figcaption>
+    </figure>
+
+    <p>
+      把手機舉高，對方朝著亮起來的那一面走過來（就像機場接機舉牌一樣）。
+    </p>
+
+    <div class="callout">
+      <p><b>收到「某某某 找不到你」的時候</b></p>
+      <p>直接點那則通知，你的手機也會變成同一面綠色牌子。你舉起來，他就找得到你了。</p>
+    </div>
+
+    <h2>幾件容易搞混的事</h2>
+    <ul class="plain">
+      <li><b>人數</b>不用另外填，是從「想打什麼」算出來的。</li>
+      <li><b>「今天到不了」在到場卡上</b>，位子留著；<b>「不去了」在球場頁面上</b>，位子讓出來。</li>
+      <li><b>取消整場</b>只有主揪能做，在球場頁面那一列或首頁「接下來的約球」都按得到。已經回覆要去的人都會收到通知。</li>
+      <li><b>沒有人會被記缺席。</b>到場確認卡只顯示當下的狀態，不累積、不計分。主揪也不能替別人標記到場——每一列都是本人自己按的。</li>
+    </ul>
+
+    <div class="guide-foot">
+      畫面示意圖以實際版本繪製，配色與間距以 App 為準。
+    </div>
+  </article>
+
 
   <footer>
     <div class="footer-inner">
       <div class="footer-text">
-        <a href="/">加入</a>·
-        <a href="/courts-map">球場地圖</a>·
         <a href="/blog">Blog</a>·
         <a href="/privacy">隱私權政策</a>·
-        <a href="/terms">服務條款</a>
+        <a href="/terms">服務條款</a>·
+        <a href="mailto:kaysoncho@gmail.com">聯絡我們</a>
         <div style="margin-top: 12px;">© 2026 Tennis Nut · KXON</div>
       </div>
     </div>
   </footer>
-
-  <script>
-    const SUPABASE_URL = "https://dwjwisgbpnrxtcvpbkec.supabase.co";
-    const ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3andpc2dicG5yeHRjdnBia2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0NTU2ODQsImV4cCI6MjA4NDAzMTY4NH0.Em6SlZlakgd8WlL-PgFsR-NjpN2HFc38yNUw1zRKB9I";
-
-    const params = new URLSearchParams(location.search);
-    const TOKEN = params.get("t");
-
-    const LANG = (function () {
-      const q = params.get("lang");
-      if (q === "en" || q === "zh") return q;
-      return /^zh/i.test(navigator.language || "") ? "zh" : "en";
-    })();
-    document.documentElement.lang = LANG === "zh" ? "zh-Hant" : "en";
-
-    // The wording is lifted from the app's ARB rather than rewritten, so the
-    // person who tapped share and the person who opens the link are reading
-    // the same sentences about the same session.
-    const T = {
-      zh: {
-        loading: "正在打開邀請…",
-        goneTitle: "這個邀請已經結束了",
-        goneBody: "可能是時間已過、主辦人取消了，或是連結不完整。可以直接問問分享給你的人。",
-        badTitle: "連結不完整",
-        badBody: "網址少了邀請碼。請對方重新分享一次。",
-        errTitle: "讀不到這個邀請",
-        errBody: "網路好像有點問題，重新整理看看。",
-        from: (n) => `<b>${n}</b> 約你打球`,
-        fromAnon: "有人約你打球",
-        today: "今天", tomorrow: "明天", past: "已經開始了",
-        inDays: (d) => `${d} 天後`,
-        durationOf: (m) => m % 60 === 0 ? `打 ${m / 60} 小時` : `打 ${m} 分鐘`,
-        lbFormat: "要打什麼", lbBall: "用球",
-        going: (n) => n === 0 ? "還沒有人回覆" : `已經有 ${n} 人要去`,
-        beginnerTitle: "歡迎第一次打的人",
-        beginnerBody: "不用會發球、失誤多沒關係，歡迎初學者或球技尚不穩的夥伴。",
-        courtsUnit: (n) => `${n} 面球場`,
-        lights: "夜間照明", indoor: "室內",
-        free: "免費", paid: "付費", priv: "私人",
-        confirmed: (n) => `${n} 位球友確認過`,
-        parking: "有停車資訊",
-        openMap: "在地圖上看這座球場 →",
-        getApp: "下載 Tennis Nut 回覆這場約球",
-        howHave: "已經有 App 了？打開 <b>Tennis Nut</b> → 地圖上點這座球場 → 在「約球」按 <b>我要去</b>。",
-        surfaces: { hard: "硬地", clay: "紅土", grass: "草地", artificial_grass: "人工草",
-          omni: "Omni／砂入人工草", concrete: "水泥", pu: "PU", carpet: "地毯",
-          other: "其他", unknown: "材質未知" },
-        formats: { rally: "慢球長來回", crosscourt: "半場對角", serve_return: "發球與接發",
-          points: "打點／比賽", free: "自由對打", custom: "自訂" },
-        balls: { yellow: "一般黃球", green: "綠點球", orange: "橘點球", red: "紅點球" },
-        ballBlurb: { green: "球速慢一點，來回打得比較久", orange: "更慢，適合縮短場地",
-          red: "最慢，適合小場地" },
-      },
-      en: {
-        loading: "Opening the invitation…",
-        goneTitle: "This invitation has ended",
-        goneBody: "It may have already happened, been cancelled, or the link may be incomplete. Ask whoever sent it to you.",
-        badTitle: "Incomplete link",
-        badBody: "The address is missing its invitation code. Ask them to share it again.",
-        errTitle: "Couldn't load this invitation",
-        errBody: "Something went wrong on the way. Try reloading.",
-        from: (n) => `<b>${n}</b> invited you to hit`,
-        fromAnon: "You've been invited to hit",
-        today: "Today", tomorrow: "Tomorrow", past: "Already started",
-        inDays: (d) => `In ${d} days`,
-        durationOf: (m) => m % 60 === 0
-          ? `${m / 60} hour${m / 60 === 1 ? "" : "s"}` : `${m} minutes`,
-        lbFormat: "What we'll do", lbBall: "Ball",
-        going: (n) => n === 0 ? "Nobody has replied yet" : `${n} going`,
-        beginnerTitle: "First-timers welcome",
-        beginnerBody: "No serve needed, misses are fine — beginners and anyone still finding their feet are welcome.",
-        courtsUnit: (n) => `${n} court${n === 1 ? "" : "s"}`,
-        lights: "Floodlights", indoor: "Indoor",
-        free: "Free", paid: "Paid", priv: "Private",
-        confirmed: (n) => `Confirmed by ${n} player${n === 1 ? "" : "s"}`,
-        parking: "Parking info",
-        openMap: "See this court on the map →",
-        getApp: "Get Tennis Nut to reply",
-        howHave: "Already have it? Open <b>Tennis Nut</b> → tap this court on the map → under Hits, tap <b>I'm in</b>.",
-        surfaces: { hard: "Hard", clay: "Clay", grass: "Grass", artificial_grass: "Artificial grass",
-          omni: "Omni / sand-filled", concrete: "Concrete", pu: "PU", carpet: "Carpet",
-          other: "Other", unknown: "Surface unknown" },
-        formats: { custom: "Something else", rally: "Long rallies", crosscourt: "Half-court crosscourt",
-          serve_return: "Serve and return", points: "Play points", free: "Just hit" },
-        balls: { yellow: "Regular yellow", green: "Green dot", orange: "Orange dot", red: "Red dot" },
-        ballBlurb: { green: "A little slower — rallies last longer",
-          orange: "Slower still, suits a shortened court", red: "Slowest, for a small court" },
-      },
-    }[LANG];
-
-    const LOCALE = LANG === "zh" ? "zh-Hant" : "en";
-    document.getElementById("loadingTx").textContent = T.loading;
-
-    const esc = (s) => String(s == null ? "" : s)
-      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
-
-    function showState(title, body) {
-      document.getElementById("wrap").innerHTML =
-        `<div class="state"><div class="big">🎾</div><h1>${esc(title)}</h1>` +
-        `<p>${esc(body)}</p>` +
-        `<a class="cta-cue" href="/courts-map">${LANG === "zh" ? "看看附近的球場" : "Browse courts near you"}</a></div>`;
-    }
-
-    // "Saturday 16 Aug, 7:00 PM" in the reader's own timezone — the host's
-    // timezone is not the reader's, and a time that is off by hours is worse
-    // than no time at all.
-    function fmtWhen(iso) {
-      const d = new Date(iso);
-      const day = new Intl.DateTimeFormat(LOCALE,
-        { weekday: "long", month: "short", day: "numeric" }).format(d);
-      const time = new Intl.DateTimeFormat(LOCALE,
-        { hour: "numeric", minute: "2-digit" }).format(d);
-      return `${day} ${time}`;
-    }
-
-    // Days apart by calendar date, not by elapsed hours: an invitation at 9am
-    // tomorrow is "tomorrow" even when it is 20 hours away.
-    function fmtRel(iso) {
-      const d = new Date(iso), now = new Date();
-      const a = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-      const b = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const days = Math.round((a - b) / 86400000);
-      if (d < now) return T.past;
-      if (days <= 0) return T.today;
-      if (days === 1) return T.tomorrow;
-      return T.inDays(days);
-    }
-
-    function render(h, court, parkingCount) {
-      const surfaceKey = T.surfaces[court && court.surface_code] ? court.surface_code : "unknown";
-      const chips = [];
-      if (court) {
-        chips.push(`<span class="chip">${esc(T.surfaces[surfaceKey])}</span>`);
-        if (court.court_count) chips.push(`<span class="chip">${esc(T.courtsUnit(court.court_count))}</span>`);
-        if (court.light) chips.push(`<span class="chip">${esc(T.lights)}</span>`);
-        if (court.is_indoor) chips.push(`<span class="chip">${esc(T.indoor)}</span>`);
-        if (court.access === "free") chips.push(`<span class="chip">${esc(T.free)}</span>`);
-        else if (court.access === "paid") chips.push(`<span class="chip">${esc(T.paid)}</span>`);
-        else if (court.access === "private") chips.push(`<span class="chip">${esc(T.priv)}</span>`);
-        if (court.community_verify_count > 0)
-          chips.push(`<span class="chip ok">✓ ${esc(T.confirmed(court.community_verify_count))}</span>`);
-      }
-      if (parkingCount > 0) chips.push(`<span class="chip">🅿️ ${esc(T.parking)}</span>`);
-
-      const ballBlurb = T.ballBlurb[h.ball];
-
-      document.getElementById("wrap").innerHTML = `
-        <section class="invite">
-          <p class="from">${h.host_name ? T.from(esc(h.host_name)) : esc(T.fromAnon)}</p>
-          <p class="when">${esc(fmtWhen(h.starts_at))}</p>
-          <p class="when-rel">${esc(fmtRel(h.starts_at))} · ${esc(T.durationOf(h.duration_min))}</p>
-
-          <div class="agreed">
-            <div class="ag">
-              <div class="lb">${esc(T.lbFormat)}</div>
-              <div class="vl">${esc(
-                h.format === "custom"
-                  ? ((h.note || "").trim() || T.formats.custom)
-                  : (T.formats[h.format] || h.format))}</div>
-            </div>
-            <div class="ag">
-              <div class="lb">${esc(T.lbBall)}</div>
-              <div class="vl">${esc(T.balls[h.ball] || h.ball)}</div>
-              ${ballBlurb ? `<div class="bl">${esc(ballBlurb)}</div>` : ""}
-            </div>
-          </div>
-
-          ${h.beginners_welcome ? `
-          <div class="beginner">
-            <div class="ic">🌱</div>
-            <div><b>${esc(T.beginnerTitle)}</b><span>${esc(T.beginnerBody)}</span></div>
-          </div>` : ""}
-
-          <p class="going">${esc(T.going(h.participant_count || 0))}</p>
-        </section>
-
-        <section class="court">
-          <h2>${esc(h.court_name)}</h2>
-          ${h.court_city ? `<p class="city">${esc(h.court_city)}</p>` : ""}
-          <div class="chips">${chips.join("")}</div>
-          <a class="maplink" href="/courts-map?court=${encodeURIComponent(h.court_id)}&lang=${LANG}">${esc(T.openMap)}</a>
-        </section>
-
-        <div class="act">
-          <a class="btn" href="/?lang=${LANG}">${esc(T.getApp)}</a>
-          <p class="how">${T.howHave}</p>
-        </div>
-
-        <p class="langbar">
-          <a href="?t=${encodeURIComponent(TOKEN)}&lang=zh" ${LANG === "zh" ? 'aria-current="true"' : ""}>中文</a>
-          &nbsp;·&nbsp;
-          <a href="?t=${encodeURIComponent(TOKEN)}&lang=en" ${LANG === "en" ? 'aria-current="true"' : ""}>English</a>
-        </p>`;
-
-      document.title = `${h.court_name} · ${fmtWhen(h.starts_at)} — Tennis Nut`;
-    }
-
-    async function main() {
-      if (!TOKEN) { showState(T.badTitle, T.badBody); return; }
-      const headers = { apikey: ANON, Authorization: "Bearer " + ANON,
-                        "Content-Type": "application/json" };
-      let hit;
-      try {
-        const r = await fetch(SUPABASE_URL + "/rest/v1/rpc/hit_by_token",
-          { method: "POST", headers, body: JSON.stringify({ p_token: TOKEN }) });
-        if (!r.ok) throw new Error(r.status);
-        const rows = await r.json();
-        hit = rows && rows[0];
-      } catch (_) {
-        showState(T.errTitle, T.errBody);
-        return;
-      }
-      // The function filters out cancelled and finished sessions, so an empty
-      // result is the ordinary "you're too late" case, not a failure.
-      if (!hit) { showState(T.goneTitle, T.goneBody); return; }
-
-      // The invitation is worth showing on its own; the court's details are a
-      // bonus, fetched separately so a slow or failed lookup cannot stop it.
-      render(hit, null, 0);
-      try {
-        const [cr, pr] = await Promise.all([
-          fetch(SUPABASE_URL + "/rest/v1/courts?select=surface_code,court_count,light" +
-                ",is_indoor,access,community_verify_count&id=eq." + encodeURIComponent(hit.court_id),
-                { headers }),
-          fetch(SUPABASE_URL + "/rest/v1/court_parking?select=id&limit=1&court_id=eq." +
-                encodeURIComponent(hit.court_id), { headers }),
-        ]);
-        const court = (await cr.json())[0];
-        const parking = await pr.json();
-        render(hit, court, Array.isArray(parking) ? parking.length : 0);
-      } catch (_) { /* the invitation is already on screen */ }
-    }
-    main();
-  </script>
-
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
