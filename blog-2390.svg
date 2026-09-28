@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
+     aria-label="Tennis Nut 1.15.0：這一帶有誰有空，現在約得到了" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1200" height="630" fill="#FBFAF6"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#1B5138"/>
+  <text x="80" y="256" font-size="44" font-weight="800" fill="#1B5138">這一帶有誰有空</text>
+  <text x="80" y="312" font-size="44" font-weight="800" fill="#3F7C43">現在約得到了</text>
+  <text x="80" y="372" font-size="22" fill="#6E776F">還不是好友的球友，按「約他」就送得出邀請</text>
+  <text x="80" y="440" font-size="20" fill="#9BA29B">Tennis Nut 1.15.0 · Build 2390</text>
+
+  <!-- 右側：一列有空的陌生球友，附程度與自我介紹 -->
+  <rect x="700" y="170" width="420" height="200" rx="26" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <circle cx="750" cy="222" r="24" fill="#E7F1E1"/>
+  <text x="750" y="232" font-size="22" text-anchor="middle" fill="#3F7C43">阿</text>
+  <text x="790" y="216" font-size="24" font-weight="800" fill="#1B5138">阿凱</text>
+  <text x="790" y="250" font-size="19" fill="#5E7A60">9/26 (五) 19:00–21:00 有空</text>
+  <text x="790" y="282" font-size="17" fill="#9BA29B">NTRP 3.5 · 下班後想打雙打</text>
+  <rect x="980" y="198" width="104" height="44" rx="13" fill="#3F7C43"/>
+  <text x="1032" y="227" font-size="19" font-weight="800" fill="#FFFFFF" text-anchor="middle">約他</text>
+  <rect x="732" y="310" width="352" height="40" rx="12" fill="#F3F8EC"/>
+  <text x="752" y="336" font-size="17" fill="#2E5A34">他收到的是「你約他」，不是一則公告</text>
+
+  <rect x="700" y="394" width="420" height="72" rx="20" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="732" y="426" font-size="17" fill="#5E7A60">「看整週」改成條列、顯示全部的人</text>
+  <text x="732" y="452" font-size="17" fill="#5E7A60">護照新增全體球友的征服足跡地圖</text>
+
+  <text x="600" y="580" font-size="20" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#1B5138"/>
+  <text x="80" y="150" font-size="34" fill="#A9C7B4">每週有多少球友在動</text>
+  <text x="80" y="238" font-size="66" font-weight="800" fill="#FFFFFF">上線四週，12 人到 58 人</text>
+  <rect x="170" y="644" width="140" height="62" rx="12" fill="#3F7C43" opacity="0.45"/>
+  <text x="240" y="626" font-size="30" font-weight="600" fill="#8FAF9B" text-anchor="middle">12</text>
+  <text x="240" y="748" font-size="26" fill="#8FAF9B" text-anchor="middle">8/31</text>
+  <rect x="370" y="608" width="140" height="98" rx="12" fill="#3F7C43" opacity="0.45"/>
+  <text x="440" y="590" font-size="30" font-weight="600" fill="#8FAF9B" text-anchor="middle">19</text>
+  <text x="440" y="748" font-size="26" fill="#8FAF9B" text-anchor="middle">9/07</text>
+  <rect x="570" y="556" width="140" height="150" rx="12" fill="#3F7C43" opacity="0.45"/>
+  <text x="640" y="538" font-size="30" font-weight="600" fill="#8FAF9B" text-anchor="middle">29</text>
+  <text x="640" y="748" font-size="26" fill="#8FAF9B" text-anchor="middle">9/14</text>
+  <rect x="770" y="406" width="140" height="300" rx="12" fill="#D8E64A"/>
+  <text x="840" y="388" font-size="34" font-weight="800" fill="#D8E64A" text-anchor="middle">58</text>
+  <text x="840" y="748" font-size="26" fill="#8FAF9B" text-anchor="middle">9/21</text>  <rect x="80" y="820" width="920" height="110" rx="30" fill="#164430"/>
+  <text x="128" y="876" font-size="31" fill="#CFE0D4">從 8/31 App 正式上線那週算起。每一根柱子是</text>
+  <text x="128" y="918" font-size="31" fill="#CFE0D4">那一週真的有打球、留下紀錄或回報資訊的人數。</text>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#8FAF9B">Your tennis life, <tspan fill="#D8E64A" font-weight="800">connected.</tspan></text>
+</svg>

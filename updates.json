@@ -7,6 +7,155 @@
   ],
   "releases": [
     {
+      "build": 2430,
+      "version": "1.16.3",
+      "date": "2026-09-28",
+      "title": "「有人在打」現在是真的有人在打",
+      "summary": "地圖分成「現在有人在打」和「今日足跡」。要人真的在球場上、而且留下了紀錄才算在線。",
+      "highlights": [
+        {
+          "emoji": "🎾",
+          "title": "「有人在打」現在是真的有人在打",
+          "body": "球友在線條件優化為兩件事同時成立：人在球場上，而且真的記了一筆練習或比賽（或按了「確認在打」）。\n\n到場判定的範圍從 200 公尺縮到 100 公尺。"
+        },
+        {
+          "emoji": "📍",
+          "title": "地圖多了一層「今日足跡」",
+          "body": "「現在有人在打」只會有幾座球場，但今天打過的遠不只那些。現在兩層分開畫：深色是此刻有人，淺色是今天有人打過。\n\n地圖上也多了通往「全體 Nut 球友征服足跡」的入口。"
+        },
+        {
+          "emoji": "📋",
+          "title": "「看整週」看得懂了",
+          "body": "每一列都帶程度，球場也全部列出來，不再截成「⋯」——而那個「⋯」裡面，很可能就有你常去的那一座。\n\n日曆拿掉了（它看不到還不是好友的人），上面那排也從四顆簡化成三顆。"
+        },
+        {
+          "emoji": "👋",
+          "title": "「這一帶」改叫「足跡重疊的球友」",
+          "body": "原本寫「這一帶」，但那不是你現在的位置，是你打球的地方。現在講清楚：半年內跟你在同一個縣市打過球、而且還不是好友的人。\n\n你打球的縣市不只一個的話，可以自己挑一個看。"
+        },
+        {
+          "emoji": "📖",
+          "title": "上手指南",
+          "body": "不知道從哪裡開始的話，「與開發者的對話」裡有一顆「上手指南」。\n\n新加入的人在設定時也會多一步：釘一座你常去的球場。"
+        }
+      ],
+      "fixes": [
+        "寫裝備心得時中途想退出，出得去了",
+        "從通知點進「整週空檔」那頁，回得去了",
+        "球隊限定的約球不會再被隊外的人看到",
+        "收藏的球場也算進「附近有誰有空」的範圍",
+        "打完球、離開球場才補記的練習和比賽，一樣算進統計、一樣拿得到堅果——先前漏掉的已經補發"
+      ],
+      "en": {
+        "title": "Playing now means playing",
+        "summary": "The map now has two layers — playing now, and played today. Being counted as playing takes being at the court and logging something.",
+        "highlights": [
+          {
+            "emoji": "🎾",
+            "title": "Playing now means playing",
+            "body": "Two things now have to be true: you're at the court, and you've logged a practice or a match (or tapped \"I'm playing\").\n\nThe arrival radius is tighter too — 100 metres instead of 200."
+          },
+          {
+            "emoji": "📍",
+            "title": "A second map layer: played today",
+            "body": "Only a handful of courts have someone on them right now, but far more have been played on today. The two are drawn separately: dark for playing now, light for played today.\n\nThe map also has a way through to everyone's collective footprints."
+          },
+          {
+            "emoji": "📋",
+            "title": "The week view makes sense now",
+            "body": "Every row carries their level, and every court they named — no more trailing \"…\", which is exactly where your regular court tended to be hiding.\n\nThe calendar is gone (it couldn't show players who aren't your friends yet) and the row of filters went from four to three."
+          },
+          {
+            "emoji": "👋",
+            "title": "\"Around here\" is now \"Shared ground\"",
+            "body": "\"Around here\" isn't where you are — it's where you play. Now it says what it means: players who've been on a court in the same city as you in the last six months, and aren't your friends yet.\n\nPlay in more than one city? Pick which one you're looking at."
+          },
+          {
+            "emoji": "📖",
+            "title": "A starter guide",
+            "body": "Not sure where to begin? There's a starter guide inside \"Talk to the developer\".\n\nNew players also get one more step at setup: pin a court you play at."
+          }
+        ],
+        "fixes": [
+          "You can back out of writing a gear review halfway through",
+          "Opening the week view from a notification no longer traps you there",
+          "Team-only hits are no longer visible outside the team",
+          "Courts you've favourited now count towards \"who's free nearby\"",
+          "Practices and matches logged after you've left the court still count towards your stats and still earn nuts — the ones that were missed have been credited"
+        ]
+      }
+    },
+    {
+      "build": 2390,
+      "version": "1.15.0",
+      "date": "2026-09-24",
+      "title": "這一帶有誰有空，現在約得到了",
+      "summary": "首頁會列出你打球的縣市裡、還不是好友的球友貼出的有空時段，附程度和自我介紹。以前只能看，現在按「約他」就送得出邀請。",
+      "image": "/blog-2390.png",
+      "highlights": [
+        {
+          "emoji": "👋",
+          "title": "這一帶有空的球友，現在約得到了",
+          "body": "首頁列出你打球的縣市裡、還不是你好友的球友貼出的有空時段，旁邊附上程度和一句自我介紹——決定要不要約一個沒見過的人，靠的就是那一兩句話。\n\n以前這份名單只能看。現在按「約他」，對方收到的是「你約他」，不是一則公告。"
+        },
+        {
+          "emoji": "📋",
+          "title": "「看整週」改成條列，而且一次看全部",
+          "body": "點進去預設是名單，不是時間表——你要知道的是那幾個人是誰、什麼時候，日曆留在右上角一鍵切換。\n\n鏡頭也預設「全部」，不再只顯示好友。這一帶的陌生人本來就列不進日曆那張格子，現在在條列裡看得到了。"
+        },
+        {
+          "emoji": "🗺",
+          "title": "全體 Nut 球友的征服足跡",
+          "body": "護照的「球場征服」多了一張全體地圖：所有球友一起踩過的球場、點亮的縣市，以及你自己貢獻了其中幾座。\n\n球場頁面也會顯示有幾位球友在這裡打過。每留一筆紀錄，地圖就亮一點。"
+        },
+        {
+          "emoji": "📅",
+          "title": "日期寫成 9/24 (三)，不再只寫星期幾",
+          "body": "「週四有空」看不出是哪一個週四。現在直接寫日期，今天和明天維持用字——那兩個本來就不會搞錯。"
+        }
+      ],
+      "fixes": [
+        "有子母線的球拍，發裝備心得時主線和橫線都選得到",
+        "與開發者的對話會自己更新，不用退出再進來",
+        "首頁「這一帶還有 N 位有空」點得進去了",
+        "iOS 儲存分享圖被拒絕時，改成退回分享面板（選「儲存影像」一樣存得起來）",
+        "修正幾座球場的座標，到場打卡不會再因為位置偏移而失敗"
+      ],
+      "en": {
+        "title": "Ask the people free around you",
+        "summary": "Your home screen lists free-time windows from players in the cities you play in — level and bio included. You can now ask them directly.",
+        "highlights": [
+          {
+            "emoji": "👋",
+            "title": "Players free nearby — now askable",
+            "body": "Free-time windows posted by people in the cities you play in, with their level and a line of their bio. Deciding whether to ask someone you have never met comes down to those one or two lines.\n\nThe list used to be read-only. Now they get “you asked them”, not an announcement."
+          },
+          {
+            "emoji": "📋",
+            "title": "“See the week” is a list, showing everyone",
+            "body": "It opens as a list now, not a timetable — what you want is who and when. The calendar is one tap away, top right.\n\nIt also shows everyone by default instead of friends only."
+          },
+          {
+            "emoji": "🗺",
+            "title": "The all-players conquest map",
+            "body": "Passport’s Court Conquest now opens a map of every court Nut players have reached, with your own share counted. Court pages show how many players have played there."
+          },
+          {
+            "emoji": "📅",
+            "title": "Dates read 9/24 (Wed)",
+            "body": "“Free on Thursday” never said which Thursday."
+          }
+        ],
+        "fixes": [
+          "Hybrid-strung rackets: both mains and crosses can be picked in gear posts",
+          "Developer chat updates on its own",
+          "“N more free nearby” on the home screen is tappable",
+          "On iOS, a refused photo-library save falls back to the share sheet",
+          "Fixed a few court coordinates so on-site check-in stops failing"
+        ]
+      }
+    },
+    {
       "build": 2360,
       "version": "1.12.4",
       "date": "2026-09-19",

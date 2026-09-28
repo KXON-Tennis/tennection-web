@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#1B5138"/>
+  <text x="80" y="280" font-size="34" fill="#A9C7B4">Tennis Nut 週報 · 9/19–9/25</text>
+  <text x="80" y="386" font-size="70" font-weight="800" fill="#FFFFFF">每一筆紀錄</text>
+  <text x="80" y="476" font-size="70" font-weight="800" fill="#D8E64A">都讓地圖亮一點</text>
+
+  <rect x="80" y="560" width="920" height="220" rx="34" fill="#164430"/>
+  <text x="128" y="630" font-size="33" fill="#CFE0D4">84 次打卡裡，有 53 次是人真的站在</text>
+  <text x="128" y="680" font-size="33" fill="#CFE0D4">球場上完成的——那些球場在地圖上亮起來，</text>
+  <text x="128" y="730" font-size="33" fill="#CFE0D4">也讓同一座球場的球友看見彼此。</text>
+
+  <text x="80" y="852" font-size="31" fill="#A9C7B4">下次上場，記得帶著 App 一起去</text>
+  <text x="80" y="908" font-size="31" fill="#A9C7B4">tennisnut.kxon.net</text>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#8FAF9B">Your tennis life, <tspan fill="#D8E64A" font-weight="800">connected.</tspan></text>
+</svg>

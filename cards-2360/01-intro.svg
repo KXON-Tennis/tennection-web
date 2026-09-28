@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="200" font-size="34" fill="#9BA29B">Tennis Nut 1.12.4</text>
+  <text x="80" y="300" font-size="76" font-weight="800" fill="#1B5138">約球可以取消了</text>
+  <text x="80" y="366" font-size="34" fill="#6E776F">還有三件，都是「按了卻不知道按到什麼」</text>
+
+  <rect x="80" y="430" width="920" height="92" rx="26" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="124" y="488" font-size="34">🗓</text>
+  <text x="184" y="488" font-size="33" fill="#2E3A31">主揪的取消，現在是一顆有字的按鈕</text>
+
+  <rect x="80" y="540" width="920" height="92" rx="26" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="124" y="598" font-size="34">⏱</text>
+  <text x="184" y="598" font-size="33" fill="#2E3A31">收回可打球時間會先問你一次</text>
+
+  <rect x="80" y="650" width="920" height="92" rx="26" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="124" y="708" font-size="34">🎥</text>
+  <text x="184" y="708" font-size="33" fill="#2E3A31">教練可以傳十分鐘的影片</text>
+
+  <rect x="80" y="760" width="920" height="92" rx="26" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="124" y="818" font-size="34">🏅</text>
+  <text x="184" y="818" font-size="33" fill="#2E3A31">每一支球隊在地圖上各有顏色</text>
+
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

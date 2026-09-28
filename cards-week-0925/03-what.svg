@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="70" font-weight="800" fill="#1B5138">這一週做了什麼</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">9/19–9/25 全體球友累計</text>
+
+  <rect x="80" y="290" width="440" height="180" rx="30" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="124" y="352" font-size="30" fill="#6E776F">🎾 練習</text>
+  <text x="476" y="412" font-size="64" font-weight="800" fill="#1B5138" text-anchor="end">68</text>
+  <rect x="560" y="290" width="440" height="180" rx="30" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="604" y="352" font-size="30" fill="#6E776F">🏆 比賽</text>
+  <text x="956" y="412" font-size="64" font-weight="800" fill="#1B5138" text-anchor="end">21</text>
+
+  <rect x="80" y="494" width="440" height="180" rx="30" fill="#F3F8EC" stroke="#DCE8C8" stroke-width="2"/>
+  <text x="124" y="556" font-size="30" fill="#7C9A6E">📍 到場打卡</text>
+  <text x="476" y="616" font-size="64" font-weight="800" fill="#2E5A34" text-anchor="end">84</text>
+  <rect x="560" y="494" width="440" height="180" rx="30" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="604" y="556" font-size="30" fill="#6E776F">🤝 新的球友關係</text>
+  <text x="956" y="616" font-size="64" font-weight="800" fill="#1B5138" text-anchor="end">18</text>
+
+  <rect x="80" y="698" width="440" height="180" rx="30" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="124" y="760" font-size="30" fill="#6E776F">🗓 發起約球</text>
+  <text x="476" y="820" font-size="64" font-weight="800" fill="#1B5138" text-anchor="end">13</text>
+  <rect x="560" y="698" width="440" height="180" rx="30" fill="#F3F8EC" stroke="#DCE8C8" stroke-width="2"/>
+  <text x="604" y="760" font-size="30" fill="#7C9A6E">⏰ 貼出有空時段</text>
+  <text x="956" y="820" font-size="64" font-weight="800" fill="#2E5A34" text-anchor="end">43</text>
+
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

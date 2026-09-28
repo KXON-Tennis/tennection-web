@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#1B5138"/>
+  <text x="80" y="230" font-size="34" fill="#A9C7B4">Tennis Nut 週報 · 9/19–9/25</text>
+  <text x="80" y="340" font-size="76" font-weight="800" fill="#FFFFFF">這一週</text>
+  <text x="80" y="430" font-size="76" font-weight="800" fill="#D8E64A">大家動得最多</text>
+
+  <rect x="80" y="520" width="286" height="230" rx="34" fill="#164430"/>
+  <text x="223" y="600" font-size="30" fill="#A9C7B4" text-anchor="middle">活躍球友</text>
+  <text x="223" y="686" font-size="82" font-weight="800" fill="#FFFFFF" text-anchor="middle">58</text>
+  <rect x="397" y="520" width="286" height="230" rx="34" fill="#164430"/>
+  <text x="540" y="600" font-size="30" fill="#A9C7B4" text-anchor="middle">上場紀錄</text>
+  <text x="540" y="686" font-size="82" font-weight="800" fill="#FFFFFF" text-anchor="middle">89</text>
+  <rect x="714" y="520" width="286" height="230" rx="34" fill="#164430"/>
+  <text x="857" y="600" font-size="30" fill="#A9C7B4" text-anchor="middle">打卡</text>
+  <text x="857" y="686" font-size="82" font-weight="800" fill="#D8E64A" text-anchor="middle">84</text>
+
+  <text x="80" y="840" font-size="33" fill="#CFE0D4">活躍球友比上週多一倍，</text>
+  <text x="80" y="890" font-size="33" fill="#CFE0D4">而且多數人是真的到了球場才記下來的。</text>
+
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#8FAF9B">Your tennis life, <tspan fill="#D8E64A" font-weight="800">connected.</tspan></text>
+</svg>

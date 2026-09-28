@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">每支球隊各有顏色</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">沒上傳隊徽的球隊，以前長得一模一樣</text>
+
+  <rect x="80" y="286" width="440" height="300" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="300" y="352" font-size="29" fill="#B7BFB6" text-anchor="middle">以前</text>
+  <circle cx="228" cy="452" r="52" fill="#1E88E5"/>
+  <text x="228" y="470" font-size="42" font-weight="800" fill="#FFFFFF" text-anchor="middle">鎮</text>
+  <circle cx="372" cy="452" r="52" fill="#1E88E5"/>
+  <text x="372" y="470" font-size="42" font-weight="800" fill="#FFFFFF" text-anchor="middle">哈</text>
+  <text x="300" y="548" font-size="27" fill="#B7BFB6" text-anchor="middle">同一座球場，兩支隊</text>
+
+  <rect x="560" y="286" width="440" height="300" rx="34" fill="#F3F8EC" stroke="#DCE8C8" stroke-width="2"/>
+  <text x="780" y="352" font-size="29" fill="#7C9A6E" text-anchor="middle">現在</text>
+  <circle cx="708" cy="452" r="52" fill="#1E88E5"/>
+  <text x="708" y="470" font-size="42" font-weight="800" fill="#FFFFFF" text-anchor="middle">鎮</text>
+  <circle cx="852" cy="452" r="52" fill="#4527A0"/>
+  <text x="852" y="470" font-size="42" font-weight="800" fill="#FFFFFF" text-anchor="middle">哈</text>
+  <text x="780" y="548" font-size="27" fill="#7C9A6E" text-anchor="middle">一眼看得出是兩支</text>
+
+  <rect x="80" y="622" width="920" height="180" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="690" font-size="31" fill="#5E7A60">外圈維持藍色——環說「這是球隊」，</text>
+  <text x="128" y="738" font-size="31" fill="#5E7A60">底色說「是哪一支」。</text>
+  <text x="128" y="784" font-size="29" fill="#9BA29B">同一支隊在地圖、球場抽屜、護照裡都是同一色。</text>
+
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

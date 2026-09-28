@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">約球可以取消了</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">取消一直都在，只是沒人認得出來</text>
+
+  <rect x="80" y="286" width="920" height="200" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="350" font-size="27" fill="#B7BFB6">以前</text>
+  <text x="128" y="410" font-size="33" fill="#5E7A60">主揪只看到一個沒有文字的灰色圖示</text>
+  <circle cx="900" cy="396" r="30" fill="#F2F1EC"/>
+  <text x="900" y="408" font-size="28" text-anchor="middle" fill="#B7BFB6">▦</text>
+  <text x="128" y="456" font-size="29" fill="#9BA29B">而參加者看到的是「我要去」「不去了」</text>
+
+  <rect x="80" y="510" width="920" height="200" rx="34" fill="#F3F8EC" stroke="#DCE8C8" stroke-width="2"/>
+  <text x="128" y="574" font-size="27" fill="#7C9A6E">現在</text>
+  <text x="128" y="634" font-size="33" fill="#2E5A34">兩邊一樣，都是一顆寫著字的按鈕</text>
+  <rect x="770" y="600" width="180" height="56" rx="16" fill="#FDECEC" stroke="#E8B4B4" stroke-width="2"/>
+  <text x="860" y="637" font-size="26" font-weight="800" fill="#C0392B" text-anchor="middle">取消約球</text>
+
+  <rect x="80" y="756" width="920" height="120" rx="30" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="810" font-size="31" fill="#5E7A60">首頁「接下來的約球」那一列也能直接取消，</text>
+  <text x="128" y="852" font-size="31" fill="#5E7A60">不用先點進球場再找一次。</text>
+
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

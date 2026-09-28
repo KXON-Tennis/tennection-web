@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">教練的影片更長了</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">三分鐘講不完一個動作的調整</text>
+
+  <rect x="80" y="286" width="440" height="240" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="300" y="356" font-size="29" fill="#B7BFB6" text-anchor="middle">以前</text>
+  <text x="300" y="440" font-size="76" font-weight="800" fill="#C6CCC5" text-anchor="middle">3 分鐘</text>
+  <text x="300" y="490" font-size="27" fill="#B7BFB6" text-anchor="middle">單支上限</text>
+
+  <rect x="560" y="286" width="440" height="240" rx="34" fill="#F3F8EC" stroke="#DCE8C8" stroke-width="2"/>
+  <text x="780" y="356" font-size="29" fill="#7C9A6E" text-anchor="middle">現在</text>
+  <text x="780" y="440" font-size="76" font-weight="800" fill="#2E5A34" text-anchor="middle">10 分鐘</text>
+  <text x="780" y="490" font-size="27" fill="#7C9A6E" text-anchor="middle">單支上限</text>
+
+  <rect x="80" y="562" width="920" height="240" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="630" font-size="31" fill="#5E7A60">那個數字以前寫死在 App 裡，改了也沒有用——</text>
+  <text x="128" y="678" font-size="31" fill="#5E7A60">現在它真的跟著設定走。</text>
+  <text x="128" y="748" font-size="31" fill="#5E7A60">學員這邊維持每月 2 支、每支 30 秒。要傳長的，</text>
+  <text x="128" y="790" font-size="31" fill="#5E7A60">貼 YouTube 或雲端硬碟連結一樣可以。</text>
+
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>
