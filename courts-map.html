@@ -1031,7 +1031,14 @@
     // this function's business.
     let styleReady = false;
     function tryAddLayers() {
-      if (!courtFeatures || !styleReady || map.getSource("courts")) return;
+      if (!courtFeatures || !styleReady) return;
+      // 已有圖層時只換資料——背景更新（快照之後跟 API 對時）走這條，
+      // 不會重建圖層也不會閃。
+      const src = map.getSource("courts");
+      if (src) {
+        src.setData({ type: "FeatureCollection", features: courtFeatures });
+        return;
+      }
       addCourtLayers(courtFeatures);
     }
     map.on("style.load", () => { styleReady = true; tryAddLayers(); });
@@ -1244,11 +1251,16 @@
     }
 
 
-    async function load() {
-      const counts = {};
-      try {
-        const courts = await fetchAllCourts("?select=id,name,name_en,city,country,lat,lng,surface_code,venue_kind,court_count,light,is_indoor,access,community_verify_count&lat=not.is.null&lng=not.is.null&is_abandoned=eq.false");
+    const COURTS_QUERY = "?select=id,name,name_en,city,country,lat,lng,surface_code,venue_kind,court_count,light,is_indoor,access,community_verify_count&lat=not.is.null&lng=not.is.null&is_abandoned=eq.false";
 
+    // Search wiring binds handlers and appends <option>s, so it must run
+    // exactly once — a background re-render only swaps the data underneath.
+    let findInited = false;
+
+    function renderCourts(courts) {
+      const counts = {};
+      {
+        ALL.length = 0;
         const features = [];
         const markets = new Set();
         for (const c of courts) {
@@ -1316,12 +1328,36 @@
         // The search can only exist once the courts do; the country list is
         // built from what actually loaded rather than from a hardcoded set, so
         // a new market appears in the dropdown the day it is imported.
-        initFind();
+        if (!findInited) { findInited = true; initFind(); }
 
         // 資料備妥 → 嘗試加圖層（樣式若還沒好，map 'load' 事件會再觸發一次）
         courtFeatures = features;
         tryAddLayers();
-        loadLive();
+      }
+    }
+
+    // 快照優先：部署時烤好的 courts-snapshot.json 跟頁面同源、走 CDN 快取，
+    // 一趟就到，地圖立刻能畫。畫完再到 Supabase 抓現況，有差異才靜靜換掉
+    // ——12 頁串行分頁（11,500+ 座）排在首繪之前，就是這一頁慢的原因。
+    async function load() {
+      let snap = null;
+      try {
+        const r = await fetch("courts-snapshot.json");
+        if (r.ok) {
+          const s = await r.json();
+          if (Array.isArray(s.courts) && s.courts.length) snap = s.courts;
+        }
+      } catch (e) { /* 沒有快照就走原路 */ }
+
+      try {
+        if (snap) {
+          renderCourts(snap);
+          loadLive();
+          refreshFromApi(snap);
+        } else {
+          renderCourts(await fetchAllCourts(COURTS_QUERY));
+          loadLive();
+        }
       } catch (e) {
         document.getElementById("stats").innerHTML =
           `<span class="stat">${LANG === "zh" ? "資料載入失敗，請稍後再試" : "Couldn't load the data — please try again"} 🙏</span>`;
@@ -1329,6 +1365,18 @@
         const l = document.getElementById("loading");
         if (l) l.remove();
       }
+    }
+
+    // 對時。快照可能落後於上一次部署——背景抓一份現況，筆數或最後一個 id
+    // 不同才重畫（重畫走 setData，不閃）。抓失敗就算了：畫面上已經有快照。
+    async function refreshFromApi(snap) {
+      try {
+        const fresh = await fetchAllCourts(COURTS_QUERY);
+        const changed = fresh.length !== snap.length ||
+          (fresh.length > 0 &&
+           fresh[fresh.length - 1].id !== snap[snap.length - 1].id);
+        if (changed) renderCourts(fresh);
+      } catch (e) { /* snapshot already on screen */ }
     }
     load();
 

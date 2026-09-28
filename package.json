@@ -5,6 +5,7 @@
   "description": "Tennis Nut official website",
   "scripts": {
     "updates": "node build-updates.mjs",
-    "ship": "node build-updates.mjs && npx vercel deploy --prod --yes --scope kaysons-projects-cdc6b637"
+    "courts": "node tools/build-courts-snapshot.mjs",
+    "ship": "node build-updates.mjs && node tools/build-courts-snapshot.mjs && npx vercel deploy --prod --yes --scope kaysons-projects-cdc6b637"
   }
 }
