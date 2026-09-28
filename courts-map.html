@@ -320,8 +320,27 @@
     .qr-box svg, .qr-box img { width: 112px; height: 112px; display: block; }
     .qr-cap { font-size: 10.5px; color: var(--ink2); line-height: 1.45; margin-top: 7px; }
 
-    .loading { position: fixed; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center;
+    .loading { position: fixed; inset: 0; z-index: 5; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
       color: rgba(255,255,255,.75); font-size: 14px; background: rgba(17,21,26,.9); }
+    /* 球用 ease-in 往下掉（越掉越快）、alternate 反轉後上升自然變減速；
+       著地那一格壓扁一點，影子跟著球的高度縮放。 */
+    .loading .ball { font-size: 34px; line-height: 1;
+      animation: ballBounce .55s cubic-bezier(.5,.05,1,.5) infinite alternate; }
+    .loading .shadow { width: 30px; height: 6px; border-radius: 50%;
+      background: #000;
+      animation: ballShadow .55s cubic-bezier(.5,.05,1,.5) infinite alternate; }
+    @keyframes ballBounce {
+      from { transform: translateY(-30px); }
+      to   { transform: translateY(0) scale(1.06, .9); }
+    }
+    @keyframes ballShadow {
+      from { transform: scaleX(.5); opacity: .25; }
+      to   { transform: scaleX(1);  opacity: .55; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .loading .ball, .loading .shadow { animation: none; }
+    }
 
     /* Mapbox popup → 深色玻璃 */
     .mapboxgl-popup-content { background: var(--glass); backdrop-filter: blur(10px);
@@ -384,7 +403,7 @@
     </div>
   </div>
 
-  <div class="loading" id="loading">🎾</div>
+  <div class="loading" id="loading"><span class="ball">🎾</span><span class="shadow"></span></div>
 
   <script>
     // ⚠️ 換成「網頁專用、已綁定 tennisnut.kxon.net 網域」的 Mapbox public token（與 App 分開）
