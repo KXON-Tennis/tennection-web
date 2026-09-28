@@ -10,7 +10,7 @@
       "build": 2430,
       "version": "1.16.3",
       "date": "2026-09-28",
-      "title": "「有人在打」現在是真的有人在打",
+      "title": "第 1.16.3 版更新：「有人在打」判定優化，以及擴充為「今日足跡」",
       "summary": "地圖分成「現在有人在打」和「今日足跡」。要人真的在球場上、而且留下了紀錄才算在線。",
       "highlights": [
         {
@@ -47,7 +47,7 @@
         "打完球、離開球場才補記的練習和比賽，一樣算進統計、一樣拿得到堅果——先前漏掉的已經補發"
       ],
       "en": {
-        "title": "Playing now means playing",
+        "title": "v1.16.3 · Better \"playing now\", plus \"played today\"",
         "summary": "The map now has two layers — playing now, and played today. Being counted as playing takes being at the court and logging something.",
         "highlights": [
           {
@@ -89,7 +89,7 @@
       "build": 2390,
       "version": "1.15.0",
       "date": "2026-09-24",
-      "title": "這一帶有誰有空，現在約得到了",
+      "title": "第 1.15.0 版更新：這一帶有誰有空，現在約得到了",
       "summary": "首頁會列出你打球的縣市裡、還不是好友的球友貼出的有空時段，附程度和自我介紹。以前只能看，現在按「約他」就送得出邀請。",
       "image": "/blog-2390.png",
       "highlights": [
@@ -122,7 +122,7 @@
         "修正幾座球場的座標，到場打卡不會再因為位置偏移而失敗"
       ],
       "en": {
-        "title": "Ask the people free around you",
+        "title": "v1.15.0 · Ask the people free around you",
         "summary": "Your home screen lists free-time windows from players in the cities you play in — level and bio included. You can now ask them directly.",
         "highlights": [
           {
@@ -159,7 +159,7 @@
       "build": 2360,
       "version": "1.12.4",
       "date": "2026-09-19",
-      "title": "約球可以取消了",
+      "title": "第 1.12.4 版更新：約球可以取消了",
       "summary": "主揪的取消原本是一個沒有文字的灰色圖示，很多人沒認出那是取消。現在它是一顆寫著「取消約球」的按鈕，首頁那一列也能直接取消。",
       "image": "/blog-2360.png",
       "highlights": [
@@ -189,7 +189,7 @@
         "從通知點進「學習收藏」和「賽前複習」有返回鍵了"
       ],
       "en": {
-        "title": "You can cancel a hit now",
+        "title": "v1.12.4 · You can cancel a hit now",
         "summary": "The host's cancel control was an unlabelled grey icon, and people didn't read it as cancel. It is now a button that says so — and the row on your home screen can cancel too.",
         "highlights": [
           {
@@ -223,7 +223,7 @@
       "build": 2350,
       "version": "1.12.3",
       "date": "2026-09-16",
-      "title": "影片傳得出去了，數字也對了",
+      "title": "第 1.12.3 版更新：影片傳得出去了，數字也對了",
       "summary": "影片可以傳給教練了——每月 2 支、每支 30 秒、保存 30 天。想傳長一點的，貼 YouTube 或雲端硬碟連結也可以。",
       "image": "/blog-2350.png",
       "highlights": [
@@ -262,7 +262,7 @@
       "build": 2320,
       "version": "1.12.0",
       "date": "2026-09-16",
-      "title": "首頁知道你接下來想做什麼",
+      "title": "第 1.12.0 版更新：首頁知道你接下來想做什麼",
       "summary": "首頁重做了一輪，一打開就看得到這一帶的球友這週做了什麼、你自己這週的數字，還有接下來可以做的一兩件事。",
       "image": "/blog-2320.png",
       "highlights": [
@@ -308,7 +308,7 @@
       "build": 2300,
       "version": "1.10.0",
       "date": "2026-09-15",
-      "title": "這一帶的球友",
+      "title": "第 1.10.0 版更新：這一帶的球友",
       "summary": "在你打過的球場附近出沒、還不是你好友的人，現在列在首頁，可以直接加。球場資料也看得出是誰補上的。",
       "image": "/blog-2300.png",
       "highlights": [
@@ -362,7 +362,7 @@
       "build": 2280,
       "version": "1.9.0",
       "date": "2026-09-12",
-      "title": "說說你手上那支拍",
+      "title": "第 1.9.0 版更新：說說你手上那支拍",
       "summary": "多了一個公開的裝備心得區，從自己的球袋挑一件就能寫；球場上也看得到還有誰在這裡打過，可以直接加。",
       "image": "/blog-2280.png",
       "highlights": [
@@ -424,7 +424,7 @@
       "build": 2270,
       "version": "1.8.0",
       "date": "2026-09-11",
-      "title": "加球友，兩步就到",
+      "title": "第 1.8.0 版更新：加球友，兩步就到",
       "summary": "加球友的入口搬到中間那顆「＋」裡，掃碼、傳 ID、貼上 ID 三條路各自走得通；打完球 App 會問你要不要記一筆。",
       "image": "/blog-2270.png",
       "highlights": [
@@ -472,7 +472,7 @@
       "build": 2210,
       "version": "1.7.0",
       "date": "2026-09-06",
-      "title": "好友有了自己的一頁",
+      "title": "第 1.7.0 版更新：好友有了自己的一頁",
       "summary": "好友從護照裡的一小塊變成一整頁，還能自己分組；推播權限改在你會需要它的時候才問。",
       "image": "/blog-2210.png",
       "highlights": [
@@ -518,7 +518,7 @@
       "build": 2170,
       "version": "1.5.0",
       "date": "2026-08-31",
-      "title": "我的空檔，還有到了球場怎麼找到彼此",
+      "title": "第 1.5.0 版更新：我的空檔，還有到了球場怎麼找到彼此",
       "summary": "先說自己哪天有空，系統告訴你和誰重疊；到了球場，一張卡片就知道誰到了、誰在路上。",
       "image": "/whats-new-2170.png",
       "highlights": [
@@ -587,7 +587,7 @@
       "build": 2160,
       "version": "1.5.0",
       "date": "2026-08-25",
-      "title": "通知中心，還有可以認領的比賽",
+      "title": "第 1.5.0 版更新：通知中心，還有可以認領的比賽",
       "summary": "錯過的推播都找得回來；記比賽時標記球友，對方確認後也會算進他的網球護照。",
       "image": "/app-features.png",
       "highlights": [

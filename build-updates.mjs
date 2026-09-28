@@ -309,7 +309,9 @@ ${
     join(ROOT, isEn ? 'en/blog' : 'blog', `${r.build}.html`),
     page(
       {
-        title: `${src.title} · Tennis Nut ${r.version}`,
+        // 標題本身已經帶版本（「第 1.16.3 版更新：…」），這裡再加一次
+        // 會變成「… · Tennis Nut 1.16.3」重複兩遍。
+        title: `${src.title} · Tennis Nut`,
         description: src.summary,
         canonical: SITE + t.rel(r.build),
         image: r.image || '/app-features.png',
