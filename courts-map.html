@@ -466,7 +466,7 @@
         parkingCar: "汽車", parkingMotorcycle: "機車",
         parkingMixed: "汽機車", parkingPaid: "收費", parkingFree: "免費",
         hours: "開放時間", pricing: "費用", rentalLb: "租借",
-        callCourt: "打電話", website: "官網",
+        callCourt: "打電話", website: "官網", courtPage: "球場頁",
         navigate: "導航", copyLink: "複製連結", copied: "已複製",
         close: "關閉",
         panelCta: "在 App 回報這座球場的狀態（iOS）",
@@ -522,7 +522,7 @@
         parkingCar: "cars", parkingMotorcycle: "motorcycles",
         parkingMixed: "cars & motorcycles", parkingPaid: "paid", parkingFree: "free",
         hours: "Opening hours", pricing: "Pricing", rentalLb: "Rental",
-        callCourt: "Call", website: "Website",
+        callCourt: "Call", website: "Website", courtPage: "Court page",
         navigate: "Directions", copyLink: "Copy link", copied: "Copied",
         close: "Close",
         panelCta: "Report this court's condition in the app (iOS)",
@@ -866,7 +866,8 @@
       }
 
       const [lng, lat] = [f._lng, f._lat];
-      const acts = [`<a class="go" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}">${escapeHtml(T.navigate)}</a>`];
+      const acts = [`<a class="go" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}">${escapeHtml(T.navigate)}</a>`,
+                    `<a href="/courts/${encodeURIComponent(f.id)}">${escapeHtml(T.courtPage)}</a>`];
       if (d.tel) acts.push(`<a href="tel:${encodeURIComponent(d.tel)}">${escapeHtml(T.callCourt)}</a>`);
       if (d.website) acts.push(`<a target="_blank" rel="noopener" href="${escapeHtml(d.website)}">${escapeHtml(T.website)}</a>`);
       acts.push(`<button type="button" id="cpCopy">${escapeHtml(T.copyLink)}</button>`);

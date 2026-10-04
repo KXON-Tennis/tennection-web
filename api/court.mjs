@@ -111,7 +111,7 @@ function describe(c) {
   return `${c.name}：${bits.join("，")}。即時場況與封閉期間由在現場的球友回報。`;
 }
 
-function page({ c, now, closures, hits, parking, live, nearby }) {
+function page({ c, now, closures, hits, parking, live, nearby, players }) {
   const url = courtUrl(c.id);
   const indexable = isIndexable(c);
   const kind = kindLabel(c);
@@ -242,6 +242,7 @@ function page({ c, now, closures, hits, parking, live, nearby }) {
     .facts dt { color: var(--text-tertiary); }
     .facts dd { margin: 0; color: var(--text-primary); white-space: pre-line; }
     .verified { color: var(--accent-d); font-size: 14px; margin: 12px 0 0; }
+    .players { color: var(--accent-d); font-weight: 600; margin: -6px 0 14px; }
     .closures, .hits, .plain, .nearby { list-style: none; margin: 0; padding: 0; }
     .closures li + li, .hits li + li, .nearby li + li { border-top: 1px solid var(--border);
                                                         margin-top: 10px; padding-top: 10px; }
@@ -279,6 +280,7 @@ function page({ c, now, closures, hits, parking, live, nearby }) {
     <h1>${h(c.name)}</h1>
     ${c.name_en && c.name_en !== c.name && !isPlaceholderName(c.name_en) ? `<p class="en">${h(c.name_en)}</p>` : ""}
     <p class="addr">${h(c.address || c.city || "")}</p>
+    ${players > 0 ? `<p class="players">${players} 位球友在這裡打過球</p>` : ""}
     <div class="actions">
       <a href="${navUrl}" target="_blank" rel="noopener">導航</a>
       <a href="/courts-map?court=${c.id}">在地圖上看</a>
@@ -309,7 +311,9 @@ function page({ c, now, closures, hits, parking, live, nearby }) {
 
     <section class="app">
       <h2>在這裡打球的話</h2>
-      <p>用 Tennis Nut 在球場打卡，記下這一場，累積你去過的球場；也回報現場狀況，讓下一個人不白跑。</p>
+      <p>${players > 0
+        ? `已經有 ${players} 位球友在這裡打卡。`
+        : "還沒有人在這裡打卡過。"}用 Tennis Nut 在球場打卡，記下這一場，累積你去過的球場；也回報現場狀況，讓下一個人不白跑。</p>
       <a class="badge" href="${APP_STORE_URL}" target="_blank" rel="noopener" aria-label="從 App Store 下載 Tennis Nut">
         <img src="/app-store-badge-zh-tw.svg" alt="從 App Store 下載" width="138" height="46" />
       </a>
@@ -363,7 +367,7 @@ export default async function handler(req, res) {
   if (!c || c.lat == null || c.lng == null) return notFound(res);
 
   const box = 0.03; // 約 3 公里見方
-  const [closures, hits, parking, live, around] = await Promise.all([
+  const [closures, hits, parking, live, around, footprints] = await Promise.all([
     rpcOr("court_closures_for", { p_court_ids: [id] }, []),
     rpcOr("public_hits_at_court", { p_court_id: id }, []),
     rest(`court_parking?court_id=eq.${id}&select=name,distance_m&order=rank&limit=3`).catch(() => []),
@@ -371,6 +375,8 @@ export default async function handler(req, res) {
     rest(`courts_with_status?select=id,name,venue_kind,surface_code,court_count,lat,lng` +
          `&lat=gte.${c.lat - box}&lat=lte.${c.lat + box}` +
          `&lng=gte.${c.lng - box}&lng=lte.${c.lng + box}&id=neq.${id}&limit=200`).catch(() => []),
+    // 只有總數，說不出任何人是誰（20261004191116 開給 anon）。
+    rpcOr("court_footprint_count", { p_court_id: id }, []),
   ]);
 
   const nearby = around
@@ -385,6 +391,7 @@ export default async function handler(req, res) {
     parking: Array.isArray(parking) ? parking : [],
     live: Array.isArray(live) ? live[0] : null,
     nearby,
+    players: Array.isArray(footprints) ? (footprints[0]?.total ?? 0) : 0,
   });
 
   res.statusCode = 200;
