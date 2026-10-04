@@ -23,5 +23,9 @@
       "destination": "/blog/:build",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    { "source": "/courts/:id", "destination": "/api/court?id=:id" },
+    { "source": "/sitemap-courts.xml", "destination": "/api/sitemap-courts" }
   ]
 }
