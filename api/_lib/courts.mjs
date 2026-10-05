@@ -7,7 +7,10 @@ export const SUPABASE_URL = "https://dwjwisgbpnrxtcvpbkec.supabase.co";
 export const ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3andpc2dicG5yeHRjdnBia2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0NTU2ODQsImV4cCI6MjA4NDAzMTY4NH0.Em6SlZlakgd8WlL-PgFsR-NjpN2HFc38yNUw1zRKB9I";
 export const SITE = "https://tennisnut.kxon.net";
 export const APP_STORE_ID = "6761720650";
-export const APP_STORE_URL = `https://apps.apple.com/app/id${APP_STORE_ID}`;
+// App Store 行銷活動連結：pt 是帳號的供應商代碼，ct 是來源名稱。從這裡下載的
+// 人會在 App Store Connect「分析 → 宣傳活動」以 court-page 列出。
+export const APP_STORE_URL =
+  `https://apps.apple.com/app/apple-store/id${APP_STORE_ID}?pt=128739192&ct=court-page&mt=8`;
 
 const HEADERS = { apikey: ANON, Authorization: "Bearer " + ANON,
                   "Content-Type": "application/json" };
