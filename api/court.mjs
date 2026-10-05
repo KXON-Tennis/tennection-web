@@ -310,10 +310,10 @@ function page({ c, now, closures, hits, parking, live, nearby, players }) {
     ${parkHtml}
 
     <section class="app">
-      <h2>在這裡打球的話</h2>
+      <h2>在這裡打卡，看見更多球友與即時場況</h2>
       <p>${players > 0
         ? `已經有 ${players} 位球友在這裡打卡。`
-        : "還沒有人在這裡打卡過。"}用 Tennis Nut 在球場打卡，記下這一場，累積你去過的球場；也回報現場狀況，讓下一個人不白跑。</p>
+        : "還沒有人在這裡打卡過。"}用 Tennis Nut 在這座球場打卡，記下這一場；之後就看得到還有誰常在這裡打球。把它加入最愛，有人回報場況或封場時會通知你。</p>
       <a class="badge" href="${APP_STORE_URL}" target="_blank" rel="noopener" aria-label="從 App Store 下載 Tennis Nut">
         <img src="/app-store-badge-zh-tw.svg" alt="從 App Store 下載" width="138" height="46" />
       </a>
