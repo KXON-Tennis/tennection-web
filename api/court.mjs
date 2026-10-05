@@ -216,7 +216,10 @@ function page({ c, now, closures, hits, parking, live, nearby, players }) {
   <link rel="stylesheet" href="/styles.css" />
   <script type="application/ld+json">${jsonLd(c, url)}</script>
   <style>
-    .court { max-width: 680px; margin: 0 auto; padding: 24px 20px 48px; }
+    /* body 是 flex column：沒有 width/min-width 的話，這一欄會被最寬的內容撐開，
+       再被 body 的 overflow-x: clip 切掉右邊（同 styles.css 的 .container）。 */
+    .court { max-width: 680px; width: 100%; min-width: 0; box-sizing: border-box;
+             margin: 0 auto; padding: 24px 20px 48px; }
     .crumbs { font-size: 13px; color: var(--text-tertiary); margin-bottom: 10px; }
     .crumbs a { color: var(--text-tertiary); }
     .court h1 { font-size: 28px; line-height: 1.3; margin: 0 0 4px; }
