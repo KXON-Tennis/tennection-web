@@ -7,6 +7,89 @@
   ],
   "releases": [
     {
+      "build": 2580,
+      "version": "1.23.0",
+      "date": "2026-10-08",
+      "title": "第 1.23.0 版更新：約好的球，現在可以直接在對話裡說",
+      "summary": "同一場約球的人有了自己的對話，有人不去了全場都會知道。球拍品牌也新增了 Völkl 和 ProKennex。",
+      "highlights": [
+        {
+          "emoji": "💬",
+          "title": "約球對話",
+          "body": "報名同一場約球之後，首頁的「接下來的約球」、球場上的約球列，以及開打前的到場卡片，都多了一個對話按鈕。誰帶球、場地費怎麼分、晚到幾分鐘、在哪裡等，都可以直接在這裡說。\n\n對話在有人報名之後開啟，只有同一場約球的人看得到，約球結束 3 小時後關閉。"
+        },
+        {
+          "emoji": "📣",
+          "title": "有人不去了，全場都知道",
+          "body": "按「不去了」的時候，以前只有主揪會收到通知；現在同一場的每個人都會收到，對話裡也會出現一行「某某 不去了」。"
+        },
+        {
+          "emoji": "🙋",
+          "title": "到場卡片變簡單了",
+          "body": "開打前 2 小時出現的到場卡片，現在只有「我到了」和「約球對話」兩個按鈕，名單上會直接寫「某某 到了」。\n\n晚到、今天去不了、在哪個入口等，在對話裡說一句就好。"
+        },
+        {
+          "emoji": "🗺️",
+          "title": "今日足跡看得出有多熱鬧",
+          "body": "有人正在打的球場，現在會同時寫出今天來過幾位，例如「1 人在打 · 今天 5 人」。"
+        },
+        {
+          "emoji": "🎾",
+          "title": "更多球拍品牌",
+          "body": "球拍品牌新增 Völkl 和 ProKennex。\n\n新增球拍和球鞋時，品牌和年份不再幫你先填好，要自己選；年份不確定可以留空。"
+        },
+        {
+          "emoji": "👋",
+          "title": "新的開始畫面",
+          "body": "第一次使用時，會先問你今天想做什麼：找我的球場、留下今天的練習、建立網球護照，或找球友和球隊。選一件就好，其他的之後隨時都能做。"
+        }
+      ],
+      "fixes": [
+        "iPhone 點輸入框以外的地方，鍵盤就會收起來",
+        "同一支手機切換帳號之後，約球的報名狀態會正確更新",
+        "有空時段的清單改成最近的排在最前面",
+        "時段名單上的「程度相近」改成「想找程度相近的」，講清楚那是對方的希望",
+        "到場判定的範圍放回 200 公尺，大型球場的每一面場都打得到卡（1.22.0 起）"
+      ],
+      "en": {
+        "title": "v1.23.0 · Talk it over in the hit chat",
+        "summary": "Everyone in a hit now has a chat of their own, and the whole group hears when someone drops out. Völkl and ProKennex rackets are in too.",
+        "highlights": [
+          {
+            "emoji": "💬",
+            "title": "Hit chat",
+            "body": "Once you've joined a hit, there's a chat button on your upcoming hits, on the court's hit list and on the day-of card. Who brings balls, how to split the court fee, running late, where to meet: say it there.\n\nIt opens once someone joins, only people in the hit can see it, and it closes 3 hours after the hit ends."
+          },
+          {
+            "emoji": "📣",
+            "title": "Everyone hears when someone drops out",
+            "body": "Tapping \"Not going\" used to notify only the host. Now everyone in the hit gets a notification, and a line appears in the chat."
+          },
+          {
+            "emoji": "🙋",
+            "title": "A simpler day-of card",
+            "body": "The card that appears 2 hours before a hit now has just two buttons: \"I'm here\" and the chat. The list says it plainly: \"KC is here\"."
+          },
+          {
+            "emoji": "🗺️",
+            "title": "See how busy a court has been",
+            "body": "Courts with someone playing now also show how many came today, like \"1 playing · 5 today\"."
+          },
+          {
+            "emoji": "🎾",
+            "title": "More racket brands",
+            "body": "Völkl and ProKennex are now on the list. Brand and year are no longer pre-filled; leave the year blank if you're not sure."
+          }
+        ],
+        "fixes": [
+          "On iPhone, tap outside a text field to close the keyboard",
+          "Switching accounts on the same phone now updates your hits correctly",
+          "Availability lists now show the soonest slots first",
+          "Check-in range is back to 200 m, so every court at a large venue counts (since 1.22.0)"
+        ]
+      }
+    },
+    {
       "build": 2430,
       "version": "1.16.3",
       "date": "2026-09-28",
