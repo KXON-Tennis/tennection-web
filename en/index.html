@@ -1184,6 +1184,84 @@
       color: var(--text-secondary);
     }
 
+    /* ── 約球四步 ─────────────────────────────────────────────────
+       Same vignette language as the three values, one step per card, so the
+       section reads as the path a player actually takes: say you're free →
+       get seen on the map → get asked → talk it through and meet. Names in
+       the drawings are made up. */
+    .flow-grid {
+      display: grid;
+      gap: 30px;
+    }
+
+    @media (min-width: 640px) {
+      .flow-grid { grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    }
+
+    .vm-canvas .vm-label {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: #fff;
+      border: 1px solid #DCEAC9;
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--accent-d);
+      white-space: nowrap;
+    }
+
+    .flow-grid .vm-canvas { height: 96px; }
+    .flow-grid .vm-pin.on { left: 74%; top: 44%; }
+    .flow-grid .vm-pin.p2 { left: 40%; top: 30%; }
+
+    .vm-bubble {
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1.5px dashed #9CC48A;
+      background: rgba(255, 255, 255, 0.75);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .vt-sys {
+      align-self: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-tertiary);
+    }
+
+    .vt-msg {
+      align-self: flex-start;
+      max-width: 88%;
+      background: #fff;
+      border: 1px solid #DCEAC9;
+      border-radius: 12px 12px 12px 4px;
+      padding: 6px 10px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .vt-msg b {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-d);
+    }
+
+    .vt-msg.me {
+      align-self: flex-end;
+      border-radius: 12px 12px 4px 12px;
+      background: #EEF6E6;
+    }
+
 
 
 
@@ -1670,7 +1748,7 @@
         <div class="value">
           <span class="v-no">02</span>
           <h3>Find people</h3>
-          <p>Every session states the time, the format, the balls and who is welcome — so joining for the first time is not awkward.</p>
+          <p>Post the times you're free, or check the map for courts where players are looking for a hit. Every session states the time, the format, the balls and who is welcome — so joining for the first time is not awkward.</p>
           <div class="v-art">
             <div>
               <div class="vh-when">Today 21:40 · Zhubei Starry Courts</div>
@@ -1710,6 +1788,81 @@
             </div>
             <div class="v-chips">
               <span class="chip"><svg><use href="#ic-nut" /></svg>Ask with nuts</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Hitting: post free time → find players → ask → hit chat ── -->
+    <section class="section" id="hit">
+      <h2 class="section-h">Finding a hit starts with "I'm free"</h2>
+      <p class="section-sub">
+        You don't need to know anyone yet. Say when you can play and other players can find you. Once it's on, everything from sorting out the details to finding each other at the court happens in one place.
+      </p>
+
+      <div class="flow-grid">
+        <div class="value">
+          <span class="v-no">01 · FREE TIME</span>
+          <h3>Say when you're free</h3>
+          <p>Pick a time, singles or doubles, what you want to work on, then tick a few courts you go to — or just say "anywhere in Taoyuan". Show it to friends only, or to everyone.</p>
+          <div class="v-art">
+            <div>
+              <div class="vh-when">Sat 06:00–09:00 · 4 weeks</div>
+              <div class="vh-what">Anywhere in Taoyuan</div>
+            </div>
+            <div class="v-chips">
+              <span class="chip">Doubles</span>
+              <span class="chip">Rallying</span>
+              <span class="chip">Beginners welcome</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="value">
+          <span class="v-no">02 · FIND PLAYERS</span>
+          <h3>See who's free on the map</h3>
+          <p>Switch the map to "Find players" and each court shows how many people have posted free time and how many hits are still looking for players. Open a court to see who can come and how much their time overlaps with yours.</p>
+          <div class="v-art">
+            <div class="vm-canvas">
+              <span class="vm-bubble">4 say anywhere in Taoyuan</span>
+              <span class="vm-label">Zhonglu Tennis Courts: 2 free</span>
+              <span class="vm-pin p2"></span>
+              <span class="vm-pin on"></span>
+            </div>
+            <div class="v-chips">
+              <span class="chip ok">2 h overlap with you</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="value">
+          <span class="v-no">03 · ASK</span>
+          <h3>Found someone? Ask them</h3>
+          <p>Time, court, format and balls are settled when you post it. Ask one person, or let your friends — or everyone who has the court as a favourite — get notified.</p>
+          <div class="v-art">
+            <div>
+              <div class="vh-when">Sat 07:00 · Zhonglu Tennis Courts</div>
+              <div class="vh-what">Doubles · regular yellow balls</div>
+            </div>
+            <div class="v-chips">
+              <span class="chip">Just them</span>
+              <span class="chip">Friends</span>
+              <span class="chip">Regulars at this court</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="value">
+          <span class="v-no">04 · HIT CHAT</span>
+          <h3>Sort out the details in the chat</h3>
+          <p>As soon as someone joins, a chat opens that only the people in that hit can see. Who brings balls, how to split the court fee, running ten minutes late — say it there. If someone drops out, everyone is notified. The chat closes 3 hours after the hit.</p>
+          <div class="v-art">
+            <span class="vt-sys">Sam joined</span>
+            <div class="vt-msg"><b>Sam</b>I'll bring a new can</div>
+            <div class="vt-msg me">Great, we'll split the court fee there</div>
+            <div class="v-chips">
+              <span class="chip ok">Sam is here</span>
             </div>
           </div>
         </div>
@@ -1908,6 +2061,10 @@
       <details>
         <summary>Do I need to be good at tennis?</summary>
         <p>No. Every session says what will be played, which balls, and whether first-timers are welcome — so you know from the invitation whether it suits you.</p>
+      </details>
+      <details>
+        <summary>I don't know any other players. How do I find a hit?</summary>
+        <p>Start by <b>posting your free time</b>: when you can play and which courts you can get to (or just a city), set to public. Other players see you in the map's "Find players" view and can ask you to hit. Or go the other way: look in "Find players" for courts where people have posted free time, and ask someone whose time overlaps with yours. There are no direct messages, so strangers can't message you; once a hit is on, the people in it talk in the hit chat.</p>
       </details>
       <details>
         <summary>What are nuts?</summary>

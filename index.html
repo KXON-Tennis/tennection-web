@@ -1185,6 +1185,84 @@
       color: var(--text-secondary);
     }
 
+    /* ── 約球四步 ─────────────────────────────────────────────────
+       Same vignette language as the three values, one step per card, so the
+       section reads as the path a player actually takes: say you're free →
+       get seen on the map → get asked → talk it through and meet. Names in
+       the drawings are made up. */
+    .flow-grid {
+      display: grid;
+      gap: 30px;
+    }
+
+    @media (min-width: 640px) {
+      .flow-grid { grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    }
+
+    .vm-canvas .vm-label {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: #fff;
+      border: 1px solid #DCEAC9;
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--accent-d);
+      white-space: nowrap;
+    }
+
+    .flow-grid .vm-canvas { height: 96px; }
+    .flow-grid .vm-pin.on { left: 74%; top: 44%; }
+    .flow-grid .vm-pin.p2 { left: 40%; top: 30%; }
+
+    .vm-bubble {
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1.5px dashed #9CC48A;
+      background: rgba(255, 255, 255, 0.75);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .vt-sys {
+      align-self: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-tertiary);
+    }
+
+    .vt-msg {
+      align-self: flex-start;
+      max-width: 88%;
+      background: #fff;
+      border: 1px solid #DCEAC9;
+      border-radius: 12px 12px 12px 4px;
+      padding: 6px 10px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .vt-msg b {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-d);
+    }
+
+    .vt-msg.me {
+      align-self: flex-end;
+      border-radius: 12px 12px 4px 12px;
+      background: #EEF6E6;
+    }
+
 
 
 
@@ -1671,7 +1749,7 @@
         <div class="value">
           <span class="v-no">02</span>
           <h3>找得到人</h3>
-          <p>發起場次前先講清楚時間、打法、用球與歡迎程度，讓第一次加入也不尷尬。</p>
+          <p>排出你有空的時段，或在地圖上看哪座球場有人在找球友。時間、打法、用球發起時就講好，第一次加入也不尷尬。</p>
           <div class="v-art">
             <div>
               <div class="vh-when">今天 21:40 · 竹北星空網球場</div>
@@ -1711,6 +1789,81 @@
             </div>
             <div class="v-chips">
               <span class="chip"><svg><use href="#ic-nut" /></svg>用堅果提問</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 約球：排空檔 → 找球友 → 約 → 約球對話 ── -->
+    <section class="section" id="hit">
+      <h2 class="section-h">約球，從一句「我有空」開始</h2>
+      <p class="section-sub">
+        不用先認識誰。說出你什麼時候能打，球友就找得到你；約到之後，從講好細節到在球場碰面，都在同一個地方。
+      </p>
+
+      <div class="flow-grid">
+        <div class="value">
+          <span class="v-no">01 · 排空檔</span>
+          <h3>說一段你有空的時間</h3>
+          <p>選時間、單打或雙打、想練什麼，再勾幾座常去的球場，或只說「桃園市都可以」。可以只給好友看，也可以公開。</p>
+          <div class="v-art">
+            <div>
+              <div class="vh-when">週六 06:00–09:00 · 連續 4 週</div>
+              <div class="vh-what">桃園市都可以</div>
+            </div>
+            <div class="v-chips">
+              <span class="chip">雙打</span>
+              <span class="chip">對抽／練球</span>
+              <span class="chip">歡迎新手</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="value">
+          <span class="v-no">02 · 找球友</span>
+          <h3>在地圖上看見誰有空</h3>
+          <p>地圖切到「找球友」，每座球場會寫出有幾個人排了空檔、有幾場約球在等人。點開球場，就看得到誰那段時間可以來、和你重疊多久。</p>
+          <div class="v-art">
+            <div class="vm-canvas">
+              <span class="vm-bubble">4 人說桃園市都可以</span>
+              <span class="vm-label">中路網球場：2 人排空檔</span>
+              <span class="vm-pin p2"></span>
+              <span class="vm-pin on"></span>
+            </div>
+            <div class="v-chips">
+              <span class="chip ok">和你重疊 2 小時</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="value">
+          <span class="v-no">03 · 約球</span>
+          <h3>看到合適的人，直接約</h3>
+          <p>時間、球場、打法和用球在發起時就講好。可以只約一個人，也可以讓好友、或把這座球場加為最愛的人收到通知。</p>
+          <div class="v-art">
+            <div>
+              <div class="vh-when">週六 07:00 · 中路網球場</div>
+              <div class="vh-what">雙打 · 一般黃球</div>
+            </div>
+            <div class="v-chips">
+              <span class="chip">只約他</span>
+              <span class="chip">好友</span>
+              <span class="chip">常來這座球場的人</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="value">
+          <span class="v-no">04 · 約球對話</span>
+          <h3>約好之後，在對話裡講細節</h3>
+          <p>有人報名，就會開一個只有這場的人看得到的對話。誰帶球、場地費怎麼分、晚到幾分鐘都在這裡說；有人不去了，大家都會收到通知。約球結束 3 小時後對話關閉。</p>
+          <div class="v-art">
+            <span class="vt-sys">小安 報名了</span>
+            <div class="vt-msg"><b>小安</b>我帶一筒新球</div>
+            <div class="vt-msg me">好，場地費到了再分</div>
+            <div class="v-chips">
+              <span class="chip ok">小安 到了</span>
             </div>
           </div>
         </div>
@@ -1872,7 +2025,7 @@
         <div class="creed">
           <span class="c-not">邀約</span>
           <h3>沒有私訊，只有約球</h3>
-          <p>有人對你有興趣，他能做的是約你打一場，不是傳訊息給你。要不要去，由你決定。</p>
+          <p>有人對你有興趣，他能做的是約你打一場，不是傳訊息給你。要不要去，由你決定；報名之後，才會和同一場的人在約球對話裡說話。</p>
         </div>
       </div>
     </section>
@@ -1943,6 +2096,10 @@
       <details>
         <summary>我一定要打得很好才能用嗎？</summary>
         <p>不用。約球時就會寫明今天要打什麼、用哪一種球、歡不歡迎第一次來的人，所以你收到通知就知道自己適不適合。</p>
+      </details>
+      <details>
+        <summary>我不認識其他球友，要怎麼約到人？</summary>
+        <p>先<b>排一段空檔</b>：說你什麼時候能打、想去哪幾座球場（或只寫一個縣市），選擇公開。其他人在地圖的「找球友」裡看得到你，可以直接約你打一場。你也可以反過來，在「找球友」裡看哪座球場有人排了空檔，挑時間重疊的人約。沒有私訊，所以不會有陌生人傳訊息給你；約成之後，同一場的人才在約球對話裡講細節。</p>
       </details>
       <details>
         <summary>堅果點數是什麼？</summary>
