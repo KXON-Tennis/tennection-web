@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>約球：從開一場球，到在球場上找到彼此 · Tennis Nut</title>
-  <meta name="description" content="開球、報名、出門、到場、找不到人，一起來看看吧！含到場確認卡和全螢幕舉牌模式。" />
+  <title>約球：從排空檔，到在球場上碰面 · Tennis Nut</title>
+  <meta name="description" content="說出你什麼時候有空、在地圖上找球友、約一場球，再在約球對話裡講好細節。" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="約球：從開一場球，到在球場上找到彼此 · Tennis Nut" />
-  <meta property="og:description" content="開球、報名、出門、到場、找不到人，一起來看看吧！含到場確認卡和全螢幕舉牌模式。" />
+  <meta property="og:title" content="約球：從排空檔，到在球場上碰面 · Tennis Nut" />
+  <meta property="og:description" content="說出你什麼時候有空、在地圖上找球友、約一場球，再在約球對話裡講好細節。" />
   <meta property="og:url" content="https://tennisnut.kxon.net/hit" />
   <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
   <meta property="og:image:width" content="1200" />
@@ -205,20 +205,42 @@
     .ar .ax { width: 9px; flex: none; text-align: center; color: #9BA29B; font-size: 11px; line-height: 1; }
     .apend { font-size: 10.5px; color: #9BA29B; padding: 4px 0 0; }
 
-    .beacon { background: #3F7C43; color: #fff; text-align: center; padding: 44px 16px 28px;
-              min-height: 372px; display: flex; flex-direction: column; align-items: center;
-              justify-content: center; }
-    .ball { width: 92px; height: 92px; border-radius: 50%; background: #DCE96B;
-            position: relative; overflow: hidden; flex: none;
-            box-shadow: inset 0 -6px 16px rgba(0,0,0,.12); }
-    .ball::before, .ball::after { content: ""; position: absolute; width: 92px; height: 92px;
-            border: 3px solid #FBFAF6; border-radius: 50%; }
-    .ball::before { top: -50px; left: -46px; }
-    .ball::after  { top:  50px; left: -46px; }
-    .beacon .bg { font-size: 30px; font-weight: 800; margin: 20px 0 0; line-height: 1.2; }
-    .beacon .bs { font-size: 11px; color: rgba(255,255,255,.72); margin: 13px 0 0; }
-    .beacon .bm { margin-top: 32px; font-size: 12px; font-weight: 800; letter-spacing: .13em;
-                  color: rgba(255,255,255,.9); }
+    /* 約球對話 */
+    .chat { padding: 12px 11px 13px; display: flex; flex-direction: column; gap: 7px; }
+    .chat-h { font-size: 11.5px; font-weight: 800; color: #1B5138; text-align: center;
+              padding-bottom: 7px; border-bottom: 1px solid #ECEAE2; }
+    .chat-h span { display: block; font-size: 9.5px; font-weight: 600; color: #9BA29B; }
+    .sys { align-self: center; font-size: 10px; color: #9BA29B; font-weight: 600; }
+    .bub { align-self: flex-start; max-width: 82%; background: #fff; border: 1px solid #ECEAE2;
+           border-radius: 11px 11px 11px 3px; padding: 5px 9px; font-size: 11px; color: #3E4A41; }
+    .bub b { display: block; font-size: 9.5px; color: #3F7C43; }
+    .bub.me { align-self: flex-end; background: #E7F1E1; border-color: #CFE3C4;
+              border-radius: 11px 11px 3px 11px; }
+    .bub u { color: #2F6FB3; }
+    .inp { margin-top: 4px; border: 1px solid #ECEAE2; border-radius: 16px; padding: 6px 11px;
+           font-size: 10.5px; color: #9BA29B; background: #fff; }
+
+    /* 找球友地圖 */
+    .map { position: relative; height: 210px; background:
+             linear-gradient(#E4ECDD 1px, transparent 1px) 0 0 / 100% 34px,
+             linear-gradient(90deg, #E4ECDD 1px, transparent 1px) 0 0 / 40px 100%, #F4F8EF; }
+    .map .chipbar { position: absolute; top: 9px; left: 9px; display: flex; gap: 5px; }
+    .map .pin { position: absolute; width: 11px; height: 11px; border-radius: 50%;
+                background: #3F7C43; box-shadow: 0 0 0 4px rgba(63,124,67,.2); }
+    .map .lab { position: absolute; transform: translate(-50%, -100%); background: #fff;
+                border: 1px solid #CFE3C4; border-radius: 7px; padding: 2px 7px; font-size: 10px;
+                font-weight: 800; color: #1B5138; white-space: nowrap; }
+    .map .bubble { position: absolute; border: 1.5px dashed #8DB97A; border-radius: 999px;
+                   padding: 3px 9px; font-size: 10px; font-weight: 700; color: #3E4A41;
+                   background: rgba(255,255,255,.8); white-space: nowrap; }
+    .prow { display: flex; align-items: center; gap: 7px; padding: 6px 0; border-top: 1px solid #F0EEE6;
+            font-size: 11px; color: #3E4A41; }
+    .prow:first-of-type { border-top: 0; }
+    .prow .av { width: 20px; height: 20px; border-radius: 50%; background: #7BAF5C; color: #fff;
+                font-size: 9.5px; font-weight: 800; display: grid; place-items: center; flex: none; }
+    .prow .pm { flex: 1; min-width: 0; }
+    .prow .pm i { display: block; font-style: normal; font-size: 9.5px; color: #9BA29B; }
+    .prow .go { font-size: 10.5px; font-weight: 800; color: #3F7C43; white-space: nowrap; }
 
     /* 時間軸 */
     .tl { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
@@ -239,43 +261,108 @@
     .tl-k span { display: inline-flex; align-items: center; gap: 7px; }
     .tl-k i { width: 15px; height: 7px; border-radius: 3px; flex: none; }
 
-    /* 按鈕說明 */
-    .btn-row { display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: start;
-               background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
-               padding: 16px 18px; margin-bottom: 12px; }
-    .btn-row .k { border: 1.5px solid var(--accent-d); border-radius: 15px; padding: 5px 0;
-                  text-align: center; font-size: 12.5px; font-weight: 700; color: var(--accent-d); }
-    .btn-row .v p { margin: 0; }
-    .btn-row .v p + p { margin-top: 8px; }
-    @media (max-width: 560px) {
-      .btn-row { grid-template-columns: 1fr; gap: 10px; }
-      .btn-row .k { justify-self: start; padding: 5px 18px; }
-    }
 </style>
   <article class="container rel">
     <a class="rel-back" href="/blog">← 最新情報</a>
     <span class="tag-line">🌰 功能介紹</span>
-    <h1>約球：從開一場球，到在球場上找到彼此</h1>
+    <h1>約球：從排空檔，到在球場上碰面</h1>
     <p class="lead">
-      約球是 Tennis Nut 裡唯一一個<b>會跟著你走到球場上</b>的功能。
-      開球、報名、出門、到場、找不到人，一起來看看吧！
+      不用先認識誰。說出你什麼時候有空，球友就找得到你；約成之後，
+      誰帶球、場地費、晚到幾分鐘，都在同一場的約球對話裡講。
     </p>
 
-    <h2>一、開一場球</h2>
+    <h2>一、排空檔：說一段你有空的時間</h2>
     <p>
-      約球一定綁在一座球場上，所以任何入口的第一件事都是先有球場。三個入口：
+      還沒有特定要約誰的時候，先<b>排空檔</b>。入口有四個：中間那顆＋、首頁、
+      球場頁面的「排空檔」，以及首頁點進去的「可打球時間」週表。從球場頁面進去，那座球場會先幫你勾好。
     </p>
+
+    <div class="shots">
+      <figure class="shot">
+        <div class="phone"><div class="screen">
+          <div class="grip"></div>
+          <div class="sc" style="padding-top:0">
+            <p class="sc-t">設定我的空檔</p>
+            <div class="lb">什麼時候</div>
+            <div class="fd">🕐 週六 06:00–09:00</div>
+            <div class="cs" style="margin-top:6px"><span class="cp">只有這天</span><span class="cp on">連續 4 週</span></div>
+            <div class="lb">想打什麼（可複選）</div>
+            <div class="cs">
+              <span class="cp on">雙打</span><span class="cp on">對抽／練球</span>
+              <span class="cp">發球／接發</span><span class="cp">打 Set</span>
+            </div>
+            <div class="lb">可以去哪些球場</div>
+            <div class="cs"><span class="cp">指定球場</span><span class="cp on">某個地區</span></div>
+            <div class="fd" style="margin-top:6px">桃園市</div>
+            <div class="lb">誰看得到</div>
+            <div class="cs"><span class="cp">只有好友</span><span class="cp on">公開</span></div>
+            <div class="cta">貼出來</div>
+          </div>
+        </div></div>
+        <figcaption>可以只排一天，也可以連續幾週。另外還能勾「歡迎新手一起打」、選希望的球友程度、寫一句補充。</figcaption>
+      </figure>
+    </div>
+
+    <h3>指定球場，還是只說一個地區</h3>
+    <p>
+      <b>指定球場</b>：勾幾座你去得了的球場，常去的會排在最上面。
+      <b>某個地區</b>：只說「桃園市都可以」，不透露你常在哪座球場——想只給大概位置的時候用這個。
+    </p>
+
+    <h3>誰看得到</h3>
+    <p>
+      <b>只有好友</b>：好友會在首頁「好友有空」看到你。<b>公開</b>：所有球友都看得到你這段時間有空，
+      以及你勾的球場或地區。公開也不會讓陌生人傳訊息給你——沒有私訊，別人能做的只有約你打一場。
+    </p>
+
+    <h2>二、找球友：在地圖上看誰有空</h2>
+    <p>
+      地圖上方切到 <b>「找球友」</b>，畫面只留下有人在找球友的地方：
+    </p>
+    <ul class="plain">
+      <li>有人<b>指定了某座球場</b>，那座球場上方會寫「中路網球場：2 人排空檔」；有約球在等人，也會寫在這裡。</li>
+      <li>有人只說<b>某個地區都可以</b>，地圖拉遠時會出現一顆虛線泡泡「4 人說桃園市都可以」，點下去看名單，再挑一座球場約他。</li>
+      <li>上方的數字是畫面裡<b>有幾個人</b>在找球友，不重複計算。</li>
+    </ul>
+
+    <div class="shots">
+      <figure class="shot">
+        <div class="phone"><div class="screen">
+          <div class="map">
+            <div class="chipbar"><span class="cp on">找球友 · 6</span></div>
+            <span class="pin" style="left:62%;top:52%"></span>
+            <span class="lab" style="left:64%;top:47%">中路網球場：2 人排空檔</span>
+            <span class="pin" style="left:30%;top:70%"></span>
+            <span class="lab" style="left:31%;top:66%">1 人約球</span>
+            <span class="bubble" style="left:9%;bottom:12px">4 人說桃園市都可以</span>
+          </div>
+        </div></div>
+        <figcaption>點有字的球場，球場卡片裡的約球和空檔兩段會用淡黃底標出來。</figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="phone"><div class="screen">
+          <div class="sc">
+            <p class="sc-t">週六 06:00–09:00 有 2 人可以來這裡</p>
+            <div class="prow"><span class="av">安</span><span class="pm">小安<i>和你重疊 2 小時 · 新手可</i></span><span class="go">· 約他</span></div>
+            <div class="prow"><span class="av" style="background:#4B8F63">哲</span><span class="pm">阿哲<i>和你重疊 1 小時</i></span><span class="go">· 約他</span></div>
+            <div class="cta">約在這個時間</div>
+          </div>
+        </div></div>
+        <figcaption>看得到他想打什麼、跟你重疊多久。按「約他」，時間和球場都先幫你填好。</figcaption>
+      </figure>
+    </div>
+
+    <h2>三、開一場球</h2>
+    <p>約球一定綁在一座球場上。入口：</p>
     <ul class="plain">
       <li><b>中間那顆＋</b>：選「約球」，接著挑一座球場。</li>
       <li><b>球場頁面</b>：點「約在這裡」，球場已經幫你帶好了。</li>
-      <li><b>首頁看到誰有空</b>：點「約他」，連時間都先填好。</li>
+      <li><b>看到誰有空</b>（首頁「好友有空」、球場卡片、找球友）：點「約他」，連時間都先填好。</li>
     </ul>
 
     <h3>時間</h3>
-    <p>
-      點一下就能選日期和起訖。預設 <b>90 分鐘</b>，可以改成任何長度——
-      這個長度等一下會決定到場確認卡在首頁上待多久，所以值得填準。
-    </p>
+    <p>點一下就能選日期和起訖。預設 <b>90 分鐘</b>，可以改成任何長度——到場卡和約球對話什麼時候關，都從這個結束時間算，所以值得填準。</p>
 
     <h3>想打什麼</h3>
     <p>
@@ -291,13 +378,12 @@
           <div class="sc" style="padding-top:0">
             <p class="sc-t">約在 桃園市中路網球場</p>
             <div class="lb">時間</div>
-            <div class="fd">🕐 9/23 (三) 09:00–10:30</div>
+            <div class="fd">🕐 週六 07:00–08:30</div>
             <div class="lb">想打什麼（可複選）</div>
             <div class="cs">
               <span class="cp on">對抽／練球</span><span class="cp">多球／餵球</span>
               <span class="cp on">雙打</span><span class="cp">單打</span>
-              <span class="cp">計分／比賽</span><span class="cp">截擊／網前</span>
-              <span class="cp">發球／接發</span>
+              <span class="cp">打 Set</span><span class="cp">截擊／網前</span>
             </div>
             <div class="lb">用球</div>
             <div class="fd">一般黃球 <span style="margin-left:auto;color:#9BA29B">▾</span></div>
@@ -310,16 +396,16 @@
         <div class="phone"><div class="screen">
           <div class="sc">
             <div class="lb">找誰（選填）</div>
-            <div class="cs"><span class="cp on">阿明 ✕</span><span class="cp">＋ 指名球友</span></div>
+            <div class="cs"><span class="cp on">小安 ✕</span><span class="cp">＋ 指名球友</span></div>
             <div class="lb">誰看得到</div>
-            <div class="rd on"><div class="o"></div><div><div class="rt">只有好友</div><div class="rs">只有你的好友看得到、收得到通知</div></div></div>
+            <div class="rd"><div class="o"></div><div><div class="rt">只有好友</div><div class="rs">只有你的好友看得到、收得到通知</div></div></div>
             <div class="rd"><div class="o"></div><div><div class="rt">所有加這座球場為最愛的人</div><div class="rs">他們會收到主動通知</div></div></div>
-            <div class="rd"><div class="o"></div><div><div class="rt">只有受邀的人</div><div class="rs">不廣播給其他人</div></div></div>
+            <div class="rd on"><div class="o"></div><div><div class="rt">只有受邀的人</div><div class="rs">不廣播給其他人</div></div></div>
             <div class="fd ghost" style="margin-top:12px">想補充的（選填）</div>
             <div class="cta">發出邀約</div>
           </div>
         </div></div>
-        <figcaption>發出去之後，你自己已經在名單上了——主揪不用再報名一次。</figcaption>
+        <figcaption>從別人的空檔按「約他」進來，預設就是「只有受邀的人」。發出去之後，你自己已經在名單上了。</figcaption>
       </figure>
     </div>
 
@@ -327,25 +413,60 @@
       <p><b>「指名」和「誰看得到」是兩件事。</b></p>
       <p>
         指名說的是<b>誰會被告知</b>——被指名的人收到的是「你約他」，不是一則公告。
-        誰看得到說的是<b>誰可以來</b>。
-        所以「我約了阿明，其他好友也歡迎」講得出來。
+        誰看得到說的是<b>誰可以來</b>。所以「我約了小安，其他好友也歡迎」講得出來。
       </p>
     </div>
 
-    <h2>二、別人怎麼參加</h2>
+    <h2>四、報名與不去了</h2>
     <p>
       看得到這場球的人，點進那座球場，在約球那一列按 <b>「我要去」</b> 就進名單了，
-      按鈕會變成「已報名」。人數滿了會顯示「已滿」。
+      按鈕會變成「已報名」。人數滿了會顯示「已滿」。如果這個時間你已經答應了另一場球，App 會直接告訴你撞期。
     </p>
     <p>
-      想退出按 <b>「不去了」</b>——會先問一次，因為主揪會收到通知、位子也會空出來給別人。
-      如果這個時間你已經答應了另一場球，App 會直接告訴你撞期。
+      想退出按 <b>「不去了」</b>——會先問一次，因為<b>同一場的人都會收到通知</b>，位子也會空出來給別人。
+      <b>取消整場</b>只有主揪能做，已經回覆要去的人都會收到通知。
     </p>
 
-    <h2>三、到場確認卡</h2>
+    <h2>五、約球對話</h2>
     <p>
-      球快開始的時候，<b>首頁會自己長出一張卡</b>。它是整個首頁唯一會自己動的東西：
-      深綠色的橫帶，配一顆會呼吸的白點。
+      有人報名、名單上有兩個人以上，這場球就會開一個<b>約球對話</b>。
+      只有名單上的人看得到、說得了話；誰報名了、誰不去了，也會自己出現在對話裡。
+    </p>
+
+    <div class="shots">
+      <figure class="shot">
+        <div class="phone"><div class="screen">
+          <div class="chat">
+            <div class="chat-h">中路網球場 · 約球對話<span>對話會在 11:30 關閉</span></div>
+            <span class="sys">小安 報名了</span>
+            <div class="bub"><b>小安</b>我帶一筒新球</div>
+            <div class="bub me">好，場地費到了再分</div>
+            <span class="sys">阿哲 報名了</span>
+            <div class="bub"><b>阿哲</b>會晚 10 分鐘，車停在<u>這裡</u></div>
+            <div class="inp">說點什麼</div>
+          </div>
+        </div></div>
+        <figcaption>網址可以直接點開。每則最多 200 字。</figcaption>
+      </figure>
+    </div>
+
+    <div class="card">
+      <h3>什麼時候能說話</h3>
+      <p>名單上有兩個人起開放，到<b>約球結束後 3 小時</b>關閉——打完還能說聲謝謝、約下一次。關閉後 7 天內還看得到內容，之後就收起來了。取消的約球，對話跟著關閉。</p>
+    </div>
+    <div class="card">
+      <h3>通知</h3>
+      <p>每一則訊息都會進鈴鐺。手機震動的部分，同一場約球 10 分鐘內最多震一次，聊得熱烈的時候不會一直響。</p>
+    </div>
+    <div class="card">
+      <h3>退出之後</h3>
+      <p>按了「不去了」就不在名單上，也就看不到、不能再說話了。你封鎖的人說的話，你看不到。不舒服的訊息可以長按檢舉。</p>
+    </div>
+
+    <h2>六、到場卡</h2>
+    <p>
+      球快開始的時候，<b>首頁最上面會出現一張到場卡</b>：深綠色的橫帶，配一顆會呼吸的白點。
+      只有名單上的人看得到，主揪也算。
     </p>
 
     <div class="tl">
@@ -359,25 +480,9 @@
         <div class="tl-m" style="left:84%"><i></i><span>結束後 1 小時</span></div>
       </div>
       <div class="tl-k">
-        <span><i style="background:var(--accent)"></i>卡片在首頁上</span>
+        <span><i style="background:var(--accent)"></i>到場卡在首頁上</span>
         <span><i style="background:#1B5138;opacity:.35"></i>球局進行中</span>
       </div>
-    </div>
-
-    <div class="card">
-      <h3>什麼時候出現</h3>
-      <p>
-        開始前 2 小時，到<b>結束</b>後 1 小時。結束是從你設的時長算的——
-        一場 09:00 開始、90 分鐘的球，卡片會在 07:00 出現，10:30 打完之後再撐一小時。
-      </p>
-    </div>
-    <div class="card">
-      <h3>誰看得到</h3>
-      <p>
-        只有<b>名單上的人</b>，主揪也算。你看得到但沒報名的球
-        （好友開的、你最愛球場上的公開約球）不會給你這張卡——
-        那上面的按鈕是給要去的人按的。
-      </p>
     </div>
 
     <figure class="shot" style="margin-top:20px">
@@ -386,104 +491,38 @@
           <div class="acard">
             <div class="aband">
               <span class="pulse"></span>
-              <span class="aw">今天 09:00 · 中路網球場</span>
+              <span class="aw">今天 07:00 · 中路網球場</span>
               <span class="an">2/4 已到場</span>
             </div>
             <div class="abody">
-              <div class="ar"><span class="ad here"></span>小宇 · 球場邊 · 白色</div>
-              <div class="ar"><span class="ad here"></span>阿明 · 停車場 · 戴紅色帽子</div>
-              <div class="ar"><span class="ad late"></span>阿凱 · 晚 15 分鐘</div>
-              <div class="ar gone"><span class="ax">✕</span>小美 · 今天到不了</div>
-              <div class="apend">1 人還沒回報</div>
+              <div class="ar"><span class="ad here"></span>小安 到了</div>
+              <div class="ar"><span class="ad here"></span>阿哲 到了</div>
+              <div class="apend">2 人還沒回報</div>
               <div class="cs" style="margin-top:10px">
-                <span class="cp on">我到了</span><span class="cp">我會晚到</span>
-                <span class="cp">今天到不了</span><span class="cp">找不到你</span>
+                <span class="cp on">我到了</span><span class="cp">約球對話</span>
               </div>
             </div>
           </div>
         </div>
       </div></div>
-      <figcaption>
-        綠點是到了，橘點是會晚到，✕ 是今天到不了。還沒按任何按鈕的人
-        只會被算進最下面那句「N 人還沒回報」。這張卡每 30 秒自己更新一次。
-      </figcaption>
-    </figure>
-
-    <h3>四顆按鈕</h3>
-    <div class="btn-row">
-      <div class="k">我到了</div>
-      <div class="v">
-        <p>按下去<b>立刻</b>就簽到了，同時幫你留下這一場的練習紀錄。</p>
-        <p>
-          接著會問兩件事：<b>你在球場的哪裡</b>（入口／停車場／球場邊／看台）、
-          <b>今天穿什麼顏色</b>。兩題都可以直接關掉不答——你已經簽到了。
-          也可以自己打字，像「在小七旁邊」「戴紅色帽子」，那通常比選項更好找。
-        </p>
-      </div>
-    </div>
-    <div class="btn-row">
-      <div class="k">我會晚到</div>
-      <div class="v"><p>選一個分鐘數：5、10、15、20、30、45。你那一列會變成橘點加「晚 15 分鐘」，大家就知道要不要先開始。</p></div>
-    </div>
-    <div class="btn-row">
-      <div class="k">今天到不了</div>
-      <div class="v">
-        <p><b>這不等於退出報名。</b>你還在名單上，位子也還留著，只是告訴其他人不用等你。</p>
-        <p>要把位子讓出來給別人，得回球場頁面按「不去了」。</p>
-      </div>
-    </div>
-    <div class="btn-row">
-      <div class="k">找不到你</div>
-      <div class="v"><p>人到了球場卻找不到對方的時候按這個。下一段整段在講它。</p></div>
-    </div>
-
-    <h2>四、找人模式：把手機舉起來</h2>
-    <p>
-      在到場確認卡上按 <b>「找不到你」</b>。就這樣，沒有第二層選單。
-      按下去會同時發生兩件事：
-    </p>
-    <p>
-      <b>一、對方的手機會響。</b>如果場上只有另外一個人回報過狀態，
-      他會收到一則推播——標題是「<b>某某某 找不到你</b>」，
-      內容是「在球場找你，點開舉牌讓他看到你」。他點開，看到的就是同一面綠色牌子。
-    </p>
-    <p>
-      <b>二、你自己的手機立刻變成一整面綠色。</b>
-      這件事不管推播有沒有送到都會發生——所以就算對方沒開通知、手機還在包包裡，
-      這個方法一樣有用。
-    </p>
-
-    <figure class="shot">
-      <div class="phone"><div class="screen">
-        <div class="beacon">
-          <div class="ball"></div>
-          <div class="bg">我在這裡</div>
-          <div class="bs">把手機舉起來，點一下關閉</div>
-          <div class="bm">TENNIS NUT</div>
-        </div>
-      </div></div>
-      <figcaption>全螢幕，螢幕會保持明亮不會中途變暗。看完點一下畫面就關掉。</figcaption>
+      <figcaption>每 30 秒自己更新一次。在場上找不到人、要晚到、今天去不了，按「約球對話」說一句。</figcaption>
     </figure>
 
     <p>
-      把手機舉高，對方朝著亮起來的那一面走過來（就像機場接機舉牌一樣）。
+      按 <b>「我到了」</b>，你那一列就變成「某某 到了」，其他人的卡片上也看得到。
+      這張卡只顯示當下的狀態，不累積、不計分，也沒有人會被記缺席——主揪不能替別人標記，每一列都是本人自己按的。
     </p>
-
-    <div class="callout">
-      <p><b>收到「某某某 找不到你」的時候</b></p>
-      <p>直接點那則通知，你的手機也會變成同一面綠色牌子。你舉起來，他就找得到你了。</p>
-    </div>
 
     <h2>幾件容易搞混的事</h2>
     <ul class="plain">
+      <li><b>排空檔不是約球。</b>空檔只是說「我這時候可以」，要有人按「約他」才會變成一場約球。</li>
       <li><b>人數</b>不用另外填，是從「想打什麼」算出來的。</li>
-      <li><b>「今天到不了」在到場卡上</b>，位子留著；<b>「不去了」在球場頁面上</b>，位子讓出來。</li>
-      <li><b>取消整場</b>只有主揪能做，在球場頁面那一列或首頁「接下來的約球」都按得到。已經回覆要去的人都會收到通知。</li>
-      <li><b>沒有人會被記缺席。</b>到場確認卡只顯示當下的狀態，不累積、不計分。主揪也不能替別人標記到場——每一列都是本人自己按的。</li>
+      <li><b>沒有私訊。</b>約球對話只存在於一場約球裡，名單上的人才看得到，約球結束 3 小時後關閉。</li>
+      <li><b>「不去了」會通知同一場的所有人</b>，位子讓出來給別人。</li>
     </ul>
 
     <div class="guide-foot">
-      畫面示意圖以實際版本繪製，配色與間距以 App 為準。
+      畫面示意圖以實際版本繪製，名字是示意用，配色與間距以 App 為準。
     </div>
   </article>
 
