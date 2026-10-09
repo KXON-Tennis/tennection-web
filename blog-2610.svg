@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img"
-     aria-label="Tennis Nut 1.26.0：約好的球可以改，球隊有了自己的聊天室" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+     aria-label="Tennis Nut 1.26.0：可以修改約球細節了，球隊也有了自己的聊天室" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
   <rect width="1200" height="630" fill="#FBFAF6"/>
   <rect x="0" y="0" width="1200" height="8" fill="#1B5138"/>
-  <text x="80" y="256" font-size="44" font-weight="800" fill="#1B5138">約好的球可以改</text>
+  <text x="80" y="256" font-size="44" font-weight="800" fill="#1B5138">可以修改約球細節了</text>
   <text x="80" y="312" font-size="44" font-weight="800" fill="#3F7C43">球隊有了自己的聊天室</text>
   <text x="80" y="372" font-size="22" fill="#6E776F">加入球隊改成申請，看得到球友用什麼拍</text>
   <text x="80" y="440" font-size="20" fill="#9BA29B">Tennis Nut 1.26.0 · Build 2610</text>
