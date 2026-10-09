@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">他用什麼拍？</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">同球場的球友名單，看得到主拍和主鞋</text>
+  <rect x="80" y="286" width="920" height="260" rx="34" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <circle cx="162" cy="360" r="38" fill="#E7F1E1"/>
+  <text x="162" y="371" font-size="30" text-anchor="middle" fill="#3F7C43" font-weight="800">林</text>
+  <text x="222" y="352" font-size="34" font-weight="800" fill="#1B5138">林家瑋</text>
+  <text x="222" y="392" font-size="26" font-weight="700" fill="#5C9A46">NTRP 3.5</text>
+  <text x="222" y="460" font-size="29" fill="#5E7A60">Wilson Pro Staff 97 v14</text>
+  <text x="222" y="510" font-size="29" fill="#5E7A60">Asics Gel-Resolution 9</text>
+  <g transform="translate(600 432) scale(2.2)" fill="none" stroke="#3F7C43" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 V3.5 a1.3 1.3 0 0 1 2.6 0 V8 M5.6 7 V2 a1.3 1.3 0 0 1 2.6 0 V7.5 M8.2 7.5 V3 a1.3 1.3 0 0 1 2.6 0 V9 l1.3-1.6 a1.3 1.3 0 0 1 2 1.6 l-2.6 4 a4.5 4.5 0 0 1-3.8 2 H7 a4 4 0 0 1-4-4 Z"/></g>
+  <text x="652" y="460" font-size="25" fill="#3F7C43" font-weight="700">← 對它好奇，就舉手</text>
+  <rect x="80" y="574" width="920" height="150" rx="34" fill="#F3F8EC" stroke="#DCE8C8" stroke-width="2"/>
+  <text x="128" y="636" font-size="27" fill="#7C9A6E">舉手投一票，主人只會知道</text>
+  <text x="128" y="698" font-size="36" font-weight="800" fill="#2E5A34">有幾個人想聽，不知道是誰</text>
+  <rect x="80" y="750" width="920" height="110" rx="30" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <text x="128" y="804" font-size="30" fill="#5E7A60">他寫好心得，你會收到通知。</text>
+  <text x="128" y="844" font-size="30" fill="#5E7A60">新增球拍時，型號也能從清單直接點選。</text>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>
