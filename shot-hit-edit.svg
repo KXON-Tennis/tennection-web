@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 444" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="392" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="384" rx="30" fill="#FBFAF6"/>
+  <rect x="154" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+
+  <!-- 修改約球：三個入口 -->
+  <text x="28" y="62" font-size="17" fill="#1B5138" font-weight="800">修改約球</text>
+  <text x="28" y="84" font-size="12" fill="#9BA29B">青年公園網球場 · 10/12 (日) 08:00</text>
+
+  <rect x="16" y="100" width="328" height="70" rx="16" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="34" y="128" font-size="14" fill="#2E5A34" font-weight="700">修改時間與內容</text>
+  <text x="34" y="150" font-size="11.5" fill="#9BA29B">想打什麼、用球、程度都能改；已報名的人會收到通知</text>
+  <path d="M322 129 l7 6 l-7 6" fill="none" stroke="#9BA29B" stroke-width="2" stroke-linecap="round"/>
+
+  <rect x="16" y="180" width="328" height="70" rx="16" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="34" y="208" font-size="14" fill="#2E5A34" font-weight="700">再找人</text>
+  <text x="34" y="230" font-size="11.5" fill="#9BA29B">指名幾位好友，他們會收到「你約他」</text>
+  <path d="M322 209 l7 6 l-7 6" fill="none" stroke="#9BA29B" stroke-width="2" stroke-linecap="round"/>
+
+  <rect x="16" y="260" width="328" height="70" rx="16" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="34" y="288" font-size="14" fill="#2E5A34" font-weight="700">讓更多人看到</text>
+  <text x="34" y="310" font-size="11.5" fill="#9BA29B">選擇放寬到哪裡；放寬之後不能再改回去</text>
+  <path d="M322 289 l7 6 l-7 6" fill="none" stroke="#9BA29B" stroke-width="2" stroke-linecap="round"/>
+
+  <rect x="16" y="344" width="328" height="34" rx="12" fill="#F3F8EC"/>
+  <text x="32" y="366" font-size="12" fill="#2E5A34">已更新，已報名的人都會收到通知</text>
+  <text x="180" y="429" font-size="13" text-anchor="middle" fill="#9BA29B" letter-spacing="0.2">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>

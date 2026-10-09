@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 444" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="392" rx="34" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="384" rx="30" fill="#FBFAF6"/>
+  <rect x="154" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
+
+  <!-- 隊長在球隊頁看到的申請 -->
+  <text x="28" y="62" font-size="17" fill="#1B5138" font-weight="800">週末早鳥隊</text>
+  <text x="28" y="84" font-size="12" fill="#9BA29B">主場 · 青年公園網球場</text>
+
+  <rect x="16" y="102" width="328" height="196" rx="18" fill="#FFFFFF" stroke="#ECEAE2"/>
+  <text x="34" y="134" font-size="14.5" fill="#1B5138" font-weight="800">2 人申請加入</text>
+
+  <line x1="34" y1="150" x2="326" y2="150" stroke="#F1F0EA"/>
+  <circle cx="52" cy="178" r="15" fill="#E3E9D8"/>
+  <text x="52" y="183" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">陳</text>
+  <text x="78" y="176" font-size="13.5" fill="#2E5A34" font-weight="700">陳柏宇</text>
+  <text x="78" y="196" font-size="11.5" fill="#6E776F">「我也常在青年公園打球，想加入一起練」</text>
+  <rect x="190" y="208" width="64" height="30" rx="10" fill="#3F7C43"/>
+  <text x="222" y="228" font-size="12.5" fill="#FFFFFF" font-weight="800" text-anchor="middle">核准</text>
+  <rect x="262" y="208" width="64" height="30" rx="10" fill="#FFFFFF" stroke="#DCD9CF"/>
+  <text x="294" y="228" font-size="12.5" fill="#6E776F" font-weight="700" text-anchor="middle">婉拒</text>
+
+  <line x1="34" y1="252" x2="326" y2="252" stroke="#F1F0EA"/>
+  <circle cx="52" cy="276" r="15" fill="#E3E9D8"/>
+  <text x="52" y="281" font-size="12" fill="#3F7C43" font-weight="800" text-anchor="middle">M</text>
+  <text x="78" y="281" font-size="13.5" fill="#2E5A34" font-weight="700">Mia</text>
+  <text x="326" y="281" font-size="11.5" fill="#9BA29B" text-anchor="end">「想找固定的球伴…」</text>
+
+  <rect x="16" y="314" width="328" height="58" rx="14" fill="#F3F8EC"/>
+  <text x="32" y="338" font-size="12" fill="#2E5A34">申請的人寫一句話，隊長看了再決定。</text>
+  <text x="32" y="358" font-size="12" fill="#2E5A34">用邀請碼加入的人會直接進隊，隊長收到通知。</text>
+  <text x="180" y="429" font-size="13" text-anchor="middle" fill="#9BA29B" letter-spacing="0.2">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>
