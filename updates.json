@@ -7,6 +7,95 @@
   ],
   "releases": [
     {
+      "build": 2610,
+      "version": "1.26.0",
+      "date": "2026-10-09",
+      "title": "第 1.26.0 版更新：約好的球可以改，球隊有了自己的聊天室",
+      "summary": "發出去的約球可以改時間、改內容，也能讓更多人看到。球隊有了聊天室，加入改成由隊長核准。看到球友的主拍、主鞋，也可以舉手請他寫心得。",
+      "highlights": [
+        {
+          "emoji": "✏️",
+          "title": "約球發出後也能改",
+          "body": "主揪可以修改時間、想打什麼、用球、程度和說明，也可以再找人，或讓更多人看到。\n\n放寬之前會先確認一次：已經看到或報名的人，之後不會突然看不到。首頁和球場上的約球卡也改成內容在上、按鈕在下，名字和說明不再被擠掉。"
+        },
+        {
+          "emoji": "💬",
+          "title": "球隊聊天室",
+          "body": "每一隊都有自己的對話，只有隊員看得到。練球時間、誰帶球、這週去哪裡打，在隊裡說一聲就好。"
+        },
+        {
+          "emoji": "🤝",
+          "title": "加入球隊改成申請",
+          "body": "申請加入時附一句話，有建議句可以一鍵帶入。隊長在球隊頁就能核准，核准後你會收到通知。\n\n拿到邀請碼的人還是可以直接加入，隊長會收到通知。"
+        },
+        {
+          "emoji": "🎾",
+          "title": "看得到球友用什麼拍、穿什麼鞋",
+          "body": "同球場的球友名單會顯示他的主拍和主鞋。對哪一件好奇就舉手，主人只看得到有幾個人想聽，看不到是誰；他寫了心得，你會收到通知。\n\n新增球拍時，型號改成直接從清單點選，不再用拍照辨識。"
+        },
+        {
+          "emoji": "🏠",
+          "title": "球員證上的主場",
+          "body": "網球護照的球員證會自動顯示你過去 90 天最常打的球場。不用自己填，打出來的就是你的主場。"
+        },
+        {
+          "emoji": "👋",
+          "title": "加陌生人好友要打聲招呼",
+          "body": "對還不認識的球友送出好友邀請時，要附一句話，一樣有建議句可以一鍵帶入。對方看到的會是「為什麼想加我」，而不只是一個名字。"
+        }
+      ],
+      "fixes": [
+        "iPhone 新安裝之後第一次打開會閃退，已修好",
+        "約球對話裡的網址可以直接點開",
+        "「今日足跡」模式下，球場不再合併成一個圓圈，每一座都看得到",
+        "球友名單上的程度移到最前面，不會再被很長的球場名擠掉",
+        "英文介面不再夾雜中文，用語也統一了"
+      ],
+      "en": {
+        "title": "v1.26.0 · Edit your hits, and teams get a chat",
+        "summary": "Hosts can now change a hit after posting it, and open it up to more people. Teams have their own chat, and joining now goes through the captain. You can also ask a player to write about their racket or shoes.",
+        "highlights": [
+          {
+            "emoji": "✏️",
+            "title": "Edit a hit after posting",
+            "body": "Hosts can change the time, what you'll play, the ball, the level and the note. You can also invite more people or let more people see it.\n\nWidening who can see it asks you to confirm first: anyone who has already seen it or joined keeps seeing it. Hit cards on the home screen and on courts now put the details on top and the buttons underneath."
+          },
+          {
+            "emoji": "💬",
+            "title": "Team chat",
+            "body": "Every team has its own chat, visible only to members. Practice times, who's bringing balls, where to play this week: say it there."
+          },
+          {
+            "emoji": "🤝",
+            "title": "Joining a team is now a request",
+            "body": "Add a line when you ask to join; a suggested line is one tap away. The captain approves it right on the team page, and you'll get a notification.\n\nAnyone with the invite code can still join directly, and the captain is notified."
+          },
+          {
+            "emoji": "🎾",
+            "title": "See what racket and shoes people use",
+            "body": "The list of players at a court now shows their main racket and shoes. Curious about one? Raise your hand. The owner only sees how many people asked, not who, and you'll be notified when they write about it.\n\nWhen adding a racket, you now pick the model from a list instead of scanning a photo."
+          },
+          {
+            "emoji": "🏠",
+            "title": "Home court on your player card",
+            "body": "Your passport's player card now shows the court you've played at most in the last 90 days. Nothing to fill in: your home court is where you actually play."
+          },
+          {
+            "emoji": "👋",
+            "title": "Say hi when adding someone new",
+            "body": "Friend requests to players you don't know yet now come with a short line, with a suggestion one tap away. They see why you want to connect, not just a name."
+          }
+        ],
+        "fixes": [
+          "Fixed a crash the first time the app opened after a fresh install on iPhone",
+          "Links in hit chats can be tapped",
+          "In Today's footprints, courts are no longer merged into one circle",
+          "Levels now come first in player lists, so long court names don't cut them off",
+          "No more Chinese text in the English interface, and wording is consistent"
+        ]
+      }
+    },
+    {
       "build": 2580,
       "version": "1.23.0",
       "date": "2026-10-08",
