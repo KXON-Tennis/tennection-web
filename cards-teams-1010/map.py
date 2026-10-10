@@ -1,9 +1,10 @@
 import json,math,base64,os
+HERE=os.path.dirname(os.path.abspath(__file__))
 W,H=1080,1350
 g=json.load(open('/Users/kaysoncho/dev/tns_diary_app/assets/geo/tw_counties.geojson'))
 LON0,LON1,LAT0,LAT1=119.25,122.1,21.85,25.35
 k=math.cos(math.radians(23.6))
-top,bot=330,1250
+top,bot=(int(os.environ.get('MAP_TOP',330)),int(os.environ.get('MAP_BOT',1250)))
 s=(bot-top)/(LAT1-LAT0)
 mapw=(LON1-LON0)*k*s
 left=(W-mapw)/2+10
@@ -23,7 +24,7 @@ for f in g['features']:
             if len(out)<3: continue
             d+='M'+' L'.join(f'{x:.1f} {y:.1f}' for x,y in out)+'Z'
     paths.append(d)
-teams=json.load(open('teams.json'))
+teams=json.load(open(os.environ.get('TEAMS_JSON',os.path.join(HERE,'teams.json'))))
 for t in teams: t['p']=P(t['lng'],t['lat'])
 if __name__=='__main__':
     for t in teams: print(t['i'],t['court'],[round(v) for v in t['p']])
