@@ -9,7 +9,7 @@ s=(bot-top)/(LAT1-LAT0)
 mapw=(LON1-LON0)*k*s
 left=(W-mapw)/2+10
 def P(lon,lat): return (left+(lon-LON0)*k*s, top+(LAT1-lat)*s)
-paths=[]
+paths=[]; names=[]  # names[i] 是 paths[i] 的縣市名
 for f in g['features']:
     if f['properties']['name'] in ('金門縣','連江縣'): continue
     d=''
@@ -23,7 +23,7 @@ for f in g['features']:
                 if abs(p[0]-out[-1][0])+abs(p[1]-out[-1][1])>0.6: out.append(p)
             if len(out)<3: continue
             d+='M'+' L'.join(f'{x:.1f} {y:.1f}' for x,y in out)+'Z'
-    paths.append(d)
+    paths.append(d); names.append(f['properties']['name'])
 teams=json.load(open(os.environ.get('TEAMS_JSON',os.path.join(HERE,'teams.json'))))
 for t in teams: t['p']=P(t['lng'],t['lat'])
 if __name__=='__main__':

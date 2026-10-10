@@ -8,8 +8,8 @@ from map import *
 from common import as_of
 THEME=sys.argv[1] if len(sys.argv)>1 else 'light'
 T={
- 'light':dict(bg='#FBFAF6',land='#E4EAD9',edge='#FBFAF6',title='#1B5138',sub='#6E776F',line='#9BB59A',dot='#3F7C43',dotEdge='#FFFFFF',ring='#FFFFFF',ringEdge='#DCD9CF',ball='#D8E64A',ballBg='#1B5138',label='#2E5A34',halo='#FBFAF6',foot='#9BA29B',footStrong='#1B5138',bar=True,brand=False),
- 'dark': dict(bg='#11151a',land='#1F272E',edge='#11151a',title='#FFFFFF',sub='#9AA4AD',line='#5E7F2A',dot='#C6FF3C',dotEdge='#11151a',ring='#11151a',ringEdge='#C6FF3C',ball='#C6FF3C',ballBg='#1B5138',label='#E6EBEF',halo='#11151a',foot='#8A949C',footStrong='#C6FF3C',bar=False,brand=True),
+ 'light':dict(bg='#FBFAF6',land='#E4EAD9',landOn='#D2E2BF',edge='#FBFAF6',title='#1B5138',sub='#6E776F',line='#9BB59A',dot='#3F7C43',dotEdge='#FFFFFF',ring='#FFFFFF',ringEdge='#DCD9CF',ball='#D8E64A',ballBg='#1B5138',label='#2E5A34',halo='#FBFAF6',foot='#9BA29B',footStrong='#1B5138',bar=True,brand=False),
+ 'dark': dict(bg='#11151a',land='#1F272E',landOn='#2A3829',edge='#11151a',title='#FFFFFF',sub='#9AA4AD',line='#5E7F2A',dot='#C6FF3C',dotEdge='#11151a',ring='#11151a',ringEdge='#C6FF3C',ball='#C6FF3C',ballBg='#1B5138',label='#E6EBEF',halo='#11151a',foot='#8A949C',footStrong='#C6FF3C',bar=False,brand=True),
 }[THEME]
 F="font-family=\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif\""
 OFF={5:(-139,-159),6:(-39,-159),7:(61,-135),8:(202,-47),2:(-214,-57),3:(-229,49),0:(-194,-95),1:(-194,15),4:(-109,134)}
@@ -35,7 +35,9 @@ if T['brand']:
     o.append(f'<image x="168" y="40" width="157" height="108" href="data:image/png;base64,{b64(os.path.join(web,"wordmark-white.png"))}"/>')
     ty=230
 o.append(as_of(T, 104 if T['brand'] else 60))
-o.append(f'<g fill="{T["land"]}" stroke="{T["edge"]}" stroke-width="1.2" stroke-linejoin="round">'+''.join(f'<path d="{d}"/>' for d in paths)+'</g>')
+# 有球隊主場的縣市稍微亮一階
+team_cities={t['city'] for t in teams}
+o.append(f'<g stroke="{T["edge"]}" stroke-width="1.2" stroke-linejoin="round">'+''.join(f'<path d="{d}" fill="{T["landOn"] if n in team_cities else T["land"]}"/>' for d,n in zip(paths,names))+'</g>')
 o.append(f'<text x="80" y="{ty}" font-size="45" font-weight="800" fill="{T["title"]}">台灣各地，已經有球隊在自己主場陸續登錄囉</text>')
 o.append(f'<text x="80" y="{ty+50}" font-size="30" fill="{T["sub"]}">9 支球隊 · 5 個城市，每一隊都有自己的主場</text>')
 for t in teams:
