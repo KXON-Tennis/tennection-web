@@ -56,6 +56,5 @@
 <rect x="300" y="1190" width="251" height="28" rx="14" fill="#5E7F2A"/>
 <text x="567" y="1214" font-size="25" font-weight="700" fill="#9AA4AD">17%</text>
 <text x="637" y="1214" font-size="23" fill="#9AA4AD">（李寧、Lotto 等）</text>
-<text x="1000" y="1258" font-size="20" fill="#8A949C" text-anchor="end">百分比四捨五入，加總可能不是 100%</text>
 <text x="540" y="1310" font-size="30" text-anchor="middle" fill="#8A949C">Your tennis life, <tspan fill="#C6FF3C" font-weight="800">connected.</tspan></text>
 </svg>

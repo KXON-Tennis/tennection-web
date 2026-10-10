@@ -33,6 +33,5 @@ o.append(f'<text x="330" y="{y+58}" font-size="32" font-weight="800" fill="{T["t
 o.append(f'<text x="964" y="{y+58}" font-size="28" font-weight="800" fill="{T["accent"]}" text-anchor="end">{int(TOP[1]*100/HOLDERS+0.5)}% 的球友</text>')
 # 「其他」裡填在型號欄的品牌（brand=other）：李寧、Lotto、Artengo
 o+=bars(904,'球鞋',SHOES,42,other_note='李寧、Lotto 等')
-o.append(f'<text x="1000" y="1258" font-size="20" fill="{T["foot"]}" text-anchor="end">百分比四捨五入，加總可能不是 100%</text>')
 o+=foot()
 open(os.path.join(HERE,'gear-bag.svg'),'w').write('\n'.join(o))
