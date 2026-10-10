@@ -13,7 +13,7 @@ def pct(rows,total):
     rows=rows+[('其他',total-sum(n for _,n in rows))]
     return [(name,int(n*100/total+0.5)) for name,n in rows]
 RACKETS=pct(RACKETS,NR); SHOES=pct(SHOES,NS)
-o=head('球友的球袋裡，都裝了什麼？',f'{NR} 支球拍 · {NS} 雙球鞋，都是球友自己登錄的')
+o=head('球友的球袋裡，都裝了什麼？','')
 def bars(y,title,rows,rowh,other_note=None):
     out=[f'<text x="80" y="{y}" font-size="32" font-weight="800" fill="{T["label"]}">{title}</text>']
     mx=max(n for _,n in rows); y+=26
@@ -25,13 +25,13 @@ def bars(y,title,rows,rowh,other_note=None):
         if name=='其他' and other_note:
             out.append(f'<text x="{300+w+16+len(str(n))*15+40}" y="{yy+32}" font-size="23" fill="{T["sub"]}">（{other_note}）</text>')
     return out
-o+=bars(350,'球拍',RACKETS,45)
-y=752
+o+=bars(310,'球拍',RACKETS,45)
+y=712
 o.append(f'<rect x="80" y="{y}" width="920" height="92" rx="26" fill="{T["panel"]}" stroke="{T["edge"]}" stroke-width="2"/>')
 o.append(f'<text x="116" y="{y+57}" font-size="26" fill="{T["sub"]}">最多人拿的球拍</text>')
 o.append(f'<text x="330" y="{y+58}" font-size="32" font-weight="800" fill="{T["title"]}">{TOP[0]}</text>')
 o.append(f'<text x="964" y="{y+58}" font-size="28" font-weight="800" fill="{T["accent"]}" text-anchor="end">{int(TOP[1]*100/HOLDERS+0.5)}% 的球友</text>')
 # 「其他」裡填在型號欄的品牌（brand=other）：李寧、Lotto、Artengo
-o+=bars(904,'球鞋',SHOES,42,other_note='李寧、Lotto 等')
+o+=bars(864,'球鞋',SHOES,44,other_note='李寧、Lotto 等')
 o+=foot()
 open(os.path.join(HERE,'gear-bag.svg'),'w').write('\n'.join(o))
