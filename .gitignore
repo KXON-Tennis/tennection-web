@@ -10,3 +10,4 @@ node_modules/
 !package.json
 !updates.json
 !vercel.json
+__pycache__/
