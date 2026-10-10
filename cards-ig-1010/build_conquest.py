@@ -21,7 +21,7 @@ o.append('<g>'+''.join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5.5" fill="{T["acc
 # 右上角：日本那一筆
 abroad=[c for c in cs if c not in tw]
 if abroad:
-    bx,by=818,640
+    bx,by=80,560
     o.append(f'<rect x="{bx}" y="{by}" width="246" height="96" rx="20" fill="{T["panel"]}" stroke="{T["edge"]}" stroke-width="2"/>')
     o.append(f'<text x="{bx+24}" y="{by+40}" font-size="24" font-weight="700" fill="{T["label"]}">🇯🇵 還有 1 座在日本</text>')
     o.append(f'<text x="{bx+24}" y="{by+74}" font-size="20" fill="{T["sub"]}">東京 · 芝公園</text>')
