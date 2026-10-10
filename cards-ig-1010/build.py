@@ -5,6 +5,7 @@ logo 位置寫成相對於主場的位移，地圖上下移動時連線不會跑
 """
 import sys
 from map import *
+from common import as_of
 THEME=sys.argv[1] if len(sys.argv)>1 else 'light'
 T={
  'light':dict(bg='#FBFAF6',land='#E4EAD9',edge='#FBFAF6',title='#1B5138',sub='#6E776F',line='#9BB59A',dot='#3F7C43',dotEdge='#FFFFFF',ring='#FFFFFF',ringEdge='#DCD9CF',ball='#D8E64A',ballBg='#1B5138',label='#2E5A34',halo='#FBFAF6',foot='#9BA29B',footStrong='#1B5138',bar=True,brand=False),
@@ -33,6 +34,7 @@ if T['brand']:
     o.append(f'<image x="80" y="52" width="84" height="84" href="data:image/png;base64,{b64(os.path.join(web,"app-icon.png"))}"/>')
     o.append(f'<image x="168" y="40" width="157" height="108" href="data:image/png;base64,{b64(os.path.join(web,"wordmark-white.png"))}"/>')
     ty=230
+o.append(as_of(T, 104 if T['brand'] else 60))
 o.append(f'<g fill="{T["land"]}" stroke="{T["edge"]}" stroke-width="1.2" stroke-linejoin="round">'+''.join(f'<path d="{d}"/>' for d in paths)+'</g>')
 o.append(f'<text x="80" y="{ty}" font-size="45" font-weight="800" fill="{T["title"]}">台灣各地，已經有球隊在自己主場陸續登錄囉</text>')
 o.append(f'<text x="80" y="{ty+50}" font-size="30" fill="{T["sub"]}">9 支球隊 · 5 個城市，每一隊都有自己的主場</text>')
