@@ -34,7 +34,7 @@ if T['brand']:
     o.append(f'<image x="168" y="40" width="157" height="108" href="data:image/png;base64,{b64(os.path.join(web,"wordmark-white.png"))}"/>')
     ty=230
 o.append(f'<g fill="{T["land"]}" stroke="{T["edge"]}" stroke-width="1.2" stroke-linejoin="round">'+''.join(f'<path d="{d}"/>' for d in paths)+'</g>')
-o.append(f'<text x="80" y="{ty}" font-size="54" font-weight="800" fill="{T["title"]}">台灣各地，已經有球隊在這裡紮營</text>')
+o.append(f'<text x="80" y="{ty}" font-size="47" font-weight="800" fill="{T["title"]}">台灣各地，已經有球隊在自己主場陸續登錄</text>')
 o.append(f'<text x="80" y="{ty+50}" font-size="30" fill="{T["sub"]}">9 支球隊 · 5 個城市，每一隊都有自己的主場</text>')
 for t in teams:
     x,y=at(t['i'],OFF[t['i']]); px,py=t['p']
