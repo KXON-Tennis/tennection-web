@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>加入球隊 · Tennis Nut</title>
+  <script>
+    // 沒帶邀請碼就不是球隊邀請——多半是把 /join 當成「下載」連結貼出去的
+    // （IG 簡介曾經是 /join?ref=ig）。直接送去安裝頁，別讓第一次來的人
+    // 看到「這個連結少了邀請碼」。ref 之類的參數照帶過去。
+    if (!new URLSearchParams(location.search).get('code')) {
+      location.replace('/install' + location.search);
+    }
+  </script>
   <meta name="description" content="用邀請碼加入 Tennis Nut 上的球隊。" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="加入球隊 · Tennis Nut" />
