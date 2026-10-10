@@ -4,8 +4,11 @@ T=DARK
 RACKETS=[('Wilson',41),('Babolat',29),('HEAD',26),('YONEX',23),('Prince',5),('Tecnifibre',3),('Dunlop',2)]
 SHOES=[('ASICS',24),('Nike',8),('On',6),('K-Swiss',6),('adidas',5),('Babolat',3)]
 NR,NS=133,63
-# 最多人拿的球拍：依人數算（同一人兩支只算一次），分母是有登錄球拍的 94 人。
-TOP=('Babolat Pure Drive',9); HOLDERS=94
+# 最多人拿／穿的：以「系列」為單位（不分代數、不分 98/100），依人數算（同一人兩支只算一次）。
+# 型號是自由文字，寫法很亂（EZONE / Ezone 98 / EZONE 100；Gel Resolution X / Rx / RX美網），
+# 不合併的話會被拆成好幾個小的。分母是有登錄球拍 94 人、有登錄球鞋 52 人。
+TOP_RACKET=('YONEX EZONE',13,94)
+TOP_SHOE=('ASICS Gel-Resolution',8,52)
 
 def pct(rows,total):
     """佔全部的百分比，一般四捨五入：數量相同的就顯示相同的百分比，加總可能差 1%。
@@ -25,13 +28,15 @@ def bars(y,title,rows,rowh,other_note=None):
         if name=='其他' and other_note:
             out.append(f'<text x="{300+w+16+len(str(n))*15+40}" y="{yy+32}" font-size="23" fill="{T["sub"]}">（{other_note}）</text>')
     return out
-o+=bars(310,'球拍',RACKETS,45)
-y=712
-o.append(f'<rect x="80" y="{y}" width="920" height="92" rx="26" fill="{T["panel"]}" stroke="{T["edge"]}" stroke-width="2"/>')
-o.append(f'<text x="116" y="{y+57}" font-size="26" fill="{T["sub"]}">最多人拿的球拍</text>')
-o.append(f'<text x="330" y="{y+58}" font-size="32" font-weight="800" fill="{T["title"]}">{TOP[0]}</text>')
-o.append(f'<text x="964" y="{y+58}" font-size="28" font-weight="800" fill="{T["accent"]}" text-anchor="end">{int(TOP[1]*100/HOLDERS+0.5)}% 的球友</text>')
-# 「其他」裡填在型號欄的品牌（brand=other）：李寧、Lotto、Artengo
-o+=bars(864,'球鞋',SHOES,44,other_note='李寧、Lotto 等')
+o+=bars(310,'球拍',RACKETS,42)
+def top_panel(y,label,top):
+    name,n,d=top
+    return [f'<rect x="80" y="{y}" width="920" height="92" rx="26" fill="{T["panel"]}" stroke="{T["edge"]}" stroke-width="2"/>',
+      f'<text x="116" y="{y+57}" font-size="26" fill="{T["sub"]}">{label}</text>',
+      f'<text x="330" y="{y+58}" font-size="32" font-weight="800" fill="{T["title"]}">{name}</text>',
+      f'<text x="964" y="{y+58}" font-size="28" font-weight="800" fill="{T["accent"]}" text-anchor="end">{int(n*100/d+0.5)}% 的球友</text>']
+o+=top_panel(688,'最多人拿的球拍',TOP_RACKET)
+o+=bars(846,'球鞋',SHOES,40,other_note='李寧、Lotto 等')
+o+=top_panel(1166,'最多人穿的球鞋',TOP_SHOE)
 o+=foot()
 open(os.path.join(HERE,'gear-bag.svg'),'w').write('\n'.join(o))
