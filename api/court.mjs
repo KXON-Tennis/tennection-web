@@ -279,7 +279,9 @@ function page({ c, now, closures, hits, parking, live, nearby, players }) {
   </header>
 
   <main class="court">
-    <div class="crumbs"><a href="/courts-map">球場地圖</a>${c.city ? ` › ${h(c.city)}` : ""}</div>
+    <div class="crumbs"><a href="/courts-map">球場地圖</a>${c.country === "TW"
+      ? ` › <a href="/courts/tw">台灣</a>${c.city ? ` › <a href="/courts/tw/${encodeURIComponent(c.city)}">${h(c.city)}</a>` : ""}`
+      : (c.city ? ` › ${h(c.city)}` : "")}</div>
     <h1>${h(c.name)}</h1>
     ${c.name_en && c.name_en !== c.name && !isPlaceholderName(c.name_en) ? `<p class="en">${h(c.name_en)}</p>` : ""}
     <p class="addr">${h(c.address || c.city || "")}</p>

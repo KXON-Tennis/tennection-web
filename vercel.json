@@ -25,7 +25,21 @@
     }
   ],
   "rewrites": [
-    { "source": "/courts/:id", "destination": "/api/court?id=:id" },
-    { "source": "/sitemap-courts.xml", "destination": "/api/sitemap-courts" }
+    {
+      "source": "/courts/tw",
+      "destination": "/api/courts-region"
+    },
+    {
+      "source": "/courts/tw/:city",
+      "destination": "/api/courts-region?city=:city"
+    },
+    {
+      "source": "/courts/:id",
+      "destination": "/api/court?id=:id"
+    },
+    {
+      "source": "/sitemap-courts.xml",
+      "destination": "/api/sitemap-courts"
+    }
   ]
 }

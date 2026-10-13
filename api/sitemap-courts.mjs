@@ -4,6 +4,7 @@
 // 所以 sitemap 列出的頁面永遠不會自己說「別收我」。
 
 import { courtUrl, isIndexable, rest } from "./_lib/courts.mjs";
+import { regionUrl } from "./courts-region.mjs";
 
 export default async function handler(req, res) {
   const PAGE = 1000;
@@ -11,7 +12,7 @@ export default async function handler(req, res) {
   try {
     for (;;) {
       const rows = await rest(
-        `courts_with_status?select=id,name,country&country=eq.TW` +
+        `courts_with_status?select=id,name,country,city&country=eq.TW` +
         `&lat=not.is.null&lng=not.is.null&id=gt.${after}&order=id.asc&limit=${PAGE}`);
       all = all.concat(rows);
       if (rows.length < PAGE) break;
@@ -23,8 +24,11 @@ export default async function handler(req, res) {
     return res.end();
   }
 
-  const urls = all.filter(isIndexable)
-    .map((c) => `  <url><loc>${courtUrl(c.id)}</loc></url>`).join("\n");
+  const indexable = all.filter(isIndexable);
+  // 縣市頁在前：它們是爬蟲進到球場頁的入口。
+  const cities = [...new Set(indexable.map((c) => c.city).filter(Boolean))];
+  const urls = [regionUrl(), ...cities.map(regionUrl), ...indexable.map((c) => courtUrl(c.id))]
+    .map((u) => `  <url><loc>${u}</loc></url>`).join("\n");
 
   res.statusCode = 200;
   res.setHeader("Content-Type", "application/xml; charset=utf-8");
