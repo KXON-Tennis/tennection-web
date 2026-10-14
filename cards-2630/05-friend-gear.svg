@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1080" height="1080" fill="#FBFAF6"/>
+  <rect width="1080" height="14" fill="#1B5138"/>
+  <text x="80" y="170" font-size="72" font-weight="800" fill="#1B5138">好友的主拍、主鞋</text>
+  <text x="80" y="228" font-size="34" fill="#6E776F">好友列表上就看得到</text>
+  <rect x="80" y="286" width="920" height="210" rx="30" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <circle cx="150" cy="348" r="38" fill="#E7F1E1" stroke="#FFFFFF" stroke-width="3"/>
+  <text x="150" y="361" font-size="30" text-anchor="middle" fill="#3F7C43" font-weight="800">阿</text>
+  <text x="210" y="342" font-size="32" font-weight="800" fill="#1B5138">阿凱</text>
+  <text x="210" y="380" font-size="24" font-weight="700" fill="#5C9A46">練習 42 次</text>
+  <text x="210" y="432" font-size="27" fill="#6E776F">Wilson Pro Staff 97</text>
+  <text x="210" y="474" font-size="27" fill="#6E776F">Asics Gel-Resolution 9</text>
+  <g transform="translate(820 404) scale(2.2)" fill="none" stroke="#9BA29B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 V3.5 a1.3 1.3 0 0 1 2.6 0 V8 M5.6 7 V2 a1.3 1.3 0 0 1 2.6 0 V7.5 M8.2 7.5 V3 a1.3 1.3 0 0 1 2.6 0 V9 l1.3-1.6 a1.3 1.3 0 0 1 2 1.6 l-2.6 4 a4.5 4.5 0 0 1-3.8 2 H7 a4 4 0 0 1-4-4 Z"/></g>
+  <g transform="translate(820 446) scale(2.2)" fill="none" stroke="#9BA29B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 V3.5 a1.3 1.3 0 0 1 2.6 0 V8 M5.6 7 V2 a1.3 1.3 0 0 1 2.6 0 V7.5 M8.2 7.5 V3 a1.3 1.3 0 0 1 2.6 0 V9 l1.3-1.6 a1.3 1.3 0 0 1 2 1.6 l-2.6 4 a4.5 4.5 0 0 1-3.8 2 H7 a4 4 0 0 1-4-4 Z"/></g>
+  <rect x="80" y="522" width="920" height="210" rx="30" fill="#FFFFFF" stroke="#ECEAE2" stroke-width="2"/>
+  <circle cx="150" cy="584" r="38" fill="#E7F1E1" stroke="#FFFFFF" stroke-width="3"/>
+  <text x="150" y="597" font-size="30" text-anchor="middle" fill="#3F7C43" font-weight="800">A</text>
+  <text x="210" y="578" font-size="32" font-weight="800" fill="#1B5138">Amy Chen</text>
+  <text x="210" y="616" font-size="24" font-weight="700" fill="#5C9A46">練習 18 次</text>
+  <text x="210" y="668" font-size="27" fill="#6E776F">Babolat Pure Aero</text>
+  <text x="210" y="710" font-size="27" fill="#6E776F">Nike Vapor Pro</text>
+  <rect x="760" y="638" width="170" height="44" rx="22" fill="#EAF4E2"/>
+  <text x="845" y="668" font-size="24" font-weight="800" fill="#3F7C43" text-anchor="middle">讀心得</text>
+  <g transform="translate(820 682) scale(2.2)" fill="none" stroke="#9BA29B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 V3.5 a1.3 1.3 0 0 1 2.6 0 V8 M5.6 7 V2 a1.3 1.3 0 0 1 2.6 0 V7.5 M8.2 7.5 V3 a1.3 1.3 0 0 1 2.6 0 V9 l1.3-1.6 a1.3 1.3 0 0 1 2 1.6 l-2.6 4 a4.5 4.5 0 0 1-3.8 2 H7 a4 4 0 0 1-4-4 Z"/></g>
+  <rect x="80" y="786" width="920" height="150" rx="34" fill="#F3F8EC" stroke="#DCE8C8" stroke-width="2"/>
+  <text x="128" y="846" font-size="27" fill="#7C9A6E">好奇就舉手，他只知道有幾個人想聽</text>
+  <text x="128" y="902" font-size="36" font-weight="800" fill="#2E5A34">寫好了會通知你</text>
+  <text x="540" y="1012" font-size="32" text-anchor="middle" fill="#9BA29B">Your tennis life, <tspan fill="#1B5138" font-weight="800">connected.</tspan></text>
+</svg>
