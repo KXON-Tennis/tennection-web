@@ -7,6 +7,131 @@
   ],
   "releases": [
     {
+      "build": 2640,
+      "version": "1.28.0",
+      "date": "2026-10-15",
+      "image": "/blog-2640.png",
+      "title": "第 1.28.0 版更新：分享圖卡重新設計，一張圖只講一件事",
+      "summary": "練習的時間、比賽的比分、征服的第幾座球場，一張圖只放一個主角。新增「我的征服地圖」，把你打過的所有球場畫成一張圖分享。",
+      "highlights": [
+        {
+          "emoji": "🖼️",
+          "title": "練習：主角是你打了多久",
+          "body": "分享圖卡重新設計。練習那張，最大的字是你這次打了幾分鐘；底下是本週第幾場、在哪座球場、你是這座球場第幾位 Nut 球友；最下面一行是「With my」加上你的主拍。\n\n照片放進去會自動填滿整張卡，還是可以兩指縮放、拖曳調整位置。貼文 3:4、限動 9:16、透明貼紙三種都有。",
+          "shot": {
+            "src": "/shot-card-practice.jpg",
+            "alt": "練習圖卡：60 MIN、本週第 1 場、桃園市中路網球場、第 1 位在這裡打球的 Nut 球友、With my Head Graphene 360 Radical MP",
+            "caption": "主拍是護照球袋裡標成主拍的那一支。"
+          }
+        },
+        {
+          "emoji": "🏆",
+          "title": "比賽：主角是比分",
+          "body": "比賽那張把每一盤的比分並排放大，上面標出勝負和單打或雙打，底下是本週第幾場、對手、球場；雙打會多寫搭檔。",
+          "shot": {
+            "src": "/shot-card-match.jpg",
+            "alt": "比賽圖卡：WIN · DOUBLES、6–4、本週第 2 場、vs 球友B & 球友C、桃園市中路網球場、搭檔 球友A",
+            "caption": "示意圖，球友名稱為假名。"
+          }
+        },
+        {
+          "emoji": "🚩",
+          "title": "新球場：征服的第幾座",
+          "body": "征服新球場的紀念圖，主角是這是你的第幾座球場。\n\n第一次在一座球場打卡，現在也會跳出「征服第 N 座球場」，當場就能做成紀念圖卡；以前只有記練習的時候才會跳。",
+          "shot": {
+            "src": "/shot-card-court.jpg",
+            "alt": "新球場圖卡：NEW COURT、#5、征服的第 5 座球場、前鎮高中網球場、第 1 位 Nut 球友",
+            "caption": "練習牆、練習場不算征服，不會跳。"
+          }
+        },
+        {
+          "emoji": "🗺️",
+          "title": "我的征服地圖",
+          "body": "護照裡的「已征服球場」，按標題旁的「看地圖」，就能看到你打過的每一座球場畫在地圖上，上方寫著幾座球場、幾個國家、幾個縣市、幾種材質。\n\n按「分享我的征服地圖」，整張地圖會做成圖卡，寫上你一共征服了幾座球場。",
+          "shot": {
+            "src": "/shot-card-map.jpg",
+            "alt": "征服地圖圖卡：台灣地圖上的球場圓點，MY COURTS、14 COURTS IN TW",
+            "caption": "點地圖上的圓點，看得到還有誰也在那裡打過。"
+          }
+        },
+        {
+          "emoji": "📤",
+          "title": "錯過了當下，也找得到要分享的",
+          "body": "護照證件卡底下多了一顆「做張圖卡」，列出你最近一次的練習、比賽、最近征服的球場和征服地圖，點下去就能分享。還沒有紀錄的話，它會帶你去看附近的球場。"
+        },
+        {
+          "emoji": "👥",
+          "title": "分享今天的球隊",
+          "body": "同一天有兩位以上隊員在同一座球場留下紀錄，球隊頁會提醒你，可以把隊名、今天來了幾位、在哪座球場做成圖卡或透明貼紙，隊徽會放在最上面。",
+          "shot": {
+            "src": "/shot-card-team.jpg",
+            "alt": "球隊圖卡疊在紅土球場的團體照上：TEAM、18 PLAYERS、紅土週末網球隊、前鎮高中網球場、這個月一起打了 6 次",
+            "caption": "示意圖，隊名為假名。"
+          }
+        },
+        {
+          "emoji": "🎾",
+          "title": "也用這支的球友",
+          "body": "球袋裡的球拍和球鞋，角落會顯示還有幾位球友也在用。點開來，好友和在同縣市打過球的球友看得到名字，寫過心得的可以直接讀。"
+        }
+      ],
+      "fixes": [
+        "之後有新版本時，打開 App 會提醒你更新；Android 可以直接在 App 裡下載",
+        "日誌的「我的球場」改名「打卡球場」，排在「我的收藏」前面",
+        "練習、比賽、打卡球場的分享按鈕統一成同一顆「分享」，有沒有照片都在同一個位置",
+        "填表時哪一格沒填、為什麼送不出去，會直接說清楚；存失敗時不會再假裝成功",
+        "裝備「也用這支」改寫成「2 位現在在用，2 位曾經用過」"
+      ],
+      "en": {
+        "title": "v1.28.0 · Share cards, redesigned around one number",
+        "summary": "Minutes played, the match score, or which court you just conquered: each card now leads with one number. New: My court map, every court you've played on one shareable map.",
+        "highlights": [
+          {
+            "emoji": "🖼️",
+            "title": "Practice: how long you played",
+            "body": "Share cards are redesigned. A practice card leads with the minutes you played, then this week's session count, the court, and your player number there. The last line reads \"With my\" and your main racket.\n\nPhotos now fill the card automatically, and you can still pinch and drag. Post 3:4, Story 9:16 and transparent sticker are all there."
+          },
+          {
+            "emoji": "🏆",
+            "title": "Match: the score",
+            "body": "Match cards put each set's score side by side, with win or loss and singles or doubles on top, then this week's count, your opponents and the court. Doubles also names your partner."
+          },
+          {
+            "emoji": "🚩",
+            "title": "New court: which number",
+            "body": "The new-court card leads with which court this is for you.\n\nYour first check-in at a court now shows the \"Court #N\" celebration too, so you can make the card right there. Before, only logging a practice did."
+          },
+          {
+            "emoji": "🗺️",
+            "title": "My court map",
+            "body": "In your passport, open Conquered courts and tap Map to see every court you've played, with counts of courts, countries, cities and surfaces. Tap Share my court map to turn it into a card."
+          },
+          {
+            "emoji": "📤",
+            "title": "Share later, still easy to find",
+            "body": "Make a share card, under your passport ID card, lists your latest practice, match, newest court and court map. With no records yet, it takes you to courts nearby."
+          },
+          {
+            "emoji": "👥",
+            "title": "Share today's team",
+            "body": "When two or more teammates log at the same court on the same day, the team page offers a card or sticker with the team name, how many came and where, with your team logo on top."
+          },
+          {
+            "emoji": "🎾",
+            "title": "Also on this racket",
+            "body": "Rackets and shoes in your bag show how many other players use them. Open the list to see friends and players from your city, and read their reviews."
+          }
+        ],
+        "fixes": [
+          "Update reminders when a new version is out; on Android it downloads in the app",
+          "\"My courts\" in the diary is now \"Checked-in courts\", before Saved",
+          "One Share button in the same place on practices, matches and courts",
+          "Forms say which field is missing and why they can't be sent",
+          "Gear counts now read \"2 using now, 2 used before\""
+        ]
+      }
+    },
+    {
       "build": 2630,
       "version": "1.27.0",
       "date": "2026-10-14",

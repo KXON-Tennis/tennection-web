@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>第 1.28.0 版更新：分享圖卡重新設計，一張圖只講一件事 · Tennis Nut</title>
+  <meta name="description" content="練習的時間、比賽的比分、征服的第幾座球場，一張圖只放一個主角。新增「我的征服地圖」，把你打過的所有球場畫成一張圖分享。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="第 1.28.0 版更新：分享圖卡重新設計，一張圖只講一件事 · Tennis Nut" />
+  <meta property="og:description" content="練習的時間、比賽的比分、征服的第幾座球場，一張圖只放一個主角。新增「我的征服地圖」，把你打過的所有球場畫成一張圖分享。" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/blog/2640" />
+  <meta property="og:image" content="https://tennisnut.kxon.net/blog-2640.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
+  <link rel="canonical" href="https://tennisnut.kxon.net/blog/2640" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://tennisnut.kxon.net/blog/2640" />
+  <link rel="alternate" hreflang="en" href="https://tennisnut.kxon.net/en/blog/2640" />
+  <link rel="alternate" hreflang="x-default" href="https://tennisnut.kxon.net/blog/2640" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .rel-lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    .hl { display: flex; gap: 14px; align-items: flex-start; background: var(--surface);
+          border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 14px; margin-bottom: 14px; }
+    .hl-emoji { font-size: 22px; line-height: 1.4; flex-shrink: 0; }
+    .hl-body h2 { font-size: 17px; margin: 0 0 6px; }
+    .hl-body p { margin: 0; color: var(--text-secondary); font-size: 15px; }
+    .hl-shot { margin: 14px 0 2px; }
+    .hl-shot img { display: block; width: 100%; max-width: 300px; height: auto;
+                   border-radius: 12px; }
+    .hl-shot figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; }
+    .guide-h { font-size: 19px; margin: 34px 0 2px; padding-top: 4px; }
+    .guide-h + .meta { margin-top: 0; }
+    .fixes { margin: 28px 0 8px; }
+    .fixes h2 { font-size: 15px; color: var(--text-tertiary); font-weight: 600; margin: 0 0 8px; }
+    .fixes ul { margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 15px; }
+    .fixes li { margin-bottom: 4px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 14px 16px; font-size: 15px; margin: 28px 0 0; }
+    .rel-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; font-size: 14px; }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-secondary); }
+    .rel-list { list-style: none; margin: 20px 0 0; padding: 0; }
+    .rel-item { margin-bottom: 12px; }
+    .rel-item a { display: block; background: var(--surface); border: 1px solid var(--border);
+                  border-radius: 14px; padding: 18px; text-decoration: none;
+                  transition: background-color .15s ease, border-color .15s ease; }
+    .rel-item a:hover { background: var(--accent-d); border-color: var(--accent-d);
+                        text-decoration: none; }
+    .rel-item a:hover .rel-item-title,
+    .rel-item a:hover .rel-item-meta { color: #fff; }
+    .rel-item a:hover .rel-item-sum { color: rgba(255, 255, 255, .82); }
+    .rel-item-meta { font-size: 13px; color: var(--text-tertiary); }
+    .rel-item-title { font-family: "Sora", -apple-system, sans-serif; font-size: 19px;
+                      color: var(--text-primary); margin: 4px 0 6px; }
+    .rel-item-sum { margin: 0; font-size: 15px; color: var(--text-secondary); }
+
+    /* 區塊標題：小標籤 + 一條線，兩區才分得開 */
+    .sec-eyebrow { display: flex; align-items: center; gap: 12px; margin: 44px 0 0; }
+    .sec-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .sec-eyebrow h2 { font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
+                      color: var(--accent); margin: 0; white-space: nowrap; }
+
+    /* 最新一版：有圖、字大，跟舊版本明顯不同重量 */
+    .rel-hero { display: block; background: var(--surface); border: 1px solid var(--border);
+                border-radius: 18px; overflow: hidden; text-decoration: none; margin-top: 20px; }
+    .rel-hero { transition: border-color .15s ease; }
+    .rel-hero:hover { border-color: var(--accent-d); text-decoration: none; }
+    .rel-hero:hover .rel-hero-body { background: var(--accent-d); }
+    .rel-hero-body { transition: background-color .15s ease; }
+    .rel-hero:hover h3, .rel-hero:hover .rel-item-meta { color: #fff; }
+    .rel-hero:hover p { color: rgba(255, 255, 255, .82); }
+    .rel-hero-body { padding: 26px 22px 28px; }
+    .rel-badge { display: inline-block; background: var(--accent); color: #fff; font-size: 11px;
+                 font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 3px 10px; }
+    .rel-hero h3 { font-family: "Sora", -apple-system, sans-serif; font-size: 24px; line-height: 1.35;
+                   color: var(--text-primary); margin: 12px 0 8px; }
+    .rel-hero p { margin: 0; font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+    .rel-hero .rel-item-meta { margin-top: 12px; }
+
+    /* 舊版本：收成一行，日期與標題並排 */
+    .rel-past { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--border); }
+    .rel-past li a { display: flex; gap: 14px; align-items: baseline; padding: 14px 2px;
+                     border-bottom: 1px solid var(--border); text-decoration: none; }
+    .rel-past li a { transition: background-color .15s ease; border-radius: 8px; }
+    .rel-past li a:hover { background: var(--accent-d); text-decoration: none;
+                           padding-left: 10px; padding-right: 10px; }
+    .rel-past li a:hover .rel-past-t { color: #fff; }
+    .rel-past li a:hover .rel-past-d { color: rgba(255, 255, 255, .75); }
+    .rel-past-d { font-size: 13px; color: var(--text-tertiary); white-space: nowrap; }
+    .rel-past-t { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+
+    /* 功能介紹：圖示當錨點，桌機兩欄 */
+    .guide-grid { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+    @media (min-width: 720px) { .guide-grid { grid-template-columns: 1fr 1fr; } }
+    .guide-grid a { display: flex; gap: 14px; height: 100%; background: var(--surface);
+                    border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+                    text-decoration: none;
+                    transition: background-color .15s ease, border-color .15s ease; }
+    /* 滑過整張卡就翻成品牌綠底白字——卡片本來就是一整個連結，
+       只換邊框顏色的話，游標在卡片中間時看不出它可以點。 */
+    .guide-grid a:hover { background: var(--accent-d); border-color: var(--accent-d);
+                          text-decoration: none; }
+    .guide-grid a:hover .guide-t { color: #fff; }
+    .guide-grid a:hover .guide-s { color: rgba(255, 255, 255, .82); }
+    .guide-ic { font-size: 22px; line-height: 1.3; flex-shrink: 0; }
+    .guide-t { font-size: 17px; font-weight: 700; color: var(--text-primary); margin: 0 0 6px; }
+    .guide-s { margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="brand-link">
+      <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
+    </a>
+    <nav>
+      <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">下載</a>
+      <a href="/install">安裝</a>
+      <a href="/blog" class="active">Blog</a>
+      <a href="/privacy">隱私權</a>
+      <a href="/terms">服務條款</a>
+      <a href="/en/blog">EN</a>
+    </nav>
+  </header>
+
+  <article class="container rel">
+    <a class="rel-back" href="/blog">← 所有更新</a>
+    <span class="tag-line">版本 1.28.0 · Build 2640 · 2026.10.15</span>
+    <h1>第 1.28.0 版更新：分享圖卡重新設計，一張圖只講一件事</h1>
+    <p class="rel-lead">練習的時間、比賽的比分、征服的第幾座球場，一張圖只放一個主角。新增「我的征服地圖」，把你打過的所有球場畫成一張圖分享。</p>
+
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">🖼️</div>
+      <div class="hl-body">
+        <h2>練習：主角是你打了多久</h2>
+        <p>分享圖卡重新設計。練習那張，最大的字是你這次打了幾分鐘；底下是本週第幾場、在哪座球場、你是這座球場第幾位 Nut 球友；最下面一行是「With my」加上你的主拍。
+
+照片放進去會自動填滿整張卡，還是可以兩指縮放、拖曳調整位置。貼文 3:4、限動 9:16、透明貼紙三種都有。</p>
+        <figure class="hl-shot">
+          <img src="/shot-card-practice.jpg" alt="練習圖卡：60 MIN、本週第 1 場、桃園市中路網球場、第 1 位在這裡打球的 Nut 球友、With my Head Graphene 360 Radical MP" loading="lazy" />
+          <figcaption>主拍是護照球袋裡標成主拍的那一支。</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">🏆</div>
+      <div class="hl-body">
+        <h2>比賽：主角是比分</h2>
+        <p>比賽那張把每一盤的比分並排放大，上面標出勝負和單打或雙打，底下是本週第幾場、對手、球場；雙打會多寫搭檔。</p>
+        <figure class="hl-shot">
+          <img src="/shot-card-match.jpg" alt="比賽圖卡：WIN · DOUBLES、6–4、本週第 2 場、vs 球友B &amp; 球友C、桃園市中路網球場、搭檔 球友A" loading="lazy" />
+          <figcaption>示意圖，球友名稱為假名。</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">🚩</div>
+      <div class="hl-body">
+        <h2>新球場：征服的第幾座</h2>
+        <p>征服新球場的紀念圖，主角是這是你的第幾座球場。
+
+第一次在一座球場打卡，現在也會跳出「征服第 N 座球場」，當場就能做成紀念圖卡；以前只有記練習的時候才會跳。</p>
+        <figure class="hl-shot">
+          <img src="/shot-card-court.jpg" alt="新球場圖卡：NEW COURT、#5、征服的第 5 座球場、前鎮高中網球場、第 1 位 Nut 球友" loading="lazy" />
+          <figcaption>練習牆、練習場不算征服，不會跳。</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">🗺️</div>
+      <div class="hl-body">
+        <h2>我的征服地圖</h2>
+        <p>護照裡的「已征服球場」，按標題旁的「看地圖」，就能看到你打過的每一座球場畫在地圖上，上方寫著幾座球場、幾個國家、幾個縣市、幾種材質。
+
+按「分享我的征服地圖」，整張地圖會做成圖卡，寫上你一共征服了幾座球場。</p>
+        <figure class="hl-shot">
+          <img src="/shot-card-map.jpg" alt="征服地圖圖卡：台灣地圖上的球場圓點，MY COURTS、14 COURTS IN TW" loading="lazy" />
+          <figcaption>點地圖上的圓點，看得到還有誰也在那裡打過。</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">📤</div>
+      <div class="hl-body">
+        <h2>錯過了當下，也找得到要分享的</h2>
+        <p>護照證件卡底下多了一顆「做張圖卡」，列出你最近一次的練習、比賽、最近征服的球場和征服地圖，點下去就能分享。還沒有紀錄的話，它會帶你去看附近的球場。</p>
+
+      </div>
+    </section>
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">👥</div>
+      <div class="hl-body">
+        <h2>分享今天的球隊</h2>
+        <p>同一天有兩位以上隊員在同一座球場留下紀錄，球隊頁會提醒你，可以把隊名、今天來了幾位、在哪座球場做成圖卡或透明貼紙，隊徽會放在最上面。</p>
+        <figure class="hl-shot">
+          <img src="/shot-card-team.jpg" alt="球隊圖卡疊在紅土球場的團體照上：TEAM、18 PLAYERS、紅土週末網球隊、前鎮高中網球場、這個月一起打了 6 次" loading="lazy" />
+          <figcaption>示意圖，隊名為假名。</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">🎾</div>
+      <div class="hl-body">
+        <h2>也用這支的球友</h2>
+        <p>球袋裡的球拍和球鞋，角落會顯示還有幾位球友也在用。點開來，好友和在同縣市打過球的球友看得到名字，寫過心得的可以直接讀。</p>
+
+      </div>
+    </section>
+
+    <section class="fixes">
+      <h2>其他修正</h2>
+      <ul>
+        <li>之後有新版本時，打開 App 會提醒你更新；Android 可以直接在 App 裡下載</li>
+        <li>日誌的「我的球場」改名「打卡球場」，排在「我的收藏」前面</li>
+        <li>練習、比賽、打卡球場的分享按鈕統一成同一顆「分享」，有沒有照片都在同一個位置</li>
+        <li>填表時哪一格沒填、為什麼送不出去，會直接說清楚；存失敗時不會再假裝成功</li>
+        <li>裝備「也用這支」改寫成「2 位現在在用，2 位曾經用過」</li>
+      </ul>
+    </section>
+
+    <div class="callout"><b>怎麼更新？</b> Android 走 Google Play 會自動更新；iPhone 從 App Store 更新即可。還沒裝的話，iPhone 從 <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">App Store</a> 下載。</div>
+
+    <nav class="rel-nav">
+      <span></span>
+      <a href="/blog/2630">1.27.0 (2630) →</a>
+    </nav>
+
+    <div class="guide-foot">用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。</div>
+  </article>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-text">
+        <a href="/blog">Blog</a>·
+        <a href="/privacy">隱私權政策</a>·
+        <a href="/terms">服務條款</a>·
+        <a href="mailto:kaysoncho@gmail.com">聯絡我們</a>
+        <div style="margin-top: 12px;">© 2026 Tennis Nut · KXON</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
