@@ -7,6 +7,85 @@
   ],
   "releases": [
     {
+      "build": 2680,
+      "version": "1.29.2",
+      "date": "2026-10-23",
+      "title": "第 1.29 版更新：沉浸模式、裝備照片，還有你的球拍打了多久",
+      "summary": "在球場上打開沉浸模式，看得到身邊也開著的球友；球拍、球鞋拍張照就變成型錄照；練習和比賽會記下你用的拍子、當時的線和磅數，每支拍打了多久、贏了幾場都看得到。",
+      "highlights": [
+        {
+          "emoji": "🎾",
+          "title": "每支拍子打了多久",
+          "body": "練習、比賽會自動記上你的主拍、主鞋。這次用的不是主拍的話，在表單的「這次用的裝備」換成那一支就好。\n\n護照的球袋裡，每件裝備都寫著打了幾小時、幾場；點開還看得到勝敗，以及換線後打了多久。打開舊的練習或比賽，也看得到那次用的是哪支拍、哪雙鞋。"
+        },
+        {
+          "emoji": "🧵",
+          "title": "拍線與磅數，留在每一筆紀錄裡",
+          "body": "每筆練習、比賽都會存下當時穿的線和磅數。之後換了線，舊紀錄還是寫著當時的設定。\n\n同一支拍穿過不同的線、試過不同磅數，點開球拍的「依穿線」，就能比較每一種設定各打了多久、贏了幾場。選這次用的球拍時，名稱底下也會寫著線和磅數，分得出是哪一支。"
+        },
+        {
+          "emoji": "🕶️",
+          "title": "沉浸模式",
+          "body": "中間的按鈕多了沉浸模式：地圖變成立體的，身邊也開著的球友會出現在你周圍。點對方就能加好友、記這場比賽、約下次。\n\n頭像上可以掛一句招呼語，例如「找單打對手」；和別人在同一座球場打球時，App 會提醒你們打開。"
+        },
+        {
+          "emoji": "👑",
+          "title": "勝場王與球隊顏色",
+          "body": "每座球場的勝場王會寫出守了幾天、屬於哪一支球隊，球場底部會透出那支球隊的顏色。隊長可以自選隊色，你也可以在護照設定自己的主要球隊。"
+        },
+        {
+          "emoji": "📸",
+          "title": "裝備照片",
+          "body": "在護照的球袋點一張卡片，選「拍照片」，照著框線把球拍或球鞋放好，大約一分鐘後就會變成去背的型錄照。白色拍線放在深色地面上效果最好。\n\n好友列表、點人跳出的球友卡和好友護照，都看得到對方主拍、主鞋的照片。"
+        },
+        {
+          "emoji": "🗓️",
+          "title": "紀錄改成時間軸",
+          "body": "我的練習、我的比賽、征服球場改成時間軸。每一座征服過的球場，都寫著你在那裡練了幾小時、打過幾場。"
+        }
+      ],
+      "fixes": [
+        "記錄、修改、刪除之後，征服球場、徽章、堅果、地圖、好友、球隊都會立刻更新，不用重新整理",
+        "球袋可以放 10 支球拍、6 雙球鞋",
+        "地圖上的球場直接寫出「場地客滿」「場地溼滑」這類狀況",
+        "好友可以從護照直接新增",
+        "面對面記比賽，被記進去的球友也會馬上看到那一場",
+        "封鎖一位球友時，會同時解除好友",
+        "修正 Android 地圖偶爾閃退；修正 iPhone 地圖上多出一個藍色定位點"
+      ],
+      "en": {
+        "title": "v1.29 · Immersive mode, gear photos, and how long you've played each racket",
+        "summary": "Open immersive mode on court to see nearby players who have it open. Photograph your racket and shoes for a clean catalog shot. Practices and matches now keep the racket, strings and tension you used.",
+        "highlights": [
+          {
+            "emoji": "🎾",
+            "title": "Hours on every racket",
+            "body": "Practices and matches use your main racket and shoes automatically. If you used something else, change it under \"Gear this time\".\n\nIn your bag, every item shows hours played and matches; open it for win–loss and hours since restringing. Old practices and matches show the racket and shoes you used."
+          },
+          {
+            "emoji": "🧵",
+            "title": "Strings and tension, kept with every record",
+            "body": "Each practice and match keeps the strings and tension you played with, even after you restring.\n\nOpen a racket and look under \"By string setup\" to compare hours and wins for each string and tension."
+          },
+          {
+            "emoji": "🕶️",
+            "title": "Immersive mode",
+            "body": "A 3D map from the center button, showing nearby players who have it open. Tap someone to add them, record your match or plan the next one."
+          },
+          {
+            "emoji": "📸",
+            "title": "Gear photos",
+            "body": "Tap a card in your bag and choose Take a photo. About a minute later it becomes a clean catalog-style photo. Friends see it in your player card and passport."
+          }
+        ],
+        "fixes": [
+          "Everything updates the moment you save: conquests, badges, nuts, the map, friends and teams",
+          "Room for 10 rackets and 6 pairs of shoes",
+          "Fixed an occasional Android map crash"
+        ]
+      }
+    },
+    {
       "build": 2640,
       "version": "1.28.0",
       "date": "2026-10-15",
