@@ -26,6 +26,10 @@
   ],
   "rewrites": [
     {
+      "source": "/s/:slug",
+      "destination": "/shop"
+    },
+    {
       "source": "/courts/tw",
       "destination": "/api/courts-region"
     },
