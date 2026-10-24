@@ -68,7 +68,7 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
     .toc ol { margin: 0; padding-left: 1.4em; columns: 2; column-gap: 28px; font-size: 14.5px; }
     @media (max-width: 520px) { .toc ol { columns: 1; } }
     .toc li { margin-bottom: 6px; break-inside: avoid; }
-    h2[id] { scroll-margin-top: 16px; }
+    h2[id], h3[id] { scroll-margin-top: 16px; }
     table.nuts { width: 100%; border-collapse: collapse; font-size: 14.5px; margin: 12px 0 8px; }
     table.nuts th, table.nuts td { text-align: left; padding: 8px 10px;
                                    border-bottom: 1px solid var(--border); color: var(--text-secondary); }
@@ -615,17 +615,168 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
 
     <!-- 17 ────────────────────────────────────────────────────────── -->
     <h2 id="contribute"><span>17. 貢獻球場資訊</span></h2>
-    <p>球場資料是球友一起補起來的，每一種都有堅果：</p>
-    <table class="nuts">
-      <tr><th>做什麼</th><th>堅果</th><th>怎麼做</th></tr>
-      <tr><td>回報即時場況</td><td>+15</td><td>中間 ＋ → <b>回報場況</b> → <b>即時狀態回報</b>（可正常使用、溼滑、損壞、客滿、暫停開放）。人要在球場 200 公尺內，同一座球場每 30 分鐘一次</td></tr>
-      <tr><td>修正基本資訊</td><td>+15</td><td>球場卡右上 <b>⋮</b> → <b>補充 / 修正資訊</b>（名稱、地址、燈光、面數⋯⋯），審核通過後入帳</td></tr>
-      <tr><td>新增球場或牆壁</td><td>+50</td><td>地圖上的 <b>新增球場或牆壁</b>，拖曳圖釘到正確位置、填資料，審核通過後入帳</td></tr>
-      <tr><td>回報球場封閉</td><td>+15</td><td>人在 100 公尺內，附上公告照片會立刻生效</td></tr>
-      <tr><td>上傳球場第一張照片</td><td>+10</td><td>球場卡的 <b>球場照片</b>，人要在球場 200 公尺內</td></tr>
-    </table>
     <p>
-      你回報的狀況，會推播給把那座球場加最愛的人——他們出門前就知道。
+      地圖上的球場資料是球友一起補起來的。你可以做五件事，每一件都有堅果：
+    </p>
+    <table class="nuts">
+      <tr><th>做什麼</th><th>堅果</th><th>什麼時候入帳</th></tr>
+      <tr><td><a href="#c-add">新增球場或牆壁</a></td><td>+50</td><td>審核通過後</td></tr>
+      <tr><td><a href="#c-status">回報即時場況</a></td><td>+15</td><td>送出就入帳，同一座球場每 30 分鐘一次</td></tr>
+      <tr><td><a href="#c-correct">補充或修正資訊</a></td><td>+15</td><td>審核通過後</td></tr>
+      <tr><td><a href="#c-closure">回報封閉期間</a></td><td>+15</td><td>封閉生效後</td></tr>
+      <tr><td><a href="#c-photo">上傳球場第一張照片</a></td><td>+10</td><td>送出就入帳</td></tr>
+    </table>
+
+    <h3 id="c-add">新增球場或牆壁</h3>
+    <p>地圖上找不到你打球的地方，就把它加上去。</p>
+    <ol class="steps">
+      <li>在 <b>地圖</b> 分頁按 <b>新增球場或牆壁</b>。地圖會換成空照圖，看得到真正的球場線</li>
+      <li>拖曳地圖，把畫面中央的紅色圖釘對準球場。人就在球場的話，按定位鈕會直接跳到你的位置；
+        也可以用 <b>搜尋地址</b> 或 <b>輸入經緯度</b> 先跳過去</li>
+      <li>對準了按 <b>位置確認</b></li>
+    </ol>
+    <figure>
+      <img src="/shot-court-add-pin.svg" alt="新增球場時的空照地圖，中央的紅色圖釘對準球場，下方是位置確認按鈕" loading="lazy" />
+      <figcaption>① 把中央的圖釘拖到球場上 ② 按「位置確認」。</figcaption>
+    </figure>
+    <ol class="steps" style="counter-reset: s 3">
+      <li>填 <b>回報新球場或牆壁</b>：<b>球場名稱</b> 是必填，寫大家平常叫它的名字，
+        例如「中路運動公園網球場」</li>
+      <li>選 <b>場地材質</b>（下面說明怎麼選）</li>
+      <li>知道的話補上 <b>面數</b>、<b>地址</b>、<b>電話</b>、<b>有夜間照明</b>、<b>室內球場</b></li>
+      <li>按 <b>送出（核可後 +50 堅果）</b></li>
+    </ol>
+    <figure>
+      <img src="/shot-court-add-form.svg" alt="回報新球場或牆壁的表單：球場名稱、場地材質、面數、地址、照明、室內，最下面是送出按鈕" loading="lazy" />
+      <figcaption>① 名稱 ② 場地材質 ③ 送出。名稱之外都可以留白，之後再補。</figcaption>
+    </figure>
+
+    <h3>球場、牆壁、練習場怎麼選</h3>
+    <p><b>場地材質</b> 這一格同時決定它是哪一種地方：</p>
+    <ul>
+      <li><b>網球場</b>：選它的地面材質——硬地、紅土、草地、人工草、砂地人工草、水泥、PU、地毯，
+        不確定就選 <b>其他</b>。選單上每一種旁邊的顏色，就是它在地圖上的顏色</li>
+      <li><b>練習牆</b>（一個人對著牆打的那種）：選最下面的 <b>牆壁</b>。
+        名稱可以寫「○○公園練習牆」</li>
+      <li><b>室內練習場</b>（打擊場、室內練習空間）：選 <b>練習場</b></li>
+    </ul>
+    <figure>
+      <img src="/shot-court-surface.svg" alt="場地材質選單：硬地到其他是網球場的材質，最下面是練習場與牆壁" loading="lazy" />
+      <figcaption>練習牆一定要選「牆壁」，不要選硬地——不然它會變成一座球場。</figcaption>
+    </figure>
+    <p>
+      練習牆在地圖上是小小的咖啡色點，地圖上方切到 <b>牆壁</b> 就只看牆。
+      在牆壁可以記練習；比賽和約球要選在球場。
+    </p>
+
+    <h3>送出之後：審核</h3>
+    <p>
+      送出之後，你自己的地圖上馬上看得到它，外面圍著一圈 <b>白色虛線</b>，
+      意思是「新投稿，等待審核」。管理員核對位置和資料，通過之後白色虛線消失，
+      所有球友都看得到它，你的帳上也會多 <span class="nut">+50 🌰</span>。
+    </p>
+    <figure>
+      <img src="/shot-court-pending.svg" alt="地圖上一個圍著白色虛線圈的球場點，旁邊標示新投稿等待審核" loading="lazy" />
+      <figcaption>白色虛線圈是還在審核的投稿；審核通過就變成一般的點。</figcaption>
+    </figure>
+
+    <h3 id="c-status">回報即時場況</h3>
+    <p>到了球場，用一分鐘告訴大家現在能不能打：</p>
+    <ol class="steps">
+      <li>中間 <b>＋</b> → <b>回報場況</b>，選你所在的球場</li>
+      <li>選 <b>即時狀態回報</b>，再選 <b>目前球場狀態</b>：
+        ✅ 可正常使用、💧 場地溼滑、⚠️ 設施損壞、🚫 場地客滿、🔒 暫停開放</li>
+      <li>要補充可以寫一句，例如「只有 A 場積水，B 場可用」，按 <b>提交回報 (+15 堅果)</b></li>
+    </ol>
+    <figure>
+      <img src="/shot-court-status.svg" alt="報告球場狀態：即時狀態回報、五種目前狀態、補充說明與提交回報按鈕" loading="lazy" />
+      <figcaption>① 即時狀態回報 ② 選現在的狀況 ③ 提交。</figcaption>
+    </figure>
+    <ul>
+      <li><b>人要在球場 200 公尺內</b>才能回報</li>
+      <li>隨時都可以回報；堅果是同一座球場每 30 分鐘給一次</li>
+      <li>回報的狀態會顯示在球場卡上，地圖上那座球場的外圈也會變色（有狀況是紅色），
+        六小時後自動淡掉，等下一個人回報</li>
+      <li>把這座球場加了最愛的人會收到推播：今天第一個回報的人一定會通知（包括「可正常使用」），
+        之後狀況有變才再通知</li>
+    </ul>
+
+    <h3 id="c-correct">補充或修正資訊</h3>
+    <p>名稱、面數、燈光、開放時間這些不常變的資料，有缺或有錯就補：</p>
+    <ol class="steps">
+      <li>在地圖點開球場，右上角 <b>⋮</b> → <b>補充 / 修正資訊</b>
+        （或中間 ＋ → <b>回報場況</b> → <b>基本資訊勘誤</b>）</li>
+      <li>在 <b>補充或修正球場資訊</b> 裡改你知道的欄位：球場名稱、場地類型、球場數量、照明、室內、
+        對外開放、場地租借、開放時間、開放說明、電話、官方網站、地址</li>
+      <li><b>補充說明（選填）</b> 寫只有常客才知道的事，例如「燈要自己到電箱開」</li>
+      <li>按 <b>提交勘誤</b></li>
+    </ol>
+    <figure>
+      <img src="/shot-court-correct.svg" alt="補充或修正球場資訊表單，最下面是回報問題：已廢棄、不是網球場、回報封閉期間" loading="lazy" />
+      <figcaption>① 改好按「提交勘誤」 ② 最下面的「回報問題」可以回報封閉期間。</figcaption>
+    </figure>
+    <p>
+      管理員審核通過後資料就會更新，你拿 <span class="nut">+15 🌰</span>；
+      你寫的補充說明會署名顯示在球場資訊卡上。
+    </p>
+    <p>表單最下面的 <b>回報問題</b> 有三種：</p>
+    <ul>
+      <li><b>這個球場已廢棄／拆除</b>：球場已經永久消失。審核通過後會從地圖移除，
+        你拿 <span class="nut">+15 🌰</span>。只是暫時不開放的話，請用下面的「回報封閉期間」</li>
+      <li><b>這不是網球場</b>：地圖上這個點根本不是網球場，查證後移除</li>
+      <li><b>回報封閉期間（公告、維修、比賽）</b>：見下一段</li>
+    </ul>
+
+    <h3 id="c-closure">回報封閉期間</h3>
+    <p>
+      球場貼了「整修暫停開放」「某某盃比賽借用」這類公告時，用這個功能讓大家事先知道，
+      也避免有人約在那幾天。
+    </p>
+    <ol class="steps">
+      <li>球場卡 <b>⋮</b> → <b>補充 / 修正資訊</b> → 最下面的 <b>回報封閉期間（公告、維修、比賽）</b></li>
+      <li>選種類：<b>封閉</b>、<b>維修</b> 或 <b>舉辦比賽</b></li>
+      <li>填 <b>開始日期</b> 和 <b>結束日期</b></li>
+      <li>拍一張 <b>公告照片</b>，需要的話寫一句 <b>說明（選填）</b>，按 <b>送出</b></li>
+    </ol>
+    <figure>
+      <img src="/shot-court-closure-report.svg" alt="回報封閉期間：封閉、維修、舉辦比賽三種，開始與結束日期，公告照片，送出" loading="lazy" />
+      <figcaption>① 種類 ② 起訖日期 ③ 附上公告照片，封閉就會立刻生效。</figcaption>
+    </figure>
+
+    <p><b>封閉、維修</b> 的規則：</p>
+    <ul>
+      <li>要人在球場 <b>100 公尺內</b> 才能回報，每人每天最多 5 筆</li>
+      <li><b>附上公告照片：立刻生效。</b>球場卡上會出現「維修中・至 11/15」，
+        這段期間不能在這裡約球，已經約在那幾天的人和把球場加最愛的人都會收到通知，
+        你拿 <span class="nut">+15 🌰</span></li>
+      <li><b>沒有照片：先只顯示提醒，</b>大家照樣可以約球。之後有兩位球友到現場按
+        <b>還是封閉</b>，就會生效</li>
+      <li>同一段期間已經有人回報過，你再回報會算成一次確認</li>
+      <li>期間最長一年，太長的請分段回報；已經過去的日期不能回報</li>
+    </ul>
+    <p><b>舉辦比賽</b> 不用人在現場（主辦方通常事先就知道），送出後由管理員核可，核可後那段期間不能約球。</p>
+
+    <h3>看到封閉提示，但球場其實開著？</h3>
+    <p>
+      人在現場的話，球場卡上的封閉提示有兩顆按鈕：
+    </p>
+    <ul>
+      <li><b>其實開著</b>：封閉會改回只顯示提醒，大家又可以約球</li>
+      <li><b>還是封閉</b>：幫這段封閉做確認</li>
+    </ul>
+    <figure>
+      <img src="/shot-court-closure-banner.svg" alt="球場卡上的封閉提示：維修中至 11/15，這段期間不能在這裡約球，下方是其實開著與還是封閉" loading="lazy" />
+      <figcaption>以現場最新的回報為準。期間內有人在那裡打卡打球，也會被當成「其實開著」。</figcaption>
+    </figure>
+    <p>
+      封閉期間只擋約球。練習、打卡、記比賽都照常，球場開著的時候照樣記得到。
+    </p>
+
+    <h3 id="c-photo">上傳球場照片</h3>
+    <p>
+      球場卡裡的 <b>球場照片</b> 按上傳，拍一張現場照片。人要在球場 200 公尺內；
+      一座球場的第一張照片拿 <span class="nut">+10 🌰</span>。
+      照片被兩個人檢舉會先隱藏。
     </p>
     <figure>
       <img src="/shot-2690-court-photos.jpg" alt="球場卡的球場照片區塊：上傳按鈕與一張一天前拍的照片" loading="lazy" />

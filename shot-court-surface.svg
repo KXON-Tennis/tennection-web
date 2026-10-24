@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 450" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="442" rx="30" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="434" rx="26" fill="#FBFAF6"/>
+  <text x="24" y="46" font-size="12" fill="#6E776F" font-weight="700" text-anchor="start">場地材質</text>
+  <rect x="24" y="58" width="312" height="364" rx="12" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
+  <circle cx="48" cy="79" r="6" fill="#4FA8FF" stroke="#FFFFFF"/>
+  <text x="64" y="84" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">硬地</text>
+  <circle cx="48" cy="111" r="6" fill="#FF6A3D" stroke="#FFFFFF"/>
+  <text x="64" y="116" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">紅土</text>
+  <circle cx="48" cy="143" r="6" fill="#7ED957" stroke="#FFFFFF"/>
+  <text x="64" y="148" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">草地</text>
+  <circle cx="48" cy="175" r="6" fill="#69C79A" stroke="#FFFFFF"/>
+  <text x="64" y="180" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">人工草</text>
+  <circle cx="48" cy="207" r="6" fill="#C9A66B" stroke="#FFFFFF"/>
+  <text x="64" y="212" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">砂地人工草</text>
+  <circle cx="48" cy="239" r="6" fill="#9AA3AA" stroke="#FFFFFF"/>
+  <text x="64" y="244" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">水泥</text>
+  <circle cx="48" cy="271" r="6" fill="#B98CD9" stroke="#FFFFFF"/>
+  <text x="64" y="276" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">PU</text>
+  <circle cx="48" cy="303" r="6" fill="#E38FB5" stroke="#FFFFFF"/>
+  <text x="64" y="308" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">地毯</text>
+  <circle cx="48" cy="335" r="6" fill="#AEB6BD" stroke="#FFFFFF"/>
+  <text x="64" y="340" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">其他</text>
+  <line x1="36" y1="351" x2="324" y2="351" stroke="#ECEAE2" stroke-width="1.4"/>
+  <circle cx="48" cy="367" r="6" fill="#7C3AED" stroke="#FFFFFF"/>
+  <text x="64" y="372" font-size="13.5" fill="#2B2F2C" font-weight="700" text-anchor="start">練習場</text>
+  <rect x="30" y="384" width="300" height="30" rx="8" fill="#FFF1E8"/>
+  <circle cx="48" cy="399" r="6" fill="#8D6E63" stroke="#FFFFFF"/>
+  <text x="64" y="404" font-size="13.5" fill="#2B2F2C" font-weight="700" text-anchor="start">牆壁</text>
+  <text x="150" y="84" font-size="11.5" fill="#1B5138" font-weight="700" text-anchor="start">← 網球場選地面材質</text>
+  <text x="150" y="372" font-size="11.5" fill="#7C3AED" font-weight="700" text-anchor="start">室內練習場</text>
+  <text x="150" y="404" font-size="11.5" fill="#E8590C" font-weight="800" text-anchor="start">打牆用的練習牆</text>
+  <rect x="26" y="381" width="308" height="36" rx="12" fill="none" stroke="#E8590C" stroke-width="3"/>
+</svg>

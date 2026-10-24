@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 630" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="622" rx="30" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="614" rx="26" fill="#FBFAF6"/>
+  <rect x="158" y="24" width="44" height="4" rx="2" fill="#D8D5CB"/>
+  <text x="24" y="62" font-size="17" fill="#1B5138" font-weight="800" text-anchor="start">補充或修正球場資訊</text>
+  <text x="24" y="84" font-size="12" fill="#6E776F" font-weight="400" text-anchor="start">補上空著的欄位，或修正不對的地方：</text>
+  <rect x="24" y="112" width="312" height="44" rx="8" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
+  <text x="36" y="106" font-size="11" fill="#6E776F" font-weight="600" text-anchor="start">球場名稱</text>
+  <text x="36" y="139.0" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">中路運動公園網球場</text>
+  <rect x="24" y="180" width="150" height="44" rx="8" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
+  <text x="36" y="174" font-size="11" fill="#6E776F" font-weight="600" text-anchor="start">場地類型</text>
+  <text x="36" y="207.0" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">硬地</text>
+  <rect x="186" y="180" width="150" height="44" rx="8" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
+  <text x="198" y="174" font-size="11" fill="#6E776F" font-weight="600" text-anchor="start">球場數量</text>
+  <text x="198" y="207.0" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">6</text>
+  <text x="24" y="248" font-size="11" fill="#6E776F" font-weight="600" text-anchor="start">照明</text>
+  <rect x="24" y="256" width="72" height="30" rx="15" fill="#EAF3EC" stroke="#1B5138" stroke-width="1.4"/>
+  <text x="60" y="276" font-size="12.5" fill="#1B5138" font-weight="700" text-anchor="middle">有</text>
+  <rect x="104" y="256" width="72" height="30" rx="15" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.4"/>
+  <text x="140" y="276" font-size="12.5" fill="#2B2F2C" font-weight="500" text-anchor="middle">無</text>
+  <rect x="184" y="256" width="72" height="30" rx="15" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.4"/>
+  <text x="220" y="276" font-size="12.5" fill="#2B2F2C" font-weight="500" text-anchor="middle">不確定</text>
+  <rect x="24" y="314" width="312" height="44" rx="8" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
+  <text x="36" y="308" font-size="11" fill="#6E776F" font-weight="600" text-anchor="start">開放時間</text>
+  <text x="36" y="341.0" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">平日 06:00–22:00，週末至 18:00</text>
+  <rect x="24" y="382" width="312" height="44" rx="8" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
+  <text x="36" y="376" font-size="11" fill="#6E776F" font-weight="600" text-anchor="start">補充說明（選填）</text>
+  <text x="36" y="409.0" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">燈要自己到電箱開</text>
+  <rect x="24" y="442" width="312" height="40" rx="10" fill="#1B5138"/>
+  <text x="180.0" y="467.0" font-size="13.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">提交勘誤</text>
+  <circle cx="336" cy="460" r="13" fill="#E8590C"/>
+  <text x="336" y="465" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">1</text>
+  <line x1="24" y1="500" x2="336" y2="500" stroke="#ECEAE2"/>
+  <text x="24" y="526" font-size="12" fill="#6E776F" font-weight="700" text-anchor="start">回報問題</text>
+  <text x="24" y="552" font-size="13" fill="#C92A2A" font-weight="600" text-anchor="start">這個球場已廢棄／拆除</text>
+  <text x="24" y="578" font-size="13" fill="#C92A2A" font-weight="600" text-anchor="start">這不是網球場</text>
+  <text x="24" y="604" font-size="13" fill="#1B5138" font-weight="700" text-anchor="start">回報封閉期間（公告、維修、比賽）</text>
+  <rect x="18" y="586" width="300" height="26" rx="12" fill="none" stroke="#E8590C" stroke-width="3"/>
+  <circle cx="320" cy="598" r="13" fill="#E8590C"/>
+  <text x="320" y="603" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">2</text>
+</svg>

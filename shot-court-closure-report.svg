@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 490" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="482" rx="30" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="474" rx="26" fill="#FBFAF6"/>
+  <rect x="158" y="24" width="44" height="4" rx="2" fill="#D8D5CB"/>
+  <text x="24" y="62" font-size="17" fill="#1B5138" font-weight="800" text-anchor="start">回報封閉期間</text>
+  <rect x="24" y="80" width="98" height="34" rx="17" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
+  <text x="73" y="102" font-size="13" fill="#2B2F2C" font-weight="500" text-anchor="middle">封閉</text>
+  <rect x="128" y="80" width="98" height="34" rx="17" fill="#EAF3EC" stroke="#1B5138" stroke-width="1.6"/>
+  <text x="177" y="102" font-size="13" fill="#1B5138" font-weight="700" text-anchor="middle">維修</text>
+  <rect x="232" y="80" width="98" height="34" rx="17" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
+  <text x="281" y="102" font-size="13" fill="#2B2F2C" font-weight="500" text-anchor="middle">舉辦比賽</text>
+  <circle cx="326" cy="76" r="13" fill="#E8590C"/>
+  <text x="326" y="81" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">1</text>
+  <rect x="24" y="144" width="150" height="44" rx="8" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
+  <text x="36" y="138" font-size="11" fill="#6E776F" font-weight="600" text-anchor="start">開始日期</text>
+  <text x="36" y="171.0" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">11/3</text>
+  <rect x="186" y="144" width="150" height="44" rx="8" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
+  <text x="198" y="138" font-size="11" fill="#6E776F" font-weight="600" text-anchor="start">結束日期</text>
+  <text x="198" y="171.0" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">11/15</text>
+  <circle cx="336" cy="166" r="13" fill="#E8590C"/>
+  <text x="336" y="171" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">2</text>
+  <text x="24" y="216" font-size="11" fill="#6E776F" font-weight="600" text-anchor="start">公告照片</text>
+  <rect x="24" y="224" width="120" height="90" rx="10" fill="#F1EFE7" stroke="#C9C3B3" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text x="84" y="266" font-size="22" fill="#6E776F" font-weight="400" text-anchor="middle">📷</text>
+  <text x="84" y="296" font-size="12" fill="#6E776F" font-weight="600" text-anchor="middle">拍公告</text>
+  <text x="158" y="250" font-size="12" fill="#2B2F2C" font-weight="600" text-anchor="start">附上公告照片，這段期間的</text>
+  <text x="158" y="270" font-size="12" fill="#2B2F2C" font-weight="600" text-anchor="start">約球會立刻暫停；</text>
+  <text x="158" y="290" font-size="12" fill="#6E776F" font-weight="400" text-anchor="start">沒有照片只會顯示提醒。</text>
+  <rect x="20" y="220" width="128" height="98" rx="12" fill="none" stroke="#E8590C" stroke-width="3"/>
+  <circle cx="146" cy="222" r="13" fill="#E8590C"/>
+  <text x="146" y="227" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">3</text>
+  <rect x="24" y="346" width="312" height="44" rx="8" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
+  <text x="36" y="340" font-size="11" fill="#6E776F" font-weight="600" text-anchor="start">說明（選填）</text>
+  <text x="36" y="373.0" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">球場整修，暫停開放</text>
+  <rect x="24" y="408" width="312" height="40" rx="10" fill="#1B5138"/>
+  <text x="180.0" y="433.0" font-size="13.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">送出</text>
+  <text x="180" y="468" font-size="11.5" fill="#9BA29B" font-weight="400" text-anchor="middle">要在球場 100 公尺內才能回報</text>
+</svg>
