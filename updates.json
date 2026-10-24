@@ -1211,6 +1211,13 @@
   ],
   "guides": [
     {
+      "title": "Tennis Nut 完整使用指南",
+      "blurb": "從註冊、球袋、裝備心得、加好友與聊天、練習比賽、約球、球隊，到諮詢、回報球場、沉浸模式和合作店家——每個功能在哪裡、怎麼用。",
+      "href": "/app-guide",
+      "icon": "📖",
+      "image": "/shot-2690-bag.jpg"
+    },
+    {
       "title": "Tennis Nut 快速入門",
       "blurb": "裝備、好友、最愛球場、地圖、記錄第一次練習、諮詢——走完一遍，App 就會開始替你做事。",
       "href": "/getting-started",

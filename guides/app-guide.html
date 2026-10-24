@@ -1,0 +1,723 @@
+<!-- 只放內容：head、頁首、頁尾一律由 build-updates.mjs 套用同一個殼。 -->
+<style>
+h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    /* 六個步驟是這篇的骨架，讀者常常是回來找其中一步，所以標題要在捲動時
+       一眼跳出來。螢光筆的底色只包住文字本身（display:inline + box-decoration
+       -break），換行時兩行各自有底，不會變成一大塊色塊。 */
+    h2 { font-size: 26px; line-height: 1.45; margin: 52px 0 14px; }
+    h2 span { display: inline; padding: 2px 10px 3px;
+              background: linear-gradient(transparent 12%, #E9F47C 12%, #E9F47C 88%, transparent 88%);
+              box-decoration-break: clone; -webkit-box-decoration-break: clone;
+              border-radius: 3px; }
+    h3 { font-size: 17px; margin: 28px 0 6px; }
+    /* 第 0 步。這篇會被貼進 LINE、貼給還沒裝的人，所以「去哪裡拿」不能
+       只寫在別的頁面上。 */
+    .get-app { display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+               background: var(--tint); border: 1px solid var(--accent-soft);
+               border-radius: 14px; padding: 18px 20px; margin: 24px 0 8px; }
+    .get-app-text { flex: 1 1 190px; }
+    .get-app-text b { display: block; font-size: 15px; margin-bottom: 2px; }
+    .get-app-text span { font-size: 13.5px; color: var(--text-tertiary);
+                         line-height: 1.6; }
+    .get-app img { display: block; }
+    .get-app-android { display: inline-block; margin-top: 10px; font-size: 13px; }
+    .get-app-note { display: block; margin-top: 10px; font-size: 13px;
+                    color: var(--text-tertiary); }
+    .android-box { background: var(--surface); border: 1px solid var(--border);
+                   border-radius: 14px; padding: 18px 20px 14px; margin: 16px 0 28px; }
+    .android-box h3 { font-size: 16px; margin: 0 0 10px; }
+    .android-steps { margin: 0; padding-left: 1.3em; }
+    .android-steps li { margin-bottom: 12px; font-size: 14.5px; line-height: 1.8;
+                        color: var(--text-secondary); }
+    .android-steps a { word-break: break-all; }
+    .android-foot { margin: 6px 0 0; font-size: 13px; color: var(--text-tertiary); }
+    figure { margin: 16px 0 4px; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto;
+                 border-radius: 12px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px;
+                 line-height: 1.6; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    ul, ol { color: var(--text-secondary); font-size: 15px; line-height: 1.8; padding-left: 1.3em; }
+    li { margin-bottom: 4px; }
+    b { color: var(--text-primary); }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 18px 14px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; margin: 0 0 6px; }
+    .card p { margin: 0; font-size: 15px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary);
+               line-height: 1.75; }
+    /* 步驟：編號是真的順序，照著做會走完一遍 */
+    .steps { counter-reset: s; list-style: none; padding: 0; margin: 16px 0; }
+    .steps li { counter-increment: s; position: relative; padding-left: 38px; margin-bottom: 12px;
+                color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .steps li::before { content: counter(s); position: absolute; left: 0; top: 1px;
+                        width: 24px; height: 24px; border-radius: 50%;
+                        background: var(--accent-soft); color: var(--accent-d);
+                        font-size: 13px; font-weight: 700; display: grid; place-items: center; }
+    .nut { color: var(--accent-d); font-weight: 700; white-space: nowrap; }
+    .more { display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 700; }
+    .guide-foot { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); line-height: 1.8; }
+    /* 目錄：這篇很長，讀者多半是回來找其中一節 */
+    .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+           padding: 16px 20px 10px; margin: 8px 0 12px; }
+    .toc b { display: block; font-size: 14px; margin-bottom: 8px; }
+    .toc ol { margin: 0; padding-left: 1.4em; columns: 2; column-gap: 28px; font-size: 14.5px; }
+    @media (max-width: 520px) { .toc ol { columns: 1; } }
+    .toc li { margin-bottom: 6px; break-inside: avoid; }
+    h2[id] { scroll-margin-top: 16px; }
+    table.nuts { width: 100%; border-collapse: collapse; font-size: 14.5px; margin: 12px 0 8px; }
+    table.nuts th, table.nuts td { text-align: left; padding: 8px 10px;
+                                   border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+    table.nuts th { color: var(--text-primary); font-size: 13.5px; }
+    table.nuts td:nth-child(2) { white-space: nowrap; }
+</style>
+<article class="container rel">
+    <a class="rel-back" href="/blog">← 最新情報</a>
+    <span class="tag-line">🌰 完整使用指南</span>
+    <h1>Tennis Nut 完整使用指南：從註冊到每一個功能</h1>
+    <p class="lead">
+      從第一次打開 App 開始，一路走到球袋、裝備心得、好友、練習與比賽、約球、球隊、
+      諮詢、回報球場、沉浸模式和合作店家。每一節都寫清楚在哪一個分頁、按哪一顆、
+      按下去會發生什麼。可以從頭讀，也可以從目錄跳到你要的那一節。
+    </p>
+
+    <nav class="toc">
+      <b>目錄</b>
+      <ol>
+        <li><a href="#install">裝 App、註冊</a></li>
+        <li><a href="#first-day">第一次打開</a></li>
+        <li><a href="#tabs">五個分頁</a></li>
+        <li><a href="#bag">我的球袋</a></li>
+        <li><a href="#gear-posts">裝備心得</a></li>
+        <li><a href="#friends">加好友、跟好友聊天</a></li>
+        <li><a href="#map">地圖怎麼看</a></li>
+        <li><a href="#practice">去練習：打卡與練習紀錄</a></li>
+        <li><a href="#match">記一場比賽</a></li>
+        <li><a href="#share">做成圖卡分享</a></li>
+        <li><a href="#records">紀錄分頁</a></li>
+        <li><a href="#passport">網球護照與大滿貫</a></li>
+        <li><a href="#hit">排空檔、約球</a></li>
+        <li><a href="#teams">球隊</a></li>
+        <li><a href="#immersive">沉浸模式</a></li>
+        <li><a href="#consult">諮詢專家</a></li>
+        <li><a href="#contribute">貢獻球場資訊</a></li>
+        <li><a href="#shops">合作店家與掃碼</a></li>
+        <li><a href="#saved">我的收藏與賽前複習</a></li>
+        <li><a href="#nuts">堅果總表</a></li>
+        <li><a href="#settings">通知、設定與開發者</a></li>
+      </ol>
+    </nav>
+
+    <!-- 1 ─────────────────────────────────────────────────────────── -->
+    <h2 id="install"><span>1. 裝 App、註冊</span></h2>
+
+    <div class="get-app">
+      <div class="get-app-text">
+        <b>Tennis Nut</b>
+        <span>iPhone 在 App Store 下載。</span>
+        <span class="get-app-note">Android 照 <a href="/install">安裝頁</a> 的步驟裝。</span>
+      </div>
+      <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener"
+         aria-label="從 App Store 下載 Tennis Nut">
+        <img src="/app-store-badge-en.svg" alt="從 App Store 下載"
+             width="159" height="53" />
+      </a>
+    </div>
+
+    <p>打開 App 是登入頁，三種方式擇一：</p>
+    <ul>
+      <li><b>使用 Apple 繼續</b>（iPhone）</li>
+      <li><b>使用 Google 繼續</b></li>
+      <li><b>使用 Email 繼續</b>——密碼至少 8 碼，忘記了按 <b>忘記密碼?</b></li>
+    </ul>
+    <p>
+      還不想註冊，可以先按 <b>先看看我們的專家團</b>，看看有哪些教練和專家。
+    </p>
+    <div class="callout">
+      <b>註冊完成就有 <span class="nut">300 🌰</span> 堅果入帳。</b>
+      堅果是 App 裡唯一的點數：打球、記錄、維護球場資料會拿到，問專家時會用到。
+      完整的表在 <a href="#nuts">第 20 節</a>。
+    </div>
+
+    <!-- 2 ─────────────────────────────────────────────────────────── -->
+    <h2 id="first-day"><span>2. 第一次打開</span></h2>
+    <p>第一次登入會先問你 <b>今天想先做什麼？</b>，四個選項：</p>
+    <ul>
+      <li><b>找我的球場</b>——直接到地圖</li>
+      <li><b>留下今天的練習</b>——直接開練習表單</li>
+      <li><b>建立我的網球護照</b>——回答三題，再釘一座常去的球場</li>
+      <li><b>找球友或球隊</b>——把一起打球的人加進來</li>
+    </ul>
+    <p>
+      選 <b>建立我的網球護照</b> 的話，三題分別是 <b>你打網球多久了？</b>、
+      <b>你多常打網球？</b>、<b>你的網球程度是？</b>，接著 <b>釘一座你常去的球場</b>
+      （下面會列出大家常去的幾座，也可以跳過）。最後 App 會問你要不要開通知——
+      建議開，好友到球場、球場有狀況、有人回覆你，都是靠通知告訴你。
+    </p>
+    <p>
+      這幾題之後隨時可以補：<b>護照</b> 分頁上方的 <b>完成你的網球資料</b>。
+    </p>
+
+    <h3>首頁會跟著你長</h3>
+    <p>
+      剛註冊的首頁很短，只有 <b>第一步：到球場打一場</b>（<b>記下今天的練習</b>／
+      <b>記一場比賽</b>）和附近的球場。記下第一筆之後，歡迎禮的卡片、下一步建議、
+      大滿貫進度、球友動態會陸續出現；第二筆之後，約球、空檔、你的專業團隊、
+      合作店家的活動也會出現在首頁。
+    </p>
+
+    <!-- 3 ─────────────────────────────────────────────────────────── -->
+    <h2 id="tabs"><span>3. 五個分頁</span></h2>
+    <p>畫面最下面由左到右：</p>
+    <ul>
+      <li><b>首頁</b>——今天跟你有關的事：好友動態、快開始的約球、最愛球場現在幾個人、
+        最新的裝備心得。右上角的堅果數字點下去是 <b>我的堅果</b>，鈴鐺是 <b>通知</b>。</li>
+      <li><b>地圖</b>——所有球場，見 <a href="#map">第 7 節</a>。</li>
+      <li><b>＋</b>（中間那顆）——<b>快速操作</b>，見下面。</li>
+      <li><b>紀錄</b>——你的練習、比賽、征服過的球場、收藏。</li>
+      <li><b>護照</b>——球員證、數據、諮詢、好友、球隊、球袋。</li>
+    </ul>
+
+    <h3>中間那顆 ＋</h3>
+    <p>按下去分成兩段：</p>
+    <ul>
+      <li><b>在場邊</b>：<b>新練習</b>、<b>新比賽</b>、<b>回報場況</b>，
+        下面一顆長按鈕是 <b>沉浸模式</b>。</li>
+      <li><b>安排下一次</b>：<b>發起約球</b>、<b>我有空</b>、<b>加球友</b>。</li>
+    </ul>
+    <p>這一顆就是大部分功能的捷徑，下面各節都會用到。</p>
+
+    <!-- 4 ─────────────────────────────────────────────────────────── -->
+    <h2 id="bag"><span>4. 我的球袋</span></h2>
+    <p>
+      <b>護照</b> 分頁滑到最底是 <b>我的球袋</b>，分成 <b>球拍</b>、<b>球鞋</b>、
+      <b>網球</b> 三組，每組右邊有 <b>新增</b>，旁邊的數字是目前幾件／上限
+      （球拍 10、球鞋 6、網球 6）。
+    </p>
+    <figure>
+      <img src="/shot-2690-bag.jpg" alt="護照的球袋：球拍與球鞋的去背照片，每張卡寫著打了幾小時、幾場" loading="lazy" />
+      <figcaption>照片都是在 App 裡直接拍、自動去背的。</figcaption>
+    </figure>
+
+    <h3>球拍</h3>
+    <ol class="steps">
+      <li>選 <b>品牌</b>，<b>系列</b> 從清單點選（清單上沒有就自己輸入），填 <b>年份</b></li>
+      <li>拍線：<b>拍線名稱</b>、種類（單股 Poly／多股 Multi／混穿 Hybrid／羊腸 Gut）、線徑</li>
+      <li>直線和橫線不同的話，打開 <b>混合穿線（直線和橫線不同）</b>，分開填</li>
+      <li><b>磅數</b>（直線／橫線）、<b>穿線日期</b>、<b>在哪家店穿（選填）</b></li>
+    </ol>
+    <p>
+      每加一支球拍或一雙球鞋 <span class="nut">+5 🌰</span>（每種每天最多兩件）。
+    </p>
+
+    <h3>換線</h3>
+    <p>
+      換了線，點那支拍子 → <b>修改</b> → 按 <b>我換線了</b>，日期會變成今天，
+      改好線和磅數存起來，就多一筆 <b>穿線紀錄</b>。有兩筆以上，會顯示你
+      <b>平均幾天換一次</b>。該換線的時候，卡片上會出現 <b>穿線提醒</b>，
+      時間是依你打球的頻率和線的種類算的。
+    </p>
+    <figure>
+      <img src="/shot-2690-restrings.jpg" alt="球拍的穿線設定：直線 52、橫線 50 磅、穿線日期、在哪家店穿，最下面是穿線紀錄" loading="lazy" />
+      <figcaption>穿線紀錄一筆一筆留在球拍裡，連同在哪家店穿的。</figcaption>
+    </figure>
+
+    <h3>球鞋、網球</h3>
+    <p>
+      球鞋填品牌、型號、年份、開始使用日期。網球只要 <b>品牌</b> 和 <b>型號</b>，
+      清單裡有 Wilson、Babolat、HEAD、Dunlop、Slazenger、Penn、Tecnifibre、YONEX、
+      Prince、Teloon 天龍、Tretorn、Artengo 的常見球款。
+    </p>
+
+    <h3>幫裝備拍照</h3>
+    <p>
+      卡片左下角的相機，或點開裝備選 <b>拍照片</b>。畫面上有一個對準框：
+    </p>
+    <ul>
+      <li><b>球拍</b>：平放在地上，拍頭朝上，從正上方拍</li>
+      <li><b>球鞋</b>：側躺，鞋頭朝右，從正上方拍</li>
+      <li><b>網球</b>：拍的是 <b>球罐</b>——直立放好、標籤朝鏡頭，跟罐子同高從側面平拍</li>
+    </ul>
+    <p>
+      送出後 App 會自動去背，做成型錄式的照片，大約一分鐘。這段時間可以先做別的事，
+      關掉 App 也沒關係，做好就會出現在卡片上。
+    </p>
+
+    <h3>每支拍打了多久</h3>
+    <p>
+      記練習或比賽時，App 會自動掛上你的 <b>主要球拍</b> 和 <b>主要球鞋</b>，
+      表單上的 <b>這次用的裝備</b> 也可以換。卡片上會寫打了幾小時、幾場；
+      點開球拍還看得到練習幾次、比賽幾場、勝敗，以及 <b>換線後打了幾小時</b>。
+    </p>
+    <figure>
+      <img src="/shot-2690-racket-usage.jpg" alt="點開主拍：打了 33 小時、練習 26 次、比賽 7 場，4 勝 3 敗，換線後打了 14 小時" loading="lazy" />
+      <figcaption>點開一支球拍，看得到它陪你打了多少。</figcaption>
+    </figure>
+
+    <h3>主要、淘汰、刪除</h3>
+    <ul>
+      <li>點開球拍或球鞋，選 <b>設為主要球拍</b>／<b>主要球鞋</b>，卡片上會有「主」字。
+        你的好友看得到你的主拍和主鞋。</li>
+      <li>不用了就 <b>淘汰</b>：它會收進 <b>已淘汰</b>，用過的時數和紀錄都留著，
+        也可以 <b>放回球袋</b>。真的加錯了，在已淘汰裡選 <b>永久刪除</b>。</li>
+      <li>球拍可以 <b>複製一支相同球拍</b>，同款拍有好幾支的人很好用。</li>
+      <li>卡片下方的 <b>N 位也用</b> 是用同一款的其他球友，點開可以看心得或按 <b>想聽心得</b>。</li>
+    </ul>
+
+    <!-- 5 ─────────────────────────────────────────────────────────── -->
+    <h2 id="gear-posts"><span>5. 裝備心得</span></h2>
+    <p>
+      球袋標題右邊的 <b>大家的裝備心得</b>，是所有球友寫的裝備心得，最新的在上面。
+      上方可以篩選 <b>全部／球拍／球線／球鞋／網球</b>。心得右邊的縮圖點一下會放大。
+    </p>
+    <h3>寫一篇</h3>
+    <ol class="steps">
+      <li>按 <b>寫一篇</b></li>
+      <li><b>這篇在講哪一件？</b>——從你的球袋裡挑：球拍、拍上的球線、球鞋、網球</li>
+      <li>想比較兩件的話，<b>跟哪一件比？（選填）</b> 再挑一件</li>
+      <li>寫內容、發布。這篇所有球友都看得到。</li>
+    </ol>
+    <p>
+      讀到有幫助的心得按 <b>有用</b>。一篇被三位不同的球友按了有用，作者拿
+      <span class="nut">+10 🌰</span>。
+    </p>
+    <h3>想聽心得</h3>
+    <p>
+      在好友名單、球友卡、好友的護照上看到別人的主拍或主鞋，可以按 <b>想聽心得</b>。
+      主人會看到「有幾位球友想聽」，寫了之後，按過的人都會收到通知。
+    </p>
+    <p>
+      首頁也會放最新的兩篇心得。按 × 會先收起來，有人發新的一篇時會自己回來；
+      想馬上叫回來，到 <b>設定</b> → <b>首頁的裝備心得</b> → <b>在首頁顯示</b>。
+    </p>
+
+    <!-- 6 ─────────────────────────────────────────────────────────── -->
+    <h2 id="friends"><span>6. 加好友、跟好友聊天</span></h2>
+    <h3>面對面：掃一下</h3>
+    <p>
+      在 <b>護照</b> 最上面的球員證上，有你的 <b>球員證 QR</b>，旁邊是 <b>掃描對方</b>。
+    </p>
+    <ol class="steps">
+      <li>一個人亮出自己的球員證 QR</li>
+      <li>另一個人按 <b>掃描對方</b>，對著 QR 掃一下，好友邀請就送出了</li>
+      <li>對方按 <b>接受</b>，就成為好友</li>
+    </ol>
+    <p>掃到的如果是球隊的 QR，會直接加入那個球隊。</p>
+
+    <h3>不在旁邊：傳 ID</h3>
+    <p>
+      <b>護照</b> 的 <b>我的好友</b> → <b>新增</b>，或中間 ＋ 的 <b>加球友</b>。
+      裡面可以 <b>貼上 ID 搜尋</b>，也可以按 <b>或傳我的 ID 邀請他</b>，
+      用 LINE 把你的 8 碼球員 ID 和下載連結傳出去。球員證上點 <b>ID</b> 也會直接複製。
+    </p>
+
+    <h3>在球場上認識的人</h3>
+    <p>
+      在同一座球場或同一個城市留下過紀錄的球友，會出現在球場卡的 <b>這一帶的球友</b>。
+      對還不認識的人送邀請時，要先 <b>跟他說一句</b>（有現成的句子可以一鍵選）。
+    </p>
+    <p>
+      收到的邀請在好友頁上方的 <b>待確認邀請</b>，按 <b>接受</b> 或 <b>拒絕</b>；
+      14 天沒回覆會自動收掉。
+    </p>
+
+    <h3>加了好友之後</h3>
+    <ul>
+      <li><b>他到球場，你的手機會響</b>：「○○ 現在在 ×× 打球」</li>
+      <li>看得到他的護照：數據、主拍主鞋、球隊、賽事成績</li>
+      <li>約球可以只給好友看，也可以直接點名他</li>
+      <li>記比賽時標他，他確認後，這場也進他的戰績</li>
+    </ul>
+
+    <h3>跟好友聊天</h3>
+    <p>
+      打開好友的護照，右上角的對話圖示就是 <b>傳訊息</b>。聊過的人會列在好友頁的
+      <b>訊息</b>，有未讀的會顯示數字。每一則訊息都會推播；某一段對話不想被吵，
+      點右上角的鈴鐺靜音，訊息只會進通知列表。
+    </p>
+    <p>
+      只有互相是好友的人可以傳訊息。不想收任何訊息，到 <b>設定</b> 關掉
+      <b>好友可以傳訊息給我</b>（關掉之後你也不能傳給別人）。
+    </p>
+    <p>
+      好友護照右上角的 <b>⋯</b> 有 <b>檢舉</b>、<b>封鎖這個人</b>、<b>解除好友</b>。
+      封鎖會同時解除好友，封鎖名單在 <b>設定</b> → <b>已封鎖的人</b>。
+    </p>
+
+    <!-- 7 ─────────────────────────────────────────────────────────── -->
+    <h2 id="map"><span>7. 地圖怎麼看</span></h2>
+    <h3>點的顏色是場地材質</h3>
+    <p>
+      藍色是硬地、橘紅是紅土、綠色是草地和人工草、灰色是水泥、紫色是 PU，
+      小小的咖啡色點是練習牆。地圖上的 <b>圖例</b> 可以隨時打開對照。
+    </p>
+    <h3>外圈是現在的狀況</h3>
+    <ul>
+      <li><b>橘色外圈</b>：現在有人在打，上方寫「N 人在打」</li>
+      <li><b>淡橘色外圈</b>：今天有人來過</li>
+      <li><b>紅色外圈</b>：有狀況（客滿、溼滑、損壞、暫停開放），上方直接寫是什麼狀況</li>
+      <li><b>白色虛線外圈</b>：新投稿的球場，等待審核</li>
+    </ul>
+
+    <h3>上方的切換</h3>
+    <ul>
+      <li><b>今日足跡</b>：只看今天有人去過的球場和人次</li>
+      <li><b>找球友</b>：哪些球場有人排了空檔、有人約球</li>
+      <li><b>最愛</b>、<b>球隊</b>、<b>牆壁</b></li>
+    </ul>
+    <p>
+      更多條件在 <b>篩選球場</b>：已拜訪、室內、場地類型、費用（免費開放、付費開放⋯⋯）、
+      縣市、國家。底圖可以換成街道、深色、衛星或正射影像。
+    </p>
+
+    <h3>搜尋</h3>
+    <p>
+      搜尋框可以打球場名、地址或地標，也找得到合作店家（見 <a href="#shops">第 18 節</a>）。
+    </p>
+
+    <h3>點開一座球場</h3>
+    <p>由上而下大致是：</p>
+    <ul>
+      <li>右上角 <b>♥ 加入最愛</b>——這一帶的空檔和約球會出現在你的首頁，
+        球場有狀況也會通知你</li>
+      <li><b>紀錄</b>（帶著這座球場開練習表單）和 <b>導航</b></li>
+      <li>面數、材質、費用、燈光、室內外，以及 <b>N 位球友打過</b></li>
+      <li>現在的狀況、營業時間、球友補充、勝場王</li>
+      <li><b>球場照片</b>、現在在場上的好友、在這裡的約球（<b>約這裡</b>）</li>
+      <li>有空可以來這裡的球友、<b>球隊團體</b>、這一帶的球友、辦過的盃賽</li>
+      <li><b>附近的合作店家</b></li>
+    </ul>
+    <p>
+      常去的球場，打卡之後 App 會問你要不要 <b>釘成主場</b>，釘了之後那座球場的狀況和今天誰在打，
+      會直接出現在首頁。
+    </p>
+
+    <!-- 8 ─────────────────────────────────────────────────────────── -->
+    <h2 id="practice"><span>8. 去練習：打卡與練習紀錄</span></h2>
+    <h3>到了球場，打卡是自動的</h3>
+    <p>
+      在球場待滿五分鐘，App 會自己記一筆打卡 <span class="nut">+1 🌰</span>；
+      跳出「你在 ×× 打球嗎？」時按確認 <span class="nut">+2 🌰</span>。
+      第一次到一座球場另外 <span class="nut">+15 🌰</span>，那座球場就算 <b>征服</b> 了。
+    </p>
+
+    <h3>記一筆練習</h3>
+    <p>中間 ＋ → <b>新練習</b>。<b>必填只有球場</b>，在球場附近會自動選好。其他可以填：</p>
+    <ul>
+      <li>日期、開始時間、時長</li>
+      <li>練習類型：自主練習、球機練習、對打練習、教練課、定點練習、比賽練習、體能訓練</li>
+      <li><b>這次練習感覺如何？</b>——點一到五顆球</li>
+      <li><b>這次用的裝備</b>、筆記與標籤</li>
+      <li>一張照片，可以選 <b>也放到球場頁（公開）</b></li>
+    </ul>
+    <p>
+      人在球場 200 公尺內（或今天已經在那裡打過卡）記錄，拿 <span class="nut">+5 🌰</span>，
+      練習每天最多三次。記完之後，那座球場的 <b>N 位球友打過</b> 就點得開了，
+      看得到還有誰也在這裡打球。
+    </p>
+
+    <!-- 9 ─────────────────────────────────────────────────────────── -->
+    <h2 id="match"><span>9. 記一場比賽</span></h2>
+    <ol class="steps">
+      <li>中間 ＋ → <b>新比賽</b></li>
+      <li><b>這場是</b>：<b>自由對打</b> 或 <b>賽事</b>（賽事要填賽事名稱）</li>
+      <li>選 <b>單打</b> 或 <b>雙打</b>，填對手（和搭檔）。最近一起打過的人和好友會列成快速選項</li>
+      <li>填比分：一般分盤，或只打搶七；最多五盤，勝負會自己算</li>
+      <li>存檔。接著還要記下一場，按 <b>儲存，再記一場</b>，球場和日期會留著</li>
+    </ol>
+    <p>
+      標了好友當對手或搭檔，他會收到通知，在 App 裡選 <b>確認，計入戰績</b>、
+      <b>確認，但不計入戰績</b> 或 <b>這不是我</b>。確認之後，這場會進兩個人的戰績。
+      跟練習一樣，在球場附近記錄 <span class="nut">+5 🌰</span>，每天最多三次。
+    </p>
+    <p>
+      之後要改，點開那一場可以改日期、時間、裝備和筆記。
+    </p>
+
+    <!-- 10 ────────────────────────────────────────────────────────── -->
+    <h2 id="share"><span>10. 做成圖卡分享</span></h2>
+    <p>
+      點開任何一筆練習或比賽，按分享，有三種尺寸：<b>貼文 3:4</b>、<b>限時動態 9:16</b>、
+      <b>透明貼紙</b>（白字或深色字）。做好之後 <b>存到相簿</b>、<b>分享到 IG 限動</b>，
+      或 <b>更多</b> 用其他 App 傳。
+    </p>
+    <p>
+      選 <b>分享到 IG 限動</b> 時，挑一張自己的照片或一段影片當背景，貼紙會疊在上面
+      一起送進 Instagram，在 IG 裡拖一下位置、按發佈就好。
+      護照上的 <b>做張圖卡</b>、征服地圖、球隊頁也都能做圖卡。
+    </p>
+
+    <!-- 11 ────────────────────────────────────────────────────────── -->
+    <h2 id="records"><span>11. 紀錄分頁</span></h2>
+    <p>上面三個分頁：</p>
+    <ul>
+      <li><b>我的紀錄</b>：練習和比賽照日期排成一條時間軸，可以切 <b>全部／練習／比賽</b>，
+        也看得到 <b>我的統計</b> 和 <b>比賽統計</b></li>
+      <li><b>征服球場</b>：你去過的每一座球場、一年一年的歷程、
+        還有幾座等你收，<b>看地圖</b> 是你自己的征服地圖</li>
+      <li><b>我的收藏</b>：見 <a href="#saved">第 19 節</a></li>
+    </ul>
+    <figure>
+      <img src="/shot-2690-records.jpg" alt="紀錄分頁：我的紀錄時間軸，上方可切換全部、練習、比賽" loading="lazy" />
+      <figcaption>有附照片的紀錄，右邊會顯示縮圖。</figcaption>
+    </figure>
+
+    <!-- 12 ────────────────────────────────────────────────────────── -->
+    <h2 id="passport"><span>12. 網球護照與大滿貫</span></h2>
+    <p>
+      <b>護照</b> 分頁最上面是你的 <b>球員證</b>：頭像、加入日期、<b>主場</b>
+      （最近 90 天最常去的球場）、持拍手、自我介紹、獎盃和 QR。鉛筆圖示改個人資料，
+      調色盤圖示換護照外觀。往下依序是網球數據、我的諮詢、球場征服、賽事成績、
+      成就徽章、我的好友、我的球隊、我的球袋。
+    </p>
+    <h3>大滿貫獎盃</h3>
+    <p>
+      在對的季節、對的場地拿下 7 場勝利，就拿到一座獎盃
+      <span class="nut">+300 🌰</span>，還會解鎖一套護照外觀：
+    </p>
+    <table class="nuts">
+      <tr><th>獎盃</th><th>月份</th><th>條件</th></tr>
+      <tr><td>澳網</td><td>1–3 月</td><td>硬地</td></tr>
+      <tr><td>法網</td><td>4–6 月</td><td>紅土</td></tr>
+      <tr><td>溫網</td><td>7–8 月</td><td>草地、人工草</td></tr>
+      <tr><td>美網</td><td>9–10 月</td><td>硬地、天黑之後</td></tr>
+      <tr><td>年終賽</td><td>11–12 月</td><td>室內至少 3 勝，而且當年拿過 3 座大滿貫</td></tr>
+    </table>
+    <p>
+      算數的勝場：對手或搭檔是 App 裡的球友、那天你在那座球場有打卡，
+      每天最多算兩場。首頁的大滿貫卡片會顯示目前進度。
+    </p>
+
+    <!-- 13 ────────────────────────────────────────────────────────── -->
+    <h2 id="hit"><span>13. 排空檔、約球</span></h2>
+    <h3>說出你什麼時候有空</h3>
+    <p>
+      中間 ＋ → <b>我有空</b> → <b>設定我的空檔</b>：
+    </p>
+    <ul>
+      <li>時間：今天或指定日期、幾點到幾點，也可以 <b>整天</b>；可以連續 2 週或 4 週</li>
+      <li>地點：<b>指定球場</b>、<b>某個地區</b> 或 <b>都可以</b></li>
+      <li>想打什麼：單打、雙打、對抽／練球、發球／接發、截擊／網前、多球／餵球、計分／比賽</li>
+      <li>程度、<b>歡迎新手</b>、一句備註</li>
+      <li><b>誰看得到</b>：只有好友、公開，或你的某個球隊</li>
+    </ul>
+    <p>按 <b>貼出來</b>。跟好友的空檔重疊時，App 會告訴你重疊多久。</p>
+
+    <h3>找人、約一場</h3>
+    <p>
+      地圖切到 <b>找球友</b>，點有人的球場，<b>有空可以來這裡的球友</b> 裡按 <b>約他</b>。
+      或在球場卡按 <b>約這裡</b>、中間 ＋ 按 <b>發起約球</b>：
+    </p>
+    <ol class="steps">
+      <li>時間（預設兩小時後、90 分鐘）、單打或雙打、用球</li>
+      <li><b>找誰（選填）</b>——<b>＋ 指名球友</b> 直接邀請</li>
+      <li>誰看得到：只有好友、你的球隊、所有把這座球場加最愛的人，或 <b>只有受邀的人</b></li>
+      <li>按 <b>發出邀約</b></li>
+    </ol>
+    <p>
+      看到別人的約球按 <b>我要去</b>；臨時不能去按 <b>不去了</b>，同一場的人都會收到通知。
+      被點名的人可以先問清楚，再決定加入或 <b>婉拒</b>。
+    </p>
+    <h3>約球對話與到場</h3>
+    <p>
+      名單上有兩個人以上，就會開一個 <b>約球對話</b>，可以講誰帶球、場地費、
+      晚到或在哪裡等，約球結束後三小時關閉。開始前兩小時，首頁會出現到場卡，
+      到了按 <b>我到了</b>，大家看得到幾個人已經到。
+    </p>
+
+    <!-- 14 ────────────────────────────────────────────────────────── -->
+    <h2 id="teams"><span>14. 球隊</span></h2>
+    <ol class="steps">
+      <li><b>護照</b> → <b>我的球隊</b> → <b>建立球隊</b>，或在球場卡按 <b>在這裡建隊</b></li>
+      <li>填隊名、選主場</li>
+      <li>按 <b>邀請加入</b>：給隊友掃 QR，或傳邀請碼／連結</li>
+    </ol>
+    <p>
+      用邀請碼或 QR 加入是直接加入；在球場卡或球隊頁按 <b>申請加入</b> 的，要等隊長核准。
+      每個人最多建立 5 支球隊。
+    </p>
+    <h3>球隊頁</h3>
+    <ul>
+      <li><b>球隊對話</b>：隊員之間的聊天室。打 <b>@</b> 會列出隊員，點選就能點名，
+        被點名的人一定會收到推播。右上角的鈴鐺可以關掉這一隊的推播</li>
+      <li><b>球隊圖卡</b>：今天全隊打了什麼，做成一張圖分享</li>
+      <li>隊內動態、一起約過的球、全隊去過的球場</li>
+      <li>隊長可以設定 <b>隊色</b>（在沉浸模式裡會亮起來）、轉移隊長</li>
+    </ul>
+    <p>約球時「誰看得到」選你的球隊，就只有隊員看得到。</p>
+
+    <!-- 15 ────────────────────────────────────────────────────────── -->
+    <h2 id="immersive"><span>15. 沉浸模式</span></h2>
+    <p>
+      地圖上的 <b>沉浸模式</b> 按鈕，或中間 ＋ 裡的 <b>沉浸模式</b>。地圖會傾斜成立體的，球場變成 3D 模型，
+      你的頭像周圍有一圈雷達。
+    </p>
+    <figure>
+      <img src="/shot-2690-immersive.jpg" alt="沉浸模式：立體地圖、自己頭像周圍的雷達，下方是找單打對手、找雙打搭檔、想對拉練球" loading="lazy" />
+      <figcaption>底下的選項是頭像上的招呼語，選了附近的球友看得到。</figcaption>
+    </figure>
+    <h3>面對面</h3>
+    <p>
+      雷達範圍是身邊 50 公尺。旁邊也開著沉浸模式的球友會出現在雷達上，
+      點他可以 <b>加好友</b>、<b>記這場比賽</b>、<b>約下次</b>——兩個人都點了才算數。
+      用這個方式記的比賽，在場的人當下就確認了，直接算進勝場王和大滿貫。
+    </p>
+    <h3>現在想打</h3>
+    <p>
+      選 <b>找單打對手</b>、<b>找雙打搭檔</b>、<b>想對拉練球</b> 或 <b>新手找新手</b>，
+      會貼出一段兩小時的公開空檔，附近的人看得到。
+    </p>
+    <h3>勝場王</h3>
+    <p>
+      每座球場最近 90 天贏最多場（而且對手確認過）的人，就是那座球場的勝場王，
+      頭像會浮在 3D 球場上方，球場底部亮起他球隊的顏色。
+    </p>
+    <figure>
+      <img src="/shot-2690-kings.jpg" alt="立體球場上方是勝場王頭像與獎盃，球場底部透出球隊顏色" loading="lazy" />
+      <figcaption>球場底部那一圈顏色，就是勝場王所屬球隊的顏色。</figcaption>
+    </figure>
+    <p>
+      你人在球場 200 公尺內時，頭像會出現在那座球場上，其他球友在地圖上看得到。
+      你在街上的位置不會顯示給任何人。
+    </p>
+
+    <!-- 16 ────────────────────────────────────────────────────────── -->
+    <h2 id="consult"><span>16. 諮詢專家</span></h2>
+    <p>
+      打球卡住了，可以問真人專家。入口在 <b>護照</b> → <b>我的諮詢</b> → <b>開始諮詢</b>；
+      記完一筆練習後的 <b>問問教練</b>、收藏影片片段的 <b>帶這段問教練</b> 也會進來。
+    </p>
+    <ol class="steps">
+      <li><b>選擇諮詢類型</b>：網球技術、網球體能⋯⋯</li>
+      <li>寫標題和描述，可以附一段 3 分鐘內的影片或連結、照片</li>
+      <li><b>確認諮詢</b> → <b>送出諮詢</b></li>
+    </ol>
+    <table class="nuts">
+      <tr><th>項目</th><th>堅果</th></tr>
+      <tr><td>開始一則諮詢（文字回覆）</td><td>50 🌰</td></tr>
+      <tr><td>追加專業提問：文字回覆</td><td>50 🌰</td></tr>
+      <tr><td>追加專業提問：影片分析</td><td>150 🌰</td></tr>
+      <tr><td>跟教練來回聊天</td><td>0</td></tr>
+    </table>
+    <p>
+      專家在時限內回覆（文字 5 天、影片 72 小時）；超過時限，那一題的堅果自動退回。
+      兩天沒有回覆會換一位專家接手；七天都沒有動靜會自動結案，
+      專家完全沒回覆的話全額退回。
+    </p>
+    <p>
+      結案時專家會寫一份 <b>處方箋</b>：主要問題、處方、評語。它會留在你的 <b>行動建議</b>，
+      也會出現在 <b>賽前複習</b>。
+    </p>
+
+    <!-- 17 ────────────────────────────────────────────────────────── -->
+    <h2 id="contribute"><span>17. 貢獻球場資訊</span></h2>
+    <p>球場資料是球友一起補起來的，每一種都有堅果：</p>
+    <table class="nuts">
+      <tr><th>做什麼</th><th>堅果</th><th>怎麼做</th></tr>
+      <tr><td>回報即時場況</td><td>+15</td><td>中間 ＋ → <b>回報場況</b> → <b>即時狀態回報</b>（可正常使用、溼滑、損壞、客滿、暫停開放）。人要在球場 200 公尺內，同一座球場每 30 分鐘一次</td></tr>
+      <tr><td>修正基本資訊</td><td>+15</td><td>球場卡右上 <b>⋮</b> → <b>補充 / 修正資訊</b>（名稱、地址、燈光、面數⋯⋯），審核通過後入帳</td></tr>
+      <tr><td>新增球場或牆壁</td><td>+50</td><td>地圖上的 <b>新增球場或牆壁</b>，拖曳圖釘到正確位置、填資料，審核通過後入帳</td></tr>
+      <tr><td>回報球場封閉</td><td>+15</td><td>人在 100 公尺內，附上公告照片會立刻生效</td></tr>
+      <tr><td>上傳球場第一張照片</td><td>+10</td><td>球場卡的 <b>球場照片</b>，人要在球場 200 公尺內</td></tr>
+    </table>
+    <p>
+      你回報的狀況，會推播給把那座球場加最愛的人——他們出門前就知道。
+    </p>
+    <figure>
+      <img src="/shot-2690-court-photos.jpg" alt="球場卡的球場照片區塊：上傳按鈕與一張一天前拍的照片" loading="lazy" />
+      <figcaption>球場照片在球場卡裡，人在現場就能上傳。</figcaption>
+    </figure>
+
+    <!-- 18 ────────────────────────────────────────────────────────── -->
+    <h2 id="shops"><span>18. 合作店家與掃碼</span></h2>
+    <h3>找店家</h3>
+    <ul>
+      <li><b>地圖搜尋</b>：打店名、地址或品牌；打「店」或「穿線」會列出所有合作店家</li>
+      <li>球場卡最下面的 <b>附近的合作店家</b></li>
+      <li>沉浸模式裡，合作店家是一間間 3D 的小店面</li>
+      <li>球拍該換線時，選單會出現 <b>到 {店名} 換線</b></li>
+    </ul>
+    <h3>在店裡掃立牌</h3>
+    <p>
+      合作店家櫃台有 Tennis Nut 的立牌，用手機相機掃 QR，打開店家頁，按
+      <b>在 App 打開這家店</b>。還沒裝 App 的話，同一頁有下載連結。
+    </p>
+    <h3>店家頁</h3>
+    <ul>
+      <li>店家照片、經營的品牌、<b>導航</b></li>
+      <li><b>看看服務內容</b>：穿線、球拍諮詢・客製化、網羽商品、教學、試打拍</li>
+      <li><b>這次在這裡…</b>：<b>記穿線</b>（直接記進你那支拍的穿線紀錄，店家看得到你的名字
+        和這次登錄的內容）、<b>買了球拍</b>、<b>買了球鞋</b>（直接加進球袋）</li>
+      <li><b>這個月來過的球友</b></li>
+    </ul>
+
+    <!-- 19 ────────────────────────────────────────────────────────── -->
+    <h2 id="saved"><span>19. 我的收藏與賽前複習</span></h2>
+    <p><b>紀錄</b> → <b>我的收藏</b>：</p>
+    <ul>
+      <li><b>新增連結或截圖</b>：貼上 YouTube 連結按 <b>解析</b>，App 會幫你分類招式，
+        存起來。影片可以設定起訖、循環播放，也可以 <b>帶這段問教練</b></li>
+      <li><b>便利貼</b>：寫一句提醒自己的話，下次到球場打開 App，首頁會先給你看這一張</li>
+      <li><b>賽前複習</b>：比賽前打開，教練最近給你的提點和你的收藏依招式排好</li>
+    </ul>
+    <figure>
+      <img src="/shot-2690-sticky.jpg" alt="我的收藏最上面的便利貼：貼上之後，下次到球場打開 App，首頁會先給你看這一張" loading="lazy" />
+      <figcaption>便利貼會在你下次到球場時出現在首頁。</figcaption>
+    </figure>
+
+    <!-- 20 ────────────────────────────────────────────────────────── -->
+    <h2 id="nuts"><span>20. 堅果總表</span></h2>
+    <p>首頁右上角的堅果數字點下去是 <b>我的堅果</b>，每一筆進出都在 <b>堅果紀錄</b>。</p>
+    <table class="nuts">
+      <tr><th>怎麼拿</th><th>堅果</th><th>上限</th></tr>
+      <tr><td>註冊歡迎禮</td><td>+300</td><td>一次</td></tr>
+      <tr><td>記錄練習（球場 200 公尺內）</td><td>+5</td><td>每天 3 次</td></tr>
+      <tr><td>記錄比賽（球場 200 公尺內）</td><td>+5</td><td>每天 3 次</td></tr>
+      <tr><td>自動打卡／確認打卡</td><td>+1／+2</td><td>每天各 5 次</td></tr>
+      <tr><td>第一次到一座球場</td><td>+15</td><td>每天 3 座</td></tr>
+      <tr><td>新增球拍、球鞋</td><td>+5</td><td>每種每天 2 件</td></tr>
+      <tr><td>回報即時場況</td><td>+15</td><td>每座球場每 30 分鐘</td></tr>
+      <tr><td>修正球場資訊（通過）</td><td>+15</td><td></td></tr>
+      <tr><td>新增球場（通過）</td><td>+50</td><td></td></tr>
+      <tr><td>回報球場封閉（確認）</td><td>+15</td><td></td></tr>
+      <tr><td>球場第一張照片</td><td>+10</td><td></td></tr>
+      <tr><td>裝備心得被三人標有用</td><td>+10</td><td>每篇一次</td></tr>
+      <tr><td>大滿貫獎盃</td><td>+300</td><td>每座</td></tr>
+    </table>
+    <table class="nuts">
+      <tr><th>怎麼用</th><th>堅果</th></tr>
+      <tr><td>諮詢：文字回覆</td><td>50</td></tr>
+      <tr><td>諮詢：影片分析</td><td>150</td></tr>
+    </table>
+
+    <!-- 21 ────────────────────────────────────────────────────────── -->
+    <h2 id="settings"><span>21. 通知、設定與開發者</span></h2>
+    <h3>通知</h3>
+    <p>
+      首頁右上角的鈴鐺是所有通知，<b>全部標為已讀</b> 一次清掉。點一則會直接打開那件事。
+    </p>
+    <h3>設定（護照右上角）</h3>
+    <ul>
+      <li><b>可以用球員 ID 找到我</b></li>
+      <li><b>讓球場的人數算我一個</b>：關掉的話，你在球場時不會被算進人數，
+        也不會出現在 <b>這一帶的球友</b></li>
+      <li><b>好友可以傳訊息給我</b></li>
+      <li><b>安靜時段</b>：預設晚上 10 點到早上 7 點，這段時間的通知只進鈴鐺、不響</li>
+      <li>語言、已封鎖的人、<b>首頁的裝備心得</b>、<b>重看新手引導</b>、LINE 官方帳號</li>
+      <li>最下面的 <b>永久刪除帳號</b></li>
+    </ul>
+    <h3>跟開發者說話</h3>
+    <p>
+      <b>護照</b> 上的 <b>有其他想法？想與開發者聊聊</b>，直接跟開發者對話。
+      遇到問題截個圖傳過來最快；對話裡的文字長按可以選取、複製。
+    </p>
+
+    <div class="guide-foot">
+      卡在哪一步？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，
+      或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
+    </div>
+  </article>
