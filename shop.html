@@ -69,6 +69,7 @@
 
     .join-foot { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);
                  font-size: 14px; color: var(--text-tertiary); line-height: 1.8; }
+      .shop-name { color: var(--accent-d, #1B5138); }
   </style>
 </head>
 <body>
@@ -87,7 +88,7 @@
 
   <main class="join">
     <span class="join-eyebrow">Tennis Nut 合作店家</span>
-    <h1>你在店裡掃到了 Tennis Nut</h1>
+    <h1 id="headline">歡迎來到 Tennis Nut</h1>
     <p class="cta-sub">在這裡穿線、買拍、買鞋，都可以記進你的球袋：線和磅數留下來，之後每支拍打了多久、換線後打了多久都看得到。</p>
 
     <h2>已經有 Tennis Nut</h2>
@@ -137,6 +138,23 @@
            : /Android/i.test(ua) ? 'android' : '';
     if (os) document.querySelectorAll(os === 'ios' ? '.os-android' : '.os-ios')
       .forEach(function (el) { el.style.display = 'none'; });
+    // 標題寫出店名：「歡迎來到 Tennis Nut，這裡是合作店家 {店名} 的頁面」。
+    // shop_public 只回店名與地址（招牌上看得到的），anon key 本來就是公開的。
+    if (slug) {
+      fetch('https://dwjwisgbpnrxtcvpbkec.supabase.co/rest/v1/rpc/shop_public', {
+        method: 'POST',
+        headers: { apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3andpc2dicG5yeHRjdnBia2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0NTU2ODQsImV4cCI6MjA4NDAzMTY4NH0.Em6SlZlakgd8WlL-PgFsR-NjpN2HFc38yNUw1zRKB9I', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_slug: slug }),
+      }).then(function (r) { return r.ok ? r.json() : null; }).then(function (shop) {
+        if (!shop || !shop.name) return;
+        var h = document.getElementById('headline');
+        h.textContent = '';
+        h.append('歡迎來到 Tennis Nut，這裡是合作店家 ');
+        var b = document.createElement('span'); b.className = 'shop-name'; b.textContent = shop.name;
+        h.append(b, ' 的頁面');
+        document.title = shop.name + ' · Tennis Nut 合作店家';
+      }).catch(function () {});
+    }
     var a = document.getElementById('open-app');
     if (slug) a.href = 'tnsdiaryapp://shop?slug=' + slug;
     else a.style.display = 'none';
