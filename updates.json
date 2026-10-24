@@ -16,42 +16,78 @@
         {
           "emoji": "🕶️",
           "title": "沉浸模式",
-          "body": "中間按鈕多了沉浸模式：地圖變成立體的，身邊也開著的球友會出現在你周圍。點對方就能加好友、記這場比賽、約下次。\n\n頭像上可以掛一句招呼語，例如「找單打對手」；和別人在同一座球場打球時，App 會提醒你們打開。"
+          "body": "中間按鈕多了沉浸模式：地圖變成立體的，身邊也開著的球友會出現在你周圍。點對方就能加好友、記這場比賽、約下次。\n\n頭像上可以掛一句招呼語，例如「找單打對手」；和別人在同一座球場打球時，App 會提醒你們打開。",
+          "shot": {
+            "src": "/shot-2690-immersive.jpg",
+            "alt": "沉浸模式：立體地圖、自己頭像周圍的雷達，下方是找單打對手、找雙打搭檔、想對拉練球",
+            "caption": "底下三顆是頭像上的招呼語，選了附近球友看得到。"
+          }
         },
         {
           "emoji": "👑",
           "title": "勝場王與球隊顏色",
-          "body": "每座球場的勝場王會寫出守了幾天、屬於哪一支球隊，球場底部透出那支球隊的顏色。隊長可以自選隊色，你也可以設定自己的主要球隊。"
+          "body": "每座球場的勝場王會寫出守了幾天、屬於哪一支球隊，球場底部透出那支球隊的顏色。隊長可以自選隊色，你也可以設定自己的主要球隊。",
+          "shot": {
+            "src": "/shot-2690-kings.jpg",
+            "alt": "桃園市中路網球場的立體球場，上方是勝場王頭像與獎盃，球場底部透出球隊顏色",
+            "caption": "球場底部那一圈紫色，就是勝場王所屬球隊的顏色。"
+          }
         },
         {
           "emoji": "📸",
           "title": "裝備照片",
-          "body": "在護照的球袋點一張卡片，選「拍照片」，照著框線把球拍或球鞋放好，大約一分鐘後就會變成去背的型錄照。白色拍線放在深色地面上效果最好。\n\n好友列表、球友卡和好友護照都看得到大家的主拍、主鞋；裝備心得也會附上那件裝備的照片。"
+          "body": "在護照的球袋點一張卡片，選「拍照片」，照著框線把球拍或球鞋放好，大約一分鐘後就會變成去背的型錄照。白色拍線放在深色地面上效果最好。\n\n好友列表、球友卡和好友護照都看得到大家的主拍、主鞋；裝備心得也會附上那件裝備的照片。",
+          "shot": {
+            "src": "/shot-2690-bag.jpg",
+            "alt": "護照的球袋：三支 HEAD 球拍與兩雙球鞋的去背照片，每張卡寫著打了幾小時、幾場",
+            "caption": "照片都是在 App 裡直接拍、自動去背的。"
+          }
         },
         {
           "emoji": "🎾",
           "title": "每支拍打了多久、在哪個磅數贏比較多",
-          "body": "練習、比賽會自動記上你的主拍、主鞋，用的不是主拍就在「這次用的裝備」換一下。每筆紀錄也會存下當時的線和磅數，之後換線也不會被改掉。\n\n球袋裡每件裝備都寫著打了幾小時、幾場；點開球拍看得到勝敗、換線後打了多久，以及不同線、不同磅數各打了多久、贏了幾場。"
+          "body": "練習、比賽會自動記上你的主拍、主鞋，用的不是主拍就在「這次用的裝備」換一下。每筆紀錄也會存下當時的線和磅數，之後換線也不會被改掉。\n\n球袋裡每件裝備都寫著打了幾小時、幾場；點開球拍看得到勝敗、換線後打了多久，以及不同線、不同磅數各打了多久、贏了幾場。",
+          "shot": {
+            "src": "/shot-2690-racket-usage.jpg",
+            "alt": "點開主拍：打了 33 小時、練習 26 次、比賽 7 場，4 勝 3 敗，換線後打了 14 小時"
+          }
         },
         {
           "emoji": "🧵",
           "title": "穿線管理",
-          "body": "球拍可以記線徑、在哪家店穿；換線了就按「我換線了」。每次換線都會留下紀錄，看得到你平均多久換一次線。"
+          "body": "球拍可以記線徑、在哪家店穿；換線了就按「我換線了」。每次換線都會留下紀錄，看得到你平均多久換一次線。",
+          "shot": {
+            "src": "/shot-2690-restrings.jpg",
+            "alt": "球拍的穿線設定：直線 52、橫線 50 磅、穿線日期、在哪家店穿，最下面是穿線紀錄"
+          }
         },
         {
           "emoji": "🗂️",
           "title": "紀錄與諮詢換了位置",
-          "body": "底下導覽列改成「地圖」和「紀錄」兩格。練習和比賽合成一條時間軸，上面可以切換全部、練習、比賽。\n\n諮詢移到護照裡的「我的諮詢」，進行中、已結案的件數都在那裡；「與開發者聊聊」也搬到這裡。"
+          "body": "底下導覽列改成「地圖」和「紀錄」兩格。練習和比賽合成一條時間軸，上面可以切換全部、練習、比賽。\n\n諮詢移到護照裡的「我的諮詢」，進行中、已結案的件數都在那裡；「與開發者聊聊」也搬到這裡。",
+          "shot": {
+            "src": "/shot-2690-records.jpg",
+            "alt": "紀錄分頁：我的紀錄時間軸，上方可切換全部、練習、比賽",
+            "caption": "有附照片的紀錄，右邊會顯示縮圖。"
+          }
         },
         {
           "emoji": "📌",
           "title": "筆記貼成便利貼",
-          "body": "練習或比賽的筆記可以一鍵「貼成便利貼」。下次到球場時，首頁的「上場前看一眼」會出現最近一張，上場前再看一次上次想改的地方。"
+          "body": "練習或比賽的筆記可以一鍵「貼成便利貼」。下次到球場時，首頁的「上場前看一眼」會出現最近一張，上場前再看一次上次想改的地方。",
+          "shot": {
+            "src": "/shot-2690-sticky.jpg",
+            "alt": "我的收藏最上面的便利貼：貼上之後，下次到球場打開 App，首頁會先給你看這一張"
+          }
         },
         {
           "emoji": "🏟️",
           "title": "球場照片",
-          "body": "練習、比賽附的照片可以勾「也放到球場頁」（預設不勾）；也可以在球場資訊卡的「球場照片」直接上傳。球場卡會顯示最近的照片和拍了幾天，看得出現在長什麼樣子。"
+          "body": "練習、比賽附的照片可以勾「也放到球場頁」（預設不勾）；也可以在球場資訊卡的「球場照片」直接上傳。球場卡會顯示最近的照片和拍了幾天，看得出現在長什麼樣子。",
+          "shot": {
+            "src": "/shot-2690-court-photos.jpg",
+            "alt": "球場卡的球場照片區塊：上傳按鈕與一張一天前拍的照片"
+          }
         },
         {
           "emoji": "📊",
@@ -79,22 +115,38 @@
           {
             "emoji": "🕶️",
             "title": "Immersive mode",
-            "body": "A 3D map from the center button, showing nearby players who have it open. Tap someone to add them, record your match or plan the next one."
+            "body": "A 3D map from the center button, showing nearby players who have it open. Tap someone to add them, record your match or plan the next one.",
+            "shot": {
+              "src": "/shot-2690-immersive.jpg",
+              "alt": "Immersive mode"
+            }
           },
           {
             "emoji": "📸",
             "title": "Gear photos",
-            "body": "Tap a card in your bag and choose Take a photo. About a minute later it becomes a clean catalog-style photo that friends see on your player card."
+            "body": "Tap a card in your bag and choose Take a photo. About a minute later it becomes a clean catalog-style photo that friends see on your player card.",
+            "shot": {
+              "src": "/shot-2690-bag.jpg",
+              "alt": "Gear photos"
+            }
           },
           {
             "emoji": "🎾",
             "title": "Hours on every racket",
-            "body": "Practices and matches use your main racket and shoes, and keep the strings and tension you played with. Compare hours and wins for each string setup."
+            "body": "Practices and matches use your main racket and shoes, and keep the strings and tension you played with. Compare hours and wins for each string setup.",
+            "shot": {
+              "src": "/shot-2690-racket-usage.jpg",
+              "alt": "Hours on every racket"
+            }
           },
           {
             "emoji": "🗂️",
             "title": "Records and consultations moved",
-            "body": "The tab bar now has Map and Records. Practices and matches share one timeline. Consultations moved to My consultations in your passport."
+            "body": "The tab bar now has Map and Records. Practices and matches share one timeline. Consultations moved to My consultations in your passport.",
+            "shot": {
+              "src": "/shot-2690-records.jpg",
+              "alt": "Records and consultations moved"
+            }
           },
           {
             "emoji": "📊",
@@ -107,7 +159,8 @@
           "Room for 10 rackets and 6 pairs of shoes",
           "Fixed an occasional Android map crash"
         ]
-      }
+      },
+      "image": "/shot-2690-bag.jpg"
     },
     {
       "build": 2640,
