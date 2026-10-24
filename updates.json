@@ -7,6 +7,109 @@
   ],
   "releases": [
     {
+      "build": 2690,
+      "version": "1.31.0",
+      "date": "2026-10-24",
+      "title": "第 1.31 版更新：沉浸模式、裝備照片，還有你的每支拍打了多久",
+      "summary": "這篇一起介紹 1.29 和 1.31 兩版。在球場上打開沉浸模式，看得到身邊也開著的球友；球拍、球鞋拍張照就變成型錄照；練習和比賽會記下用了哪支拍、當時的線和磅數。紀錄、諮詢的位置也重新整理過。",
+      "highlights": [
+        {
+          "emoji": "🕶️",
+          "title": "沉浸模式",
+          "body": "中間按鈕多了沉浸模式：地圖變成立體的，身邊也開著的球友會出現在你周圍。點對方就能加好友、記這場比賽、約下次。\n\n頭像上可以掛一句招呼語，例如「找單打對手」；和別人在同一座球場打球時，App 會提醒你們打開。"
+        },
+        {
+          "emoji": "👑",
+          "title": "勝場王與球隊顏色",
+          "body": "每座球場的勝場王會寫出守了幾天、屬於哪一支球隊，球場底部透出那支球隊的顏色。隊長可以自選隊色，你也可以設定自己的主要球隊。"
+        },
+        {
+          "emoji": "📸",
+          "title": "裝備照片",
+          "body": "在護照的球袋點一張卡片，選「拍照片」，照著框線把球拍或球鞋放好，大約一分鐘後就會變成去背的型錄照。白色拍線放在深色地面上效果最好。\n\n好友列表、球友卡和好友護照都看得到大家的主拍、主鞋；裝備心得也會附上那件裝備的照片。"
+        },
+        {
+          "emoji": "🎾",
+          "title": "每支拍打了多久、在哪個磅數贏比較多",
+          "body": "練習、比賽會自動記上你的主拍、主鞋，用的不是主拍就在「這次用的裝備」換一下。每筆紀錄也會存下當時的線和磅數，之後換線也不會被改掉。\n\n球袋裡每件裝備都寫著打了幾小時、幾場；點開球拍看得到勝敗、換線後打了多久，以及不同線、不同磅數各打了多久、贏了幾場。"
+        },
+        {
+          "emoji": "🧵",
+          "title": "穿線管理",
+          "body": "球拍可以記線徑、在哪家店穿；換線了就按「我換線了」。每次換線都會留下紀錄，看得到你平均多久換一次線。"
+        },
+        {
+          "emoji": "🗂️",
+          "title": "紀錄與諮詢換了位置",
+          "body": "底下導覽列改成「地圖」和「紀錄」兩格。練習和比賽合成一條時間軸，上面可以切換全部、練習、比賽。\n\n諮詢移到護照裡的「我的諮詢」，進行中、已結案的件數都在那裡；「與開發者聊聊」也搬到這裡。"
+        },
+        {
+          "emoji": "📌",
+          "title": "筆記貼成便利貼",
+          "body": "練習或比賽的筆記可以一鍵「貼成便利貼」。下次到球場時，首頁的「上場前看一眼」會出現最近一張，上場前再看一次上次想改的地方。"
+        },
+        {
+          "emoji": "🏟️",
+          "title": "球場照片",
+          "body": "練習、比賽附的照片可以勾「也放到球場頁」（預設不勾）；也可以在球場資訊卡的「球場照片」直接上傳。球場卡會顯示最近的照片和拍了幾天，看得出現在長什麼樣子。"
+        },
+        {
+          "emoji": "📊",
+          "title": "戰績以盤計",
+          "body": "自由對打的戰績和勝率改成以盤計，賽事仍以場計。例如三盤 1 比 2，就是 1 勝 2 敗。徽章也照同一套算。"
+        },
+        {
+          "emoji": "🤝",
+          "title": "空檔重疊，直接約",
+          "body": "排空檔多了「整天」快選。你的空檔和別人的時間、地點重疊時，兩邊都會收到通知；點開會先問你要不要約對方，要的話約球表單的時間、球場、找誰都幫你帶好。"
+        }
+      ],
+      "fixes": [
+        "記錄、修改、刪除之後，征服球場、徽章、堅果、地圖、好友、球隊都會立刻更新，不用重新整理",
+        "球袋可以放 10 支球拍、6 雙球鞋",
+        "地圖右側多了圖例；點的顏色只代表球場材質，有人在打、場地狀況改畫在外圈",
+        "從「比賽被標記」通知點進來，會直接打開確認視窗",
+        "面對面記比賽，被記進去的球友也會馬上看到那一場",
+        "修正 Android 地圖偶爾閃退；修正 iPhone 地圖上多出一個藍色定位點"
+      ],
+      "en": {
+        "title": "v1.31 · Immersive mode, gear photos, and hours on every racket",
+        "summary": "This post covers both 1.29 and 1.31. See nearby players in immersive mode, turn racket and shoe photos into catalog shots, and keep the racket, strings and tension with every practice and match.",
+        "highlights": [
+          {
+            "emoji": "🕶️",
+            "title": "Immersive mode",
+            "body": "A 3D map from the center button, showing nearby players who have it open. Tap someone to add them, record your match or plan the next one."
+          },
+          {
+            "emoji": "📸",
+            "title": "Gear photos",
+            "body": "Tap a card in your bag and choose Take a photo. About a minute later it becomes a clean catalog-style photo that friends see on your player card."
+          },
+          {
+            "emoji": "🎾",
+            "title": "Hours on every racket",
+            "body": "Practices and matches use your main racket and shoes, and keep the strings and tension you played with. Compare hours and wins for each string setup."
+          },
+          {
+            "emoji": "🗂️",
+            "title": "Records and consultations moved",
+            "body": "The tab bar now has Map and Records. Practices and matches share one timeline. Consultations moved to My consultations in your passport."
+          },
+          {
+            "emoji": "📊",
+            "title": "Records counted by set",
+            "body": "Casual match records and win rates now count sets; tournaments still count matches."
+          }
+        ],
+        "fixes": [
+          "Everything updates the moment you save",
+          "Room for 10 rackets and 6 pairs of shoes",
+          "Fixed an occasional Android map crash"
+        ]
+      }
+    },
+    {
       "build": 2640,
       "version": "1.28.0",
       "date": "2026-10-15",
