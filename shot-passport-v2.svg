@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 616" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif">
+  <rect x="4" y="4" width="352" height="608" rx="30" fill="#DEDACE"/>
+  <rect x="8" y="8" width="344" height="600" rx="26" fill="#FBFAF6"/>
+  <text x="180" y="46" font-size="15" fill="#1B5138" font-weight="700" text-anchor="middle">網球護照</text>
+  <rect x="22" y="62" width="316" height="44" rx="14" fill="#FFFFFF" stroke="#E6E3DA"/>
+  <text x="40" y="89" font-size="11.5" fill="#6E776F" font-weight="400" text-anchor="start">球員證 QR · 掃描對方</text>
+  <text x="70" y="146" font-size="26" fill="#2B3A33" font-weight="300" text-anchor="middle">38</text>
+  <text x="70" y="166" font-size="10.5" fill="#9BA29B" font-weight="400" text-anchor="middle" letter-spacing="1">練習</text>
+  <text x="140" y="146" font-size="26" fill="#2B3A33" font-weight="300" text-anchor="middle">46</text>
+  <text x="140" y="166" font-size="10.5" fill="#9BA29B" font-weight="400" text-anchor="middle" letter-spacing="1">時數</text>
+  <text x="210" y="146" font-size="26" fill="#2B3A33" font-weight="300" text-anchor="middle">12</text>
+  <text x="210" y="166" font-size="10.5" fill="#9BA29B" font-weight="400" text-anchor="middle" letter-spacing="1">比賽</text>
+  <text x="290" y="146" font-size="26" fill="#2B3A33" font-weight="300" text-anchor="middle">58%</text>
+  <text x="290" y="166" font-size="10.5" fill="#9BA29B" font-weight="400" text-anchor="middle" letter-spacing="1">勝率</text>
+  <text x="26" y="200" font-size="11.5" fill="#9BA29B" font-weight="600" text-anchor="start" letter-spacing="2">足跡</text>
+  <line x1="20" y1="210" x2="340" y2="210" stroke="#E6E3DA" stroke-width="1"/>
+  <text x="28" y="238" font-size="14.5" fill="#2B3A33" font-weight="600" text-anchor="start">球場征服</text>
+  <path d="M320 228 l5 5 l-5 5" fill="none" stroke="#9BA29B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="312" y="238" font-size="12.5" text-anchor="end"><tspan fill="#2B3A33" font-weight="600">14</tspan><tspan fill="#6E776F"> / 962</tspan></text>
+  <line x1="20" y1="254" x2="340" y2="254" stroke="#E6E3DA" stroke-width="1"/>
+  <text x="28" y="282" font-size="14.5" fill="#2B3A33" font-weight="600" text-anchor="start">賽事成績</text>
+  <path d="M320 272 l5 5 l-5 5" fill="none" stroke="#9BA29B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="312" y="282" font-size="12.5" fill="#6E776F" font-weight="400" text-anchor="end">2024 社區盃 亞軍</text>
+  <line x1="20" y1="298" x2="340" y2="298" stroke="#E6E3DA" stroke-width="1"/>
+  <text x="28" y="326" font-size="14.5" fill="#2B3A33" font-weight="600" text-anchor="start">成就徽章</text>
+  <path d="M320 316 l5 5 l-5 5" fill="none" stroke="#9BA29B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="312" y="326" font-size="12.5" text-anchor="end"><tspan fill="#2B3A33" font-weight="600">8</tspan><tspan fill="#6E776F"> / 21</tspan></text>
+  <line x1="20" y1="342" x2="340" y2="342" stroke="#E6E3DA" stroke-width="1"/>
+  <text x="26" y="380" font-size="11.5" fill="#9BA29B" font-weight="600" text-anchor="start" letter-spacing="2">球友</text>
+  <line x1="20" y1="390" x2="340" y2="390" stroke="#E6E3DA" stroke-width="1"/>
+  <text x="28" y="418" font-size="14.5" fill="#2B3A33" font-weight="600" text-anchor="start">我的好友</text>
+  <path d="M320 408 l5 5 l-5 5" fill="none" stroke="#9BA29B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="312" y="418" font-size="12.5" fill="#6E776F" font-weight="400" text-anchor="end">24</text>
+  <circle cx="222" cy="414" r="9" fill="#C9D8CC" stroke="#FBFAF6" stroke-width="1.5"/>
+  <circle cx="235" cy="414" r="9" fill="#E4D3C2" stroke="#FBFAF6" stroke-width="1.5"/>
+  <circle cx="248" cy="414" r="9" fill="#CFD6E3" stroke="#FBFAF6" stroke-width="1.5"/>
+  <circle cx="261" cy="414" r="9" fill="#D9CFE0" stroke="#FBFAF6" stroke-width="1.5"/>
+  <line x1="20" y1="434" x2="340" y2="434" stroke="#E6E3DA" stroke-width="1"/>
+  <text x="28" y="462" font-size="14.5" fill="#2B3A33" font-weight="600" text-anchor="start">我的球隊</text>
+  <path d="M320 452 l5 5 l-5 5" fill="none" stroke="#9BA29B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="312" y="462" font-size="12.5" fill="#6E776F" font-weight="400" text-anchor="end">2</text>
+  <line x1="20" y1="478" x2="340" y2="478" stroke="#E6E3DA" stroke-width="1"/>
+  <text x="26" y="516" font-size="11.5" fill="#9BA29B" font-weight="600" text-anchor="start" letter-spacing="2">裝備</text>
+  <text x="318" y="516" font-size="11.5" fill="#3F7C43" font-weight="600" text-anchor="end">大家的裝備心得</text>
+  <path d="M324 507 l5 5 l-5 5" fill="none" stroke="#3F7C43" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="22" y="532" width="98" height="64" rx="12" fill="#FFFFFF" stroke="#1B5138" stroke-width="1.5"/>
+  <rect x="23" y="533" width="96" height="40" rx="11" fill="#F4F3F0"/>
+  <ellipse cx="71" cy="550" rx="9" ry="12" fill="none" stroke="#6E776F" stroke-width="1.6"/>
+  <line x1="71" y1="562" x2="71" y2="571" stroke="#6E776F" stroke-width="2"/>
+  <text x="32" y="588" font-size="10" fill="#6E776F" font-weight="400" text-anchor="start">主拍</text>
+  <rect x="128" y="532" width="98" height="64" rx="12" fill="#FFFFFF" stroke="#E6E3DA" stroke-width="1"/>
+  <rect x="129" y="533" width="96" height="40" rx="11" fill="#F4F3F0"/>
+  <ellipse cx="177" cy="550" rx="9" ry="12" fill="none" stroke="#6E776F" stroke-width="1.6"/>
+  <line x1="177" y1="562" x2="177" y2="571" stroke="#6E776F" stroke-width="2"/>
+  <text x="138" y="588" font-size="10" fill="#6E776F" font-weight="400" text-anchor="start">第二支</text>
+  <rect x="234" y="532" width="98" height="64" rx="12" fill="#FFFFFF" stroke="#E6E3DA" stroke-width="1"/>
+  <rect x="235" y="533" width="96" height="40" rx="11" fill="#F4F3F0"/>
+  <ellipse cx="283" cy="550" rx="9" ry="12" fill="none" stroke="#6E776F" stroke-width="1.6"/>
+  <line x1="283" y1="562" x2="283" y2="571" stroke="#6E776F" stroke-width="2"/>
+  <text x="244" y="588" font-size="10" fill="#6E776F" font-weight="400" text-anchor="start">舊拍</text>
+</svg>
