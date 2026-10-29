@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>確認一起打的練習 · Tennis Nut</title>
+  <meta name="description" content="球友在 Tennis Nut 記了你們一起打的練習，請你確認。" />
+  <meta name="robots" content="noindex" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="確認一起打的練習 · Tennis Nut" />
+  <meta property="og:description" content="球友在 Tennis Nut 記了你們一起打的練習，請你確認。" />
+  <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .join { max-width: 520px; margin: 0 auto; padding: 40px 20px 64px; }
+    .join-eyebrow { font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+                    color: var(--text-tertiary); font-weight: 700; }
+    .join h1 { font-size: 26px; line-height: 1.35; margin: 8px 0 0; color: var(--text-primary); }
+
+    /* 練習卡：誰、在哪、哪天、挑戰數字——收到連結的人只在意這些。 */
+    .card { background: var(--surface); border: 1px solid var(--border);
+            border-radius: 18px; padding: 20px; margin-top: 22px;
+            display: flex; gap: 16px; align-items: center; }
+    .avatar { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+              object-fit: cover; background: var(--tint);
+              display: grid; place-items: center; font-size: 24px; font-weight: 800;
+              color: var(--accent-d); }
+    .card-court { font-size: 18px; font-weight: 800; color: var(--text-primary);
+                  margin: 0 0 2px; line-height: 1.3; }
+    .card-meta { margin: 0; font-size: 14px; color: var(--text-secondary); }
+    .card-challenge { margin: 6px 0 0; font-size: 15px; font-weight: 700; color: var(--accent-d); }
+
+    .join h2 { font-size: 17px; margin: 30px 0 10px; color: var(--text-primary); }
+    .cta { display: inline-flex; align-items: center; justify-content: center;
+           background: var(--brand-deep); color: #fff; font-weight: 700; font-size: 16px;
+           border-radius: 12px; padding: 15px 22px; text-decoration: none; margin-top: 6px; }
+    .cta:hover { background: var(--accent-d); text-decoration: none; }
+    .cta-sub { font-size: 14px; color: var(--text-tertiary); margin: 12px 0 0; }
+    .notice { margin-top: 22px; padding: 16px 18px; border-radius: 14px;
+              background: var(--tint); color: var(--text-secondary); font-size: 15px; }
+    .join-foot { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);
+                 font-size: 14px; color: var(--text-tertiary); line-height: 1.8; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="brand-link">
+      <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
+    </a>
+    <nav>
+      <a href="/install">安裝</a>
+      <a href="/blog">Blog</a>
+    </nav>
+  </header>
+
+  <main class="join">
+    <span class="join-eyebrow">Tennis Nut</span>
+    <h1 id="headline">球友邀你確認一起打的練習</h1>
+
+    <div class="card" id="card" style="display:none">
+      <div class="avatar" id="avatar"></div>
+      <div>
+        <p class="card-court" id="court"></p>
+        <p class="card-meta" id="meta"></p>
+        <p class="card-challenge" id="challenge"></p>
+      </div>
+    </div>
+
+    <!-- 已經確認過、過期、找不到：說清楚，不留一頁看不懂的按鈕。 -->
+    <div class="notice" id="notice" style="display:none"></div>
+
+    <div id="actions">
+      <h2>已經有 Tennis Nut</h2>
+      <a class="cta" id="open-app" href="#">在 App 確認</a>
+
+      <h2>還沒有 Tennis Nut</h2>
+      <!-- 依手機系統只給一顆：iPhone 給 App Store；Android 目前是 Google Play 封閉測試，
+           走 /install 的加入步驟。電腦或認不出來時兩顆都給。 -->
+      <div class="os-ios">
+        <a class="cta" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">
+          從 App Store 下載
+        </a>
+      </div>
+      <div class="os-android">
+        <a class="cta" href="/install">Android 安裝步驟</a>
+      </div>
+      <p class="cta-sub">裝好、登入之後，回到這頁按「在 App 確認」。</p>
+    </div>
+
+    <div class="join-foot">
+      有問題？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲。
+    </div>
+  </main>
+
+  <script>
+    // /confirm?t=<16 hex>（App 記練習時給「還沒裝 App 的夥伴」的連結）→
+    // tnsdiaryapp://practice-invite?t=<token>。App 收到後記下來，登入後認領，
+    // 打開跟好友標記一樣的確認畫面（migration 20261029172727）。
+    // 用自訂 scheme：沒裝 App 時按了沒反應，所以下面一定要有下載。
+    var t = (new URLSearchParams(location.search).get('t') || '').toLowerCase();
+    if (!/^[0-9a-f]{16}$/.test(t)) t = '';
+    var ua = navigator.userAgent || '';
+    var os = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document) ? 'ios'
+           : /Android/i.test(ua) ? 'android' : '';
+    if (os) document.querySelectorAll(os === 'ios' ? '.os-android' : '.os-ios')
+      .forEach(function (el) { el.style.display = 'none'; });
+
+    var open = document.getElementById('open-app');
+    function stop(msg) {
+      document.getElementById('actions').style.display = 'none';
+      var n = document.getElementById('notice');
+      n.textContent = msg; n.style.display = 'block';
+    }
+    if (!t) stop('這條連結不完整，請對方再傳一次。');
+    else open.href = 'tnsdiaryapp://practice-invite?t=' + t;
+
+    // 摘要：記的人的名字與頭像、球場、日期、挑戰數字——是他自己選擇傳出去的。
+    // anon key 本來就是公開的（App 裡也有）。
+    var LABELS = [['rally_max', '對拉'], ['volley_max', '截擊'],
+                  ['serve_same_max', '同邊發球'], ['serve_alt_max', '輪流發球']];
+    if (t) {
+      fetch('https://dwjwisgbpnrxtcvpbkec.supabase.co/rest/v1/rpc/practice_invite_by_token', {
+        method: 'POST',
+        headers: { apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3andpc2dicG5yeHRjdnBia2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0NTU2ODQsImV4cCI6MjA4NDAzMTY4NH0.Em6SlZlakgd8WlL-PgFsR-NjpN2HFc38yNUw1zRKB9I', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_token: t }),
+      }).then(function (r) { return r.ok ? r.json() : null; }).then(function (rows) {
+        var v = rows && rows[0];
+        if (!v) { stop('找不到這條邀請，請對方再傳一次。'); return; }
+        var name = v.inviter_name || '球友';
+        document.getElementById('headline').textContent = name + ' 邀你確認一起打的練習';
+        var av = document.getElementById('avatar');
+        if (v.inviter_avatar) {
+          var img = document.createElement('img');
+          img.src = v.inviter_avatar; img.alt = ''; img.className = 'avatar';
+          av.replaceWith(img);
+        } else av.textContent = name.charAt(0);
+        document.getElementById('court').textContent = v.court_name || '';
+        document.getElementById('meta').textContent = (v.practice_date || '').replace(/-/g, '/');
+        var ch = LABELS.filter(function (l) { return v[l[0]]; })
+                       .map(function (l) { return l[1] + ' ' + v[l[0]] + ' 顆'; });
+        document.getElementById('challenge').textContent = ch.join(' · ');
+        document.getElementById('card').style.display = 'flex';
+        if (v.status === 'claimed') stop('這條邀請已經有人確認了。');
+        else if (v.status === 'expired') stop('這條邀請已經過期了（7 天內有效），請對方再傳一次。');
+      }).catch(function () {});
+    }
+  </script>
+</body>
+</html>
