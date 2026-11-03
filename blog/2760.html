@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>第 1.35 版更新：挑戰分級、想請教，還有會自己配對的空檔 · Tennis Nut</title>
+  <meta name="description" content="挑戰每一關標上程度，和球友一起完成時由對方見證、兩人同時過關。記練習時可以寫下想問的問題，讓好友和附近的球友回答。固定空檔每週自動排上，App 會替你找時間和程度對得上的人。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="第 1.35 版更新：挑戰分級、想請教，還有會自己配對的空檔 · Tennis Nut" />
+  <meta property="og:description" content="挑戰每一關標上程度，和球友一起完成時由對方見證、兩人同時過關。記練習時可以寫下想問的問題，讓好友和附近的球友回答。固定空檔每週自動排上，App 會替你找時間和程度對得上的人。" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/blog/2760" />
+  <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
+  <link rel="canonical" href="https://tennisnut.kxon.net/blog/2760" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://tennisnut.kxon.net/blog/2760" />
+  <link rel="alternate" hreflang="en" href="https://tennisnut.kxon.net/en/blog/2760" />
+  <link rel="alternate" hreflang="x-default" href="https://tennisnut.kxon.net/blog/2760" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .rel-lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    .hl { display: flex; gap: 14px; align-items: flex-start; background: var(--surface);
+          border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 14px; margin-bottom: 14px; }
+    .hl-emoji { font-size: 22px; line-height: 1.4; flex-shrink: 0; }
+    .hl-body h2 { font-size: 17px; margin: 0 0 6px; }
+    .hl-body p { margin: 0; color: var(--text-secondary); font-size: 15px; }
+    .hl-shot { margin: 14px 0 2px; }
+    .hl-shot img { display: block; width: 100%; max-width: 300px; height: auto;
+                   border-radius: 12px; }
+    .hl-shot figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; }
+    .guide-h { font-size: 19px; margin: 34px 0 2px; padding-top: 4px; }
+    .guide-h + .meta { margin-top: 0; }
+    .fixes { margin: 28px 0 8px; }
+    .fixes h2 { font-size: 15px; color: var(--text-tertiary); font-weight: 600; margin: 0 0 8px; }
+    .fixes ul { margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 15px; }
+    .fixes li { margin-bottom: 4px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 14px 16px; font-size: 15px; margin: 28px 0 0; }
+    .rel-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; font-size: 14px; }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-secondary); }
+    .rel-list { list-style: none; margin: 20px 0 0; padding: 0; }
+    .rel-item { margin-bottom: 12px; }
+    .rel-item a { display: block; background: var(--surface); border: 1px solid var(--border);
+                  border-radius: 14px; padding: 18px; text-decoration: none;
+                  transition: background-color .15s ease, border-color .15s ease; }
+    .rel-item a:hover { background: var(--accent-d); border-color: var(--accent-d);
+                        text-decoration: none; }
+    .rel-item a:hover .rel-item-title,
+    .rel-item a:hover .rel-item-meta { color: #fff; }
+    .rel-item a:hover .rel-item-sum { color: rgba(255, 255, 255, .82); }
+    .rel-item-meta { font-size: 13px; color: var(--text-tertiary); }
+    .rel-item-title { font-family: "Sora", -apple-system, sans-serif; font-size: 19px;
+                      color: var(--text-primary); margin: 4px 0 6px; }
+    .rel-item-sum { margin: 0; font-size: 15px; color: var(--text-secondary); }
+
+    /* 區塊標題：小標籤 + 一條線，兩區才分得開 */
+    .sec-eyebrow { display: flex; align-items: center; gap: 12px; margin: 44px 0 0; }
+    .sec-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .sec-eyebrow h2 { font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
+                      color: var(--accent); margin: 0; white-space: nowrap; }
+
+    /* 最新一版：有圖、字大，跟舊版本明顯不同重量 */
+    .rel-hero { display: block; background: var(--surface); border: 1px solid var(--border);
+                border-radius: 18px; overflow: hidden; text-decoration: none; margin-top: 20px; }
+    .rel-hero { transition: border-color .15s ease; }
+    .rel-hero:hover { border-color: var(--accent-d); text-decoration: none; }
+    .rel-hero:hover .rel-hero-body { background: var(--accent-d); }
+    .rel-hero-body { transition: background-color .15s ease; }
+    .rel-hero:hover h3, .rel-hero:hover .rel-item-meta { color: #fff; }
+    .rel-hero:hover p { color: rgba(255, 255, 255, .82); }
+    .rel-hero-body { padding: 26px 22px 28px; }
+    .rel-badge { display: inline-block; background: var(--accent); color: #fff; font-size: 11px;
+                 font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 3px 10px; }
+    .rel-hero h3 { font-family: "Sora", -apple-system, sans-serif; font-size: 24px; line-height: 1.35;
+                   color: var(--text-primary); margin: 12px 0 8px; }
+    .rel-hero p { margin: 0; font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+    .rel-hero .rel-item-meta { margin-top: 12px; }
+
+    /* 舊版本：收成一行，日期與標題並排 */
+    .rel-past { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--border); }
+    .rel-past li a { display: flex; gap: 14px; align-items: baseline; padding: 14px 2px;
+                     border-bottom: 1px solid var(--border); text-decoration: none; }
+    .rel-past li a { transition: background-color .15s ease; border-radius: 8px; }
+    .rel-past li a:hover { background: var(--accent-d); text-decoration: none;
+                           padding-left: 10px; padding-right: 10px; }
+    .rel-past li a:hover .rel-past-t { color: #fff; }
+    .rel-past li a:hover .rel-past-d { color: rgba(255, 255, 255, .75); }
+    .rel-past-d { font-size: 13px; color: var(--text-tertiary); white-space: nowrap; }
+    .rel-past-t { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+
+    /* 功能介紹：圖示當錨點，桌機兩欄 */
+    .guide-grid { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+    @media (min-width: 720px) { .guide-grid { grid-template-columns: 1fr 1fr; } }
+    .guide-grid a { display: flex; gap: 14px; height: 100%; background: var(--surface);
+                    border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+                    text-decoration: none;
+                    transition: background-color .15s ease, border-color .15s ease; }
+    /* 滑過整張卡就翻成品牌綠底白字——卡片本來就是一整個連結，
+       只換邊框顏色的話，游標在卡片中間時看不出它可以點。 */
+    .guide-grid a:hover { background: var(--accent-d); border-color: var(--accent-d);
+                          text-decoration: none; }
+    .guide-grid a:hover .guide-t { color: #fff; }
+    .guide-grid a:hover .guide-s { color: rgba(255, 255, 255, .82); }
+    .guide-ic { font-size: 22px; line-height: 1.3; flex-shrink: 0; }
+    .guide-t { font-size: 17px; font-weight: 700; color: var(--text-primary); margin: 0 0 6px; }
+    .guide-s { margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="brand-link">
+      <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
+    </a>
+    <nav>
+      <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">下載</a>
+      <a href="/install">安裝</a>
+      <a href="/blog" class="active">Blog</a>
+      <a href="/privacy">隱私權</a>
+      <a href="/terms">服務條款</a>
+      <a href="/en/blog">EN</a>
+    </nav>
+  </header>
+
+  <article class="container rel">
+    <a class="rel-back" href="/blog">← 所有更新</a>
+    <span class="tag-line">版本 1.35.0 · Build 2760 · 2026.11.03</span>
+    <h1>第 1.35 版更新：挑戰分級、想請教，還有會自己配對的空檔</h1>
+    <p class="rel-lead">挑戰每一關標上程度，和球友一起完成時由對方見證、兩人同時過關。記練習時可以寫下想問的問題，讓好友和附近的球友回答。固定空檔每週自動排上，App 會替你找時間和程度對得上的人。</p>
+
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">🏆</div>
+      <div class="hl-body">
+        <h2>挑戰分級與新關卡</h2>
+        <p>每一關標上初級到高級，不用從頭爬，挑適合自己的開始。新增牆壁截擊、變線對抽，對拉和截擊多了 10 顆的入門關。
+
+和球友一起完成時由對方見證，兩人同時過關；跟不同球友完成會記成 ×N。過關有堅果，直接過高關的話，前面的關卡一起算。</p>
+
+      </div>
+    </section>
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">🙋</div>
+      <div class="hl-body">
+        <h2>想請教</h2>
+        <p>記練習時寫一句想問什麼，可以附影片。好友、隊友和同縣市打過球的人在首頁看得到，可以回覆。
+
+那筆練習底下會一直留著「想請教 · N 則回覆」，之後點進去還找得到那一串。</p>
+
+      </div>
+    </section>
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">📅</div>
+      <div class="hl-body">
+        <h2>固定空檔會自己配對</h2>
+        <p>每週同一時間自動排上，直接選星期幾。App 依程度、單打或雙打、時間替你比對，首頁寫「N 人跟你重疊」，點開就能約。
+
+地圖「找球友」上，跟你空檔對得上的球場會亮綠色。</p>
+
+      </div>
+    </section>
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">🎾</div>
+      <div class="hl-body">
+        <h2>球場卡片更好用</h2>
+        <p>球場卡片上方多了一排目錄，一點就到場上、約球、空檔、球場資訊。人在場上時，點一下就能回報球場狀態。</p>
+
+      </div>
+    </section>
+    <section class="hl">
+      <div class="hl-emoji" aria-hidden="true">🪪</div>
+      <div class="hl-body">
+        <h2>新手第一天</h2>
+        <p>新手流程改成一條路，一開始就選要不要被約球。釘常去的球場時，可以選「你附近」或「熱門」。</p>
+
+      </div>
+    </section>
+
+    <section class="fixes">
+      <h2>其他修正</h2>
+      <ul>
+        <li>約球時間預設是現在，10 分鐘一格</li>
+        <li>複製球拍、球鞋時，存檔前可以改年份和型號</li>
+        <li>新增球拍、球鞋時先引導拍照，存檔後自動去背</li>
+        <li>存檔時顯示這次實際拿到的堅果</li>
+        <li>地圖「今日足跡」改名「本日球友動態」，並標出在其他地區的人數</li>
+        <li>附挑戰影片時，說明 YouTube、Drive 要怎麼設定</li>
+        <li>別人的護照只顯示過了的關</li>
+      </ul>
+    </section>
+
+    <div class="callout"><b>怎麼更新？</b> Android 走 Google Play 會自動更新；iPhone 從 App Store 更新即可。還沒裝的話，iPhone 從 <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">App Store</a> 下載。</div>
+
+    <nav class="rel-nav">
+      <span></span>
+      <a href="/blog/2690">1.31.0 (2690) →</a>
+    </nav>
+
+    <div class="guide-foot">用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。</div>
+  </article>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-text">
+        <a href="/blog">Blog</a>·
+        <a href="/privacy">隱私權政策</a>·
+        <a href="/terms">服務條款</a>·
+        <a href="mailto:kaysoncho@gmail.com">聯絡我們</a>
+        <div style="margin-top: 12px;">© 2026 Tennis Nut · KXON</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

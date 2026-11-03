@@ -7,6 +7,89 @@
   ],
   "releases": [
     {
+      "build": 2760,
+      "version": "1.35.0",
+      "date": "2026-11-03",
+      "title": "第 1.35 版更新：挑戰分級、想請教，還有會自己配對的空檔",
+      "summary": "挑戰每一關標上程度，和球友一起完成時由對方見證、兩人同時過關。記練習時可以寫下想問的問題，讓好友和附近的球友回答。固定空檔每週自動排上，App 會替你找時間和程度對得上的人。",
+      "highlights": [
+        {
+          "emoji": "🏆",
+          "title": "挑戰分級與新關卡",
+          "body": "每一關標上初級到高級，不用從頭爬，挑適合自己的開始。新增牆壁截擊、變線對抽，對拉和截擊多了 10 顆的入門關。\n\n和球友一起完成時由對方見證，兩人同時過關；跟不同球友完成會記成 ×N。過關有堅果，直接過高關的話，前面的關卡一起算。"
+        },
+        {
+          "emoji": "🙋",
+          "title": "想請教",
+          "body": "記練習時寫一句想問什麼，可以附影片。好友、隊友和同縣市打過球的人在首頁看得到，可以回覆。\n\n那筆練習底下會一直留著「想請教 · N 則回覆」，之後點進去還找得到那一串。"
+        },
+        {
+          "emoji": "📅",
+          "title": "固定空檔會自己配對",
+          "body": "每週同一時間自動排上，直接選星期幾。App 依程度、單打或雙打、時間替你比對，首頁寫「N 人跟你重疊」，點開就能約。\n\n地圖「找球友」上，跟你空檔對得上的球場會亮綠色。"
+        },
+        {
+          "emoji": "🎾",
+          "title": "球場卡片更好用",
+          "body": "球場卡片上方多了一排目錄，一點就到場上、約球、空檔、球場資訊。人在場上時，點一下就能回報球場狀態。"
+        },
+        {
+          "emoji": "🪪",
+          "title": "新手第一天",
+          "body": "新手流程改成一條路，一開始就選要不要被約球。釘常去的球場時，可以選「你附近」或「熱門」。"
+        }
+      ],
+      "fixes": [
+        "約球時間預設是現在，10 分鐘一格",
+        "複製球拍、球鞋時，存檔前可以改年份和型號",
+        "新增球拍、球鞋時先引導拍照，存檔後自動去背",
+        "存檔時顯示這次實際拿到的堅果",
+        "地圖「今日足跡」改名「本日球友動態」，並標出在其他地區的人數",
+        "附挑戰影片時，說明 YouTube、Drive 要怎麼設定",
+        "別人的護照只顯示過了的關"
+      ],
+      "en": {
+        "title": "v1.35 · Challenge levels, Ask players, and free time that finds a match",
+        "summary": "Every challenge stage now shows its level, and when you finish with a partner they witness it and you both pass together. Add a question to a practice for friends and nearby players to answer. Weekly free time repeats on its own, and the app finds players whose time and level fit.",
+        "highlights": [
+          {
+            "emoji": "🏆",
+            "title": "Challenge levels and new stages",
+            "body": "Every stage is tagged Beginner to Advanced, so you can start wherever fits. New wall volley and line-change rally challenges, plus 10-ball starter stages for rally and volley.\n\nWhen you finish with a partner, they witness it and you both pass together; passing with different partners shows as ×N. Passing earns nuts, and jumping to a higher stage counts the ones below it too."
+          },
+          {
+            "emoji": "🙋",
+            "title": "Ask players",
+            "body": "Add a one-line question to a practice, with an optional video. Friends, teammates and players in your area see it on Home and can reply. The practice keeps an “Ask · N replies” line so you can always find the thread."
+          },
+          {
+            "emoji": "📅",
+            "title": "Free time that finds a match",
+            "body": "Weekly free time repeats on its own; just pick the days. The app matches you by level, singles or doubles, and time, and Home shows how many players overlap with you. On the map, courts that fit your free time glow green."
+          },
+          {
+            "emoji": "🎾",
+            "title": "Better court cards",
+            "body": "A section bar takes you straight to who's playing, hits, free time and court info. When you're at the court, one tap reports its condition."
+          },
+          {
+            "emoji": "🪪",
+            "title": "A smoother first day",
+            "body": "Onboarding is one path, and you choose up front whether others can invite you to play. When pinning your usual court, pick from nearby or popular."
+          }
+        ],
+        "fixes": [
+          "Hit times default to now, in 10-minute steps",
+          "Edit year and model when duplicating a racket or shoes",
+          "Gear forms start with a photo, cut out automatically",
+          "Saving shows the nuts you actually earned",
+          "The map's Today lens shows how many players are elsewhere",
+          "Clearer steps for sharing challenge videos from YouTube or Drive",
+          "Other players' passports show only the stages they've passed"
+        ]
+      }
+    },
+    {
       "build": 2690,
       "version": "1.31.0",
       "date": "2026-10-24",
