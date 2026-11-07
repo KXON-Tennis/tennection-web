@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex" />
+  <title>球袋觀察圖卡 · 2026.11</title>
+  <!-- Threads 圖文的原稿：?n=1..3 是 1080×1350 直式三張，?n=og 是 1200×630 預覽卡。
+       用 Chrome headless 截圖輸出 PNG（指令在 commit 訊息裡）。 -->
+  <style>
+    :root {
+      --bg: #FBFAF6; --surface: #FFFFFF; --border: #ECEAE2;
+      --ink: #1F3D24; --ink2: #5E7A60; --ink3: #93A795;
+      --accent: #5C9A46; --accent-d: #3C6E3F; --soft: #CFE2C2; --tint: #F3F8EC;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); }
+    body { font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif; color: var(--ink); }
+    .card { width: 1080px; height: 1350px; padding: 84px 84px 72px; display: none; flex-direction: column; background:
+      radial-gradient(900px 600px at 100% 0%, rgba(92,154,70,.10), transparent 60%), var(--bg); }
+    .card.show { display: flex; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img.ic { width: 52px; height: 52px; border-radius: 12px; }
+    .brand img.wm { height: 34px; }
+    .brand span { color: var(--ink3); font-size: 26px; font-weight: 700; margin-left: 6px; }
+    .kicker { margin-top: 64px; font-size: 32px; font-weight: 800; color: var(--accent-d); letter-spacing: 2px; }
+    h1 { margin-top: 16px; font-size: 76px; line-height: 1.18; font-weight: 900; letter-spacing: .5px; }
+    h1 em { font-style: normal; color: var(--accent); }
+    .sub { margin-top: 48px; font-size: 32px; line-height: 1.55; color: var(--ink2); font-weight: 600; }
+
+    .bars { margin-top: 56px; display: grid; gap: 26px; }
+    .bar { display: grid; grid-template-columns: 250px 1fr 120px; align-items: center; gap: 22px; }
+    .bar .k { font-size: 36px; font-weight: 800; white-space: nowrap; }
+    .bar .k small { display: block; font-size: 22px; color: var(--ink3); font-weight: 700; margin-top: 2px; }
+    .bar .t { height: 46px; background: var(--tint); border-radius: 0 8px 8px 0; overflow: hidden; }
+    .bar .t, .bar .f { display: block; }
+    .bar .f { height: 100%; background: var(--soft); border-radius: 0 8px 8px 0; }
+    .bar.on .f { background: var(--accent); }
+    .bar .v { font-size: 36px; font-weight: 800; color: var(--ink2); text-align: right; font-variant-numeric: tabular-nums; }
+    .bar.on .v { color: var(--ink); }
+
+    .grid4 { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .p { background: var(--surface); border: 2px solid var(--border); border-radius: 26px; padding: 32px 32px 30px; }
+    .p .b { font-size: 40px; font-weight: 900; }
+    .p .n { font-size: 26px; color: var(--ink3); font-weight: 700; margin-top: 4px; }
+    .p .big { margin-top: 22px; font-size: 76px; font-weight: 900; line-height: 1; color: var(--accent); }
+    .p .big small { font-size: 30px; color: var(--ink2); font-weight: 800; margin-left: 8px; }
+    .p .top { margin-top: 18px; font-size: 27px; color: var(--ink2); font-weight: 700; line-height: 1.5; }
+    .p .top b { color: var(--ink); }
+    .p.hl { border-color: var(--accent); background: var(--tint); }
+
+    .foot { margin-top: auto; padding-top: 30px; border-top: 2px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+    .foot .src { font-size: 23px; color: var(--ink3); line-height: 1.5; font-weight: 600; }
+    .foot .pg { font-size: 26px; color: var(--ink3); font-weight: 800; white-space: nowrap; }
+
+    /* 1200×630 預覽卡 */
+    .og { width: 1200px; height: 630px; padding: 56px 64px; display: none; background:
+      radial-gradient(700px 400px at 100% 0%, rgba(92,154,70,.12), transparent 60%), var(--bg); }
+    .og.show { display: grid; grid-template-columns: 1fr 470px; gap: 48px; align-items: center; }
+    .og h1 { font-size: 58px; margin-top: 18px; }
+    .og .kicker { margin-top: 36px; font-size: 26px; }
+    .og .bars { margin-top: 0; gap: 16px; }
+    .og .bar { grid-template-columns: 150px 1fr 54px; gap: 14px; }
+    .og .bar .k { font-size: 26px; }
+    .og .bar .t { height: 30px; }
+    .og .bar .v { font-size: 26px; }
+  </style>
+</head>
+<body>
+  <!-- 1：鉤子 -->
+  <section class="card" data-n="1">
+    <div class="brand"><img class="ic" src="/app-icon.png" alt="" /><img class="wm" src="/wordmark.png" alt="Tennis Nut" /><span>· 球袋觀察</span></div>
+    <div class="kicker">球拍・使用人數最多的系列</div>
+    <h1>最多人用 <em>Wilson</em>，<br />最多人用的拍子<br />卻不是 Wilson</h1>
+    <div class="bars">
+      <div class="bar"><span class="k">Pure Aero<small>Babolat</small></span><span class="t"><span class="f" style="width:100%"></span></span><span class="v">18</span></div>
+      <div class="bar"><span class="k">Speed<small>HEAD</small></span><span class="t"><span class="f" style="width:100%"></span></span><span class="v">18</span></div>
+      <div class="bar"><span class="k">EZONE<small>Yonex</small></span><span class="t"><span class="f" style="width:100%"></span></span><span class="v">18</span></div>
+      <div class="bar on"><span class="k">Pro Staff<small>Wilson</small></span><span class="t"><span class="f" style="width:88.9%"></span></span><span class="v">16</span></div>
+      <div class="bar"><span class="k">Pure Drive<small>Babolat</small></span><span class="t"><span class="f" style="width:83.3%"></span></span><span class="v">15</span></div>
+    </div>
+    <div class="foot">
+      <div class="src">136 位 Tennis Nut 球友球袋裡的球拍，以人數計<br />2026.11.07</div>
+      <div class="pg">1 / 3</div>
+    </div>
+  </section>
+
+  <!-- 2：為什麼 -->
+  <section class="card" data-n="2">
+    <div class="brand"><img class="ic" src="/app-icon.png" alt="" /><img class="wm" src="/wordmark.png" alt="Tennis Nut" /><span>· 球袋觀察</span></div>
+    <div class="kicker">因為 Wilson 的人散開了</div>
+    <h1>品牌很接近，<br />分法完全不同</h1>
+    <div class="grid4">
+      <div class="p hl"><div class="b">Wilson</div><div class="n">51 人用</div><div class="big">8<small>個系列</small></div><div class="top">Pro Staff 16、Blade 14、<br />RF 9、Defyer 6……</div></div>
+      <div class="p"><div class="b">Babolat</div><div class="n">35 人用</div><div class="big">3<small>個系列</small></div><div class="top"><b>Pure Aero 18</b>、<br />Pure Drive 15</div></div>
+      <div class="p"><div class="b">HEAD</div><div class="n">35 人用</div><div class="big">7<small>個系列</small></div><div class="top">一半的人用 <b>Speed 18</b></div></div>
+      <div class="p"><div class="b">Yonex</div><div class="n">33 人用</div><div class="big">5<small>個系列</small></div><div class="top"><b>EZONE 18</b>、VCORE 13</div></div>
+    </div>
+    <div class="foot">
+      <div class="src">同一人有兩支同系列只算一次<br />2026.11.07</div>
+      <div class="pg">2 / 3</div>
+    </div>
+  </section>
+
+  <!-- 3：球鞋 -->
+  <section class="card" data-n="3">
+    <div class="brand"><img class="ic" src="/app-icon.png" alt="" /><img class="wm" src="/wordmark.png" alt="Tennis Nut" /><span>· 球袋觀察</span></div>
+    <div class="kicker">球鞋・使用人數</div>
+    <h1><em>ASICS</em> 一家，<br />差不多等於後面三家</h1>
+    <div class="bars">
+      <div class="bar on"><span class="k">ASICS</span><span class="t"><span class="f" style="width:100%"></span></span><span class="v">29</span></div>
+      <div class="bar"><span class="k">adidas</span><span class="t"><span class="f" style="width:31%"></span></span><span class="v">9</span></div>
+      <div class="bar"><span class="k">K-Swiss</span><span class="t"><span class="f" style="width:31%"></span></span><span class="v">9</span></div>
+      <div class="bar"><span class="k">Nike</span><span class="t"><span class="f" style="width:31%"></span></span><span class="v">9</span></div>
+      <div class="bar"><span class="k">On</span><span class="t"><span class="f" style="width:24.1%"></span></span><span class="v">7</span></div>
+    </div>
+    <p class="sub">ASICS 裡又分兩派：Gel-Resolution 11、Court FF 10。<br />On 的 7 位，全部穿 The Roger。</p>
+    <div class="foot">
+      <div class="src">74 位 Tennis Nut 球友球袋裡的球鞋，以人數計<br />2026.11.07</div>
+      <div class="pg">3 / 3</div>
+    </div>
+  </section>
+
+  <!-- og -->
+  <section class="og" data-n="og">
+    <div>
+      <div class="brand"><img class="ic" src="/app-icon.png" alt="" /><img class="wm" src="/wordmark.png" alt="Tennis Nut" /><span>· 球袋觀察</span></div>
+      <h1>最多人用 <em>Wilson</em>，<br />最多人用的拍子<br />卻不是 Wilson</h1>
+    </div>
+    <div class="bars">
+      <div class="bar"><span class="k">Pure Aero</span><span class="t"><span class="f" style="width:100%"></span></span><span class="v">18</span></div>
+      <div class="bar"><span class="k">Speed</span><span class="t"><span class="f" style="width:100%"></span></span><span class="v">18</span></div>
+      <div class="bar"><span class="k">EZONE</span><span class="t"><span class="f" style="width:100%"></span></span><span class="v">18</span></div>
+      <div class="bar on"><span class="k">Pro Staff</span><span class="t"><span class="f" style="width:88.9%"></span></span><span class="v">16</span></div>
+      <div class="bar"><span class="k">Pure Drive</span><span class="t"><span class="f" style="width:83.3%"></span></span><span class="v">15</span></div>
+    </div>
+  </section>
+
+  <script>
+    const n = new URLSearchParams(location.search).get('n') || '1';
+    document.querySelector(`[data-n="${n}"]`).classList.add('show');
+  </script>
+</body>
+</html>
