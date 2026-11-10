@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 
 const URL_BASE = "https://dwjwisgbpnrxtcvpbkec.supabase.co";
 // 官網頁面內嵌的同一把 anon key——快照抓的本來就是匿名可讀的公開資料。
-const ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3andpc2dicG5yeHRjdnBia2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0NTU2ODQsImV4cCI6MjA4NDAzMTY4NH0.Em6SlZlakgd8WlL-PgFsR-NjpN2HFc38yNUw1zRKB9I";
+const ANON = "sb_publishable_-M3m33CyJIROw7mP2x0Sxg_pPErO_oc";
 const QUERY = "?select=id,name,name_en,city,country,lat,lng,surface_code,venue_kind,court_count,light,is_indoor,access,community_verify_count&lat=not.is.null&lng=not.is.null&is_abandoned=eq.false";
 
 const headers = { apikey: ANON, Authorization: "Bearer " + ANON };

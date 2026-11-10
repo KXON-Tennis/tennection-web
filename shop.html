@@ -143,7 +143,7 @@
     if (slug) {
       fetch('https://dwjwisgbpnrxtcvpbkec.supabase.co/rest/v1/rpc/shop_public', {
         method: 'POST',
-        headers: { apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3andpc2dicG5yeHRjdnBia2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg0NTU2ODQsImV4cCI6MjA4NDAzMTY4NH0.Em6SlZlakgd8WlL-PgFsR-NjpN2HFc38yNUw1zRKB9I', 'Content-Type': 'application/json' },
+        headers: { apikey: 'sb_publishable_-M3m33CyJIROw7mP2x0Sxg_pPErO_oc', 'Content-Type': 'application/json' },
         body: JSON.stringify({ p_slug: slug }),
       }).then(function (r) { return r.ok ? r.json() : null; }).then(function (shop) {
         if (!shop || !shop.name) return;
