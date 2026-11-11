@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tennis Nut · Find courts, and find people to get better with</title>
   <meta name="description"
-    content="Tennis Nut: find courts, arrange sessions, log practices and matches, and ask an expert when you are stuck. iPhone on the App Store, Android through Google Play testing, or join us on LINE." />
+    content="Tennis Nut: find courts, arrange sessions, log practices and matches, and ask an expert when you are stuck. iPhone on the App Store, or Android through Google Play testing." />
   <meta property="og:title" content="Find courts, and find people to get better with — Tennis Nut" />
   <meta property="og:description" content="Court map, hitting sessions, practice logs and expert advice in one app. Every invitation says what you will play and which balls — so a first-timer knows it is for them." />
   <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
@@ -172,53 +172,6 @@
 
     @media (min-width: 900px) {
       .hero-cta { justify-content: flex-start; }
-      .line-cta { margin-left: 0; }
-    }
-
-    /* LINE is a different ask from downloading the app, so it stops sharing a
-       row with the App Store badge and gets its own line below Android — and
-       LINE's own green, not ours, so it reads as the third-party entry it is. */
-    .line-cta {
-      display: flex;
-      width: fit-content;
-      align-items: center;
-      gap: 10px;
-      margin: 10px auto 0;
-      padding: 11px 18px;
-      border-radius: 12px;
-      background: #06C755;
-      color: #FFFFFF;
-      font-weight: 700;
-      font-size: 14.5px;
-      line-height: 1.35;
-      text-align: left;
-      text-decoration: none;
-      box-shadow: 0 12px 24px -12px rgba(6, 199, 85, 0.6);
-      transition: transform .14s ease, box-shadow .14s ease;
-    }
-
-    .line-cta:hover {
-      text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 16px 30px -12px rgba(6, 199, 85, 0.7);
-    }
-
-    .line-cta svg {
-      width: 21px;
-      height: 21px;
-      flex: 0 0 auto;
-    }
-
-    @media (max-width: 560px) {
-      /* Full width made it the loudest thing in the hero, louder than the two
-         real download buttons above it. Sized to its text instead, and the
-         text drops its second half — the button still says what it is. */
-      .line-cta {
-        font-size: 13.5px;
-        padding: 10px 16px;
-      }
-
-      .line-more { display: none; }
     }
 
     /* Android has no public Play listing, so it cannot carry a store badge —
@@ -1672,12 +1625,11 @@
             Courts, sessions, practice logs and expert advice in one place. Your tennis life starts with the next ball.
           </p>
 
-          <!-- Three asks, three tiers, in descending commitment. iPhone is the
+          <!-- Two asks, in descending commitment. iPhone is the
                only real store link. Android is still closed testing behind a
                Google Form — a badge there would promise a store page that does
-               not exist. LINE is a different ask altogether (no install), so it
-               sits on its own line in LINE's own green rather than competing
-               with the badge for the same glance. -->
+               not exist. No LINE here: outside Taiwan, Japan and Thailand
+               nobody uses it (Kayson 2026-11-12); the Chinese page keeps it. -->
           <div class="hero-cta">
             <a class="as-badge" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener"
                aria-label="Download Tennis Nut on the App Store">
@@ -1691,12 +1643,6 @@
               Join the Android test
             </a>
           </div>
-          <a class="line-cta" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 3C6.9 3 2.8 6.3 2.8 10.4c0 3.7 3.3 6.8 7.7 7.4.3.06.7.2.8.45.08.23.05.58.03.81l-.13.78c-.04.23-.18.9.79.49 1-.42 5.3-3.12 7.2-5.34 1.34-1.47 1.98-2.96 1.98-4.59C21.2 6.3 17.1 3 12 3z" />
-            </svg>
-            Join us on LINE<span class="line-more"> for events and updates</span>
-          </a>
         </div>
 
         <div class="hero-device">
@@ -1805,11 +1751,11 @@
         <div class="value">
           <span class="v-no">01 · FREE TIME</span>
           <h3>Say when you're free</h3>
-          <p>Pick a time, singles or doubles, what you want to work on, then tick a few courts you go to — or just say "anywhere in Taoyuan". Show it to friends only, or to everyone.</p>
+          <p>Pick a time, singles or doubles, what you want to work on, then tick a few courts you go to — or just say "anywhere in Sydney". Show it to friends only, or to everyone.</p>
           <div class="v-art">
             <div>
               <div class="vh-when">Sat 06:00–09:00 · 4 weeks</div>
-              <div class="vh-what">Anywhere in Taoyuan</div>
+              <div class="vh-what">Anywhere in Sydney</div>
             </div>
             <div class="v-chips">
               <span class="chip">Doubles</span>
@@ -1825,8 +1771,8 @@
           <p>Switch the map to "Find players" and each court shows how many people have posted free time and how many hits are still looking for players. Open a court to see who can come and how much their time overlaps with yours.</p>
           <div class="v-art">
             <div class="vm-canvas">
-              <span class="vm-bubble">4 say anywhere in Taoyuan</span>
-              <span class="vm-label">Zhonglu Tennis Courts: 2 free</span>
+              <span class="vm-bubble">4 say anywhere in Sydney</span>
+              <span class="vm-label">Rushcutters Bay Tennis: 2 free</span>
               <span class="vm-pin p2"></span>
               <span class="vm-pin on"></span>
             </div>
@@ -1842,7 +1788,7 @@
           <p>Time, court, format and balls are settled when you post it. Ask one person, or let your friends, your team — or everyone who has the court as a favourite — get notified.</p>
           <div class="v-art">
             <div>
-              <div class="vh-when">Sat 07:00 · Zhonglu Tennis Courts</div>
+              <div class="vh-when">Sat 07:00 · Rushcutters Bay Tennis</div>
               <div class="vh-what">Doubles · regular yellow balls</div>
             </div>
             <div class="v-chips">
@@ -2039,9 +1985,6 @@
           </a>
 
           <a class="fc-second" id="dl-android" href="/en/install">On Android? Join the Google Play test →</a>
-
-          <a class="fc-third" id="dl-line" href="https://line.me/R/ti/p/@tennisnut"
-             target="_blank" rel="noopener">Want updates first? Join us on LINE →</a>
         </div>
 
         <figure class="fc-qr">
@@ -2090,8 +2033,7 @@
         <div style="margin-bottom: 14px; font-weight: 600;">
           Follow us:
           <a href="https://www.instagram.com/tennisnut.app/" target="_blank" rel="noopener">Instagram</a> ·
-          <a href="https://www.facebook.com/profile.php?id=61590265452292" target="_blank" rel="noopener">Facebook</a> ·
-          <a href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">LINE</a>
+          <a href="https://www.facebook.com/profile.php?id=61590265452292" target="_blank" rel="noopener">Facebook</a>
         </div>
         <a href="/en/blog">Blog</a>·
         <a href="/en/privacy">Privacy policy</a>·
@@ -2113,7 +2055,7 @@
     (function () {
       var ref = new URLSearchParams(location.search).get('ref');
       if (!ref) return;
-      ['dl-ios', 'dl-line'].forEach(function (id) {
+      ['dl-ios'].forEach(function (id) {
         var a = document.getElementById(id);
         if (!a) return;
         try {
