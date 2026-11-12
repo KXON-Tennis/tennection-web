@@ -147,8 +147,26 @@
     .faces img { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; object-fit: cover;
       border: 1.5px solid rgba(255,255,255,.25); background: #26313b; scroll-snap-align: start; }
 
-    .loading { position: fixed; inset: 0; display: grid; place-items: center; z-index: 5;
-      background: #0d1116; transition: opacity .4s; font-size: 28px; }
+    .loading { position: fixed; inset: 0; z-index: 5; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+      background: #0d1116; transition: opacity .4s; }
+    /* 跳動的球：同 /courts-map。ease-in 往下掉、alternate 反轉後上升自然減速；
+       著地壓扁一點，影子跟著球的高度縮放。 */
+    .loading .ball { font-size: 34px; line-height: 1;
+      animation: ballBounce .55s cubic-bezier(.5,.05,1,.5) infinite alternate; }
+    .loading .shadow { width: 30px; height: 6px; border-radius: 50%; background: #000;
+      animation: ballShadow .55s cubic-bezier(.5,.05,1,.5) infinite alternate; }
+    @keyframes ballBounce {
+      from { transform: translateY(-30px); }
+      to   { transform: translateY(0) scale(1.06, .9); }
+    }
+    @keyframes ballShadow {
+      from { transform: scaleX(.5); opacity: .25; }
+      to   { transform: scaleX(1);  opacity: .55; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .loading .ball, .loading .shadow { animation: none; }
+    }
     .loading.done { opacity: 0; pointer-events: none; }
     .err { color: var(--ink2); font-size: 14px; text-align: center; padding: 0 24px; }
 
@@ -202,7 +220,7 @@
 
   <div class="modes glass" id="modes" hidden></div>
 
-  <div class="loading" id="loading"><span>🎾</span></div>
+  <div class="loading" id="loading"><span class="ball">🎾</span><span class="shadow"></span></div>
 
   <script>
     // 跟 courts-map 同一把：網頁專用、綁 tennisnut.kxon.net 網域的 public token。
