@@ -580,10 +580,18 @@
     // the page on the other side of the world and see nothing they can reach.
     // Geolocation is asked for after the map is up, so a refusal or a slow
     // fix costs nothing: the map is already usable and simply stays here.
+    //
+    // Without a fix the language picks the place: Chinese opens on Taiwan,
+    // English on Sydney — the same picture the English home page shows, so
+    // clicking it does not land somewhere else (Kayson 2026-11-12).
     const isMobile = window.matchMedia("(max-width: 559px)").matches;
-    const VIEW = isMobile
-      ? { center: [120.95, 23.55], zoom: 6.05, pitch: 30, bearing: -14 }
-      : { center: [121.05, 23.45], zoom: 7.0, pitch: 52, bearing: -26 };
+    const VIEW = LANG === "zh"
+      ? (isMobile
+        ? { center: [120.95, 23.55], zoom: 6.05, pitch: 30, bearing: -14 }
+        : { center: [121.05, 23.45], zoom: 7.0, pitch: 52, bearing: -26 })
+      : (isMobile
+        ? { center: [151.0, -33.85], zoom: 8.6, pitch: 30, bearing: -14 }
+        : { center: [151.02, -33.86], zoom: 9.7, pitch: 52, bearing: -20 });
     // The same three basemaps the app offers, so the two feel like one product.
     const STYLES = [
       { key: "streets",   label: () => T.styleStreets,   uri: "mapbox://styles/mapbox/streets-v12" },
@@ -1210,7 +1218,7 @@
       map.on("mouseenter", "courts", () => { map.getCanvas().style.cursor = "pointer"; });
       map.on("mouseleave", "courts", () => { map.getCanvas().style.cursor = ""; });
 
-      // 不用 fitBounds（會重置 pitch/bearing）；資料恆為台灣，採固定傾斜相機（見建構時 VIEW）
+      // 不用 fitBounds（會重置 pitch/bearing）；採固定傾斜相機（見建構時 VIEW）
     }
 
     document.getElementById("pageTitle").textContent = T.title;
