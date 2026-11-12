@@ -107,15 +107,24 @@
     .pop-name { font-weight: 700; font-size: 14.5px; line-height: 1.35; padding-right: 14px; }
     .pop-meta { color: var(--ink3); font-size: 12px; margin-top: 2px; }
     .pop-people { margin-top: 8px; font-size: 13px; color: var(--ink2); }
-    .faces { display: flex; margin-top: 8px; }
+    /* 大頭照一排，超出就往右滑；右緣漸層＋箭頭暗示還有，滑到底就消失。 */
+    .faces-wrap { position: relative; margin-top: 8px; }
+    .faces { display: flex; gap: 4px; overflow-x: auto; scroll-snap-type: x proximity;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-right: 2px; }
+    .faces::-webkit-scrollbar { display: none; }
+    .faces-wrap.more .faces { -webkit-mask-image: linear-gradient(90deg, #000 78%, transparent);
+      mask-image: linear-gradient(90deg, #000 78%, transparent); }
+    .faces-hint { position: absolute; right: -2px; top: 50%; transform: translateY(-50%);
+      font-size: 16px; color: var(--ink2); pointer-events: none; opacity: 0; transition: opacity .2s; }
+    .faces-wrap.more .faces-hint { opacity: 1; animation: nudge 1.6s ease-in-out infinite; }
+    @keyframes nudge { 0%,100% { transform: translate(0,-50%); } 50% { transform: translate(3px,-50%); } }
     .pop-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 10px; }
     .pop-stats div { padding: 6px 4px; border-radius: 8px; background: rgba(255,255,255,.06); text-align: center; }
     .pop-stats b { display: block; font-size: 15px; font-variant-numeric: tabular-nums; }
     .pop-stats span { font-size: 10.5px; color: var(--ink3); line-height: 1.3; display: block; }
     .pop-foot { margin-top: 6px; font-size: 10.5px; color: var(--ink3); }
-    .faces img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover;
-      border: 2px solid #0d1116; margin-left: -6px; background: #26313b; }
-    .faces img:first-child { margin-left: 0; }
+    .faces img { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; object-fit: cover;
+      border: 1.5px solid rgba(255,255,255,.25); background: #26313b; scroll-snap-align: start; }
 
     .loading { position: fixed; inset: 0; display: grid; place-items: center; z-index: 5;
       background: #0d1116; transition: opacity .4s; font-size: 28px; }
@@ -420,8 +429,23 @@
       return `<div class="pop-name">${esc(r.name)}</div>
         <div class="pop-meta">${where}</div>
         <div class="pop-people">${esc(r.people ? T.peopleN(r.people) : T.peopleFew)}</div>
-        ${faces ? `<div class="faces">${faces}</div>` : ""}
+        ${faces ? `<div class="faces-wrap"><div class="faces">${faces}</div><span class="faces-hint">›</span></div>` : ""}
         ${stats}`;
+    }
+
+    // 頭像超出寬度才出現漸層與箭頭；滑到接近底就收掉。圖片載入失敗會被
+    // 移除，寬度跟著變，所以載入完也再量一次。
+    function hintFaces(root) {
+      const wrap = root && root.querySelector(".faces-wrap");
+      if (!wrap) return;
+      const row = wrap.querySelector(".faces");
+      const check = () => wrap.classList.toggle("more",
+        row.scrollWidth - row.clientWidth - row.scrollLeft > 6);
+      row.addEventListener("scroll", check, { passive: true });
+      row.querySelectorAll("img").forEach(img => {
+        img.addEventListener("load", check); img.addEventListener("error", () => setTimeout(check));
+      });
+      requestAnimationFrame(check);
     }
 
     (async function main() {
@@ -455,6 +479,7 @@
         if (popup) popup.remove();
         popup = new mapboxgl.Popup({ offset: 12, maxWidth: "280px" })
           .setLngLat([r.lng, r.lat]).setHTML(popupHtml(r)).addTo(map);
+        hintFaces(popup.getElement());
       });
       map.on("mouseenter", ["fp-dot", "fp-glow"], () => { map.getCanvas().style.cursor = "pointer"; });
       map.on("mouseleave", ["fp-dot", "fp-glow"], () => { map.getCanvas().style.cursor = ""; });
