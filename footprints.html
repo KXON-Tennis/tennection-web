@@ -97,6 +97,25 @@
 
     .toggle { display: none; }
 
+    /* ── 地圖模式：足跡／材質 ── */
+    .modes { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 3;
+      display: flex; gap: 2px; padding: 4px; border-radius: 999px; }
+    .modes button { border: 0; background: transparent; color: var(--ink2); font: inherit;
+      font-size: 13px; font-weight: 600; padding: 7px 16px; border-radius: 999px; cursor: pointer; }
+    .modes button[aria-pressed="true"] { background: rgba(255,255,255,.14); color: var(--ink); }
+    @media (min-width: 560px) { .modes { left: calc(50% + 200px); } }
+
+    .rows { display: grid; gap: 6px; }
+    .row { display: grid; grid-template-columns: 4.6em 1fr 3.4em; align-items: center; gap: 8px;
+      font-size: 12.5px; color: var(--ink2); }
+    .row .track { height: 7px; border-radius: 4px; background: rgba(255,255,255,.08); overflow: hidden; }
+    .row .track i { display: block; height: 100%; border-radius: 4px; }
+    .row b { color: var(--ink); text-align: right; font-variant-numeric: tabular-nums; font-size: 12.5px; }
+    .pop-attrs { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+    .pop-attrs span { font-size: 11.5px; padding: 3px 8px; border-radius: 999px;
+      background: rgba(255,255,255,.08); color: var(--ink2); }
+    .pop-attrs span.surf { color: #0d1116; font-weight: 700; }
+
     /* ── 點開一座球場 ── */
     .mapboxgl-popup-content { background: var(--glass); color: var(--ink);
       border: 1px solid var(--glass-line); border-radius: 14px; padding: 12px 14px;
@@ -156,9 +175,20 @@
     <div class="bar"><i id="coverBar"></i></div>
 
     <div class="more">
-      <h2 id="contribTitle"></h2>
-      <div class="contrib" id="contrib"></div>
-      <p class="note" id="contribNote"></p>
+      <div id="secFp">
+        <h2 id="contribTitle"></h2>
+        <div class="contrib" id="contrib"></div>
+        <p class="note" id="contribNote"></p>
+      </div>
+      <div id="secSurface" hidden>
+        <h2 id="clayTitle"></h2>
+        <p class="note" id="clayLead" style="margin:0 0 10px"></p>
+        <div class="rows" id="clayRows"></div>
+        <p class="note" id="clayCities"></p>
+        <h2 id="compTitle"></h2>
+        <div class="rows" id="compRows"></div>
+        <p class="note" id="compNote"></p>
+      </div>
 
       <div class="legend" id="legend"></div>
       <p class="invite" id="invite"></p>
@@ -167,6 +197,8 @@
     </div>
     <button class="toggle" id="toggle" type="button"></button>
   </div>
+
+  <div class="modes glass" id="modes" hidden></div>
 
   <div class="loading" id="loading"><span>🎾</span></div>
 
@@ -207,6 +239,22 @@
         popPractices: "練習紀錄", popVerified: "GPS 確認到場", popUpdates: "資料更新",
         popPhotos: (n) => `資料更新含照片 ${n} 張`,
         failed: "暫時讀不到資料，請稍後再試。",
+        modeFp: "足跡", modeSurface: "材質",
+        moreSurface: "看材質與資料完整度",
+        clayTitle: "台灣球場的材質：越往南越紅",
+        clayLead: (c, t, p) => `台灣登錄的 ${t} 座球場裡，紅土有 ${c} 座（${p}%）。`,
+        regions: { north: "北部", central: "中部", south: "南部", east: "東部" },
+        clayCities: (a) => a.map(([c, p]) => `${c} ${p}%`).join("、") + " 是紅土。",
+        compTitle: "球場資料有多完整",
+        compNote: "材質和面數是逐筆整理的；收費、洗手間、飲水機這些要到現場才知道，最需要球友幫忙補上。",
+        fields: { surface_code: "材質", court_count: "面數", address: "地址", access: "開放對象",
+          tel: "電話", rental: "租場方式", hours_text: "營業時間", light: "夜間燈光",
+          pricing_note: "收費", has_restroom: "洗手間", has_water: "飲水機" },
+        surfaces: { hard: "硬地", clay: "紅土", grass: "草地", artificial_grass: "人工草",
+          omni: "砂地人工草", concrete: "水泥", pu: "PU", carpet: "地毯", other: "其他" },
+        attrCourts: (n) => `${n} 面`, attrLight: "有燈光", attrNoLight: "沒有燈光",
+        attrRestroom: "有洗手間", attrWater: "有飲水機", attrFee: (t) => `收費：${t}`,
+        notYet: "還沒有球友在這裡留下足跡",
       },
       en: {
         title: "Courts our players have been to",
@@ -231,6 +279,22 @@
         popPractices: "practices logged", popVerified: "GPS-confirmed visits", popUpdates: "data updates",
         popPhotos: (n) => `Updates include ${n} photo${n === 1 ? "" : "s"}`,
         failed: "Couldn't load the data. Please try again later.",
+        modeFp: "Footprints", modeSurface: "Surface",
+        moreSurface: "Surfaces and data completeness",
+        clayTitle: "Taiwan's courts get redder the further south you go",
+        clayLead: (c, t, p) => `${c} of the ${t} courts listed in Taiwan are clay (${p}%).`,
+        regions: { north: "North", central: "Central", south: "South", east: "East" },
+        clayCities: (a) => a.map(([c, p]) => `${c} ${p}%`).join(", ") + " clay.",
+        compTitle: "How complete the court data is",
+        compNote: "Surface and court counts were compiled court by court; fees, restrooms and water only become known on site, and that is where players help most.",
+        fields: { surface_code: "Surface", court_count: "Courts", address: "Address", access: "Access",
+          tel: "Phone", rental: "Booking", hours_text: "Hours", light: "Floodlights",
+          pricing_note: "Fees", has_restroom: "Restroom", has_water: "Water" },
+        surfaces: { hard: "Hard", clay: "Clay", grass: "Grass", artificial_grass: "Artificial grass",
+          omni: "Sand-filled turf", concrete: "Concrete", pu: "PU", carpet: "Carpet", other: "Other" },
+        attrCourts: (n) => `${n} court${n === 1 ? "" : "s"}`, attrLight: "Floodlights", attrNoLight: "No floodlights",
+        attrRestroom: "Restroom", attrWater: "Drinking water", attrFee: (t) => `Fees: ${t}`,
+        notYet: "No footprints here yet",
       },
     }[LANG];
 
@@ -264,21 +328,36 @@
     })();
     document.getElementById("contribTitle").textContent = T.contribTitle;
     document.getElementById("credit").innerHTML = T.credit;
-    document.getElementById("legend").innerHTML =
-      `<span><i style="background:var(--cyan);color:var(--cyan)"></i>${esc(T.legendCourt)}</span>` +
-      `<span><i style="background:var(--wall);color:var(--wall)"></i>${esc(T.legendWall)}</span>` +
-      `<span><i style="background:var(--indoor);color:var(--indoor)"></i>${esc(T.legendIndoor)}</span>` +
-      `<span>${esc(T.legendSize)}</span>`;
+    // 材質配色跟 /courts-map 同一套，兩張地圖看起來是同一個產品。
+    const SURF_COLORS = { hard: "#4FA8FF", clay: "#FF6A3D", grass: "#7ED957",
+      artificial_grass: "#69C79A", omni: "#C9A66B", concrete: "#9AA3AA",
+      pu: "#B98CD9", carpet: "#E38FB5", other: "#AEB6BD" };
+    const surfKey = (c) => (c && SURF_COLORS[c]) ? c : "other";
+    const dotKey = (k, c) => `<span><i style="background:${c};color:${c}"></i>${esc(k)}</span>`;
+    function renderLegend(mode, tw) {
+      const el = document.getElementById("legend");
+      if (mode === "surface") {
+        const seen = new Set((tw || []).map(r => surfKey(r.surface_code)));
+        el.innerHTML = Object.keys(SURF_COLORS).filter(k => seen.has(k))
+          .map(k => dotKey(T.surfaces[k], SURF_COLORS[k])).join("");
+        return;
+      }
+      el.innerHTML = dotKey(T.legendCourt, "var(--cyan)") + dotKey(T.legendWall, "var(--wall)") +
+        dotKey(T.legendIndoor, "var(--indoor)") + `<span>${esc(T.legendSize)}</span>`;
+    }
+    renderLegend("fp");
     document.getElementById("links").innerHTML =
       `<a href="/courts-map${LANG === "en" ? "?lang=en" : ""}">${esc(T.linkMap)}</a>`;
     document.getElementById("invite").innerHTML = T.invite;
 
     const panel = document.getElementById("panel");
     const toggle = document.getElementById("toggle");
-    toggle.textContent = T.more;
+    let mode = new URLSearchParams(location.search).get("mode") === "surface" ? "surface" : "fp";
+    const moreLabel = () => mode === "surface" ? T.moreSurface : T.more;
+    toggle.textContent = moreLabel();
     toggle.addEventListener("click", () => {
       const c = panel.classList.toggle("collapsed");
-      toggle.textContent = c ? T.more : T.less;
+      toggle.textContent = c ? moreLabel() : T.less;
     });
 
     function renderTotals(t) {
@@ -302,6 +381,58 @@
       const line = !isFinite(d) ? "" : d < 1 ? T.sameDay : T.medianDays(d.toFixed(1));
       document.getElementById("contribNote").textContent =
         (line ? line + "。" : "") + T.contributors(fmt(c.contributors));
+    }
+
+    // 縣市分區（同 FB 那篇「北硬南紅」的分法）；離島不列。
+    const REGION = {
+      north: ["台北市", "新北市", "基隆市", "桃園市", "新竹市", "新竹縣", "宜蘭縣"],
+      central: ["苗栗縣", "台中市", "彰化縣", "南投縣", "雲林縣"],
+      south: ["嘉義市", "嘉義縣", "台南市", "高雄市", "屏東縣"],
+      east: ["花蓮縣", "台東縣"],
+    };
+    const bar = (label, pct, value, color) =>
+      `<div class="row"><span>${esc(label)}</span><span class="track"><i style="width:${pct}%;background:${color}"></i></span><b>${esc(value)}</b></div>`;
+    const pctOf = (a, b) => b ? Math.round(100 * a / b) : 0;
+    const filled = (v) => v !== null && v !== undefined && v !== "";
+
+    function renderSurface(tw) {
+      const clay = tw.filter(r => r.surface_code === "clay").length;
+      document.getElementById("clayTitle").textContent = T.clayTitle;
+      document.getElementById("clayLead").textContent =
+        T.clayLead(fmt(clay), fmt(tw.length), pctOf(clay, tw.length));
+      document.getElementById("clayRows").innerHTML = Object.entries(REGION).map(([k, cities]) => {
+        const v = tw.filter(r => cities.includes(r.city));
+        const p = pctOf(v.filter(r => r.surface_code === "clay").length, v.length);
+        return bar(T.regions[k], p, p + "%", SURF_COLORS.clay);
+      }).join("");
+      const cityPct = (c) => {
+        const v = tw.filter(r => r.city === c);
+        const name = LANG === "zh" ? c.replace(/[市縣]$/, "") : (v[0] && v[0].city_en) || c;
+        return [name, pctOf(v.filter(r => r.surface_code === "clay").length, v.length)];
+      };
+      document.getElementById("clayCities").textContent =
+        T.clayCities(["高雄市", "屏東縣", "台南市", "台北市"].map(cityPct));
+
+      document.getElementById("compTitle").textContent = T.compTitle;
+      document.getElementById("compRows").innerHTML = Object.keys(T.fields).map(f => {
+        const p = pctOf(tw.filter(r => filled(r[f])).length, tw.length);
+        return bar(T.fields[f], Math.max(p, 1), p + "%", "var(--cyan)");
+      }).join("");
+      document.getElementById("compNote").textContent = T.compNote;
+    }
+
+    async function fetchTaiwanCourts() {
+      const q = new URLSearchParams({
+        select: "id,name,city,city_en,lat,lng,surface_code,court_count,light,has_water,has_restroom," +
+          "pricing_note,hours_text,access,address,tel,rental",
+        country: "eq.TW", venue_kind: "eq.court",
+        or: "(is_abandoned.is.null,is_abandoned.eq.false)",
+      });
+      const r = await fetch(`${SUPABASE_URL}/rest/v1/courts?${q}`, {
+        headers: { apikey: ANON, Authorization: "Bearer " + ANON, Range: "0-9999" },
+      });
+      if (!r.ok) throw new Error("courts " + r.status);
+      return r.json();
     }
 
     // ── 地圖 ───────────────────────────────────────────────────────────
@@ -413,7 +544,82 @@
       });
     }
 
-    function popupHtml(r) {
+    function addSurfaceLayers(tw) {
+      map.addSource("tw", {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: tw.filter(r => r.lat != null && r.lng != null).map(r => ({
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [r.lng, r.lat] },
+            properties: { id: r.id, surf: surfKey(r.surface_code) },
+          })),
+        },
+      });
+      const color = ["match", ["get", "surf"],
+        ...Object.entries(SURF_COLORS).flat(), SURF_COLORS.other];
+      // 紅土畫在上層：這個模式要讓人看到的就是紅土在哪裡。
+      const sort = ["match", ["get", "surf"], "clay", 2, "hard", 1, 0];
+      map.addLayer({
+        id: "tw-glow", type: "circle", source: "tw", layout: { visibility: "none", "circle-sort-key": sort },
+        paint: { "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 4, 8, 7, 13, 14],
+          "circle-color": color, "circle-opacity": .2, "circle-blur": 1 },
+      });
+      map.addLayer({
+        id: "tw-dot", type: "circle", source: "tw", layout: { visibility: "none", "circle-sort-key": sort },
+        paint: { "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 1.8, 8, 3.2, 13, 6],
+          "circle-color": color, "circle-stroke-color": "rgba(255,255,255,.7)",
+          "circle-stroke-width": ["interpolate", ["linear"], ["zoom"], 4, .3, 10, 1] },
+      });
+    }
+
+    const FP_LAYERS = ["fp-glow", "fp-dot", "fp-count"], TW_LAYERS = ["tw-glow", "tw-dot"];
+    function applyMode(tw) {
+      const vis = (ids, on) => ids.forEach(id => map.getLayer(id) &&
+        map.setLayoutProperty(id, "visibility", on ? "visible" : "none"));
+      vis(FP_LAYERS, mode === "fp");
+      vis(TW_LAYERS, mode === "surface");
+      document.getElementById("secFp").hidden = mode !== "fp";
+      document.getElementById("secSurface").hidden = mode !== "surface";
+      renderLegend(mode, tw);
+      if (panel.classList.contains("collapsed")) toggle.textContent = moreLabel();
+      [...document.querySelectorAll("#modes button")].forEach(b =>
+        b.setAttribute("aria-pressed", String(b.dataset.m === mode)));
+      try {
+        const u = new URL(location.href);
+        if (mode === "surface") u.searchParams.set("mode", "surface"); else u.searchParams.delete("mode");
+        history.replaceState(null, "", u);
+      } catch (_) {}
+    }
+
+    // 資訊卡：球場屬性只寫有填的；足跡的部分只有去過的場地才有。
+    function attrsHtml(t) {
+      if (!t) return "";
+      const out = [];
+      if (t.surface_code) {
+        const k = surfKey(t.surface_code);
+        out.push(`<span class="surf" style="background:${SURF_COLORS[k]}">${esc(T.surfaces[k] || t.surface_code)}</span>`);
+      }
+      if (t.court_count) out.push(`<span>${esc(T.attrCourts(t.court_count))}</span>`);
+      if (t.light === true) out.push(`<span>${esc(T.attrLight)}</span>`);
+      if (t.light === false) out.push(`<span>${esc(T.attrNoLight)}</span>`);
+      if (t.has_restroom === true) out.push(`<span>${esc(T.attrRestroom)}</span>`);
+      if (t.has_water === true) out.push(`<span>${esc(T.attrWater)}</span>`);
+      if (filled(t.pricing_note)) {
+        const fee = String(t.pricing_note).trim();
+        out.push(`<span>${esc(T.attrFee(fee.length > 28 ? fee.slice(0, 27) + "…" : fee))}</span>`);
+      }
+      return out.length ? `<div class="pop-attrs">${out.join("")}</div>` : "";
+    }
+
+    function popupHtml(r, t) {
+      if (!r) {
+        const city = LANG === "zh" ? t.city : (t.city_en || t.city);
+        return `<div class="pop-name">${esc(t.name)}</div>
+          <div class="pop-meta">${[city, T.kind.court].filter(Boolean).map(esc).join(" · ")}</div>
+          ${attrsHtml(t)}
+          <div class="pop-people">${esc(T.notYet)}</div>`;
+      }
       const kind = T.kind[r.venue_kind] || T.kind.court;
       const where = [r.city, kind].filter(Boolean).map(esc).join(" · ");
       const faces = (r.avatars || []).map(safeImg).filter(Boolean)
@@ -428,6 +634,7 @@
         (r.photos > 0 ? `<div class="pop-foot">${esc(T.popPhotos(r.photos))}</div>` : "");
       return `<div class="pop-name">${esc(r.name)}</div>
         <div class="pop-meta">${where}</div>
+        ${attrsHtml(t)}
         <div class="pop-people">${esc(r.people ? T.peopleN(r.people) : T.peopleFew)}</div>
         ${faces ? `<div class="faces-wrap"><div class="faces">${faces}</div><span class="faces-hint">›</span></div>` : ""}
         ${stats}`;
@@ -450,10 +657,11 @@
 
     (async function main() {
       const loading = document.getElementById("loading");
-      let rows, totals, contrib;
+      let rows, totals, contrib, tw;
       try {
-        [rows, totals, contrib] = await Promise.all([
+        [rows, totals, contrib, tw] = await Promise.all([
           rpc("public_footprint_map"), rpc("public_footprint_totals"), rpc("public_contribution_stats"),
+          fetchTaiwanCourts().catch(() => []),
         ]);
       } catch (e) {
         loading.innerHTML = `<div class="err">${esc(T.failed)}</div>`;
@@ -461,28 +669,48 @@
       }
       renderTotals(totals[0] || {});
       renderContrib(contrib[0] || {});
+      if (tw.length) renderSurface(tw);
       const byId = new Map(rows.map(r => [r.court_id, r]));
+      const twById = new Map(tw.map(r => [r.id, r]));
+
+      const modes = document.getElementById("modes");
+      if (tw.length) {
+        modes.innerHTML = [["fp", T.modeFp], ["surface", T.modeSurface]]
+          .map(([m, l]) => `<button type="button" data-m="${m}">${esc(l)}</button>`).join("");
+        modes.hidden = false;
+      } else mode = "fp";
 
       const ready = () => {
         addLayers(rows);
+        if (tw.length) addSurfaceLayers(tw);
+        applyMode(tw);
         loading.classList.add("done");
         camera(rows);
       };
+      modes.addEventListener("click", (ev) => {
+        const b = ev.target.closest("button");
+        if (!b || b.dataset.m === mode) return;
+        mode = b.dataset.m;
+        if (popup) popup.remove();
+        applyMode(tw);
+      });
       if (map.isStyleLoaded()) ready(); else map.once("load", ready);
 
-      let popup = null;
+      var popup = null;
       // 核心點變小了，連光暈一起算可點範圍，手機上才點得到。
-      map.on("click", ["fp-dot", "fp-glow"], (ev) => {
+      const hit = tw.length ? ["fp-dot", "fp-glow", "tw-dot", "tw-glow"] : ["fp-dot", "fp-glow"];
+      map.on("click", hit, (ev) => {
         const f = ev.features && ev.features[0];
-        const r = f && byId.get(f.properties.id);
-        if (!r) return;
+        if (!f) return;
+        const r = byId.get(f.properties.id), t = twById.get(f.properties.id);
+        if (!r && !t) return;
         if (popup) popup.remove();
         popup = new mapboxgl.Popup({ offset: 12, maxWidth: "280px" })
-          .setLngLat([r.lng, r.lat]).setHTML(popupHtml(r)).addTo(map);
+          .setLngLat([(r || t).lng, (r || t).lat]).setHTML(popupHtml(r, t)).addTo(map);
         hintFaces(popup.getElement());
       });
-      map.on("mouseenter", ["fp-dot", "fp-glow"], () => { map.getCanvas().style.cursor = "pointer"; });
-      map.on("mouseleave", ["fp-dot", "fp-glow"], () => { map.getCanvas().style.cursor = ""; });
+      map.on("mouseenter", hit, () => { map.getCanvas().style.cursor = "pointer"; });
+      map.on("mouseleave", hit, () => { map.getCanvas().style.cursor = ""; });
     })();
   </script>
 </body>
