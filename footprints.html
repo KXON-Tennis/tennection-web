@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>球友足跡地圖 | Tennis Nut</title>
+  <meta name="description" content="球友自發的網球場地圖：每一個點都是有人真的到場、以 GPS 確認過的地方，球場資料也是球友在現場補上的。" />
+  <meta property="og:title" content="球友一起走過的球場 — Tennis Nut 足跡地圖" />
+  <meta property="og:description" content="每一個點都是有人真的到場、以 GPS 確認過的地方，球場資料也是球友在現場補上的。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/footprints" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.js"></script>
+
+  <!--
+    公開足跡頁（2026-11-12，為 11/18 GIS Day 成果發表做的）。
+
+    資料只來自三支公開的彙總查詢（tns-diary-app migration 20261112111720）：
+      public_footprint_map / public_footprint_totals / public_contribution_stats
+    它們已經把公開尺度定在資料庫那一層：3 人以上才有人數與大頭照、沒有名字、
+    沒有日期。這一頁不要另外去讀別的表來補資訊——補上去的就是公開出去的。
+
+    外觀沿用 App 的全體足跡地圖（footprint_map_screen.dart）：衛星底、青藍點
+    #2EC4E6 加白框黑描邊、半徑跟人數開根號成正比。
+  -->
+  <style>
+    :root {
+      --cyan: #2EC4E6;
+      --wall: #8D6E63;
+      --indoor: #F2B134;
+      --glass: rgba(14,19,25,.78);
+      --glass-line: rgba(255,255,255,.12);
+      --ink: #F2F5F7; --ink2: #B4C0CA; --ink3: #7C8B99;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+        "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+      background: #0d1116; color: var(--ink); overflow: hidden;
+    }
+    #map { position: fixed; inset: 0; background: #0d1116; }
+    .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib { opacity: .4; }
+    .mapboxgl-ctrl-top-right { top: 14px; right: 14px; }
+    .glass {
+      background: var(--glass); border: 1px solid var(--glass-line);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    /* ── 左上：標題＋數字 ── */
+    .panel {
+      position: fixed; left: 16px; top: 16px; z-index: 2;
+      width: min(380px, calc(100vw - 32px));
+      max-height: calc(100vh - 32px); overflow-y: auto;
+      padding: 16px 18px;
+    }
+    .brand { display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+      color: var(--ink2); font-size: 12px; text-decoration: none; }
+    .brand img { width: 22px; height: 22px; border-radius: 6px; }
+    h1 { margin: 0 0 4px; font-size: 20px; line-height: 1.3; }
+    .day { margin: 0 0 8px; font-size: 12.5px; color: var(--cyan); font-weight: 600; }
+    .sub { margin: 0 0 14px; color: var(--ink2); font-size: 13px; line-height: 1.6; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px; }
+    .stat { text-align: center; padding: 8px 4px; border-radius: 10px;
+      background: rgba(255,255,255,.05); }
+    .stat b { display: block; font-size: 19px; font-variant-numeric: tabular-nums; }
+    .stat span { font-size: 11px; color: var(--ink3); }
+    .cover { margin: 0 0 6px; font-size: 13px; color: var(--ink2); }
+    .cover b { color: var(--ink); font-variant-numeric: tabular-nums; }
+    .bar { height: 6px; border-radius: 3px; background: rgba(255,255,255,.1); overflow: hidden; }
+    .bar i { display: block; height: 100%; background: var(--cyan); border-radius: 3px; width: 0;
+      transition: width .8s ease; }
+
+    h2 { margin: 18px 0 8px; font-size: 14px; color: var(--ink); }
+    .contrib { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .contrib div { padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,.05); }
+    .contrib b { display: block; font-size: 17px; font-variant-numeric: tabular-nums; }
+    .contrib span { font-size: 11.5px; color: var(--ink3); line-height: 1.4; }
+    .note { margin: 10px 0 0; font-size: 12.5px; color: var(--ink2); line-height: 1.65; }
+    .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; font-size: 12px; color: var(--ink2); }
+    .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+      margin-right: 5px; vertical-align: -1px; border: 1.5px solid #fff; }
+    .invite { margin: 14px 0 0; font-size: 12.5px; color: var(--ink2); line-height: 1.65; }
+    .invite a { color: var(--cyan); }
+    .links { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .links a { font-size: 12.5px; color: var(--ink); text-decoration: none; padding: 7px 11px;
+      border-radius: 999px; border: 1px solid var(--glass-line); background: rgba(255,255,255,.04); }
+    .links a:hover { background: rgba(255,255,255,.1); }
+    .credit { margin-top: 12px; font-size: 11px; color: var(--ink3); line-height: 1.5; }
+    .credit a { color: var(--ink2); }
+
+    .toggle { display: none; }
+
+    /* ── 點開一座球場 ── */
+    .mapboxgl-popup-content { background: var(--glass); color: var(--ink);
+      border: 1px solid var(--glass-line); border-radius: 14px; padding: 12px 14px;
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.4); min-width: 180px; max-width: 260px; }
+    .mapboxgl-popup-tip { border-top-color: var(--glass) !important; border-bottom-color: var(--glass) !important; }
+    .mapboxgl-popup-close-button { color: var(--ink2); font-size: 18px; padding: 2px 8px; }
+    .pop-name { font-weight: 700; font-size: 14.5px; line-height: 1.35; padding-right: 14px; }
+    .pop-meta { color: var(--ink3); font-size: 12px; margin-top: 2px; }
+    .pop-people { margin-top: 8px; font-size: 13px; color: var(--ink2); }
+    .faces { display: flex; margin-top: 8px; }
+    .faces img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover;
+      border: 2px solid #0d1116; margin-left: -6px; background: #26313b; }
+    .faces img:first-child { margin-left: 0; }
+
+    .loading { position: fixed; inset: 0; display: grid; place-items: center; z-index: 5;
+      background: #0d1116; transition: opacity .4s; font-size: 28px; }
+    .loading.done { opacity: 0; pointer-events: none; }
+    .err { color: var(--ink2); font-size: 14px; text-align: center; padding: 0 24px; }
+
+    @media (max-width: 559px) {
+      .panel { left: 10px; right: 10px; top: auto; bottom: 10px; width: auto;
+        max-height: 58vh; padding: 14px 14px 12px; }
+      .panel.collapsed .more { display: none; }
+      .toggle { display: block; width: 100%; margin-top: 10px; padding: 8px; border-radius: 10px;
+        border: 1px solid var(--glass-line); background: rgba(255,255,255,.05);
+        color: var(--ink2); font-size: 12.5px; }
+      h1 { font-size: 17px; }
+      .stat b { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <div class="panel glass collapsed" id="panel">
+    <a class="brand" href="/"><img src="/app-icon.png" alt="" /><span>Tennis Nut</span></a>
+    <h1 id="title"></h1>
+    <p class="day" id="day"></p>
+    <p class="sub" id="sub"></p>
+    <div class="stats" id="stats"></div>
+    <p class="cover" id="cover"></p>
+    <div class="bar"><i id="coverBar"></i></div>
+
+    <div class="more">
+      <h2 id="contribTitle"></h2>
+      <div class="contrib" id="contrib"></div>
+      <p class="note" id="contribNote"></p>
+
+      <div class="legend" id="legend"></div>
+      <p class="invite" id="invite"></p>
+      <div class="links" id="links"></div>
+      <div class="credit" id="credit"></div>
+    </div>
+    <button class="toggle" id="toggle" type="button"></button>
+  </div>
+
+  <div class="loading" id="loading"><span>🎾</span></div>
+
+  <script>
+    // 跟 courts-map 同一把：網頁專用、綁 tennisnut.kxon.net 網域的 public token。
+    const MAPBOX_TOKEN = "pk.eyJ1Ijoia2hjaG8iLCJhIjoiY21xa3M0Y2Q0MDBxMjJ5c2VxeXN2NmQ4eSJ9.nQx2xebi6xQ0zz_JBLYw9Q";
+    const SUPABASE_URL = "https://dwjwisgbpnrxtcvpbkec.supabase.co";
+    const ANON = "sb_publishable_-M3m33CyJIROw7mP2x0Sxg_pPErO_oc";
+
+    const LANG = (function () {
+      const q = new URLSearchParams(location.search).get("lang");
+      if (q === "en" || q === "zh") return q;
+      return /^zh/i.test(navigator.language || "") ? "zh" : "en";
+    })();
+    document.documentElement.lang = LANG === "zh" ? "zh-Hant" : "en";
+
+    const T = {
+      zh: {
+        title: "球友一起走過的球場",
+        day: (n) => `Tennis Nut 開始的第 ${n} 天`,
+        sub: "每一個點，都是有球友真的到場打過球的地方。足跡要用 GPS 確認人在球場，或記下一場練習、比賽才會留下；地圖上的球場資料，也是球友在現場一筆一筆補上的。",
+        courts: "場地", people: "球友", cities: "縣市", countries: "國家",
+        cover: (v, t, p) => `台灣登錄的 <b>${t}</b> 座球場，球友走過 <b>${v}</b> 座（${p}%）`,
+        contribTitle: "球友為球場資料做的事",
+        added: "新增的球場", walls: "新增的練習牆", corrections: "資料更正",
+        status: "場況回報", closures: "封閉、整修回報", photos: "球場照片",
+        sameDay: "大多數資料更正在送出當天就上線",
+        medianDays: (d) => `資料更正從送出到上線，中位數 ${d} 天`,
+        contributors: (n) => `${n} 位球友參與過以上任何一項。回報核可後地圖馬上更新，所有人都看得到；新增球場與更正的人會收到堅果。`,
+        legendCourt: "球場", legendWall: "練習牆", legendIndoor: "室內練習場",
+        legendSize: "點越大，去過的人越多",
+        linkMap: "看全部球場與場地材質",
+        invite: '如果你也打網球，到球場用 <a href="/install">Tennis Nut</a> 記一筆，就是在幫這張地圖補上一個點。',
+        credit: '部分海外球場資料來自 <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 貢獻者。人數 3 人以上才顯示，不顯示名字與日期。',
+        more: "看球友的貢獻", less: "收起",
+        peopleN: (n) => `${n} 位球友去過`, peopleFew: "有球友去過",
+        kind: { court: "球場", wall: "練習牆", indoor_practice: "室內練習場" },
+        failed: "暫時讀不到資料，請稍後再試。",
+      },
+      en: {
+        title: "Courts our players have been to",
+        day: (n) => `Day ${n} of Tennis Nut`,
+        sub: "Every dot is a place where someone actually turned up and played. A footprint is left by a GPS-confirmed check-in, or by logging a practice or a match there — and the court details on the map were filled in by players on site.",
+        courts: "venues", people: "players", cities: "cities", countries: "countries",
+        cover: (v, t, p) => `Players have been to <b>${v}</b> of the <b>${t}</b> courts listed in Taiwan (${p}%)`,
+        contribTitle: "What players have added",
+        added: "courts added", walls: "practice walls added", corrections: "corrections",
+        status: "condition reports", closures: "closure reports", photos: "court photos",
+        sameDay: "Most corrections go live the day they are sent",
+        medianDays: (d) => `Corrections go live in a median of ${d} days`,
+        contributors: (n) => `${n} players have done at least one of these. Approved reports update the map for everyone straight away.`,
+        legendCourt: "Court", legendWall: "Practice wall", legendIndoor: "Indoor practice",
+        legendSize: "Bigger dot, more players",
+        linkMap: "All courts and surfaces",
+        invite: 'If you play tennis, logging a session at the court with <a href="/install">Tennis Nut</a> adds a dot to this map.',
+        credit: 'Some courts outside Taiwan come from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors. Counts are shown from 3 players up; no names or dates.',
+        more: "What players have added", less: "Hide",
+        peopleN: (n) => `${n} players have been here`, peopleFew: "Players have been here",
+        kind: { court: "Court", wall: "Practice wall", indoor_practice: "Indoor practice" },
+        failed: "Couldn't load the data. Please try again later.",
+      },
+    }[LANG];
+
+    const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (ch) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+    // 大頭照網址是使用者自己設的：只放 https，其他的不畫。
+    const safeImg = (u) => /^https:\/\/[^\s"'<>]+$/i.test(u || "") ? u : null;
+    const fmt = (n) => Number(n ?? 0).toLocaleString(LANG === "zh" ? "zh-TW" : "en");
+
+    async function rpc(name) {
+      const r = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`, {
+        method: "POST",
+        headers: { apikey: ANON, Authorization: "Bearer " + ANON, "Content-Type": "application/json" },
+        body: "{}",
+      });
+      if (!r.ok) throw new Error(name + " " + r.status);
+      return r.json();
+    }
+
+    // ── 文字 ───────────────────────────────────────────────────────────
+    document.getElementById("title").textContent = T.title;
+    document.getElementById("sub").textContent = T.sub;
+    // 起算日＝App Store 上架（2026-08-31，Kayson 定）。不寫「上架」：Play 那時
+    // 還在封閉測試。用台北的日曆日算，8/31 當天是第 1 天。
+    (function () {
+      const START = Date.UTC(2026, 7, 31);
+      const tp = new Date(Date.now() + 8 * 3600e3);
+      const today = Date.UTC(tp.getUTCFullYear(), tp.getUTCMonth(), tp.getUTCDate());
+      const n = Math.floor((today - START) / 86400e3) + 1;
+      if (n > 0) document.getElementById("day").textContent = T.day(n);
+    })();
+    document.getElementById("contribTitle").textContent = T.contribTitle;
+    document.getElementById("credit").innerHTML = T.credit;
+    document.getElementById("legend").innerHTML =
+      `<span><i style="background:var(--cyan)"></i>${esc(T.legendCourt)}</span>` +
+      `<span><i style="background:var(--wall)"></i>${esc(T.legendWall)}</span>` +
+      `<span><i style="background:var(--indoor)"></i>${esc(T.legendIndoor)}</span>` +
+      `<span>${esc(T.legendSize)}</span>`;
+    document.getElementById("links").innerHTML =
+      `<a href="/courts-map${LANG === "en" ? "?lang=en" : ""}">${esc(T.linkMap)}</a>`;
+    document.getElementById("invite").innerHTML = T.invite;
+
+    const panel = document.getElementById("panel");
+    const toggle = document.getElementById("toggle");
+    toggle.textContent = T.more;
+    toggle.addEventListener("click", () => {
+      const c = panel.classList.toggle("collapsed");
+      toggle.textContent = c ? T.more : T.less;
+    });
+
+    function renderTotals(t) {
+      document.getElementById("stats").innerHTML = [
+        [t.courts, T.courts], [t.people, T.people], [t.cities, T.cities], [t.countries, T.countries],
+      ].map(([n, l]) => `<div class="stat"><b>${esc(fmt(n))}</b><span>${esc(l)}</span></div>`).join("");
+      const p = t.tw_courts ? Math.round(100 * t.tw_courts_visited / t.tw_courts) : 0;
+      document.getElementById("cover").innerHTML =
+        T.cover(esc(fmt(t.tw_courts_visited)), esc(fmt(t.tw_courts)), esc(p));
+      requestAnimationFrame(() => { document.getElementById("coverBar").style.width = p + "%"; });
+    }
+
+    function renderContrib(c) {
+      document.getElementById("contrib").innerHTML = [
+        [c.courts_added, T.added], [c.walls_added, T.walls],
+        [c.corrections_approved, T.corrections], [c.status_reports, T.status],
+        [c.closure_reports, T.closures], [c.photos, T.photos],
+      ].map(([n, l]) => `<div><b>${esc(fmt(n))}</b><span>${esc(l)}</span></div>`).join("");
+      // 中位數是 0：更正大多在現場送出、當下生效。寫「0 天」看起來像資料壞掉。
+      const d = Number(c.correction_median_days);
+      const line = !isFinite(d) ? "" : d < 1 ? T.sameDay : T.medianDays(d.toFixed(1));
+      document.getElementById("contribNote").textContent =
+        (line ? line + "。" : "") + T.contributors(fmt(c.contributors));
+    }
+
+    // ── 地圖 ───────────────────────────────────────────────────────────
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+    const isMobile = window.matchMedia("(max-width: 559px)").matches;
+    const map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/mapbox/satellite-streets-v12",
+      projection: "globe",
+      center: [121.0, 23.7],
+      zoom: isMobile ? 5.6 : 6.6,
+      logoPosition: "bottom-right",
+      attributionControl: false,
+    });
+    map.addControl(new mapboxgl.AttributionControl({ compact: true }), "bottom-right");
+    map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
+    map.on("style.load", () => map.setFog({}));
+
+    // 開場對準多數點：跟 App 一樣用單位向量平均找出點最密的那一側，
+    // 跨半個地球時少數的海外點留在地球背面，點不會全部縮成一小團。
+    function camera(rows) {
+      const twish = rows.filter(r => r.lng > 100 && r.lng < 140 && r.lat > 15 && r.lat < 40);
+      const pts = twish.length >= rows.length / 2 ? twish : rows;
+      if (!pts.length) return;
+      const b = new mapboxgl.LngLatBounds();
+      pts.forEach(r => b.extend([r.lng, r.lat]));
+      map.fitBounds(b, {
+        padding: isMobile
+          ? { top: 40, bottom: Math.round(window.innerHeight * 0.45), left: 30, right: 30 }
+          : { top: 60, bottom: 60, left: 420, right: 60 },
+        maxZoom: 9, duration: 1400,
+      });
+    }
+
+    function addLayers(rows) {
+      map.addSource("fp", {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: rows.map(r => ({
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [r.lng, r.lat] },
+            properties: {
+              id: r.court_id, kind: r.venue_kind || "court",
+              people: r.people || 0, label: r.people ? String(r.people) : "",
+            },
+          })),
+        },
+      });
+      // 半徑跟人數開根號成正比（同 App）：沒有人數的點給最小那一級。
+      const radius = ["interpolate", ["linear"], ["sqrt", ["max", ["get", "people"], 1]],
+        1, 6, 2, 9, 6, 17];
+      map.addLayer({
+        id: "fp-halo", type: "circle", source: "fp",
+        paint: { "circle-radius": ["+", radius, 3], "circle-color": "rgba(0,0,0,.55)", "circle-blur": .6 },
+      });
+      map.addLayer({
+        id: "fp-dot", type: "circle", source: "fp",
+        paint: {
+          "circle-radius": radius,
+          "circle-color": ["match", ["get", "kind"],
+            "wall", "#8D6E63", "indoor_practice", "#F2B134", "#2EC4E6"],
+          "circle-stroke-color": "#ffffff", "circle-stroke-width": 2,
+        },
+      });
+      map.addLayer({
+        id: "fp-count", type: "symbol", source: "fp",
+        filter: [">=", ["get", "people"], 3],
+        layout: {
+          "text-field": ["get", "label"], "text-size": 11.5,
+          "text-font": ["DIN Pro Bold", "Arial Unicode MS Bold"],
+          "text-allow-overlap": true,
+        },
+        paint: { "text-color": "#1B5138" },
+      });
+    }
+
+    function popupHtml(r) {
+      const kind = T.kind[r.venue_kind] || T.kind.court;
+      const where = [r.city, kind].filter(Boolean).map(esc).join(" · ");
+      const faces = (r.avatars || []).map(safeImg).filter(Boolean)
+        .map(u => `<img src="${esc(u)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()" />`)
+        .join("");
+      return `<div class="pop-name">${esc(r.name)}</div>
+        <div class="pop-meta">${where}</div>
+        <div class="pop-people">${esc(r.people ? T.peopleN(r.people) : T.peopleFew)}</div>
+        ${faces ? `<div class="faces">${faces}</div>` : ""}`;
+    }
+
+    (async function main() {
+      const loading = document.getElementById("loading");
+      let rows, totals, contrib;
+      try {
+        [rows, totals, contrib] = await Promise.all([
+          rpc("public_footprint_map"), rpc("public_footprint_totals"), rpc("public_contribution_stats"),
+        ]);
+      } catch (e) {
+        loading.innerHTML = `<div class="err">${esc(T.failed)}</div>`;
+        return;
+      }
+      renderTotals(totals[0] || {});
+      renderContrib(contrib[0] || {});
+      const byId = new Map(rows.map(r => [r.court_id, r]));
+
+      const ready = () => {
+        addLayers(rows);
+        loading.classList.add("done");
+        camera(rows);
+      };
+      if (map.isStyleLoaded()) ready(); else map.once("load", ready);
+
+      let popup = null;
+      map.on("click", "fp-dot", (ev) => {
+        const f = ev.features && ev.features[0];
+        const r = f && byId.get(f.properties.id);
+        if (!r) return;
+        if (popup) popup.remove();
+        popup = new mapboxgl.Popup({ offset: 12, maxWidth: "280px" })
+          .setLngLat([r.lng, r.lat]).setHTML(popupHtml(r)).addTo(map);
+      });
+      map.on("mouseenter", "fp-dot", () => { map.getCanvas().style.cursor = "pointer"; });
+      map.on("mouseleave", "fp-dot", () => { map.getCanvas().style.cursor = ""; });
+    })();
+  </script>
+</body>
+</html>
