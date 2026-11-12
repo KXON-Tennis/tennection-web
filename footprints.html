@@ -462,10 +462,11 @@
       }
     });
 
-    // 開場對準多數點：跟 App 一樣用單位向量平均找出點最密的那一側，
-    // 跨半個地球時少數的海外點留在地球背面，點不會全部縮成一小團。
+    // 開場框住台灣本島＋澎湖。原本用 100–140°E、15–40°N 當「台灣附近」，
+    // 東京（139.4°E）和沖繩都落在裡面，一個日本的點就把畫面拉到整個東海
+    // （Kayson 2026-11-12）。海外、金門、馬祖的點照畫，只是不進開場的框。
     function camera(rows) {
-      const twish = rows.filter(r => r.lng > 100 && r.lng < 140 && r.lat > 15 && r.lat < 40);
+      const twish = rows.filter(r => r.lng > 119.3 && r.lng < 122.1 && r.lat > 21.8 && r.lat < 25.4);
       const pts = twish.length >= rows.length / 2 ? twish : rows;
       if (!pts.length) return;
       const b = new mapboxgl.LngLatBounds();
