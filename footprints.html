@@ -101,13 +101,18 @@
     .mapboxgl-popup-content { background: var(--glass); color: var(--ink);
       border: 1px solid var(--glass-line); border-radius: 14px; padding: 12px 14px;
       backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.4); min-width: 180px; max-width: 260px; }
+      box-shadow: 0 10px 30px rgba(0,0,0,.4); min-width: 230px; max-width: 280px; }
     .mapboxgl-popup-tip { border-top-color: var(--glass) !important; border-bottom-color: var(--glass) !important; }
     .mapboxgl-popup-close-button { color: var(--ink2); font-size: 18px; padding: 2px 8px; }
     .pop-name { font-weight: 700; font-size: 14.5px; line-height: 1.35; padding-right: 14px; }
     .pop-meta { color: var(--ink3); font-size: 12px; margin-top: 2px; }
     .pop-people { margin-top: 8px; font-size: 13px; color: var(--ink2); }
     .faces { display: flex; margin-top: 8px; }
+    .pop-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 10px; }
+    .pop-stats div { padding: 6px 4px; border-radius: 8px; background: rgba(255,255,255,.06); text-align: center; }
+    .pop-stats b { display: block; font-size: 15px; font-variant-numeric: tabular-nums; }
+    .pop-stats span { font-size: 10.5px; color: var(--ink3); line-height: 1.3; display: block; }
+    .pop-foot { margin-top: 6px; font-size: 10.5px; color: var(--ink3); }
     .faces img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover;
       border: 2px solid #0d1116; margin-left: -6px; background: #26313b; }
     .faces img:first-child { margin-left: 0; }
@@ -190,6 +195,8 @@
         more: "看球友的貢獻", less: "收起",
         peopleN: (n) => `${n} 位球友去過`, peopleFew: "有球友去過",
         kind: { court: "球場", wall: "練習牆", indoor_practice: "室內練習場" },
+        popPractices: "練習紀錄", popVerified: "GPS 確認到場", popUpdates: "資料更新",
+        popPhotos: (n) => `資料更新含照片 ${n} 張`,
         failed: "暫時讀不到資料，請稍後再試。",
       },
       en: {
@@ -212,6 +219,8 @@
         more: "What players have added", less: "Hide",
         peopleN: (n) => `${n} players have been here`, peopleFew: "Players have been here",
         kind: { court: "Court", wall: "Practice wall", indoor_practice: "Indoor practice" },
+        popPractices: "practices logged", popVerified: "GPS-confirmed visits", popUpdates: "data updates",
+        popPhotos: (n) => `Updates include ${n} photo${n === 1 ? "" : "s"}`,
         failed: "Couldn't load the data. Please try again later.",
       },
     }[LANG];
@@ -401,10 +410,18 @@
       const faces = (r.avatars || []).map(safeImg).filter(Boolean)
         .map(u => `<img src="${esc(u)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()" />`)
         .join("");
+      // 練習紀錄與 GPS 到場分開寫：練習可以在家補記，只有停留確認的打卡有
+      // GPS 背書。欄位還沒有的時候（舊版查詢）整列不畫。
+      const has = r.practices != null;
+      const stats = !has ? "" : `<div class="pop-stats">${[
+          [r.practices, T.popPractices], [r.verified_visits, T.popVerified], [r.updates, T.popUpdates],
+        ].map(([v, l]) => `<div><b>${esc(fmt(v))}</b><span>${esc(l)}</span></div>`).join("")}</div>` +
+        (r.photos > 0 ? `<div class="pop-foot">${esc(T.popPhotos(r.photos))}</div>` : "");
       return `<div class="pop-name">${esc(r.name)}</div>
         <div class="pop-meta">${where}</div>
         <div class="pop-people">${esc(r.people ? T.peopleN(r.people) : T.peopleFew)}</div>
-        ${faces ? `<div class="faces">${faces}</div>` : ""}`;
+        ${faces ? `<div class="faces">${faces}</div>` : ""}
+        ${stats}`;
     }
 
     (async function main() {
