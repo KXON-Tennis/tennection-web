@@ -70,7 +70,7 @@
       background: rgba(255,255,255,.05); }
     .stat b { display: block; font-size: 19px; font-variant-numeric: tabular-nums; }
     .stat span { font-size: 11px; color: var(--ink3); }
-    .stat small { display: block; margin-top: 2px; font-size: 10px; letter-spacing: .04em;
+    .stat small { display: block; margin-top: 2px; font-size: 9.5px; letter-spacing: 0; white-space: nowrap;
       color: var(--ink2); font-variant-numeric: tabular-nums; }
     .cover { margin: 0 0 6px; font-size: 13px; color: var(--ink2); }
     .cover b { color: var(--ink); font-variant-numeric: tabular-nums; }
@@ -484,20 +484,17 @@
       }
     });
 
-    // 開場框住台灣本島＋澎湖。原本用 100–140°E、15–40°N 當「台灣附近」，
-    // 東京（139.4°E）和沖繩都落在裡面，一個日本的點就把畫面拉到整個東海
-    // （Kayson 2026-11-12）。海外、金門、馬祖的點照畫，只是不進開場的框。
-    function camera(rows) {
-      const twish = rows.filter(r => r.lng > 119.3 && r.lng < 122.1 && r.lat > 21.8 && r.lat < 25.4);
-      const pts = twish.length >= rows.length / 2 ? twish : rows;
-      if (!pts.length) return;
-      const b = new mapboxgl.LngLatBounds();
-      pts.forEach(r => b.extend([r.lng, r.lat]));
-      map.fitBounds(b, {
+    // 開場視角：整座台灣（含澎湖）斜放在面板右邊，Kayson 2026-11-12 截圖定的。
+    // 框的是固定的台灣範圍，不跟著點跑——原本用點去框，一個東京的點就把
+    // 畫面拉到整個東海。海外、金門、馬祖的點照畫，只是不進開場的框。
+    const TAIWAN = [[119.4, 21.85], [122.05, 25.32]];
+    function camera() {
+      map.fitBounds(TAIWAN, {
+        bearing: -22, pitch: isMobile ? 20 : 32,
         padding: isMobile
-          ? { top: 40, bottom: Math.round(window.innerHeight * 0.45), left: 30, right: 30 }
-          : { top: 60, bottom: 60, left: 420, right: 60 },
-        maxZoom: 9, duration: 1400,
+          ? { top: 70, bottom: Math.round(window.innerHeight * 0.42), left: 20, right: 20 }
+          : { top: 50, bottom: 40, left: 440, right: 80 },
+        duration: 1400,
       });
     }
 
@@ -693,7 +690,7 @@
       const byCountry = {};
       rows.forEach(r => { if (r.country) byCountry[r.country] = (byCountry[r.country] || 0) + 1; });
       renderTotals(totals[0] || {},
-        Object.entries(byCountry).sort((a, b) => b[1] - a[1]).map(([c]) => c).join(" · "));
+        Object.entries(byCountry).sort((a, b) => b[1] - a[1]).map(([c]) => c).join(" "));
       renderContrib(contrib[0] || {});
       if (tw.length) renderSurface(tw);
       const byId = new Map(rows.map(r => [r.court_id, r]));
@@ -711,7 +708,7 @@
         if (tw.length) addSurfaceLayers(tw);
         applyMode(tw);
         loading.classList.add("done");
-        camera(rows);
+        camera();
       };
       modes.addEventListener("click", (ev) => {
         const b = ev.target.closest("button");
