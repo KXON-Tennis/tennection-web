@@ -28,9 +28,9 @@
   -->
   <style>
     :root {
-      --cyan: #2EC4E6;
-      --wall: #8D6E63;
-      --indoor: #F2B134;
+      --cyan: #3FD4F2;
+      --wall: #D9A97A;
+      --indoor: #F5C451;
       --glass: rgba(14,19,25,.78);
       --glass-line: rgba(255,255,255,.12);
       --ink: #F2F5F7; --ink2: #B4C0CA; --ink3: #7C8B99;
@@ -84,7 +84,8 @@
     .note { margin: 10px 0 0; font-size: 12.5px; color: var(--ink2); line-height: 1.65; }
     .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; font-size: 12px; color: var(--ink2); }
     .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%;
-      margin-right: 5px; vertical-align: -1px; border: 1.5px solid #fff; }
+      margin-right: 6px; vertical-align: 0; border: 1px solid rgba(255,255,255,.85);
+      box-shadow: 0 0 0 3px rgba(255,255,255,.06), 0 0 8px currentColor; }
     .invite { margin: 14px 0 0; font-size: 12.5px; color: var(--ink2); line-height: 1.65; }
     .invite a { color: var(--cyan); }
     .links { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -246,9 +247,9 @@
     document.getElementById("contribTitle").textContent = T.contribTitle;
     document.getElementById("credit").innerHTML = T.credit;
     document.getElementById("legend").innerHTML =
-      `<span><i style="background:var(--cyan)"></i>${esc(T.legendCourt)}</span>` +
-      `<span><i style="background:var(--wall)"></i>${esc(T.legendWall)}</span>` +
-      `<span><i style="background:var(--indoor)"></i>${esc(T.legendIndoor)}</span>` +
+      `<span><i style="background:var(--cyan);color:var(--cyan)"></i>${esc(T.legendCourt)}</span>` +
+      `<span><i style="background:var(--wall);color:var(--wall)"></i>${esc(T.legendWall)}</span>` +
+      `<span><i style="background:var(--indoor);color:var(--indoor)"></i>${esc(T.legendIndoor)}</span>` +
       `<span>${esc(T.legendSize)}</span>`;
     document.getElementById("links").innerHTML =
       `<a href="/courts-map${LANG === "en" ? "?lang=en" : ""}">${esc(T.linkMap)}</a>`;
@@ -290,7 +291,7 @@
     const isMobile = window.matchMedia("(max-width: 559px)").matches;
     const map = new mapboxgl.Map({
       container: "map",
-      style: "mapbox://styles/mapbox/satellite-streets-v12",
+      style: "mapbox://styles/mapbox/satellite-v9",
       projection: "globe",
       center: [121.0, 23.7],
       zoom: isMobile ? 5.6 : 6.6,
@@ -299,7 +300,18 @@
     });
     map.addControl(new mapboxgl.AttributionControl({ compact: true }), "bottom-right");
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
-    map.on("style.load", () => map.setFog({}));
+    // 純衛星、不帶任何標籤（街道版會帶出公路編號盾牌與國家公園圖示，
+    // 跟足跡點搶眼）。影像壓暗、降飽和度，讓點當主角。
+    map.on("style.load", () => {
+      map.setFog({ color: "rgb(12,18,26)", "high-color": "rgb(20,40,70)",
+        "horizon-blend": .04, "space-color": "rgb(4,6,10)", "star-intensity": .25 });
+      for (const l of map.getStyle().layers) {
+        if (l.type !== "raster") continue;
+        map.setPaintProperty(l.id, "raster-brightness-max", .62);
+        map.setPaintProperty(l.id, "raster-saturation", -.35);
+        map.setPaintProperty(l.id, "raster-contrast", .08);
+      }
+    });
 
     // 開場對準多數點：跟 App 一樣用單位向量平均找出點最密的那一側，
     // 跨半個地球時少數的海外點留在地球背面，點不會全部縮成一小團。
@@ -332,31 +344,54 @@
           })),
         },
       });
-      // 半徑跟人數開根號成正比（同 App）：沒有人數的點給最小那一級。
-      const radius = ["interpolate", ["linear"], ["sqrt", ["max", ["get", "people"], 1]],
-        1, 6, 2, 9, 6, 17];
+      // 點的設計（2026-11-12 Kayson：原本實心白框圓「不清楚、沒有高級感」）：
+      // 小而亮的核心＋很淡的同色光暈，像夜裡的燈；底圖壓暗讓點當主角。
+      // 半徑仍跟人數開根號成正比（同 App），並隨縮放變大。
+      //
+      // Mapbox 的 zoom 內插只能放在最外層（包進 ["+"…] 會讓 addLayer 整個
+      // 失敗），所以光暈與核心各寫一支完整的內插，不共用一個運算式。
+      const n = ["sqrt", ["max", ["get", "people"], 1]];
+      const at = (base, k) => ["+", base, ["*", k, ["-", n, 1]]];
+      const core = ["interpolate", ["linear"], ["zoom"],
+        4, at(2.2, 1.0), 8, at(3.6, 1.8), 13, at(6, 3)];
+      const glow = ["interpolate", ["linear"], ["zoom"],
+        4, at(6, 2.4), 8, at(10, 4.2), 13, at(16, 6.5)];
+      const color = ["match", ["get", "kind"],
+        "wall", "#D9A97A", "indoor_practice", "#F5C451", "#3FD4F2"];
       map.addLayer({
-        id: "fp-halo", type: "circle", source: "fp",
-        paint: { "circle-radius": ["+", radius, 3], "circle-color": "rgba(0,0,0,.55)", "circle-blur": .6 },
+        id: "fp-glow", type: "circle", source: "fp",
+        paint: {
+          "circle-radius": glow, "circle-color": color,
+          "circle-opacity": .22, "circle-blur": 1,
+        },
       });
       map.addLayer({
         id: "fp-dot", type: "circle", source: "fp",
+        layout: { "circle-sort-key": ["get", "people"] },
         paint: {
-          "circle-radius": radius,
-          "circle-color": ["match", ["get", "kind"],
-            "wall", "#8D6E63", "indoor_practice", "#F2B134", "#2EC4E6"],
-          "circle-stroke-color": "#ffffff", "circle-stroke-width": 2,
+          "circle-radius": core, "circle-color": color,
+          "circle-stroke-color": "rgba(255,255,255,.85)",
+          "circle-stroke-width": ["interpolate", ["linear"], ["zoom"], 4, .6, 10, 1.2],
         },
       });
+      // 人數：白字深色描邊，放在點的右上。互相壓到時人多的優先，其餘
+      // 等放大再出現——台北那一團才不會疊成看不清的一塊。
       map.addLayer({
         id: "fp-count", type: "symbol", source: "fp",
         filter: [">=", ["get", "people"], 3],
         layout: {
-          "text-field": ["get", "label"], "text-size": 11.5,
+          "text-field": ["get", "label"],
+          "text-size": ["interpolate", ["linear"], ["zoom"], 5, 11, 12, 14],
           "text-font": ["DIN Pro Bold", "Arial Unicode MS Bold"],
-          "text-allow-overlap": true,
+          "text-anchor": "bottom-left",
+          "text-offset": [0.35, -0.2],
+          "text-allow-overlap": false,
+          "symbol-sort-key": ["-", 0, ["get", "people"]],
         },
-        paint: { "text-color": "#1B5138" },
+        paint: {
+          "text-color": "#ffffff",
+          "text-halo-color": "rgba(6,12,18,.9)", "text-halo-width": 1.6,
+        },
       });
     }
 
@@ -395,7 +430,8 @@
       if (map.isStyleLoaded()) ready(); else map.once("load", ready);
 
       let popup = null;
-      map.on("click", "fp-dot", (ev) => {
+      // 核心點變小了，連光暈一起算可點範圍，手機上才點得到。
+      map.on("click", ["fp-dot", "fp-glow"], (ev) => {
         const f = ev.features && ev.features[0];
         const r = f && byId.get(f.properties.id);
         if (!r) return;
@@ -403,8 +439,8 @@
         popup = new mapboxgl.Popup({ offset: 12, maxWidth: "280px" })
           .setLngLat([r.lng, r.lat]).setHTML(popupHtml(r)).addTo(map);
       });
-      map.on("mouseenter", "fp-dot", () => { map.getCanvas().style.cursor = "pointer"; });
-      map.on("mouseleave", "fp-dot", () => { map.getCanvas().style.cursor = ""; });
+      map.on("mouseenter", ["fp-dot", "fp-glow"], () => { map.getCanvas().style.cursor = "pointer"; });
+      map.on("mouseleave", ["fp-dot", "fp-glow"], () => { map.getCanvas().style.cursor = ""; });
     })();
   </script>
 </body>
