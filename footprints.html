@@ -70,6 +70,8 @@
       background: rgba(255,255,255,.05); }
     .stat b { display: block; font-size: 19px; font-variant-numeric: tabular-nums; }
     .stat span { font-size: 11px; color: var(--ink3); }
+    .stat small { display: block; margin-top: 2px; font-size: 10px; letter-spacing: .04em;
+      color: var(--ink2); font-variant-numeric: tabular-nums; }
     .cover { margin: 0 0 6px; font-size: 13px; color: var(--ink2); }
     .cover b { color: var(--ink); font-variant-numeric: tabular-nums; }
     .bar { height: 6px; border-radius: 3px; background: rgba(255,255,255,.1); overflow: hidden; }
@@ -360,10 +362,12 @@
       toggle.textContent = c ? moreLabel() : T.less;
     });
 
-    function renderTotals(t) {
+    // codes：去過的國家代碼，場地多的排前面（TW · AU · JP · US）。
+    function renderTotals(t, codes) {
       document.getElementById("stats").innerHTML = [
-        [t.courts, T.courts], [t.people, T.people], [t.cities, T.cities], [t.countries, T.countries],
-      ].map(([n, l]) => `<div class="stat"><b>${esc(fmt(n))}</b><span>${esc(l)}</span></div>`).join("");
+        [t.courts, T.courts], [t.people, T.people], [t.cities, T.cities], [t.countries, T.countries, codes],
+      ].map(([n, l, extra]) => `<div class="stat"><b>${esc(fmt(n))}</b><span>${esc(l)}</span>` +
+        (extra ? `<small>${esc(extra)}</small>` : "") + `</div>`).join("");
       const p = t.tw_courts ? Math.round(100 * t.tw_courts_visited / t.tw_courts) : 0;
       document.getElementById("cover").innerHTML =
         T.cover(esc(fmt(t.tw_courts_visited)), esc(fmt(t.tw_courts)), esc(p));
@@ -668,7 +672,10 @@
         loading.innerHTML = `<div class="err">${esc(T.failed)}</div>`;
         return;
       }
-      renderTotals(totals[0] || {});
+      const byCountry = {};
+      rows.forEach(r => { if (r.country) byCountry[r.country] = (byCountry[r.country] || 0) + 1; });
+      renderTotals(totals[0] || {},
+        Object.entries(byCountry).sort((a, b) => b[1] - a[1]).map(([c]) => c).join(" · "));
       renderContrib(contrib[0] || {});
       if (tw.length) renderSurface(tw);
       const byId = new Map(rows.map(r => [r.court_id, r]));
