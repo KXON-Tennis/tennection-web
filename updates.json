@@ -7,6 +7,91 @@
   ],
   "releases": [
     {
+      "build": 2840,
+      "version": "1.43.0",
+      "date": "2026-11-14",
+      "title": "第 1.36～1.43 版更新：裝備心得可以留言，每支拍的線也有了自己的紀錄",
+      "summary": "想問別人的線和磅數，直接在裝備心得底下留言。球袋裡每支拍的線看得到穿了幾天、打得怎麼樣。每個挑戰都看得到誰過關了，地圖改成 24 小時球友動態。",
+      "highlights": [
+        {
+          "emoji": "💬",
+          "title": "裝備心得可以留言了",
+          "body": "想問穿什麼線、多少磅、跟哪一支比，直接在心得底下留言。作者和之前留過言的人都會收到通知；同一篇一小時內只響一次，其他收在鈴鐺裡。\n\n首頁的裝備心得會顯示幾個人說有用、幾則留言。文章和留言都可以檢舉或封鎖。"
+        },
+        {
+          "emoji": "🧵",
+          "title": "每支拍的線，有自己的紀錄",
+          "body": "球袋裡每支球拍下面多了一張線卡：磅數、線名、穿了幾天，該換線時變橘色。點開看這組線打了多久、幾次、幾勝幾敗，以及平均多久換一次。\n\n每次穿線都可以記感受——包球感、控制、旋轉、舒適、耐用度——也可以直接寫成一篇裝備心得。"
+        },
+        {
+          "emoji": "🏆",
+          "title": "看得到誰挑戰成功",
+          "body": "每個挑戰都顯示累計多少人過關，點開看是誰、在哪座球場、過了幾顆，有影片可以直接看。練習紀錄上也會標出那一次的挑戰成績。\n\n對拉多了 100、150 顆兩關。"
+        },
+        {
+          "emoji": "🗺",
+          "title": "地圖和最愛球場",
+          "body": "地圖改成「24 小時球友動態」，回家或隔天才記的練習也看得到。最愛球場直接顯示誰最近來打球、現在幾個人在打。\n\n在台灣以外沒開定位時，地圖會開在你所在的國家。"
+        },
+        {
+          "emoji": "📝",
+          "title": "記練習、記比賽更順手",
+          "body": "表單重新整理過，打字時欄位不會再被鍵盤蓋住。選好友可以搜尋，常一起打的排在前面。記完只跳一則提示，幾秒後自己收掉。"
+        }
+      ],
+      "fixes": [
+        "通知改用你的 App 語言，時間換成你所在地的當地時間",
+        "英文介面的日期順序跟著手機地區，例如澳洲顯示日/月",
+        "網路較慢時存檔，不會再重複存成兩筆",
+        "球員卡加上持拍手與反拍，點兩下就填好",
+        "同一天的練習與比賽照開始時間排序",
+        "找球友名單看得出下面還有人；球友卡可以直接加好友",
+        "分享圖的球拍、球鞋加上品牌標誌",
+        "設定頁分成隱私、通知、帳號、關於四區",
+        "打牆挑戰只列練習牆"
+      ],
+      "en": {
+        "title": "v1.36–1.43 · Comments on gear reviews, and every racket's strings get their own record",
+        "summary": "Ask about strings and tension right under a gear review. Each racket in your bag shows how long its current strings have been in and how they've played. Every challenge shows who has passed, and the map now shows the last 24 hours of play.",
+        "highlights": [
+          {
+            "emoji": "💬",
+            "title": "Comment on gear reviews",
+            "body": "Ask what strings, what tension, or how it compares — right under the review. The author and everyone who commented get notified; one alert per post per hour, the rest go to the bell.\n\nGear reviews on Home show helpful and comment counts. Posts and comments can be reported or blocked."
+          },
+          {
+            "emoji": "🧵",
+            "title": "Strings get their own record",
+            "body": "Each racket in your bag has a strings card: tension, string name and days since stringing, turning orange when it's time to restring. Open it to see how long, how often and how well that set has played, and how often you usually restring.\n\nRate each job — pocketing, control, spin, comfort, durability — and turn it into a gear review."
+          },
+          {
+            "emoji": "🏆",
+            "title": "See who passed each challenge",
+            "body": "Every challenge shows how many players have passed; tap to see who, where and how many, with video when there is one. Practice records show that session's challenge result.\n\nThe rally challenge adds 100 and 150-ball stages."
+          },
+          {
+            "emoji": "🗺",
+            "title": "Map and favourite courts",
+            "body": "The map now shows the last 24 hours of play, so practices logged at home or the next day appear too. Favourite courts show who played recently and how many are on court now.\n\nOutside Taiwan without location, the map opens in your own country."
+          },
+          {
+            "emoji": "📝",
+            "title": "Smoother practice and match logging",
+            "body": "Cleaner forms, and the keyboard no longer covers fields. Search friends, with your usual partners first. One short confirmation after saving that dismisses itself."
+          }
+        ],
+        "fixes": [
+          "Notifications use your app language and your local time",
+          "English dates follow your phone's region (e.g. day/month in Australia)",
+          "Saving on a slow connection no longer creates duplicates",
+          "Player card adds playing hand and backhand",
+          "Practices and matches on the same day sort by start time",
+          "Brand logos on rackets and shoes in share images",
+          "Settings regrouped into Privacy, Notifications, Account and About"
+        ]
+      }
+    },
+    {
       "build": 2760,
       "version": "1.35.0",
       "date": "2026-11-03",
@@ -96,9 +181,15 @@
           "The map's Today lens shows how many players are elsewhere",
           "Clearer steps for sharing challenge videos from YouTube or Drive",
           "Other players' passports show only the stages they've passed"
+        ],
+        "outdated": [
+          "This layer was later renamed “Last 24h”, and practices logged the next day count too."
         ]
       },
-      "image": "/shot-2760-challenge.jpg"
+      "image": "/shot-2760-challenge.jpg",
+      "outdated": [
+        "「本日球友動態」後來改名為「24 小時球友動態」，隔天才記的練習也會算進去。"
+      ]
     },
     {
       "build": 2690,
@@ -378,8 +469,18 @@
           "One Share button in the same place on practices, matches and courts",
           "Forms say which field is missing and why they can't be sent",
           "Gear counts now read \"2 using now, 2 used before\""
+        ],
+        "outdated": [
+          "The “Make a share card” button under the passport card was removed — use “Share” on any record or court.",
+          "The conquest map now lives at Records → “Conquests” → “Map”.",
+          "“Check-in courts” was renamed again to “Conquests”."
         ]
-      }
+      },
+      "outdated": [
+        "護照證件卡底下的「做張圖卡」後來拿掉了，請在每一筆紀錄或球場上按「分享」。",
+        "征服地圖現在的位置是：紀錄 →「征服球場」→「看地圖」。",
+        "「打卡球場」後來又改名為「征服球場」。"
+      ]
     },
     {
       "build": 2630,
@@ -599,9 +700,15 @@
           "In Today's footprints, courts are no longer merged into one circle",
           "Levels now come first in player lists, so long court names don't cut them off",
           "No more Chinese text in the English interface, and wording is consistent"
+        ],
+        "outdated": [
+          "“Today's footprints” is now “Last 24h”."
         ]
       },
-      "image": "/blog-2610.png"
+      "image": "/blog-2610.png",
+      "outdated": [
+        "「今日足跡」現在叫「24 小時球友動態」。"
+      ]
     },
     {
       "build": 2580,
@@ -683,8 +790,16 @@
           "Switching accounts on the same phone now updates your hits correctly",
           "Availability lists now show the soonest slots first",
           "Check-in range is back to 200 m, so every court at a large venue counts (since 1.22.0)"
+        ],
+        "outdated": [
+          "The map now shows who came in the last 24 hours, not just today.",
+          "Onboarding is now a short sequence of steps instead of asking you to pick one thing first."
         ]
-      }
+      },
+      "outdated": [
+        "地圖上現在顯示的是 24 小時內來過幾位，不是「今天」。",
+        "新手流程後來改成依序走完幾步，不再讓你先選一件事開始。"
+      ]
     },
     {
       "build": 2430,
@@ -762,8 +877,16 @@
           "Team-only hits are no longer visible outside the team",
           "Courts you've favourited now count towards \"who's free nearby\"",
           "Practices and matches logged after you've left the court still count towards your stats and still earn nuts — the ones that were missed have been credited"
+        ],
+        "outdated": [
+          "The “Overlapping footprints” card is now called “Players in your city”.",
+          "“Today's footprints” is now “Last 24h”, covering the past 24 hours."
         ]
-      }
+      },
+      "outdated": [
+        "「足跡重疊的球友」這張卡現在叫「同縣市的球友」。",
+        "「今日足跡」現在叫「24 小時球友動態」，算的是最近 24 小時。"
+      ]
     },
     {
       "build": 2390,
@@ -832,8 +955,14 @@
           "“N more free nearby” on the home screen is tappable",
           "On iOS, a refused photo-library save falls back to the share sheet",
           "Fixed a few court coordinates so on-site check-in stops failing"
+        ],
+        "outdated": [
+          "The calendar in “See the week” was later removed; the page is a list only."
         ]
-      }
+      },
+      "outdated": [
+        "「看整週」的日曆後來拿掉了，這一頁只有名單。"
+      ]
     },
     {
       "build": 2360,
@@ -982,6 +1111,9 @@
         "「還沒有好友」的提示移到該出現的位置，這一帶的球友現在每個人都看得到",
         "App 裡加上官方 LINE 的入口，最新消息終於有地方可看",
         "從通知點進聊天室的人，現在退得出來"
+      ],
+      "outdated": [
+        "「本週 Tennis Nut 球友動態」現在寫成「最近 7 天 · Tennis Nut 球友動態」。"
       ]
     },
     {
@@ -1036,6 +1168,10 @@
         "征服範圍不再由手機語言決定——手機語言設成英文的人會被判成美國，而他的球場全在台灣，護照上因此顯示征服 0 座",
         "換帳號之後，球場上的球友名單不會再停在上一個人的答案",
         "App 下載體積變小"
+      ],
+      "outdated": [
+        "名單現在不用先去打也看得到；要在同一座球場或同縣市打過一次，才能加好友。",
+        "首頁這張卡現在叫「同縣市的球友」。"
       ]
     },
     {
@@ -1098,6 +1234,9 @@
         "堅果頁面少報了兩項的金額，現在跟實際發出的對得上",
         "LINE 上的「回報球場狀況」改成一頁式：傳一次位置，附近的球場列成下拉選單直接選，不用再一來一往地對話",
         "布里斯本新增 373 個場館（770 面球場），澳洲總計 3,831 座"
+      ],
+      "outdated": [
+        "名單現在不用先去打也看得到；要在同一座球場或同縣市打過一次，才能加好友。"
       ]
     },
     {
@@ -1261,6 +1400,9 @@
         "諮詢分類的配色換成品牌色系，「網球體能」那張不再是粉紅色",
         "重複的約球邀請會被擋下，訊息也講得清楚了",
         "發球速度測試收起來了（2026-09 已移除）"
+      ],
+      "outdated": [
+        "空檔現在可以設成「每週固定」，每週會自動排上。"
       ]
     },
     {
@@ -1392,7 +1534,7 @@
     },
     {
       "title": "裝備心得：寫你球袋裡真的有的東西",
-      "blurb": "從自己的球袋裡選一件，或選兩件來比。所有人都看得到，三個人說有用就有 10 顆堅果。",
+      "blurb": "從自己的球袋裡選一件，或選兩件來比。所有人都看得到，想追問可以直接留言；三個人說有用就有 10 顆堅果。",
       "href": "/gear-posts",
       "icon": "🎾"
     },

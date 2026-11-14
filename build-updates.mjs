@@ -37,6 +37,7 @@ const L = {
     back: '← 所有更新',
     verLine: (r, d) => `版本 ${r.version} · Build ${r.build} · ${d}`,
     otherFixes: '其他修正',
+    outdated: '這篇之後有改過的地方',
     howTo: '<b>怎麼更新？</b> Android 走 Google Play 會自動更新；iPhone 從 App Store 更新即可。還沒裝的話，iPhone 從 <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">App Store</a> 下載。',
     foot: '用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。',
     footer: { blog: 'Blog', privacy: '隱私權政策', terms: '服務條款', contact: '聯絡我們' },
@@ -56,6 +57,7 @@ const L = {
     back: '← All updates',
     verLine: (r, d) => `Version ${r.version} · Build ${r.build} · ${d}`,
     otherFixes: 'Also fixed',
+    outdated: 'Changed since this post',
     howTo: '<b>How do I update?</b> Android updates itself through Google Play; on iPhone, update from the App Store. Not installed yet? Get it on the <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">App Store</a>.',
     foot: 'Something behaving oddly? Email <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a> — a screenshot or a screen recording helps a lot.',
     footer: { blog: 'Blog', privacy: 'Privacy policy', terms: 'Terms', contact: 'Contact us' },
@@ -81,6 +83,8 @@ const PAGE_CSS = `
     .hl-emoji { font-size: 22px; line-height: 1.4; flex-shrink: 0; }
     .hl-body h2 { font-size: 17px; margin: 0 0 6px; }
     .hl-body p { margin: 0; color: var(--text-secondary); font-size: 15px; }
+    .rel-outdated { margin: 0 0 18px; background: #FBF1DF; border-color: #EAD3A8; }
+    .rel-outdated ul { margin: 6px 0 0; padding-left: 18px; }
     .hl-shot { margin: 14px 0 2px; }
     .hl-shot img { display: block; width: 100%; max-width: 300px; height: auto;
                    border-radius: 12px; }
@@ -259,7 +263,19 @@ const buildRelease = (r, i, list, t, isEn) => {
     <span class="tag-line">${esc(t.verLine(r, prettyDate(r.date)))}</span>
     <h1>${esc(src.title)}</h1>
     <p class="rel-lead">${esc(src.summary)}</p>
-
+${
+  // 過時提醒（2026-11-14）：release 帶 outdated（字串陣列）就在最上面標出
+  // 「這篇之後改過的地方」，舊文章留著，但讀的人不會照著過時的說明去找。
+  src.outdated?.length
+    ? `    <div class="callout rel-outdated">
+      <b>${esc(t.outdated)}</b>
+      <ul>
+${src.outdated.map((o) => `        <li>${esc(o)}</li>`).join('\n')}
+      </ul>
+    </div>
+`
+    : ''
+}
 ${src.highlights
   .map(
     (h) => `    <section class="hl">
