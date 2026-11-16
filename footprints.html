@@ -482,6 +482,13 @@
         map.setPaintProperty(l.id, "raster-saturation", -.35);
         map.setPaintProperty(l.id, "raster-contrast", .08);
       }
+      // 3D 地形（2026-11-16）：開場斜 32 度，中央山脈立起來，點沿著平原和
+      // 河谷分布一眼看得出來。看全台的比例下真實高度幾乎是平的，所以誇張 1.6 倍。
+      if (!map.getSource("dem")) {
+        map.addSource("dem", { type: "raster-dem",
+          url: "mapbox://mapbox.mapbox-terrain-dem-v1", tileSize: 512, maxzoom: 14 });
+      }
+      map.setTerrain({ source: "dem", exaggeration: 1.6 });
     });
 
     // 開場視角：整座台灣（含澎湖）斜放在面板右邊，Kayson 2026-11-12 截圖定的。
