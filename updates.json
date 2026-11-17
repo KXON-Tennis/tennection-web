@@ -7,6 +7,85 @@
   ],
   "releases": [
     {
+      "build": 2870,
+      "version": "1.45.0",
+      "date": "2026-11-17",
+      "title": "第 1.44～1.45 版更新：練習可以計時，主場自己選",
+      "summary": "開始練習就邊打邊計時，每支球拍累積實際打了多久。主場可以自己挑一座，球場照片能左右滑著看。挑戰新增 2C1D、RDC 截擊，加完好友就能直接傳訊息。",
+      "highlights": [
+        {
+          "emoji": "⏱",
+          "title": "開始練習：邊打邊計時",
+          "body": "到了球場按「開始練習」，計時就開始跑，可以暫停、中途換拍。結束後直接記成一筆練習，不用再回想打了多久。\n\n每支球拍都會累積實際使用的時間，球袋裡看得到哪一支打最多。"
+        },
+        {
+          "emoji": "🏠",
+          "title": "主場自己選",
+          "body": "點球員卡上的「主場」，從打過的球場裡挑一座當主場。不選的話，照舊用最近最常打的那座。"
+        },
+        {
+          "emoji": "📷",
+          "title": "球場照片左右滑著看",
+          "body": "球場照片可以左右滑，左上角標第幾張，也有左右箭頭。看大圖右上角有關閉鍵，點照片也能關。\n\n全 App 的照片改成依顯示大小載入，頭像、裝備、比賽、聊天的照片捲起來更順，看大圖換頁不再卡。"
+        },
+        {
+          "emoji": "🎯",
+          "title": "新挑戰：2C1D、RDC 截擊",
+          "body": "新增 2C1D（兩斜一直）和 RDC 截擊（網前邊移動邊截擊），對抽多了 200、250 顆兩關。\n\n挑戰頁分成抽球、截擊、發球、練習牆四區，每一關改成進度條，一眼看出下一關。示範動畫也重新做過，標出 Cross、Down the line、Sideline。"
+        },
+        {
+          "emoji": "💬",
+          "title": "加完好友就能直接傳訊息",
+          "body": "加完好友就可以開口，對方還沒打開聊天也會先收到你的訊息。"
+        }
+      ],
+      "fixes": [
+        "「同邊／輪流發球」改名「單側／雙側發球」，「對拉」統一叫「對抽」",
+        "回報球場狀態：在球場直接選狀態，不在球場會提醒你到了再點",
+        "球場卡片的「打過這裡」和「這一帶其他球場」分成兩段，人數和名單對得上",
+        "新註冊釘最愛球場時，直接看到那座球場最近幾人來打、最新狀況",
+        "英文介面不再冒出中文"
+      ],
+      "en": {
+        "title": "v1.44–1.45 · A practice timer, and pick your own home court",
+        "summary": "Start a practice and the timer runs, tracking time on each racket. Pick your own home court and swipe through court photos. New 2C1D and RDC volley challenges, and you can message new friends right away.",
+        "highlights": [
+          {
+            "emoji": "⏱",
+            "title": "Practice timer",
+            "body": "Tap Start practice at the court and the timer runs — pause it or switch rackets along the way. When you finish it becomes a practice record, no guessing how long you played.\n\nEach racket adds up its real playing time, so your bag shows which one you use most."
+          },
+          {
+            "emoji": "🏠",
+            "title": "Pick your home court",
+            "body": "Tap Home court on your player card and choose from courts you've played. Leave it on auto to keep using your most-played court."
+          },
+          {
+            "emoji": "📷",
+            "title": "Swipe through court photos",
+            "body": "Court photos swipe, with a counter and arrows. The photo viewer has a close button, and tapping the photo closes it too.\n\nPhotos load at display size across the app, so scrolling and swiping are smoother."
+          },
+          {
+            "emoji": "🎯",
+            "title": "New challenges: 2C1D and RDC volleys",
+            "body": "Two new challenges, and the rally challenge adds 200 and 250-ball stages.\n\nChallenges are grouped into groundstrokes, volleys, serves and practice walls, each with a progress bar. Demo animations were redrawn and label Cross, Down the line and Sideline."
+          },
+          {
+            "emoji": "💬",
+            "title": "Message new friends right away",
+            "body": "Once you're friends you can start talking, even before they open chat."
+          }
+        ],
+        "fixes": [
+          "Serve challenges renamed to one-side and both-sides; rally naming unified",
+          "Court status reporting opens straight to the options at a court",
+          "Court cards list Played here and Other courts around here separately, with matching counts",
+          "New players see recent activity when pinning a favourite court",
+          "No more stray Chinese in the English interface"
+        ]
+      }
+    },
+    {
       "build": 2840,
       "version": "1.43.0",
       "date": "2026-11-14",
