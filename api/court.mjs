@@ -173,10 +173,17 @@ function page({ c, now, closures, hits, parking, live, nearby, players }) {
   const verify = c.community_verify_count > 0
     ? `<p class="verified">✓ ${c.community_verify_count} 位球友在現場確認過這些資料</p>` : "";
 
+  // 官網／預約網址是球友補資料寫進來的：h() 擋得住引號和角括號，擋不住
+  // javascript:——只放 http(s) 的。
+  const webUrl = (u) => {
+    try { return ["http:", "https:"].includes(new URL(u).protocol) ? u : null; }
+    catch { return null; }
+  };
+  const site = webUrl(c.website), booking = webUrl(c.booking_url);
   const contact = [];
   if (c.tel) contact.push(`<a href="tel:${h(c.tel.replace(/[^\d+]/g, ""))}">電話 ${h(c.tel)}</a>`);
-  if (c.website) contact.push(`<a href="${h(c.website)}" target="_blank" rel="noopener nofollow">官網</a>`);
-  if (c.booking_url) contact.push(`<a href="${h(c.booking_url)}" target="_blank" rel="noopener nofollow">線上預約</a>`);
+  if (site) contact.push(`<a href="${h(site)}" target="_blank" rel="noopener nofollow">官網</a>`);
+  if (booking) contact.push(`<a href="${h(booking)}" target="_blank" rel="noopener nofollow">線上預約</a>`);
 
   const parkHtml = parking.length
     ? `<section><h2>附近停車</h2><ul class="plain">` + parking.map((p) =>
