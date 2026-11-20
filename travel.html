@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Tennis Nut 出國打網球 | Tennis Travel</title>
+  <meta name="description" content="去東京、大阪、京都、福岡、沖繩、札幌、名古屋、首爾、台北打網球：旅客訂得到的球場、價格、怎麼訂，以及去過的球友心得。Where visitors can actually book a tennis court in Japan, Korea and Taiwan." />
+  <meta property="og:title" content="出國打網球 — 旅客訂得到的球場 | Tennis Nut" />
+  <meta property="og:description" content="東京、大阪、首爾、台北⋯旅客訂得到的球場、價格、怎麼訂，以及去過的球友心得。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/travel" />
+  <meta property="og:image" content="https://tennisnut.kxon.net/courts-insight-wide.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.9.0/mapbox-gl.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <style>
+    :root {
+      --accent: #5C9A46; --accent-l: #8CCB6E; --warn: #E9A23B;
+      --bg: #11151a; --panel: #161c23; --line: rgba(255,255,255,.10);
+      --ink: #F2F5F7; --ink2: #AEBAC4; --ink3: #7C8B99;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+        "Noto Sans TC", "Hiragino Sans", "Noto Sans JP", "Apple SD Gothic Neo", Arial, sans-serif;
+      background: var(--bg); color: var(--ink); overflow: hidden; }
+    a { color: var(--accent-l); }
+    button { font: inherit; }
+
+    .layout { display: grid; grid-template-columns: 420px 1fr; height: 100%; }
+    #map { position: relative; height: 100%; }
+    .panel { background: var(--panel); border-right: 1px solid var(--line);
+      display: flex; flex-direction: column; min-height: 0; }
+    .top { display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px; }
+    .top a.brand { display: flex; align-items: center; gap: 8px; color: var(--ink);
+      text-decoration: none; font-weight: 800; font-size: 15px; }
+    .top img { width: 26px; height: 26px; border-radius: 7px; }
+    .top .sp { flex: 1; }
+    .top .lang, .top .auth { background: none; border: 1px solid var(--line); color: var(--ink2);
+      border-radius: 999px; padding: 5px 11px; font-size: 12px; cursor: pointer; }
+    .scroll { overflow-y: auto; flex: 1; padding: 0 16px 28px; -webkit-overflow-scrolling: touch; }
+
+    h1 { font-size: 22px; margin: 8px 0 4px; }
+    .hint { color: var(--ink2); font-size: 13.5px; line-height: 1.55; margin: 0 0 14px; }
+    .dest { display: flex; align-items: center; width: 100%; text-align: left; gap: 12px;
+      background: rgba(255,255,255,.04); border: 1px solid var(--line); border-radius: 12px;
+      padding: 14px; margin-bottom: 9px; color: var(--ink); cursor: pointer; }
+    .dest:hover { background: rgba(255,255,255,.08); }
+    .dest b { font-size: 17px; display: block; }
+    .dest span { color: var(--ink2); font-size: 12.5px; }
+    .dest .go { margin-left: auto; color: var(--ink3); font-size: 20px; }
+
+    .chips { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 12px; scrollbar-width: none; }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip { flex: 0 0 auto; border: 1px solid var(--line); background: none; color: var(--ink2);
+      border-radius: 999px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
+    .chip.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+    .back { background: none; border: 0; color: var(--ink2); padding: 4px 0; cursor: pointer; font-size: 13px; }
+
+    .row { display: block; width: 100%; text-align: left; background: none; border: 0;
+      border-bottom: 1px solid var(--line); padding: 12px 0; color: var(--ink); cursor: pointer; }
+    .row .t { display: flex; gap: 8px; align-items: baseline; }
+    .row .t b { flex: 1; font-size: 15px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .row .local { color: var(--ink2); font-size: 12.5px; }
+    .row .sub { color: var(--ink2); font-size: 13px; margin-top: 3px; }
+    .row .sub2 { color: var(--ink3); font-size: 12.5px; margin-top: 2px; }
+    .tag { font-size: 11.5px; font-weight: 700; color: var(--ink3); white-space: nowrap; }
+    .tag.open { color: var(--accent-l); }
+    .foot { color: var(--ink3); font-size: 12px; margin-top: 14px; }
+
+    .court h2 { font-size: 21px; margin: 6px 0 2px; }
+    .court .localname { color: var(--ink2); font-size: 15px; user-select: all; }
+    .court .actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 4px; }
+    .btn { border: 1px solid var(--line); background: rgba(255,255,255,.06); color: var(--ink);
+      border-radius: 999px; padding: 8px 13px; font-size: 13px; text-decoration: none; cursor: pointer; }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+    .facts { margin: 14px 0; padding: 0; list-style: none; }
+    .facts li { padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.5; }
+    .facts li.label { font-weight: 800; font-size: 15px; }
+    .facts li.label.open { color: var(--accent-l); }
+    .note { background: rgba(233,162,59,.10); border: 1px solid rgba(233,162,59,.25);
+      border-radius: 10px; padding: 10px 12px; font-size: 13.5px; line-height: 1.55; margin: 10px 0; }
+    .checked { font-size: 12.5px; color: var(--ink3); }
+    .sec { font-size: 13px; font-weight: 700; color: var(--ink3); margin: 22px 0 6px; }
+    .tip { padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .tip p { margin: 0 0 5px; font-size: 14px; line-height: 1.55; white-space: pre-wrap; word-break: break-word; }
+    .tip .meta { color: var(--ink3); font-size: 12px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .tip .badge { color: var(--accent-l); font-weight: 700; }
+    .vote { background: none; border: 0; color: var(--ink3); cursor: pointer; font-size: 12.5px; padding: 2px 4px; }
+    .vote.on { color: var(--accent-l); font-weight: 700; }
+    .folded { color: var(--ink3); font-size: 12.5px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    textarea { width: 100%; min-height: 88px; background: rgba(255,255,255,.05); color: var(--ink);
+      border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font: inherit; font-size: 14px; resize: vertical; }
+    .small { font-size: 12px; color: var(--ink3); line-height: 1.5; }
+    .app-cta { margin-top: 24px; padding: 14px; border: 1px solid var(--line); border-radius: 12px;
+      background: rgba(92,154,70,.08); font-size: 13.5px; line-height: 1.55; color: var(--ink2); }
+    .app-cta b { color: var(--ink); }
+    .err { color: #ff8a80; font-size: 13px; margin-top: 6px; }
+
+    /* 拿手機給當地人看 */
+    .show { position: fixed; inset: 0; z-index: 20; background: #fff; color: #111;
+      display: none; flex-direction: column; justify-content: center; align-items: center;
+      padding: 32px 24px; text-align: center; }
+    .show.on { display: flex; }
+    .show .big { font-size: clamp(34px, 9vw, 64px); font-weight: 800; line-height: 1.25; }
+    .show .addr { font-size: 18px; color: #444; margin-top: 14px; }
+    .show .q { font-size: 16px; color: #666; margin-top: 26px; }
+    .show button { margin-top: 30px; border: 1px solid #ccc; background: #f4f4f4; border-radius: 999px;
+      padding: 10px 20px; font-size: 15px; }
+
+    .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib { opacity: .4; }
+
+    @media (max-width: 760px) {
+      .layout { grid-template-columns: 1fr; grid-template-rows: 36vh 1fr; }
+      #map { order: 0; }
+      .panel { order: 1; border-right: 0; border-top: 1px solid var(--line);
+        border-radius: 16px 16px 0 0; margin-top: -14px; z-index: 2; }
+      .top { padding: 12px 16px 6px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="panel">
+      <div class="top">
+        <a class="brand" href="/"><img src="/app-icon.png" alt="" />Tennis Nut</a>
+        <span class="sp"></span>
+        <button class="auth" id="authBtn" hidden></button>
+        <button class="lang" id="langBtn"></button>
+      </div>
+      <div class="scroll" id="view"></div>
+    </aside>
+    <div id="map"></div>
+  </div>
+  <div class="show" id="show" role="dialog" aria-modal="true"></div>
+
+  <script>
+    // 官網的旅遊入口（Kayson 2026-11-21）：被貼文帶來、還沒裝 App 的人在這裡
+    // 看旅客資訊、讀和寫旅客心得；球場基本資料只能在 App 裡改（導去 /install）。
+    // 資料、句子和 App 同一套：visitor_destinations → court_visitor_info → 心得 RPC。
+    // 網址：/travel、/travel/<目的地>、/travel/<目的地>/<球場 id>（vercel.json 改寫到這頁）。
+    const MAPBOX_TOKEN = "pk.eyJ1Ijoia2hjaG8iLCJhIjoiY21xa3M0Y2Q0MDBxMjJ5c2VxeXN2NmQ4eSJ9.nQx2xebi6xQ0zz_JBLYw9Q";
+    const SUPABASE_URL = "https://dwjwisgbpnrxtcvpbkec.supabase.co";
+    const ANON = "sb_publishable_-M3m33CyJIROw7mP2x0Sxg_pPErO_oc";
+    const sb = supabase.createClient(SUPABASE_URL, ANON,
+      { auth: { flowType: "pkce", detectSessionInUrl: true, persistSession: true } });
+
+    const LANG = (() => {
+      const q = new URLSearchParams(location.search).get("lang");
+      if (q === "en" || q === "zh") return q;
+      try { const s = localStorage.getItem("travelLang"); if (s === "en" || s === "zh") return s; } catch {}
+      return /^zh/i.test(navigator.language || "") ? "zh" : "en";
+    })();
+    document.documentElement.lang = LANG === "zh" ? "zh-Hant" : "en";
+
+    // 和 App 的 app_zh.arb／app_en.arb visitor* 同字。
+    const T = {
+      zh: {
+        title: "要去哪裡打球？", hint: "選目的地，看旅客訂得到的球場、價格和怎麼訂。",
+        destCount: (n, k) => `${n} 座 · ${k} 座旅客打得到`,
+        destTitle: (c, n) => `${c} · ${n} 座有旅客資訊`, change: "‹ 換目的地", backList: "‹ 回清單",
+        reg: { none: "旅客可直接預約", walk_in: "免費，現場輪流", member: "旅客：首次自己辦會員",
+               counter: "旅客需先臨櫃登録", join_local: "旅客：跟當地球團打" },
+        price: (r, u) => `旅客價 ${r}／${u}`, hour: "小時", hours: (n) => `${n} 小時`, mins: (n) => `${n} 分鐘`,
+        bookBy: (c) => `預約：${c}`, sep: "、", ch: { phone: "電話", web: "網頁", counter: "櫃台" },
+        ahead: (n) => `${n} 天前開放`, regFee: (f) => `首次登録 ${f}`,
+        racket: (p) => `租拍 ${p}`, racketFree: "租拍免費",
+        balls: { free: "球免費", paid: "可租球", bring: "要自備球" },
+        checked: (d) => `${d} 查證官網`, checkedNoLink: (d) => `${d} 查證`,
+        foot: "以上為近期經官網查證以及球友提供之資訊。",
+        showLocal: "給當地人看", showQ: "請問這座網球場怎麼走？", close: "關閉",
+        maps: "Google 地圖導航", courtPage: "球場頁",
+        tips: "旅客心得", tipsEmpty: "還沒有人分享。去過的話，告訴下一個旅客怎麼訂到的。",
+        anon: "球友", visited: "打卡過", folded: "倒讚較多，已收起", unfold: "展開",
+        tipAdd: "＋ 分享你怎麼打到的", tipHint: "怎麼訂到、提前多久、要注意什麼",
+        tipWho: "會附上你的名字和日期，發布後不能修改。", tipSave: "發布", cancel: "取消",
+        login: "用 Google 登入", loginToTip: "用 Google 登入後就能分享（和 App 是同一個帳號）。",
+        loginToVote: "登入後才能按讚", logout: "登出",
+        appleNote: "App 是用 Apple 登入的話，請在 App 裡分享。",
+        notAllowed: "旅客心得是給外國球友看的：你所在國家的球場請在 App 裡補基本資料。",
+        rateLimited: "今天在這座球場已經分享 3 則了，明天再來。",
+        remove: "刪除", removeConfirm: "刪除這則心得？", failed: "沒成功，再試一次。",
+        appCta: "<b>球場資料有錯或想補？</b>營業時間、收費、照片這些基本資料要在 App 裡改。App 還能到場打卡、看今天誰在打。",
+        appBtn: "下載 Tennis Nut", loadFail: "載入失敗，重新整理再試一次。", langBtn: "EN",
+      },
+      en: {
+        title: "Where are you playing?", hint: "Pick a destination to see courts visitors can book, prices and how to book.",
+        destCount: (n, k) => `${n} courts · ${k} open to visitors`,
+        destTitle: (c, n) => `${c} · ${n} courts with visitor info`, change: "‹ Change destination", backList: "‹ Back to list",
+        reg: { none: "Visitors can book", walk_in: "Free · take turns on site", member: "Visitors: sign up on your first visit",
+               counter: "Visitors: register in person first", join_local: "Visitors: join a local group" },
+        price: (r, u) => `Visitor price ${r} per ${u}`, hour: "hour", hours: (n) => `${n} hours`, mins: (n) => `${n} min`,
+        bookBy: (c) => `Book by ${c}`, sep: ", ", ch: { phone: "phone", web: "website", counter: "front desk" },
+        ahead: (n) => `opens ${n} days ahead`, regFee: (f) => `${f} sign-up on first visit`,
+        racket: (p) => `racket rental ${p}`, racketFree: "free racket rental",
+        balls: { free: "balls included", paid: "balls for rent", bring: "bring your own balls" },
+        checked: (d) => `Checked on the official site, ${d}`, checkedNoLink: (d) => `Checked ${d}`,
+        foot: "Recently checked on official sites and shared by players.",
+        showLocal: "Show a local", showQ: "", close: "Close",
+        maps: "Directions in Google Maps", courtPage: "Court page",
+        tips: "Visitor tips", tipsEmpty: "No tips yet. If you've played here, tell the next visitor how you booked.",
+        anon: "A player", visited: "Checked in", folded: "Hidden: more downvotes than upvotes", unfold: "Show",
+        tipAdd: "+ Share how you got to play", tipHint: "How you booked, how far ahead, what to watch out for",
+        tipWho: "Posted with your name and date. Tips can't be edited after posting.", tipSave: "Post", cancel: "Cancel",
+        login: "Sign in with Google", loginToTip: "Sign in with Google to share (same account as the app).",
+        loginToVote: "Sign in to vote", logout: "Sign out",
+        appleNote: "If you use the app with Apple sign-in, share from the app.",
+        notAllowed: "Visitor tips are for players from abroad. For courts in your own country, add details in the app.",
+        rateLimited: "You've shared 3 tips for this court today. Try again tomorrow.",
+        remove: "Delete", removeConfirm: "Delete this tip?", failed: "That didn't work. Try again.",
+        appCta: "<b>Something wrong or missing?</b> Opening hours, prices and photos are edited in the app. The app also lets you check in at the court and see who's playing today.",
+        appBtn: "Get Tennis Nut", loadFail: "Couldn't load. Refresh and try again.", langBtn: "中文",
+      },
+    }[LANG];
+    // 「給當地人看」那一句用球場當地的語言。
+    const ASK_LOCAL = { JP: "このテニスコートへの行き方を教えてください。",
+      KR: "이 테니스장에 어떻게 가나요?", TW: "請問這座網球場怎麼走？" };
+
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (m) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+    const safeUrl = (u) => /^https?:\/\//i.test(String(u || "")) ? u : null;
+    const OPEN = new Set(["none", "walk_in"]);
+    const ORDER = ["none", "walk_in", "member", "counter", "join_local"];
+    const nf = new Intl.NumberFormat(LANG === "zh" ? "zh-TW" : "en");
+    const money = (cur, n) => ({ JPY: "¥", KRW: "₩", TWD: "NT$" }[cur] ?? (cur ? cur + " " : "")) + nf.format(n);
+
+    function namesFor(v) {
+      const local = v.court.name, tr = (v.names || {})[LANG];
+      if (tr && tr !== local) return { primary: tr, secondary: local };
+      const en = (v.names || {}).en;
+      return { primary: local, secondary: en && en !== local ? en : null };
+    }
+    const destName = (d) => (d.names || {})[LANG] || (d.names || {}).en || d.code;
+    function priceLine(v) {
+      if (v.price_min == null) return null;
+      const r = v.price_max == null || v.price_max === v.price_min
+        ? money(v.currency, v.price_min) : `${money(v.currency, v.price_min)}–${nf.format(v.price_max)}`;
+      const m = v.price_per_minutes || 60;
+      return T.price(r, m === 60 ? T.hour : m % 60 === 0 ? T.hours(m / 60) : T.mins(m));
+    }
+    function bookingLine(v) {
+      const p = [];
+      if (v.booking_channels?.length) p.push(T.bookBy(v.booking_channels.map((c) => T.ch[c] || T.ch.counter).join(T.sep)));
+      if (v.book_ahead_days != null) p.push(T.ahead(v.book_ahead_days));
+      if (v.registration_fee > 0) p.push(T.regFee(money(v.currency, v.registration_fee)));
+      return p.length ? p.join(" · ") : null;
+    }
+    function gearLine(v) {
+      const p = [];
+      if (v.racket_rental_price != null) p.push(v.racket_rental_price === 0 ? T.racketFree : T.racket(money(v.currency, v.racket_rental_price)));
+      if (T.balls[v.balls]) p.push(T.balls[v.balls]);
+      return p.length ? p.join(" · ") : null;
+    }
+    const byAccess = (a, b) => (ORDER.indexOf(a.registration) - ORDER.indexOf(b.registration)) ||
+      a.court.name.localeCompare(b.court.name);
+
+    // ── 狀態與網址 ──
+    let DESTS = [], ALL = [], session = null, canPost = {};
+    const state = { dest: null, court: null };
+    function parsePath() {
+      const [, , d, c] = location.pathname.replace(/\/+$/, "").split("/");
+      state.dest = DESTS.some((x) => x.code === d) ? d : null;
+      state.court = state.dest && c && ALL.some((v) => v.court_id === +c) ? +c : null;
+    }
+    function go(dest, court, push = true) {
+      state.dest = dest; state.court = court;
+      const path = "/travel" + (dest ? "/" + dest : "") + (court ? "/" + court : "");
+      if (push && location.pathname !== path) history.pushState(null, "", path + location.search);
+      render(); fitMap();
+      document.getElementById("view").scrollTop = 0;
+    }
+    window.addEventListener("popstate", () => { parsePath(); render(); fitMap(); });
+
+    // ── 畫面 ──
+    const view = document.getElementById("view");
+    function render() {
+      if (state.court) return renderCourt(ALL.find((v) => v.court_id === state.court));
+      if (state.dest) return renderDest();
+      renderHome();
+    }
+    function renderHome() {
+      document.title = (LANG === "zh" ? "出國打網球" : "Tennis Travel") + " | Tennis Nut";
+      view.innerHTML = `<h1>${esc(T.title)}</h1><p class="hint">${esc(T.hint)}</p>` +
+        DESTS.map((d) => {
+          const rows = ALL.filter((v) => v.destination === d.code);
+          if (!rows.length) return "";
+          const k = rows.filter((v) => OPEN.has(v.registration)).length;
+          return `<button class="dest" data-d="${esc(d.code)}"><div><b>${esc(destName(d))}</b>
+            <span>${esc(T.destCount(rows.length, k))}</span></div><span class="go">›</span></button>`;
+        }).join("") + `<p class="foot">${esc(T.foot)}</p>` + appCta();
+      view.querySelectorAll(".dest").forEach((b) => b.onclick = () => go(b.dataset.d, null));
+    }
+    function chips() {
+      return `<div class="chips">` + DESTS.filter((d) => ALL.some((v) => v.destination === d.code))
+        .map((d) => `<button class="chip${d.code === state.dest ? " on" : ""}" data-d="${esc(d.code)}">${esc(destName(d))}</button>`)
+        .join("") + `</div>`;
+    }
+    function renderDest() {
+      const d = DESTS.find((x) => x.code === state.dest);
+      const rows = ALL.filter((v) => v.destination === d.code).sort(byAccess);
+      document.title = `${destName(d)} · ${LANG === "zh" ? "出國打網球" : "Tennis Travel"} | Tennis Nut`;
+      view.innerHTML = `<button class="back" id="back">${esc(T.change)}</button>
+        <h1>${esc(T.destTitle(destName(d), rows.length))}</h1>` + chips() +
+        rows.map((v) => {
+          const n = namesFor(v), p = priceLine(v), b = bookingLine(v);
+          return `<button class="row" data-c="${v.court_id}"><div class="t"><b>${esc(n.primary)}</b>
+            <span class="tag${OPEN.has(v.registration) ? " open" : ""}">${esc(T.reg[v.registration] || T.reg.none)}</span></div>
+            ${n.secondary ? `<div class="local">${esc(n.secondary)}</div>` : ""}
+            ${p ? `<div class="sub">${esc(p)}</div>` : ""}${b ? `<div class="sub2">${esc(b)}</div>` : ""}</button>`;
+        }).join("") + `<p class="foot">${esc(T.foot)}</p>` + appCta();
+      document.getElementById("back").onclick = () => go(null, null);
+      view.querySelectorAll(".chip").forEach((b) => b.onclick = () => go(b.dataset.d, null));
+      view.querySelectorAll(".row").forEach((b) => b.onclick = () => go(state.dest, +b.dataset.c));
+    }
+    function renderCourt(v) {
+      const n = namesFor(v), c = v.court, open = OPEN.has(v.registration);
+      document.title = `${n.primary} · Tennis Nut`;
+      const facts = [priceLine(v), bookingLine(v), gearLine(v)].filter(Boolean);
+      const note = (v.notes || {})[LANG];
+      const month = String(v.checked_on || "").slice(0, 7);
+      const src = safeUrl(v.source_url);
+      const maps = c.lat != null ? `https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lng}` : null;
+      view.innerHTML = `<button class="back" id="back">${esc(T.backList)}</button>
+        <div class="court"><h2>${esc(n.primary)}</h2>
+        ${n.secondary ? `<div class="localname">${esc(n.secondary)}</div>` : ""}
+        <div class="actions">
+          <button class="btn primary" id="showBtn">📱 ${esc(T.showLocal)}</button>
+          ${maps ? `<a class="btn" href="${maps}" target="_blank" rel="noopener">${esc(T.maps)}</a>` : ""}
+          <a class="btn" href="/courts/${c.id}">${esc(T.courtPage)}</a>
+        </div>
+        <ul class="facts"><li class="label${open ? " open" : ""}">${esc(T.reg[v.registration] || T.reg.none)}</li>
+          ${facts.map((f) => `<li>${esc(f)}</li>`).join("")}</ul>
+        ${note ? `<div class="note">${esc(note)}</div>` : ""}
+        <div class="checked">${src ? `<a href="${esc(src)}" target="_blank" rel="noopener">${esc(T.checked(month))} ›</a>`
+          : esc(T.checkedNoLink(month))}</div>
+        <div class="sec">${esc(T.tips)}</div><div id="tips"></div><div id="tipForm"></div></div>` + appCta();
+      document.getElementById("back").onclick = () => go(state.dest, null);
+      document.getElementById("showBtn").onclick = () => showLocal(v);
+      loadTips(v.court_id);
+      renderTipForm(v.court_id);
+    }
+    function appCta() {
+      return `<div class="app-cta">${T.appCta}<div style="margin-top:10px">
+        <a class="btn primary" href="/install">${esc(T.appBtn)}</a></div></div>`;
+    }
+    function showLocal(v) {
+      const el = document.getElementById("show"), c = v.court;
+      el.innerHTML = `<div class="big">${esc(c.name)}</div>
+        ${c.address ? `<div class="addr">${esc(c.address)}</div>` : ""}
+        <div class="q">${esc(ASK_LOCAL[c.country] || "")}</div>
+        <button id="closeShow">${esc(T.close)}</button>`;
+      el.classList.add("on");
+      document.getElementById("closeShow").onclick = () => el.classList.remove("on");
+    }
+
+    // ── 心得 ──
+    async function loadTips(courtId) {
+      const box = document.getElementById("tips");
+      const { data, error } = await sb.rpc("court_visitor_tips", { p_court_id: courtId });
+      if (state.court !== courtId) return;
+      if (error) { box.innerHTML = `<p class="small">${esc(T.loadFail)}</p>`; return; }
+      if (!data.length) { box.innerHTML = `<p class="small">${esc(T.tipsEmpty)}</p>`; return; }
+      box.innerHTML = "";
+      for (const t of data) box.appendChild(tipEl(t, courtId));
+    }
+    function tipEl(t, courtId, unfolded = false) {
+      const el = document.createElement("div");
+      if (t.downs - t.ups >= 3 && !unfolded) {
+        el.className = "folded";
+        el.innerHTML = `${esc(T.folded)} · <button class="vote">${esc(T.unfold)}</button>`;
+        el.querySelector("button").onclick = () => el.replaceWith(tipEl(t, courtId, true));
+        return el;
+      }
+      el.className = "tip";
+      const date = String(t.at).slice(0, 10);
+      const voteBtns = t.mine
+        ? `<button class="vote" data-a="del">${esc(T.remove)}</button>`
+        : `<button class="vote${t.my_vote === 1 ? " on" : ""}" data-v="1">👍 ${t.ups}</button>
+           <button class="vote${t.my_vote === -1 ? " on" : ""}" data-v="-1">👎 ${t.downs}</button>`;
+      el.innerHTML = `<p>${esc(t.body)}</p><div class="meta"><span>${esc(t.name || T.anon)} · ${esc(date)}</span>
+        ${t.visited ? `<span class="badge">✓ ${esc(T.visited)}</span>` : ""}${voteBtns}</div>`;
+      el.querySelectorAll("[data-v]").forEach((b) => b.onclick = async () => {
+        if (!session) { alert(T.loginToVote); return; }
+        const want = +b.dataset.v, next = t.my_vote === want ? 0 : want;
+        const old = { ...t };
+        if (t.my_vote === 1) t.ups--; if (t.my_vote === -1) t.downs--;
+        if (next === 1) t.ups++; if (next === -1) t.downs++;
+        t.my_vote = next; el.replaceWith(tipEl(t, courtId, unfolded));  // 先變再存
+        const { error } = await sb.rpc("vote_visitor_tip", { p_tip_id: t.id, p_value: next });
+        if (error) { Object.assign(t, old); loadTips(courtId); }
+      });
+      const del = el.querySelector("[data-a=del]");
+      if (del) del.onclick = async () => {
+        if (!confirm(T.removeConfirm)) return;
+        el.remove();
+        const { error } = await sb.rpc("delete_visitor_tip", { p_tip_id: t.id });
+        if (error) loadTips(courtId);
+      };
+      return el;
+    }
+    async function renderTipForm(courtId) {
+      const box = document.getElementById("tipForm");
+      if (!session) {
+        box.innerHTML = `<p class="small" style="margin-top:12px">${esc(T.loginToTip)}<br>${esc(T.appleNote)}</p>
+          <button class="btn" id="loginTip">${esc(T.login)}</button>`;
+        document.getElementById("loginTip").onclick = login;
+        return;
+      }
+      if (canPost[courtId] === undefined) {
+        const { data } = await sb.rpc("can_post_visitor_tip", { p_court_id: courtId });
+        canPost[courtId] = data === true;
+        if (state.court !== courtId) return;
+      }
+      if (!canPost[courtId]) { box.innerHTML = `<p class="small" style="margin-top:12px">${esc(T.notAllowed)}</p>`; return; }
+      box.innerHTML = `<button class="btn" id="openTip" style="margin-top:12px">${esc(T.tipAdd)}</button>`;
+      document.getElementById("openTip").onclick = () => {
+        box.innerHTML = `<textarea id="tipBody" maxlength="200" placeholder="${esc(T.tipHint)}"></textarea>
+          <p class="small">${esc(T.tipWho)}</p>
+          <div class="actions"><button class="btn primary" id="saveTip">${esc(T.tipSave)}</button>
+          <button class="btn" id="cancelTip">${esc(T.cancel)}</button></div><div class="err" id="tipErr"></div>`;
+        document.getElementById("tipBody").focus();
+        document.getElementById("cancelTip").onclick = () => renderTipForm(courtId);
+        document.getElementById("saveTip").onclick = async (e) => {
+          const body = document.getElementById("tipBody").value.trim();
+          if (!body) return;
+          e.target.disabled = true;
+          const { error } = await sb.rpc("add_visitor_tip", { p_court_id: courtId, p_body: body, p_lang: LANG });
+          if (error) {
+            e.target.disabled = false;
+            document.getElementById("tipErr").textContent =
+              /rate_limited/.test(error.message) ? T.rateLimited : T.failed;
+            return;
+          }
+          renderTipForm(courtId); loadTips(courtId);
+        };
+      };
+    }
+
+    // ── 登入（Google；和 App 同一個 Supabase 帳號）──
+    async function login() {
+      await sb.auth.signInWithOAuth({ provider: "google",
+        options: { redirectTo: location.origin + location.pathname + location.search } });
+    }
+    const authBtn = document.getElementById("authBtn");
+    function renderAuth() {
+      authBtn.hidden = !session;
+      authBtn.textContent = T.logout;
+    }
+    authBtn.onclick = async () => { await sb.auth.signOut(); };
+    sb.auth.onAuthStateChange((_e, s) => {
+      const changed = !!s !== !!session; session = s; canPost = {};
+      renderAuth();
+      if (changed && state.court) { renderTipForm(state.court); loadTips(state.court); }
+    });
+
+    const langBtn = document.getElementById("langBtn");
+    langBtn.textContent = T.langBtn;
+    langBtn.onclick = () => {
+      const next = LANG === "zh" ? "en" : "zh";
+      try { localStorage.setItem("travelLang", next); } catch {}
+      const u = new URL(location.href); u.searchParams.set("lang", next); location.href = u.toString();
+    };
+
+    // ── 地圖 ──
+    // 地圖是輔助：沒有 WebGL 的瀏覽器照樣看得到清單和心得。
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+    let map = null;
+    try {
+      map = new mapboxgl.Map({ container: "map", style: "mapbox://styles/mapbox/dark-v11",
+        center: [133, 33], zoom: 3.6, attributionControl: true });
+      map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
+    } catch (e) { map = null; }
+    let mapReady = false;
+    function geo() {
+      return { type: "FeatureCollection", features: ALL.filter((v) => v.court.lat != null).map((v) => ({
+        type: "Feature", geometry: { type: "Point", coordinates: [v.court.lng, v.court.lat] },
+        properties: { id: v.court_id, dest: v.destination, open: OPEN.has(v.registration) ? 1 : 0,
+          sel: v.court_id === state.court ? 1 : 0, name: namesFor(v).primary } })) };
+    }
+    function paintMap() {
+      if (!mapReady) return;
+      const src = map.getSource("courts");
+      if (src) return src.setData(geo());
+      map.addSource("courts", { type: "geojson", data: geo() });
+      map.addLayer({ id: "courts", type: "circle", source: "courts", paint: {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 3.5, 11, 6, 14, 9],
+        "circle-color": ["case", ["==", ["get", "sel"], 1], "#ffffff", ["==", ["get", "open"], 1], "#8CCB6E", "#E9A23B"],
+        "circle-stroke-color": "#11151a", "circle-stroke-width": 1.5 } });
+      map.addLayer({ id: "labels", type: "symbol", source: "courts", minzoom: 11.5, layout: {
+        "text-field": ["get", "name"], "text-size": 12, "text-offset": [0, 1.1], "text-anchor": "top" },
+        paint: { "text-color": "#F2F5F7", "text-halo-color": "#11151a", "text-halo-width": 1.2 } });
+      map.on("click", "courts", (e) => { const p = e.features[0].properties; go(p.dest, p.id); });
+      map.on("mouseenter", "courts", () => map.getCanvas().style.cursor = "pointer");
+      map.on("mouseleave", "courts", () => map.getCanvas().style.cursor = "");
+    }
+    function fitMap() {
+      paintMap();
+      if (!mapReady || !ALL.length) return;
+      const v = state.court && ALL.find((x) => x.court_id === state.court);
+      if (v && v.court.lat != null) return map.flyTo({ center: [v.court.lng, v.court.lat], zoom: 14 });
+      const pts = ALL.filter((x) => (!state.dest || x.destination === state.dest) && x.court.lat != null);
+      if (!pts.length) return;
+      const b = new mapboxgl.LngLatBounds();
+      pts.forEach((x) => b.extend([x.court.lng, x.court.lat]));
+      map.fitBounds(b, { padding: 50, maxZoom: 12.5, duration: 900 });
+    }
+    map?.on("load", () => { mapReady = true; fitMap(); });
+
+    // ── 載入 ──
+    (async () => {
+      view.innerHTML = `<p class="hint">…</p>`;
+      const [d, v, s] = await Promise.all([
+        sb.from("visitor_destinations").select("*").order("sort", { ascending: true }),
+        sb.from("court_visitor_info").select("*,court:courts(id,name,lat,lng,country,address)"),
+        sb.auth.getSession(),
+      ]);
+      if (d.error || v.error) { view.innerHTML = `<p class="hint">${esc(T.loadFail)}</p>`; return; }
+      DESTS = d.data; ALL = v.data.filter((x) => x.court); session = s.data.session; renderAuth();
+      parsePath(); render(); fitMap();
+    })();
+  </script>
+</body>
+</html>

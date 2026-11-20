@@ -26,6 +26,14 @@
   ],
   "rewrites": [
     {
+      "source": "/travel/:dest",
+      "destination": "/travel"
+    },
+    {
+      "source": "/travel/:dest/:id",
+      "destination": "/travel"
+    },
+    {
       "source": "/s/:slug",
       "destination": "/shop"
     },
