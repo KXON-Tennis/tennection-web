@@ -7,6 +7,90 @@
   ],
   "releases": [
     {
+      "build": 2890,
+      "version": "1.47.0",
+      "date": "2026-11-20",
+      "title": "第 1.46～1.47 版更新：發球萬花筒、隱身模式",
+      "summary": "新的發球挑戰「發球萬花筒」：每一球發之前隨機抽站位、方向和球種，照抽到的發進才算。想安靜打球可以開隱身模式；首頁看得到球友正在打球。",
+      "highlights": [
+        {
+          "emoji": "🎰",
+          "title": "發球萬花筒",
+          "body": "每一球發之前，用拉霸抽站位（Deuce／Ad）、方向（外角／近身／內角）和球種（平擊／側旋／上旋）。照抽到的發進才算，沒進就從頭數，連續 1、3、5、7、10 顆過關。\n\n示意動畫跟著抽到的組合換。最多的那一輪，每一球抽到什麼、進了沒都會記下來，見證的球友也看得到。"
+        },
+        {
+          "emoji": "🕶",
+          "title": "隱身模式",
+          "body": "「陌生球友可以約你嗎」多了第三個選項：隱身。開了之後，只有好友、隊友，還有你參加的約球和面對面認識的人看得到你。\n\n練習、挑戰、足跡都照樣算，只是在陌生人看得到的地方不寫你的名字。適合只想跟認識的人打，或想一個人低調練球的人。"
+        },
+        {
+          "emoji": "🟢",
+          "title": "球友動態看得到「打球中」",
+          "body": "首頁球友動態的時間改成從打完那一刻算起，還在打的直接寫「打球中」。原本下午看今天的練習，全都顯示「13 小時前」。"
+        },
+        {
+          "emoji": "🎾",
+          "title": "護照：雙手正拍、自我介紹看得完",
+          "body": "慣用手底下多了「雙手正拍」可以勾。球友的自我介紹不再被截掉，預設收起，點一下展開。\n\n裝備照片去背效果不好時，卡片會標「處理效果不佳・建議重拍」；拍完馬上離開 App 也沒關係，下次打開會自動補送。"
+        },
+        {
+          "emoji": "🛰",
+          "title": "正射影像換成當地政府航照",
+          "body": "台灣、香港、新加坡、日本、澳洲新南威爾斯州，地圖放大後自動疊上當地政府的航照，選單上寫出影像來源。全體足跡的地球換成夜景，24 小時球友動態按國家列出。"
+        }
+      ],
+      "fixes": [
+        "設定「關於」可以直接幫 Tennis Nut 評分",
+        "快速鍵的「開始練習」改名「記練習（計時制）」，不再跟「記練習」搞混",
+        "新手首頁的護照清單，第二格改成「你的主拍與持拍手」",
+        "發球挑戰的示意動畫，拋球改成真的往上拋",
+        "Android 平板也能安裝",
+        "諮詢訊息裡的網址可以直接點開",
+        "部分 iPhone 按分享沒反應或閃退、手機設成西班牙文等語言打開會閃退的問題修好了",
+        "選到還在 iCloud、沒下載下來的照片時，會說明原因",
+        "地圖上「現在有人在打」不再把在家補記的舊練習算進去",
+        "11/18～11/20 個人資料（名字、自我介紹、慣用手、程度）存不進去的問題已經修好，不用更新 App，再填一次就可以"
+      ],
+      "en": {
+        "title": "v1.46–1.47 · Serve Kaleidoscope and stealth mode",
+        "summary": "A new serve challenge: before every serve, draw a random side, target and spin, and it only counts if it goes in as drawn. Stealth mode for quiet practice, and Home shows who's playing now.",
+        "highlights": [
+          {
+            "emoji": "🎰",
+            "title": "Serve Kaleidoscope",
+            "body": "Before every serve, a slot-style draw picks your side (deuce/ad), target (wide/body/T) and spin (flat/slice/kick). It only counts if it goes in as drawn. Miss, and you start over. Stages at 1, 3, 5, 7 and 10 in a row.\n\nThe demo animation follows each draw, and every serve of your best run is saved, so your witness can see it too."
+          },
+          {
+            "emoji": "🕶",
+            "title": "Stealth mode",
+            "body": "Only friends, teammates, hits you join and people you've met face to face can see you. Your practices, challenges and footprints still count. Your name just doesn't show to strangers."
+          },
+          {
+            "emoji": "🟢",
+            "title": "See who's playing now",
+            "body": "Friends' activity on Home now counts from when a session ended, and shows Playing now while it's still going."
+          },
+          {
+            "emoji": "🎾",
+            "title": "Two-handed forehand, full bios",
+            "body": "Tick Two-handed forehand on your passport. Bios expand to show in full. Gear photos that don't cut out well are marked for a retake, and unsent photos resend automatically."
+          },
+          {
+            "emoji": "🛰",
+            "title": "Government aerial imagery",
+            "body": "In Taiwan, Hong Kong, Singapore, Japan and NSW, zooming in overlays local government aerial photos, with the source named in the map menu. The footprint globe now has a night view."
+          }
+        ],
+        "fixes": [
+          "Rate Tennis Nut from Settings > About",
+          "Android tablets are supported",
+          "Links in consultation messages are tappable",
+          "Fixes for sharing on some iPhones and crashes on some system languages",
+          "Profile details that failed to save from Nov 18 to 20 save normally again, with no update needed"
+        ]
+      }
+    },
+    {
       "build": 2870,
       "version": "1.45.0",
       "date": "2026-11-17",
