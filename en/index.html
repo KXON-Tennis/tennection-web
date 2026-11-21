@@ -755,6 +755,16 @@
       display: flex;
     }
 
+    /* The hero has its own top padding; main adding more left a blank strip under the header. */
+    main.container {
+      padding-top: 0;
+    }
+
+    .team-invite.show,
+    .iab-banner.show {
+      margin-top: 20px;
+    }
+
     .iab-head {
       display: flex;
       gap: 10px;
@@ -1538,7 +1548,6 @@
       <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
-      <a href="/en/install">Get the app</a>
       <a href="/travel?lang=en">Tennis travel</a>
       <a href="/en/blog">Blog</a>
       <a href="/en/privacy">Privacy</a>

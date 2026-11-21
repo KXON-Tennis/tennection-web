@@ -803,6 +803,17 @@
       display: flex;
     }
 
+    /* 首頁的 hero 自己有上內距，main 再給一段就變成導覽列下面一條空白
+       （Kayson 11-21）。邀請碼／App 內瀏覽器提示出現時自己留上邊距。 */
+    main.container {
+      padding-top: 0;
+    }
+
+    .team-invite.show,
+    .iab-banner.show {
+      margin-top: 20px;
+    }
+
     .iab-head {
       display: flex;
       gap: 10px;
@@ -1586,9 +1597,8 @@
       <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
-      <a href="/install">下載</a>
-      <a href="/courts/tw">各縣市球場</a>
-      <a href="/travel">出國打網球</a>
+      <a href="/courts/tw">球場</a>
+      <a href="/travel">出國打球</a>
       <a href="/blog">Blog</a>
       <a href="/privacy">隱私權</a>
       <a href="/terms">服務條款</a>
