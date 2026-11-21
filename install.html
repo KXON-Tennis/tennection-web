@@ -2,24 +2,16 @@
 <html lang="zh-Hant">
 <head>
   <!--
-    Stays a page of its own until the app is properly listed.
-
-    / and /join merged because they were the same argument twice; this one is
-    not an argument, it is a set of instructions for people who are stuck —
-    the Play testing list and the LINE binding. Folding a troubleshooting
-    page into a pitch makes the pitch longer for everyone and the instructions
-    harder to find for the few who need them.
-
-    Once the app is on the App Store and Google Play properly, most of what is
-    here stops being true and the rest is one line on the homepage. Fold it in
-    then, not before.
+    Both stores are public since 2026-11-21 (Google Play went live that
+    day), so this page is two badges and a way to ask for help. It stays
+    because shares, QR cards and old posts all link to /install.
   -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>安裝 App · Tennis Nut</title>
-  <meta name="description" content="如何安裝 Tennis Nut：iPhone 從 App Store 直接下載；Android 加入 Google Play 測試的步驟教學。" />
+  <meta name="description" content="如何安裝 Tennis Nut：iPhone 從 App Store 直接下載；Android 從 Google Play 下載。" />
   <meta property="og:title" content="你的網球護照 — 安裝 Tennis Nut" />
-  <meta property="og:description" content="打過的每一座球場、每一場球，都是你和球友、球拍、球鞋一起寫下的歷史。iPhone 從 App Store 下載，Android 加入 Google Play 測試。" />
+  <meta property="og:description" content="打過的每一座球場、每一場球，都是你和球友、球拍、球鞋一起寫下的歷史。iPhone 從 App Store 下載，Android 從 Google Play 下載。" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tennisnut.kxon.net/install" />
   <meta property="og:image" content="https://tennisnut.kxon.net/install-og.jpg" />
@@ -37,7 +29,8 @@
   <style>
     /* 官方徽章不做任何改造，只給它 Apple 要求的留白（≥ 1/4 高度）。 */
     .as-badge-wrap { margin: 18px 0 4px; }
-    .as-badge { display: inline-block; }
+    .as-badge { display: inline-block; margin: 0 8px 8px 0; vertical-align: top; }
+    .small-note { font-size: 13px; color: var(--text-secondary, #777); margin: 0 0 8px; }
     .as-badge img { display: block; height: 53px; width: auto; }
   </style>
 </head>
@@ -72,68 +65,11 @@
         <a class="as-badge" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener" aria-label="從 App Store 下載 Tennis Nut">
           <img src="/app-store-badge-en.svg" alt="從 App Store 下載" width="159" height="53" />
         </a>
+        <a class="as-badge" href="https://play.google.com/store/apps/details?id=com.tns.passport" target="_blank" rel="noopener" aria-label="在 Google Play 下載 Tennis Nut"><img src="/google-play-badge-en.png" alt="在 Google Play 下載" width="178" height="53" /></a>
       </p>
 
     </section>
-
-    <!-- ─────────── Android / APK ─────────── -->
-    <section class="plat">
-      <h2 class="plat-h">
-        <span class="plat-ic and">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z"/></svg>
-        </span>
-        Android · 加入 Google Play 測試
-      </h2>
-
-      <ol class="steps">
-        <li class="step">
-          <span class="step-no">1</span>
-          <div class="step-body">
-            <h3>用 Gmail 加入測試群組</h3>
-            <p>用你要安裝 App 的 <b>Gmail（Google 帳號）</b>打開下面的群組，按「<b>加入群組</b>」。</p>
-            <a class="dl-btn and" href="https://groups.google.com/g/tennis-nut-testers" target="_blank" rel="noopener">加入 Google 測試群組 ↗</a>
-          </div>
-          <span class="step-art">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </span>
-        </li>
-
-        <li class="step">
-          <span class="step-no">2</span>
-          <div class="step-body">
-            <h3>成為測試人員</h3>
-            <p>接著打開測試頁面，點「<b>Become a tester</b>」（成為測試人員）。</p>
-            <a class="dl-btn and" href="https://play.google.com/apps/testing/com.tns.passport" target="_blank" rel="noopener">開啟測試頁面 ↗</a>
-          </div>
-          <span class="step-art">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-          </span>
-        </li>
-
-        <li class="step">
-          <span class="step-no">3</span>
-          <div class="step-body">
-            <h3>下載</h3>
-            <p>同一頁上點「<b>download it on Google Play</b>」，就會跳到 Play 商店的安裝頁。</p>
-          </div>
-          <span class="step-art">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M12 8v6m0 0l-2.2-2.2M12 14l2.2-2.2"/></svg>
-          </span>
-        </li>
-
-        <li class="step">
-          <span class="step-no">4</span>
-          <div class="step-body">
-            <h3>打開 Tennis Nut，登入開玩</h3>
-            <p>之後有新版本，Google Play 會<b>自動更新</b>，不必再手動下載。</p>
-          </div>
-          <span class="step-art"><img src="/app-icon.png" alt="" /></span>
-        </li>
-      </ol>
-
-
-      <div class="callout">🔒 走 Google Play 官方測試，安裝與更新都經由商店，不再需要「未知來源」權限，也不會有 Play Protect 警告。</div>
-    </section>
+      <p class="small-note">以前加入過 Android 測試的話不用重裝，Google Play 會照常自動更新。</p>
 
     <!-- The 綁定 LINE section lived here: get a 6-digit code from Nutty, type
          it into 設定 → 綁定 LINE 帳號, and your 堅果 move across. The App has no
