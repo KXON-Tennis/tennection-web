@@ -357,7 +357,7 @@
         <div class="actions">
           <button class="btn primary" id="showBtn">📱 ${esc(T.showLocal)}</button>
           ${maps ? `<a class="btn" href="${maps}" target="_blank" rel="noopener">${esc(T.maps)}</a>` : ""}
-          <a class="btn" href="/courts/${c.id}">${esc(T.courtPage)}</a>
+          <a class="btn" href="/courts/${c.id}" target="_blank" rel="noopener">${esc(T.courtPage)}</a>
         </div>
         <ul class="facts"><li class="label${open ? " open" : ""}">${esc(T.reg[v.registration] || T.reg.none)}</li>
           ${facts.map((f) => `<li>${esc(f)}</li>`).join("")}</ul>
@@ -379,7 +379,7 @@
         <div class="actions">
           <button class="btn primary" id="showBtn">📱 ${esc(T.showLocal)}</button>
           ${maps ? `<a class="btn" href="${maps}" target="_blank" rel="noopener">${esc(T.maps)}</a>` : ""}
-          <a class="btn" href="/courts/${c.id}">${esc(T.courtPage)}</a>
+          <a class="btn" href="/courts/${c.id}" target="_blank" rel="noopener">${esc(T.courtPage)}</a>
         </div>
         <ul class="facts"><li class="label">${esc(T.noInfo)}</li></ul>
         <p class="small">${esc(T.noInfoHint)}</p>
