@@ -878,6 +878,22 @@ footer a {
      有，這裡收起來；剩下的四項是使用者真的會在頁首找的東西。 */
   .site-header nav {
     gap: 13px;
+    /* 項目放不下時在選單裡橫滑，不要把整頁撐寬（11-21 首頁加了「各縣市球場」
+       「出國打網球」後，手機右邊多出一塊空白）。min-width:0 讓 flex 子項目
+       可以比內容窄；右邊淡出提示還有東西，padding 讓最後一項不被淡掉。 */
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-right: 16px;
+    /* overflow 會連帶裁掉底下 6px 的「目前頁」底線，留出空間再抵回去 */
+    padding-bottom: 8px;
+    margin-bottom: -8px;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 16px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 16px), transparent);
+  }
+
+  .site-header nav::-webkit-scrollbar {
+    display: none;
   }
 
   .site-header nav a {

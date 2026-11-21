@@ -33,12 +33,12 @@ const L = {
     home: '/',
     blog: '/blog',
     rel: (b) => `/blog/${b}`,
-    nav: { download: '下載', install: '安裝', blog: 'Blog', privacy: '隱私權', terms: '服務條款', other: 'EN', otherHref: '/en/blog' },
+    nav: { download: '下載', blog: 'Blog', privacy: '隱私權', terms: '服務條款', other: 'EN', otherHref: '/en/blog' },
     back: '← 所有更新',
     verLine: (r, d) => `版本 ${r.version} · Build ${r.build} · ${d}`,
     otherFixes: '其他修正',
     outdated: '這篇之後有改過的地方',
-    howTo: '<b>怎麼更新？</b> Android 走 Google Play 會自動更新；iPhone 從 App Store 更新即可。還沒裝的話，iPhone 從 <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">App Store</a> 下載。',
+    howTo: '<b>怎麼更新？</b> Android 走 Google Play 會自動更新；iPhone 從 App Store 更新即可。還沒裝的話，iPhone 從 <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">App Store</a>、Android 從 <a href="https://play.google.com/store/apps/details?id=com.tns.passport" target="_blank" rel="noopener">Google Play</a> 下載。',
     foot: '用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。',
     footer: { blog: 'Blog', privacy: '隱私權政策', terms: '服務條款', contact: '聯絡我們' },
     idxTitle: 'Blog',
@@ -53,12 +53,12 @@ const L = {
     home: '/en',
     blog: '/en/blog',
     rel: (b) => `/en/blog/${b}`,
-    nav: { download: 'Get the app', install: 'Install', blog: 'Blog', privacy: 'Privacy', terms: 'Terms', other: '中文', otherHref: '/blog' },
+    nav: { download: 'Get the app', blog: 'Blog', privacy: 'Privacy', terms: 'Terms', other: '中文', otherHref: '/blog' },
     back: '← All updates',
     verLine: (r, d) => `Version ${r.version} · Build ${r.build} · ${d}`,
     otherFixes: 'Also fixed',
     outdated: 'Changed since this post',
-    howTo: '<b>How do I update?</b> Android updates itself through Google Play; on iPhone, update from the App Store. Not installed yet? Get it on the <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">App Store</a>.',
+    howTo: '<b>How do I update?</b> Android updates itself through Google Play; on iPhone, update from the App Store. Not installed yet? Get it on the <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">App Store</a> or <a href="https://play.google.com/store/apps/details?id=com.tns.passport" target="_blank" rel="noopener">Google Play</a>.',
     foot: 'Something behaving oddly? Email <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a> — a screenshot or a screen recording helps a lot.',
     footer: { blog: 'Blog', privacy: 'Privacy policy', terms: 'Terms', contact: 'Contact us' },
     idxTitle: 'Blog',
@@ -202,8 +202,7 @@ const header = (t) => `  <header class="site-header">
       <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
-      <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener">${t.nav.download}</a>
-      <a href="${t.lang === 'en' ? '/en/install' : '/install'}">${t.nav.install}</a>
+      <a href="${t.lang === 'en' ? '/en/install' : '/install'}">${t.nav.download}</a>
       <a href="${t.blog}" class="active">${t.nav.blog}</a>
       <a href="${t.lang === 'en' ? '/en/privacy' : '/privacy'}">${t.nav.privacy}</a>
       <a href="${t.lang === 'en' ? '/en/terms' : '/terms'}">${t.nav.terms}</a>
