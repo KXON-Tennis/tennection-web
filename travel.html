@@ -384,7 +384,13 @@
       document.getElementById("back").onclick = () => go(null, null);
       view.querySelectorAll(".chip").forEach((b) => b.onclick = () => go(b.dataset.d, null));
       wireChips();
-      view.querySelectorAll(".row").forEach((b) => b.onclick = () => go(state.dest, +b.dataset.c));
+      view.querySelectorAll(".row").forEach((b) => {
+        b.onclick = () => go(state.dest, +b.dataset.c);
+        // 滑過清單那一列：地圖上那一點亮起來，不在畫面裡就平移過去（不縮放）；
+        // 點了才飛近、打開。滑過就飛的話，沿著清單往下看整張地圖一直晃（Kayson 11-21）。
+        b.onmouseenter = () => hoverCourt(+b.dataset.c);
+        b.onmouseleave = () => hoverCourt(null);
+      });
     }
     function renderCourt(v) {
       const n = namesFor(v), c = v.court, open = OPEN.has(v.registration);
@@ -800,9 +806,22 @@
         "circle-color": ["case", ["==", ["get", "open"], 1], "#6FBF4A", "#F0A030"],
         "circle-stroke-color": ["case", ["==", ["get", "sel"], 1], VOLT, "#ffffff"],
         "circle-stroke-width": ["case", ["==", ["get", "sel"], 1], 3.5, 1.6] } });
+      // 滑過清單時那一點：螢光黃綠外圈（同選中的顏色），疊在點上面。
+      map.addLayer({ id: "hoverRing", type: "circle", source: "courts", filter: ["==", ["get", "id"], hoverId ?? -1], paint: {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 9, 11, 13, 14, 16],
+        "circle-color": "rgba(0,0,0,0)", "circle-stroke-color": VOLT, "circle-stroke-width": 3 } });
       map.addLayer({ id: "labels", type: "symbol", source: "courts", minzoom: 11.5, layout: {
         "text-field": ["get", "name"], "text-size": 12, "text-offset": [0, 1.1], "text-anchor": "top" },
         paint: labelPaint(false) });
+    }
+    let hoverId = null;
+    function hoverCourt(id) {
+      hoverId = id;
+      if (!mapReady || !map.getLayer("hoverRing")) return;
+      map.setFilter("hoverRing", ["==", ["get", "id"], id ?? -1]);
+      const v = id && ALL.find((x) => x.court_id === id);
+      if (v && v.court.lat != null && !map.getBounds().contains([v.court.lng, v.court.lat]))
+        map.easeTo({ center: [v.court.lng, v.court.lat], duration: 500 });
     }
     function fitMap() {
       paintMap(); paintGrey();
