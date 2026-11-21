@@ -57,7 +57,15 @@
     .chip .cc { margin-left: 4px; }
     .dest .go { margin-left: auto; color: var(--ink3); font-size: 20px; }
 
-    .chips { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 12px; scrollbar-width: none; }
+    /* 清單往下滑時城市晶片留在上面，不用滑回頂端才能換城市。左右多出 16px
+       蓋住 .scroll 的內距，底色才會滿版、下面的列不會從兩側露出來。 */
+    .chipbar { position: sticky; top: 0; z-index: 3; background: var(--panel); margin: 0 -16px; }
+    /* 右邊淡出：告訴人後面還有城市可以往右滑；滑到底就收掉。 */
+    .chipbar::after { content: ""; position: absolute; top: 0; right: 0; bottom: 12px; width: 56px;
+      pointer-events: none; background: linear-gradient(to right, transparent, var(--panel) 85%);
+      transition: opacity .2s; }
+    .chipbar.end::after { opacity: 0; }
+    .chips { display: flex; gap: 6px; overflow-x: auto; padding: 4px 16px 12px; scrollbar-width: none; }
     .chips::-webkit-scrollbar { display: none; }
     .chip { flex: 0 0 auto; border: 1px solid var(--line); background: none; color: var(--ink2);
       border-radius: 999px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
@@ -345,9 +353,20 @@
       view.querySelectorAll(".dest").forEach((b) => b.onclick = () => go(b.dataset.d, null));
     }
     function chips() {
-      return `<div class="chips">` + DESTS.filter((d) => ALL.some((v) => v.destination === d.code))
+      return `<div class="chipbar"><div class="chips">` + DESTS.filter((d) => ALL.some((v) => v.destination === d.code))
         .map((d) => `<button class="chip${d.code === state.dest ? " on" : ""}" data-d="${esc(d.code)}">${esc(destName(d))}<small class="cc">${esc(d.country)}</small></button>`)
-        .join("") + `</div>`;
+        .join("") + `</div></div>`;
+    }
+    /// 選中的城市捲進畫面（點了右邊的沖繩，重畫後不會又跑回看不到的地方），
+    /// 並依捲動位置決定右邊的淡出要不要顯示。
+    function wireChips() {
+      const bar = view.querySelector(".chipbar"), sc = bar && bar.querySelector(".chips");
+      if (!sc) return;
+      const on = sc.querySelector(".chip.on");
+      if (on && on.offsetLeft + on.offsetWidth > sc.clientWidth - 40) sc.scrollLeft = on.offsetLeft - 16;
+      const upd = () => bar.classList.toggle("end", sc.scrollLeft + sc.clientWidth >= sc.scrollWidth - 2);
+      sc.addEventListener("scroll", upd, { passive: true });
+      upd();
     }
     function renderDest() {
       const d = DESTS.find((x) => x.code === state.dest);
@@ -364,6 +383,7 @@
         }).join("") + `<p class="foot">${esc(T.foot)}</p>` + appCta();
       document.getElementById("back").onclick = () => go(null, null);
       view.querySelectorAll(".chip").forEach((b) => b.onclick = () => go(b.dataset.d, null));
+      wireChips();
       view.querySelectorAll(".row").forEach((b) => b.onclick = () => go(state.dest, +b.dataset.c));
     }
     function renderCourt(v) {
