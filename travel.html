@@ -112,6 +112,9 @@
     .app-cta b { color: var(--ink); }
     .app-cta .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
     .app-cta .badges img { height: 40px; width: auto; display: block; }
+    /* 固定在左欄底部：清單在上面自己捲。 */
+    .cta-dock { flex: none; padding: 10px 16px 14px; border-top: 1px solid var(--line); background: var(--panel); }
+    .cta-dock .app-cta { margin-top: 0; }
     .err { color: #ff8a80; font-size: 13px; margin-top: 6px; }
     /* 心得邀請：去過的人一眼看到、知道按了會怎樣（Kayson 11-21：原本一行灰字＋灰按鈕，看不出是在邀請）。 */
     .invite { margin-top: 12px; padding: 14px; border: 1px solid rgba(140,203,110,.35); border-radius: 12px;
@@ -162,6 +165,12 @@
       .panel { order: 1; border-right: 0; border-top: 1px solid var(--line);
         border-radius: 16px 16px 0 0; margin-top: -14px; z-index: 2; }
       .top { padding: 12px 16px 6px; }
+      /* 手機上左欄只剩六成高：固定那塊只留標題和兩顆徽章，說明收掉。 */
+      .cta-dock { padding: 8px 16px calc(10px + env(safe-area-inset-bottom)); }
+      .cta-dock .app-cta { padding: 10px 12px; }
+      .cta-dock .app-cta .body { display: none; }
+      .cta-dock .app-cta .badges { margin-top: 8px; }
+      .cta-dock .app-cta .badges img { height: 34px; }
     }
   </style>
 </head>
@@ -176,6 +185,7 @@
         <button class="lang" id="langBtn"></button>
       </div>
       <div class="scroll" id="view"></div>
+      <div class="cta-dock" id="ctaDock"></div>
     </aside>
     <div class="mapwrap"><div id="map"></div>
       <div class="msearch" id="msearch"><input id="q" type="search" autocomplete="off" enterkeyhint="search" />
@@ -330,6 +340,8 @@
     // ── 畫面 ──
     const view = document.getElementById("view");
     function render() {
+      // App 下載那塊固定在左欄最下面，不跟著清單捲（Kayson 11-21）。
+      document.getElementById("ctaDock").innerHTML = appCta();
       if (state.court) {
         const v = ALL.find((x) => x.court_id === state.court);
         if (v) return renderCourt(v);
@@ -350,7 +362,7 @@
           const k = rows.filter((v) => OPEN.has(v.registration)).length;
           return `<button class="dest" data-d="${esc(d.code)}"><div><b>${esc(destName(d))}<small class="cc">${esc(d.country)}</small></b>
             <span>${esc(T.destCount(rows.length, k))}</span></div><span class="go">›</span></button>`;
-        }).join("") + `<p class="foot">${esc(T.foot)}</p>` + appCta();
+        }).join("") + `<p class="foot">${esc(T.foot)}</p>`;
       view.querySelectorAll(".dest").forEach((b) => b.onclick = () => go(b.dataset.d, null));
     }
     function chips() {
@@ -381,7 +393,7 @@
             <span class="tag${OPEN.has(v.registration) ? " open" : ""}">${esc(T.reg[v.registration] || T.reg.none)}</span></div>
             ${n.secondary ? `<div class="local">${esc(n.secondary)}</div>` : ""}
             ${p ? `<div class="sub">${esc(p)}</div>` : ""}${b ? `<div class="sub2">${esc(b)}</div>` : ""}</button>`;
-        }).join("") + `<p class="foot">${esc(T.foot)}</p>` + appCta();
+        }).join("") + `<p class="foot">${esc(T.foot)}</p>`;
       document.getElementById("back").onclick = () => go(null, null);
       view.querySelectorAll(".chip").forEach((b) => b.onclick = () => go(b.dataset.d, null));
       wireChips();
@@ -413,7 +425,7 @@
         ${note ? `<div class="note">${esc(note)}</div>` : ""}
         <div class="checked">${src ? `<a href="${esc(src)}" target="_blank" rel="noopener">${esc(T.checked(month))} ›</a>`
           : esc(T.checkedNoLink(month))}</div>
-        <div class="sec">${esc(T.tips)}</div><div id="tips"></div><div id="tipForm"></div></div>` + appCta();
+        <div class="sec">${esc(T.tips)}</div><div id="tips"></div><div id="tipForm"></div></div>`;
       document.getElementById("back").onclick = () => go(state.dest, null);
       loadTips(v.court_id);
       renderTipForm(v.court_id);
@@ -430,7 +442,7 @@
         </div>
         <ul class="facts"><li class="label">${esc(T.noInfo)}</li></ul>
         <p class="small">${esc(T.noInfoHint)}</p>
-        <div class="sec">${esc(T.tips)}</div><div id="tips"></div><div id="tipForm"></div></div>` + appCta();
+        <div class="sec">${esc(T.tips)}</div><div id="tips"></div><div id="tipForm"></div></div>`;
       document.getElementById("back").onclick = () => go(state.dest, null);
       loadTips(c.id);
       renderTipForm(c.id);
@@ -490,7 +502,8 @@
     }
 
     function appCta() {
-      return `<div class="app-cta">${T.appCta}<div class="badges">
+      const [head, ...body] = T.appCta.split("<br>");
+      return `<div class="app-cta">${head}<span class="body"><br>${body.join("<br>")}</span><div class="badges">
         <a href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener" aria-label="App Store"><img src="/app-store-badge-en.svg" alt="App Store" height="40" /></a>
         <a href="https://play.google.com/store/apps/details?id=com.tns.passport" target="_blank" rel="noopener" aria-label="Google Play"><img src="/google-play-badge-en.png" alt="Google Play" height="40" /></a></div></div>`;
     }
