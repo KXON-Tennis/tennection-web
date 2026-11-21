@@ -33,7 +33,7 @@
     .layout { display: grid; grid-template-columns: 420px 1fr; height: 100%; }
     .mapwrap { position: relative; height: 100%; min-width: 0; }
     #map { position: absolute; inset: 0; }
-    .panel { background: var(--panel); border-right: 1px solid var(--line);
+    .panel { min-width: 0; background: var(--panel); border-right: 1px solid var(--line);
       display: flex; flex-direction: column; min-height: 0; }
     .top { display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px; }
     .top a.brand { display: flex; align-items: center; gap: 8px; color: var(--ink);
@@ -116,7 +116,26 @@
       padding: 10px 20px; font-size: 15px; }
 
     .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib { opacity: .4; }
-    .style-switch { position: absolute; left: 12px; top: 12px; z-index: 3; display: flex; gap: 2px; padding: 3px;
+    /* 地圖上的搜尋框（跟 App 一樣：球場名稱＋一般地點）。 */
+    .mapwrap { z-index: 3; }
+    .msearch { position: absolute; left: 12px; right: 56px; top: 10px; z-index: 5; max-width: 460px; }
+    .msearch input { width: 100%; height: 40px; border-radius: 999px; border: 1px solid var(--line);
+      background: rgba(16,21,27,.88); color: var(--ink); padding: 0 16px 0 38px; font: inherit; font-size: 14.5px;
+      outline: none; -webkit-appearance: none; box-shadow: 0 2px 10px rgba(0,0,0,.25);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23AEBAC4' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: 14px center; }
+    .msearch input:focus { border-color: var(--accent); }
+    .mresults { margin-top: 6px; background: #161c23; border: 1px solid var(--line); border-radius: 14px;
+      max-height: min(60vh, 420px); overflow-y: auto; box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+    .mresults .h { font-size: 11.5px; font-weight: 700; color: var(--ink3); padding: 10px 14px 4px; }
+    .mresults button { display: block; width: 100%; text-align: left; background: none; border: 0; color: var(--ink);
+      padding: 8px 14px; cursor: pointer; }
+    .mresults button:hover, .mresults button.act { background: rgba(255,255,255,.07); }
+    .mresults b { font-size: 14px; font-weight: 600; }
+    .mresults .s { display: block; font-size: 12px; color: var(--ink3); margin-top: 1px; }
+    .mresults .t { font-size: 11px; color: var(--accent-l); font-weight: 700; margin-left: 6px; }
+    .mresults .empty { padding: 12px 14px; color: var(--ink3); font-size: 13px; }
+    .style-switch { position: absolute; left: 12px; top: 58px; z-index: 3; display: flex; gap: 2px; padding: 3px;
       background: rgba(16,21,27,.78); border: 1px solid var(--line); border-radius: 11px; max-width: calc(100% - 70px);
       overflow-x: auto; scrollbar-width: none; }
     .style-switch::-webkit-scrollbar { display: none; }
@@ -130,7 +149,7 @@
     .ortho-credit img { width: 15px; height: 15px; border-radius: 2px; }
 
     @media (max-width: 760px) {
-      .layout { grid-template-columns: 1fr; grid-template-rows: 36vh 1fr; }
+      .layout { grid-template-columns: minmax(0, 1fr); grid-template-rows: 36vh minmax(0, 1fr); }
       .mapwrap { order: 0; }
       .panel { order: 1; border-right: 0; border-top: 1px solid var(--line);
         border-radius: 16px 16px 0 0; margin-top: -14px; z-index: 2; }
@@ -149,7 +168,9 @@
       </div>
       <div class="scroll" id="view"></div>
     </aside>
-    <div class="mapwrap"><div id="map"></div><div class="style-switch" id="styleSwitch"></div><div class="ortho-credit" id="orthoCredit" hidden></div></div>
+    <div class="mapwrap"><div id="map"></div>
+      <div class="msearch" id="msearch"><input id="q" type="search" autocomplete="off" enterkeyhint="search" />
+        <div class="mresults" id="mresults" hidden></div></div><div class="style-switch" id="styleSwitch"></div><div class="ortho-credit" id="orthoCredit" hidden></div></div>
   </div>
   <div class="show" id="show" role="dialog" aria-modal="true"></div>
 
@@ -201,6 +222,7 @@
         remove: "刪除", removeConfirm: "刪除這則心得？", failed: "沒成功，再試一次。",
         appCta: "<b>球場資料有錯或想補？</b>營業時間、收費、照片這些基本資料要在 App 裡改。App 還能到場打卡、看今天誰在打。",
         noInfo: "還沒有旅客資訊", noInfoHint: "我們還沒查這座球場旅客怎麼訂。去過的話，分享你怎麼打到的。",
+        search: "搜尋球場或地點", sCourts: "球場", sPlaces: "地點", sNone: "找不到", hasInfo: "有旅客資訊",
         appBtn: "下載 Tennis Nut", loadFail: "載入失敗，重新整理再試一次。", langBtn: "EN",
       },
       en: {
@@ -230,6 +252,7 @@
         remove: "Delete", removeConfirm: "Delete this tip?", failed: "That didn't work. Try again.",
         appCta: "<b>Something wrong or missing?</b> Opening hours, prices and photos are edited in the app. The app also lets you check in at the court and see who's playing today.",
         noInfo: "No visitor info yet", noInfoHint: "We haven't checked how visitors book this court. If you've played here, share how you got in.",
+        search: "Search courts or places", sCourts: "Courts", sPlaces: "Places", sNone: "No results", hasInfo: "Visitor info",
         appBtn: "Get Tennis Nut", loadFail: "Couldn't load. Refresh and try again.", langBtn: "中文",
       },
     }[LANG];
@@ -437,7 +460,7 @@
         "circle-stroke-opacity": ["case", ["==", ["get", "sel"], 1], 1, 0.7] } }, before);
       map.addLayer({ id: "greyLabels", type: "symbol", source: "grey", minzoom: 13.5, layout: {
         "text-field": ["get", "name"], "text-size": 11, "text-offset": [0, 1], "text-anchor": "top" },
-        paint: { "text-color": "#8A949E", "text-halo-color": "#11151a", "text-halo-width": 1 } });
+        paint: labelPaint(true) });
     }
 
     function appCta() {
@@ -659,6 +682,28 @@
         map.setConfigProperty("basemap", "theme", p === "day" ? "faded" : "default");
         map.setConfigProperty("basemap", "showPointOfInterestLabels", false);
       } catch {}
+      applyLabelPaint();
+    }
+    // 球場名稱的字色跟著底圖：淺色底（街道、白天的自動）用深字白邊，其他用
+    // 淺字深邊。原本一律白字黑邊，在淺色底上整片糊成黑框字（Kayson 11-21）。
+    function lightBase() {
+      const k = STYLES[styleIdx].key;
+      return k === "streets" || (k === "auto" && appliedPreset === "day");
+    }
+    function labelPaint(grey) {
+      const light = lightBase();
+      return {
+        "text-color": light ? (grey ? "#4B5560" : "#16202A") : (grey ? "#B8C1CA" : "#F2F5F7"),
+        "text-halo-color": light ? "rgba(255,255,255,0.92)" : "rgba(17,21,26,0.85)",
+        "text-halo-width": 1.6, "text-halo-blur": 0.3,
+      };
+    }
+    function applyLabelPaint() {
+      if (!mapReady) return;
+      for (const [id, grey] of [["labels", false], ["greyLabels", true]]) {
+        if (!map.getLayer(id)) continue;
+        for (const [k, v] of Object.entries(labelPaint(grey))) map.setPaintProperty(id, k, v);
+      }
     }
     function setStyle(i) {
       if (!map || i === styleIdx) return;
@@ -687,12 +732,16 @@
         center: [133, 33], zoom: 3.6, attributionControl: true });
       map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
       // 圖層換底圖時會被清掉，事件掛在地圖上（依圖層 id），只掛一次。
-      map.on("click", "courts", (e) => { const p = e.features[0].properties; go(p.dest, p.id); });
-      map.on("click", "grey", (e) => {
-        if (map.getLayer("courts") && map.queryRenderedFeatures(e.point, { layers: ["courts"] }).length) return;
+      // 點點或點名字都能打開（Kayson 11-21）。有旅客資訊的優先：灰點疊在下面，
+      // 同一下也會打中它。
+      const infoHit = (pt) => ["courts", "labels"].filter((l) => map.getLayer(l)).length &&
+        map.queryRenderedFeatures(pt, { layers: ["courts", "labels"].filter((l) => map.getLayer(l)) }).length;
+      for (const id of ["courts", "labels"]) map.on("click", id, (e) => { const p = e.features[0].properties; go(p.dest, p.id); });
+      for (const id of ["grey", "greyLabels"]) map.on("click", id, (e) => {
+        if (infoHit(e.point)) return;
         go(state.dest, e.features[0].properties.id);
       });
-      for (const id of ["courts", "grey"]) {
+      for (const id of ["courts", "grey", "labels", "greyLabels"]) {
         map.on("mouseenter", id, () => map.getCanvas().style.cursor = "pointer");
         map.on("mouseleave", id, () => map.getCanvas().style.cursor = "");
       }
@@ -727,7 +776,7 @@
         "circle-stroke-width": ["case", ["==", ["get", "sel"], 1], 3.5, 1.6] } });
       map.addLayer({ id: "labels", type: "symbol", source: "courts", minzoom: 11.5, layout: {
         "text-field": ["get", "name"], "text-size": 12, "text-offset": [0, 1.1], "text-anchor": "top" },
-        paint: { "text-color": "#F2F5F7", "text-halo-color": "#11151a", "text-halo-width": 1.2 } });
+        paint: labelPaint(false) });
     }
     function fitMap() {
       paintMap(); paintGrey();
@@ -751,6 +800,65 @@
     });
     map?.on("moveend", () => { fetchGreyInView(); orthoCredit(); applyAuto(); });
     if (map) renderStyleSwitch(); else document.getElementById("styleSwitch").hidden = true;
+
+    // ── 地圖搜尋：球場名稱（courts_search，以地圖中心排距離）＋一般地點
+    // （Mapbox Search Box，網頁 token 綁網域）。App 的地點走 geocode 函式，那支
+    // 要登入（防被當免費 Places 代理），網頁的訪客多半沒登入所以不走它。
+    const qEl = document.getElementById("q"), resEl = document.getElementById("mresults");
+    qEl.placeholder = T.search;
+    let qTimer = null, qSeq = 0, qItems = [];
+    function closeResults() { resEl.hidden = true; resEl.innerHTML = ""; qItems = []; }
+    qEl.addEventListener("input", () => {
+      clearTimeout(qTimer);
+      const q = qEl.value.trim();
+      if (!q) return closeResults();
+      qTimer = setTimeout(() => runSearch(q), 280);
+    });
+    qEl.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { qEl.blur(); closeResults(); }
+      if (e.key === "Enter" && qItems[0]) { e.preventDefault(); pickResult(qItems[0]); }
+    });
+    document.addEventListener("click", (e) => { if (!document.getElementById("msearch").contains(e.target)) closeResults(); });
+    async function runSearch(q) {
+      const seq = ++qSeq;
+      const c = map ? map.getCenter() : { lat: 35.68, lng: 139.76 };
+      const courtsP = sb.rpc("courts_search", { p_query: q, p_lat: c.lat, p_lng: c.lng, p_limit: 6, p_country: null })
+        .then((r) => r.data || []).catch(() => []);
+      const placesP = fetch("https://api.mapbox.com/search/searchbox/v1/forward?" + new URLSearchParams({
+          q, language: LANG === "zh" ? "zh-Hant,ja,en" : "en,ja", limit: "5", proximity: `${c.lng},${c.lat}`,
+          access_token: MAPBOX_TOKEN })).then((r) => r.json()).then((d) => d.features || []).catch(() => []);
+      const [courts, places] = await Promise.all([courtsP, placesP]);
+      if (seq !== qSeq) return;
+      const info = new Set(ALL.map((v) => v.court_id));
+      qItems = [
+        ...courts.filter((x) => x.lat != null).map((x) => ({ kind: "court", court: x, info: info.has(x.id) })),
+        ...places.map((f) => ({ kind: "place", name: f.properties.name,
+          sub: f.properties.full_address || f.properties.place_formatted || "", lng: f.geometry.coordinates[0],
+          lat: f.geometry.coordinates[1], type: f.properties.feature_type })),
+      ];
+      const cs = qItems.filter((x) => x.kind === "court"), ps = qItems.filter((x) => x.kind === "place");
+      let html = "";
+      if (cs.length) html += `<div class="h">${esc(T.sCourts)}</div>` + cs.map((x) =>
+        `<button data-i="${qItems.indexOf(x)}"><b>${esc(x.court.name)}</b>${x.info ? `<span class="t">${esc(T.hasInfo)}</span>` : ""}
+         <span class="s">${esc([x.court.name_en, x.court.city].filter(Boolean).join(" · "))}</span></button>`).join("");
+      if (ps.length) html += `<div class="h">${esc(T.sPlaces)}</div>` + ps.map((x) =>
+        `<button data-i="${qItems.indexOf(x)}"><b>${esc(x.name)}</b><span class="s">${esc(x.sub)}</span></button>`).join("");
+      resEl.innerHTML = html || `<div class="empty">${esc(T.sNone)}</div>`;
+      resEl.hidden = false;
+      resEl.querySelectorAll("button").forEach((b) => b.onclick = () => pickResult(qItems[+b.dataset.i]));
+    }
+    function pickResult(x) {
+      closeResults(); qEl.blur();
+      if (x.kind === "place") {
+        map?.flyTo({ center: [x.lng, x.lat], zoom: x.type === "poi" || x.type === "address" ? 15 : 12.5 });
+        return;
+      }
+      const v = ALL.find((a) => a.court_id === x.court.id);
+      if (v) return go(v.destination, v.court_id);
+      GREY.set(x.court.id, { id: x.court.id, name: x.court.name, lat: x.court.lat, lng: x.court.lng,
+        country: x.court.country, address: x.court.address });
+      go(state.dest, x.court.id);
+    }
 
     // ── 載入 ──
     (async () => {
