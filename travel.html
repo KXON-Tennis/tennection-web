@@ -467,12 +467,15 @@
       map.addSource("grey", { type: "geojson", data: fc });
       const before = map.getLayer("selHalo") ? "selHalo" : map.getLayer("courts") ? "courts" : undefined;
       map.addLayer({ id: "greyHalo", type: "circle", source: "grey", filter: ["==", ["get", "sel"], 1], paint: {
+        "circle-emissive-strength": 1,
         "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, 12, 14, 22],
         "circle-color": VOLT, "circle-opacity": 0.35, "circle-blur": 0.5 } }, before);
       map.addLayer({ id: "greyRing", type: "circle", source: "grey", filter: ["==", ["get", "sel"], 1], paint: {
+        "circle-emissive-strength": 1,
         "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, 11, 14, 15],
         "circle-color": "#11151a", "circle-opacity": 0.9 } }, before);
       map.addLayer({ id: "grey", type: "circle", source: "grey", paint: {
+        "circle-emissive-strength": 1,
         "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, ["case", ["==", ["get", "sel"], 1], 6, 2.5],
           14, ["case", ["==", ["get", "sel"], 1], 10, 6]],
         "circle-color": "#8A949E",
@@ -722,12 +725,15 @@
       const k = STYLES[styleIdx].key;
       return k === "streets" || (k === "auto" && appliedPreset === "day");
     }
+    // 我們畫的點和字都不吃底圖的光線（emissive 1）：「自動」在晚上會把自訂圖層
+    // 一起調暗，綠／橘點變成黑點、黃綠外圈變成黑圈（Kayson 11-21）。
     function labelPaint(grey) {
       const light = lightBase();
       return {
         "text-color": light ? (grey ? "#4B5560" : "#16202A") : (grey ? "#B8C1CA" : "#F2F5F7"),
         "text-halo-color": light ? "rgba(255,255,255,0.92)" : "rgba(17,21,26,0.85)",
         "text-halo-width": 1.6, "text-halo-blur": 0.3,
+        "text-emissive-strength": 1,
       };
     }
     function applyLabelPaint() {
@@ -793,35 +799,46 @@
       // 選中的球場：不改成白點（衛星、航照、淺色底上都會糊掉），保留它自己的
       // 顏色、放大、外圈與光暈用 App 選取的那個螢光黃綠（AppTheme.tennisVolt）。
       map.addLayer({ id: "selHalo", type: "circle", source: "courts", filter: ["==", ["get", "sel"], 1], paint: {
+        "circle-emissive-strength": 1,
         "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 12, 14, 24],
         "circle-color": VOLT, "circle-opacity": 0.35, "circle-blur": 0.5 } });
       // 螢光黃綠外圈外面再一圈深色：淺色底圖上黃綠會被吃掉，深色那圈讓它在
       // 每種底圖上都有邊。
       map.addLayer({ id: "selRing", type: "circle", source: "courts", filter: ["==", ["get", "sel"], 1], paint: {
+        "circle-emissive-strength": 1,
         "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 12, 11, 14.5, 14, 17.5],
         "circle-color": "#11151a", "circle-opacity": 0.9 } });
       map.addLayer({ id: "courts", type: "circle", source: "courts", paint: {
+        "circle-emissive-strength": 1,
         "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, ["case", ["==", ["get", "sel"], 1], 6.5, 3.5],
           11, ["case", ["==", ["get", "sel"], 1], 9, 6], 14, ["case", ["==", ["get", "sel"], 1], 12, 9]],
         "circle-color": ["case", ["==", ["get", "open"], 1], "#6FBF4A", "#F0A030"],
         "circle-stroke-color": ["case", ["==", ["get", "sel"], 1], VOLT, "#ffffff"],
         "circle-stroke-width": ["case", ["==", ["get", "sel"], 1], 3.5, 1.6] } });
-      // 滑過清單時那一點：螢光黃綠外圈（同選中的顏色），疊在點上面。
+      // 滑過清單時那一點：跟選中同一套——螢光黃綠光暈（壓在點下面）＋外圈。
+      map.addLayer({ id: "hoverHalo", type: "circle", source: "courts", filter: ["==", ["get", "id"], hoverId ?? -1], paint: {
+        "circle-emissive-strength": 1,
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 16, 14, 28],
+        "circle-color": VOLT, "circle-opacity": 0.45, "circle-blur": 0.6 } }, "courts");
       map.addLayer({ id: "hoverRing", type: "circle", source: "courts", filter: ["==", ["get", "id"], hoverId ?? -1], paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 9, 11, 13, 14, 16],
+        "circle-emissive-strength": 1,
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 8, 11, 11, 14, 14],
         "circle-color": "rgba(0,0,0,0)", "circle-stroke-color": VOLT, "circle-stroke-width": 3 } });
       map.addLayer({ id: "labels", type: "symbol", source: "courts", minzoom: 11.5, layout: {
         "text-field": ["get", "name"], "text-size": 12, "text-offset": [0, 1.1], "text-anchor": "top" },
         paint: labelPaint(false) });
     }
-    let hoverId = null;
+    // 滑過：那一點亮起來，地圖把它移到正中央（不縮放，Kayson 11-21）。等 0.15 秒
+    // 再移，滑鼠快速掃過好幾列時只移到最後停下的那一座。
+    let hoverId = null, hoverTimer = null;
     function hoverCourt(id) {
       hoverId = id;
+      clearTimeout(hoverTimer);
       if (!mapReady || !map.getLayer("hoverRing")) return;
-      map.setFilter("hoverRing", ["==", ["get", "id"], id ?? -1]);
+      for (const l of ["hoverHalo", "hoverRing"]) map.setFilter(l, ["==", ["get", "id"], id ?? -1]);
       const v = id && ALL.find((x) => x.court_id === id);
-      if (v && v.court.lat != null && !map.getBounds().contains([v.court.lng, v.court.lat]))
-        map.easeTo({ center: [v.court.lng, v.court.lat], duration: 500 });
+      if (v && v.court.lat != null)
+        hoverTimer = setTimeout(() => map.easeTo({ center: [v.court.lng, v.court.lat], duration: 500 }), 150);
     }
     function fitMap() {
       paintMap(); paintGrey();
