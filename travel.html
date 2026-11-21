@@ -123,6 +123,7 @@
       text-overflow: ellipsis; white-space: nowrap; }
 
     .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib { opacity: .4; }
+    .dim-btn { font: 700 12px/29px system-ui, sans-serif; color: #333; }
     /* 地圖上的搜尋框（跟 App 一樣：球場名稱＋一般地點）。 */
     .mapwrap { z-index: 3; }
     .msearch { position: absolute; left: 12px; right: 56px; top: 10px; z-index: 5; max-width: 460px; }
@@ -766,9 +767,29 @@
     mapboxgl.accessToken = MAPBOX_TOKEN;
     let map = null;
     try {
+      const start3d = (() => { try { return localStorage.getItem("travel3d") === "1"; } catch { return false; } })();
       map = new mapboxgl.Map({ container: "map", style: STYLES[styleIdx].uri,
-        center: [133, 33], zoom: 3.6, attributionControl: true });
+        center: [133, 33], zoom: 3.6, attributionControl: true,
+        pitch: start3d ? 60 : 0, bearing: start3d ? -20 : 0 });
       map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
+      // 2D／3D：3D 是斜著看（東京鐵塔這類地標、建築立起來，Kayson 11-21）。按鈕寫的是
+      // 按下去會變成什麼。自己用右鍵／兩指把地圖拉斜也算 3D，按鈕跟著變。
+      const threeD = { onAdd() {
+        const box = document.createElement("div");
+        box.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "dim-btn";
+        const sync = () => { const on = map.getPitch() > 10; b.textContent = on ? "2D" : "3D";
+          b.title = on ? (LANG === "zh" ? "平面" : "Flat view") : (LANG === "zh" ? "立體" : "3D view"); };
+        b.onclick = () => {
+          const on = map.getPitch() <= 10;
+          map.easeTo(on ? { pitch: 60, bearing: -20, duration: 900 } : { pitch: 0, bearing: 0, duration: 700 });
+          try { localStorage.setItem("travel3d", on ? "1" : "0"); } catch {}
+        };
+        map.on("pitchend", sync); sync();
+        box.appendChild(b); return box;
+      }, onRemove() {} };
+      map.addControl(threeD, "top-right");
       // 圖層換底圖時會被清掉，事件掛在地圖上（依圖層 id），只掛一次。
       // 點點或點名字都能打開（Kayson 11-21）。有旅客資訊的優先：灰點疊在下面，
       // 同一下也會打中它。
@@ -849,7 +870,7 @@
       if (!pts.length) return;
       const b = new mapboxgl.LngLatBounds();
       pts.forEach((x) => b.extend([x.court.lng, x.court.lat]));
-      map.fitBounds(b, { padding: 50, maxZoom: 12.5, duration: 900 });
+      map.fitBounds(b, { padding: 50, maxZoom: 12.5, duration: 900, pitch: map.getPitch(), bearing: map.getBearing() });
     }
     // style.load：第一次和每次換底圖都會來——自己加的圖層要重畫。
     map?.on("style.load", () => {
