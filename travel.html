@@ -31,7 +31,8 @@
     button { font: inherit; }
 
     .layout { display: grid; grid-template-columns: 420px 1fr; height: 100%; }
-    #map { position: relative; height: 100%; }
+    .mapwrap { position: relative; height: 100%; min-width: 0; }
+    #map { position: absolute; inset: 0; }
     .panel { background: var(--panel); border-right: 1px solid var(--line);
       display: flex; flex-direction: column; min-height: 0; }
     .top { display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px; }
@@ -115,10 +116,19 @@
       padding: 10px 20px; font-size: 15px; }
 
     .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib { opacity: .4; }
+    .style-switch { position: absolute; left: 12px; top: 12px; z-index: 3; display: flex; gap: 2px; padding: 3px;
+      background: rgba(16,21,27,.78); border: 1px solid var(--line); border-radius: 11px; max-width: calc(100% - 70px);
+      overflow-x: auto; scrollbar-width: none; }
+    .style-switch::-webkit-scrollbar { display: none; }
+    .style-switch button { flex: 0 0 auto; background: none; border: 0; color: var(--ink2); font-size: 12px;
+      padding: 5px 9px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+    .style-switch button.on { background: rgba(255,255,255,.14); color: var(--ink); font-weight: 700; }
+    .ortho-credit { position: absolute; right: 8px; bottom: 26px; z-index: 3; font-size: 11px; color: #fff;
+      background: rgba(0,0,0,.55); padding: 2px 7px; border-radius: 6px; }
 
     @media (max-width: 760px) {
       .layout { grid-template-columns: 1fr; grid-template-rows: 36vh 1fr; }
-      #map { order: 0; }
+      .mapwrap { order: 0; }
       .panel { order: 1; border-right: 0; border-top: 1px solid var(--line);
         border-radius: 16px 16px 0 0; margin-top: -14px; z-index: 2; }
       .top { padding: 12px 16px 6px; }
@@ -136,7 +146,7 @@
       </div>
       <div class="scroll" id="view"></div>
     </aside>
-    <div id="map"></div>
+    <div class="mapwrap"><div id="map"></div><div class="style-switch" id="styleSwitch"></div><div class="ortho-credit" id="orthoCredit" hidden></div></div>
   </div>
   <div class="show" id="show" role="dialog" aria-modal="true"></div>
 
@@ -415,12 +425,6 @@
       map.addLayer({ id: "greyLabels", type: "symbol", source: "grey", minzoom: 13.5, layout: {
         "text-field": ["get", "name"], "text-size": 11, "text-offset": [0, 1], "text-anchor": "top" },
         paint: { "text-color": "#8A949E", "text-halo-color": "#11151a", "text-halo-width": 1 } });
-      map.on("click", "grey", (e) => {
-        if (map.queryRenderedFeatures(e.point, { layers: ["courts"] }).length) return;
-        go(state.dest, e.features[0].properties.id);
-      });
-      map.on("mouseenter", "grey", () => map.getCanvas().style.cursor = "pointer");
-      map.on("mouseleave", "grey", () => map.getCanvas().style.cursor = "");
     }
 
     function appCta() {
@@ -546,13 +550,123 @@
     };
 
     // ── 地圖 ──
+    // 底圖跟 App 同一組（discovery_screen.dart _styles）：自動（Standard，光線
+    // 跟著當地太陽）、街道、深色、衛星、正射影像（拉近到街區時換成當地政府航照）。
+    const STANDARD = "mapbox://styles/mapbox/standard";
+    const SAT = "mapbox://styles/mapbox/satellite-streets-v12";
+    const STYLES = [
+      { key: "auto", zh: "自動", en: "Auto", uri: STANDARD },
+      { key: "streets", zh: "街道", en: "Streets", uri: "mapbox://styles/mapbox/streets-v12" },
+      { key: "dark", zh: "深色", en: "Dark", uri: "mapbox://styles/mapbox/dark-v11" },
+      { key: "satellite", zh: "衛星", en: "Satellite", uri: SAT },
+      { key: "ortho", zh: "正射影像", en: "Orthophoto", uri: SAT },
+    ];
+    let styleIdx = (() => { try { const i = STYLES.findIndex((x) => x.key === localStorage.getItem("travelStyle"));
+      return i >= 0 ? i : 0; } catch { return 0; } })();
+    // 和 App 的 _orthoRegions 同一份（香港要放地政總署標誌，網頁先不接）。
+    const ORTHO_MIN_ZOOM = 13;
+    const JP_BOXES = [[128.5, 30.9, 134.0, 34.75], [130.8, 34.75, 134.0, 36.5], [134.0, 32.5, 142.2, 41.6],
+      [139.3, 41.3, 146.0, 45.6], [122.9, 24.0, 131.4, 30.9]];
+    const ORTHO = [
+      { code: "TW", tiles: "https://wmts.nlsc.gov.tw/wmts/PHOTO2/default/GoogleMapsCompatible/{z}/{y}/{x}",
+        boxes: [[119.90, 21.85, 122.10, 25.35], [119.30, 23.15, 119.75, 23.85], [118.19, 24.38, 118.48, 24.53],
+          [119.89, 25.93, 120.04, 26.25], [120.46, 26.34, 120.53, 26.39]],
+        area: [[118.0, 21.5, 122.2, 26.4]], maxzoom: 20, credit: "© 內政部國土測繪中心" },
+      { code: "JP", tiles: "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg",
+        boxes: JP_BOXES, area: JP_BOXES, maxzoom: 18, credit: "出典：国土地理院" },
+      { code: "SG", tiles: "https://www.onemap.gov.sg/maps/tiles/Satellite/{z}/{x}/{y}.png",
+        boxes: [[103.60, 1.20, 104.09, 1.47]], area: [[103.55, 1.13, 104.1, 1.48]], maxzoom: 19,
+        credit: "OneMap © Singapore Land Authority" },
+      { code: "AU-NSW", tiles: "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Imagery/MapServer/tile/{z}/{y}/{x}",
+        boxes: [[140.99, -37.51, 153.65, -28.15]], area: [[140.99, -37.51, 153.65, -28.15]], maxzoom: 20,
+        credit: "© Spatial Services NSW" },
+    ];
+    const inBox = (b, lat, lng) => lng >= b[0] && lat >= b[1] && lng <= b[2] && lat <= b[3];
+    function addOrtho() {
+      const layers = map.getStyle().layers;
+      const sat = layers.find((l) => l.type === "raster")?.id;
+      const above = sat ? layers[layers.findIndex((l) => l.id === sat) + 1]?.id : layers.find((l) => l.type === "symbol")?.id;
+      for (const r of ORTHO) r.boxes.forEach((b, i) => {
+        const id = `ortho-${r.code}-${i}`;
+        if (map.getSource(id)) return;
+        map.addSource(id, { type: "raster", tiles: [r.tiles], bounds: b, minzoom: ORTHO_MIN_ZOOM,
+          maxzoom: r.maxzoom, tileSize: 256 });
+        map.addLayer({ id, type: "raster", source: id, minzoom: ORTHO_MIN_ZOOM }, above);
+      });
+    }
+    // 出處：正射影像開著、拉近到看得到航照、而且畫面中心在那個地方時才標。
+    function orthoCredit() {
+      const el = document.getElementById("orthoCredit");
+      let r = null;
+      if (map && STYLES[styleIdx].key === "ortho" && map.getZoom() >= ORTHO_MIN_ZOOM) {
+        const c = map.getCenter();
+        r = ORTHO.find((x) => x.area.some((b) => inBox(b, c.lat, c.lng)));
+      }
+      el.textContent = r ? r.credit : "";
+      el.hidden = !r;
+    }
+    // 太陽高度（度）：跟 App 的 _sunPosition 同一個判準——≥8° 白天，-6°～8°
+    // 上午黎明下午黃昏，更低夜晚。用經緯度與 UTC 算，跟瀏覽器時區無關。
+    function sunAltitude(lat, lng, d = new Date()) {
+      const rad = Math.PI / 180, jd = d.getTime() / 86400000 + 2440587.5, n = jd - 2451545.0;
+      const L = (280.46 + 0.9856474 * n) % 360, g = ((357.528 + 0.9856003 * n) % 360) * rad;
+      const lam = (L + 1.915 * Math.sin(g) + 0.02 * Math.sin(2 * g)) * rad, eps = (23.439 - 4e-7 * n) * rad;
+      const dec = Math.asin(Math.sin(eps) * Math.sin(lam));
+      const ra = Math.atan2(Math.cos(eps) * Math.sin(lam), Math.cos(lam));
+      const gmst = (280.46061837 + 360.98564736629 * n) % 360;
+      const ha = (gmst + lng) * rad - ra;
+      return Math.asin(Math.sin(lat * rad) * Math.sin(dec) + Math.cos(lat * rad) * Math.cos(dec) * Math.cos(ha)) / rad;
+    }
+    function autoPreset() {
+      const c = map.getCenter(), alt = sunAltitude(c.lat, c.lng);
+      if (alt >= 8) return "day";
+      if (alt < -6) return "night";
+      const utcHour = new Date().getUTCHours() + new Date().getUTCMinutes() / 60;
+      const solarHour = (utcHour + c.lng / 15 + 24) % 24;
+      return solarHour < 12 ? "dawn" : "dusk";
+    }
+    let appliedPreset = null;
+    function applyAuto() {
+      if (STYLES[styleIdx].key !== "auto") return;
+      const p = autoPreset();
+      if (p === appliedPreset) return;
+      appliedPreset = p;
+      try {
+        map.setConfigProperty("basemap", "lightPreset", p);
+        map.setConfigProperty("basemap", "theme", p === "day" ? "faded" : "default");
+        map.setConfigProperty("basemap", "showPointOfInterestLabels", false);
+      } catch {}
+    }
+    function setStyle(i) {
+      if (!map || i === styleIdx) return;
+      styleIdx = i; appliedPreset = null;
+      try { localStorage.setItem("travelStyle", STYLES[i].key); } catch {}
+      renderStyleSwitch();
+      map.setStyle(STYLES[i].uri);
+    }
+    function renderStyleSwitch() {
+      const el = document.getElementById("styleSwitch");
+      el.innerHTML = STYLES.map((x, i) => `<button class="${i === styleIdx ? "on" : ""}" data-i="${i}">${esc(x[LANG])}</button>`).join("");
+      el.querySelectorAll("button").forEach((b) => b.onclick = () => setStyle(+b.dataset.i));
+    }
+
     // 地圖是輔助：沒有 WebGL 的瀏覽器照樣看得到清單和心得。
     mapboxgl.accessToken = MAPBOX_TOKEN;
     let map = null;
     try {
-      map = new mapboxgl.Map({ container: "map", style: "mapbox://styles/mapbox/dark-v11",
+      map = new mapboxgl.Map({ container: "map", style: STYLES[styleIdx].uri,
         center: [133, 33], zoom: 3.6, attributionControl: true });
       map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
+      // 圖層換底圖時會被清掉，事件掛在地圖上（依圖層 id），只掛一次。
+      map.on("click", "courts", (e) => { const p = e.features[0].properties; go(p.dest, p.id); });
+      map.on("click", "grey", (e) => {
+        if (map.getLayer("courts") && map.queryRenderedFeatures(e.point, { layers: ["courts"] }).length) return;
+        go(state.dest, e.features[0].properties.id);
+      });
+      for (const id of ["courts", "grey"]) {
+        map.on("mouseenter", id, () => map.getCanvas().style.cursor = "pointer");
+        map.on("mouseleave", id, () => map.getCanvas().style.cursor = "");
+      }
     } catch (e) { map = null; }
     let mapReady = false;
     function geo() {
@@ -573,9 +687,6 @@
       map.addLayer({ id: "labels", type: "symbol", source: "courts", minzoom: 11.5, layout: {
         "text-field": ["get", "name"], "text-size": 12, "text-offset": [0, 1.1], "text-anchor": "top" },
         paint: { "text-color": "#F2F5F7", "text-halo-color": "#11151a", "text-halo-width": 1.2 } });
-      map.on("click", "courts", (e) => { const p = e.features[0].properties; go(p.dest, p.id); });
-      map.on("mouseenter", "courts", () => map.getCanvas().style.cursor = "pointer");
-      map.on("mouseleave", "courts", () => map.getCanvas().style.cursor = "");
     }
     function fitMap() {
       paintMap(); paintGrey();
@@ -588,8 +699,17 @@
       pts.forEach((x) => b.extend([x.court.lng, x.court.lat]));
       map.fitBounds(b, { padding: 50, maxZoom: 12.5, duration: 900 });
     }
-    map?.on("load", () => { mapReady = true; fitMap(); });
-    map?.on("moveend", fetchGreyInView);
+    // style.load：第一次和每次換底圖都會來——自己加的圖層要重畫。
+    map?.on("style.load", () => {
+      if (STYLES[styleIdx].key === "ortho") addOrtho();
+      applyAuto();
+      const first = !mapReady;
+      mapReady = true;
+      if (first) fitMap(); else { paintMap(); paintGrey(); }
+      orthoCredit();
+    });
+    map?.on("moveend", () => { fetchGreyInView(); orthoCredit(); applyAuto(); });
+    if (map) renderStyleSwitch(); else document.getElementById("styleSwitch").hidden = true;
 
     // ── 載入 ──
     (async () => {
