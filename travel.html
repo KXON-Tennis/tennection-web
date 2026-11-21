@@ -216,7 +216,7 @@
         balls: { free: "球免費", paid: "可租球", bring: "要自備球" },
         checked: (d) => `${d} 查證官網`, checkedNoLink: (d) => `${d} 查證`,
         foot: "以上為近期經官網查證以及球友提供之資訊。",
-        showLocal: "給當地人看", showQ: "請問這座網球場怎麼走？", close: "關閉",
+        showLocal: (l) => l ? `${l}問路卡` : "問路卡", localLang: { JP: "日文", KR: "韓文", TW: "中文" }, showQ: "請問這座網球場怎麼走？", close: "關閉",
         maps: "Google 地圖導航", courtPage: "球場頁",
         tips: "旅客心得", tipsEmpty: "還沒有人分享。去過的話，告訴下一個旅客怎麼訂到的。",
         anon: "球友", visited: "打卡過", folded: "倒讚較多，已收起", unfold: "展開",
@@ -246,7 +246,7 @@
         balls: { free: "balls included", paid: "balls for rent", bring: "bring your own balls" },
         checked: (d) => `Checked on the official site, ${d}`, checkedNoLink: (d) => `Checked ${d}`,
         foot: "Recently checked on official sites and shared by players.",
-        showLocal: "Show a local", showQ: "", close: "Close",
+        showLocal: (l) => l ? `Directions card in ${l}` : "Directions card", localLang: { JP: "Japanese", KR: "Korean", TW: "Chinese" }, showQ: "", close: "Close",
         maps: "Directions in Google Maps", courtPage: "Court page",
         tips: "Visitor tips", tipsEmpty: "No tips yet. If you've played here, tell the next visitor how you booked.",
         anon: "A player", visited: "Checked in", folded: "Hidden: more downvotes than upvotes", unfold: "Show",
@@ -264,7 +264,9 @@
         appBtn: "Get Tennis Nut", loadFail: "Couldn't load. Refresh and try again.", langBtn: "中文",
       },
     }[LANG];
-    // 「給當地人看」那一句用球場當地的語言。
+    // 問路卡：全螢幕顯示球場名、地址和這一句，拿給司機或路人看。用球場當地的
+    // 語言，按鈕上寫出是哪一種語言——原本叫「給當地人看」，看不出按了會怎樣
+    // （2026-11-21 Kayson）。
     const ASK_LOCAL = { JP: "このテニスコートへの行き方を教えてください。",
       KR: "이 테니스장에 어떻게 가나요?", TW: "請問這座網球場怎麼走？" };
 
@@ -398,7 +400,7 @@
         <div class="court"><h2>${esc(n.primary)}</h2>
         ${n.secondary ? `<div class="localname">${esc(n.secondary)}</div>` : ""}
         <div class="actions">
-          <button class="btn primary" id="showBtn">📱 ${esc(T.showLocal)}</button>
+          <button class="btn primary" id="showBtn">📱 ${esc(T.showLocal(T.localLang[c.country]))}</button>
           ${maps ? `<a class="btn" href="${maps}" target="_blank" rel="noopener">${esc(T.maps)}</a>` : ""}
           <a class="btn" href="/courts/${c.id}" target="_blank" rel="noopener">${esc(T.courtPage)}</a>
         </div>
@@ -420,7 +422,7 @@
       view.innerHTML = `<button class="back" id="back">${esc(state.dest ? T.backList : T.change)}</button>
         <div class="court"><h2>${esc(c.name)}</h2>
         <div class="actions">
-          <button class="btn primary" id="showBtn">📱 ${esc(T.showLocal)}</button>
+          <button class="btn primary" id="showBtn">📱 ${esc(T.showLocal(T.localLang[c.country]))}</button>
           ${maps ? `<a class="btn" href="${maps}" target="_blank" rel="noopener">${esc(T.maps)}</a>` : ""}
           <a class="btn" href="/courts/${c.id}" target="_blank" rel="noopener">${esc(T.courtPage)}</a>
         </div>
