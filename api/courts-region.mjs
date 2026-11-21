@@ -11,7 +11,7 @@
 // 連過去的每一頁都不會自己說「別收我」。
 
 import {
-  ACCESS, APP_STORE_URL, SITE, SURFACES, VENUE_KINDS, escapeHtml as h,
+  ACCESS, APP_STORE_URL, PLAY_STORE_URL, SITE, SURFACES, VENUE_KINDS, escapeHtml as h,
   isIndexable, rest,
 } from "./_lib/courts.mjs";
 
@@ -90,7 +90,7 @@ function shell({ title, desc, canonical, crumbs, body }) {
       <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
-      <a href="${APP_STORE_URL}" target="_blank" rel="noopener">下載</a>
+      <a href="/install">下載</a>
       <a href="/courts-map">球場地圖</a>
       <a href="/blog">Blog</a>
     </nav>
@@ -100,8 +100,8 @@ function shell({ title, desc, canonical, crumbs, body }) {
     ${body}
     <div class="app">
       <p>在 Tennis Nut 打卡、回報場況、看誰常在同一座球場打球。</p>
-      <a href="${APP_STORE_URL}" target="_blank" rel="noopener">從 App Store 下載</a> ·
-      <a href="/install">Android：加入 Google Play 測試</a>
+      <a href="${APP_STORE_URL}" target="_blank" rel="noopener">App Store 下載</a> ·
+      <a href="${PLAY_STORE_URL}" target="_blank" rel="noopener">Google Play 下載</a>
     </div>
   </main>
   <footer>

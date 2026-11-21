@@ -9,7 +9,7 @@
 // 網頁做不到的行動——打卡、回報、封場通知。不吹噓，只傳資訊。
 
 import {
-  APP_STORE_ID, APP_STORE_URL, ACCESS, CLOSURE_KINDS, COND, HIT_FORMATS,
+  APP_STORE_ID, APP_STORE_URL, PLAY_STORE_URL, ACCESS, CLOSURE_KINDS, COND, HIT_FORMATS,
   SURFACES, VENUE_KINDS, condEntries, courtUrl, distanceM, escapeHtml as h,
   isIndexable, isPlaceholderName, rest, rpcOr, statusFresh,
 } from "./_lib/courts.mjs";
@@ -270,7 +270,7 @@ function page({ c, now, closures, hits, parking, live, nearby, players }) {
     .app { background: var(--tint) !important; border-color: var(--accent-soft) !important; }
     .app p { margin: 0 0 10px; color: var(--text-secondary); }
     .app .badge img { display: block; height: 46px; width: auto; }
-    .app .android { font-size: 14px; margin-top: 10px; }
+    .app .badges { display: flex; flex-wrap: wrap; gap: 10px; }
   </style>
 </head>
 <body>
@@ -279,7 +279,7 @@ function page({ c, now, closures, hits, parking, live, nearby, players }) {
       <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
-      <a href="${APP_STORE_URL}" target="_blank" rel="noopener">下載</a>
+      <a href="/install">下載</a>
       <a href="/courts-map">球場地圖</a>
       <a href="/blog">Blog</a>
     </nav>
@@ -326,10 +326,14 @@ function page({ c, now, closures, hits, parking, live, nearby, players }) {
       <p>${players > 0
         ? `已經有 ${players} 位球友在這裡打卡。`
         : "還沒有人在這裡打卡過。"}用 Tennis Nut 在這座球場打卡，記下這一場；之後就看得到還有誰常在這裡打球。把它加入最愛，有人回報場況或封場時會通知你。</p>
-      <a class="badge" href="${APP_STORE_URL}" target="_blank" rel="noopener" aria-label="從 App Store 下載 Tennis Nut">
-        <img src="/app-store-badge-zh-tw.svg" alt="從 App Store 下載" width="138" height="46" />
-      </a>
-      <p class="android">Android：<a href="/install">加入 Google Play 測試</a></p>
+      <div class="badges">
+        <a class="badge" href="${APP_STORE_URL}" target="_blank" rel="noopener" aria-label="從 App Store 下載 Tennis Nut">
+          <img src="/app-store-badge-zh-tw.svg" alt="從 App Store 下載" width="138" height="46" />
+        </a>
+        <a class="badge" href="${PLAY_STORE_URL}" target="_blank" rel="noopener" aria-label="在 Google Play 下載 Tennis Nut">
+          <img src="/google-play-badge-en.png" alt="在 Google Play 下載" width="154" height="46" />
+        </a>
+      </div>
     </section>
 
     ${nearbyHtml}

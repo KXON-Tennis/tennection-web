@@ -11,6 +11,9 @@ export const APP_STORE_ID = "6761720650";
 // 人會在 App Store Connect「分析 → 宣傳活動」以 court-page 列出。
 export const APP_STORE_URL =
   `https://apps.apple.com/app/apple-store/id${APP_STORE_ID}?pt=128739192&ct=court-page&mt=8`;
+// 2026-11-21 Google Play 正式上架，取代原本的「加入 Google Play 測試」（/install）。
+export const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=com.tns.passport&utm_source=court-page";
 
 const HEADERS = { apikey: ANON, Authorization: "Bearer " + ANON,
                   "Content-Type": "application/json" };
