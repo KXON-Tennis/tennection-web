@@ -112,17 +112,6 @@
     .app-cta b { color: var(--ink); }
     .err { color: #ff8a80; font-size: 13px; margin-top: 6px; }
 
-    /* 拿手機給當地人看 */
-    .show { position: fixed; inset: 0; z-index: 20; background: #fff; color: #111;
-      display: none; flex-direction: column; justify-content: center; align-items: center;
-      padding: 32px 24px; text-align: center; }
-    .show.on { display: flex; }
-    .show .big { font-size: clamp(34px, 9vw, 64px); font-weight: 800; line-height: 1.25; }
-    .show .addr { font-size: 18px; color: #444; margin-top: 14px; }
-    .show .q { font-size: 16px; color: #666; margin-top: 26px; }
-    .show button { margin-top: 30px; border: 1px solid #ccc; background: #f4f4f4; border-radius: 999px;
-      padding: 10px 20px; font-size: 15px; }
-
     .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib { opacity: .4; }
     /* 地圖上的搜尋框（跟 App 一樣：球場名稱＋一般地點）。 */
     .mapwrap { z-index: 3; }
@@ -180,7 +169,6 @@
       <div class="msearch" id="msearch"><input id="q" type="search" autocomplete="off" enterkeyhint="search" />
         <div class="mresults" id="mresults" hidden></div></div><div class="style-switch" id="styleSwitch"></div><div class="ortho-credit" id="orthoCredit" hidden></div></div>
   </div>
-  <div class="show" id="show" role="dialog" aria-modal="true"></div>
 
   <script>
     // 官網的旅遊入口（Kayson 2026-11-21）：被貼文帶來、還沒裝 App 的人在這裡
@@ -216,7 +204,6 @@
         balls: { free: "球免費", paid: "可租球", bring: "要自備球" },
         checked: (d) => `${d} 查證官網`, checkedNoLink: (d) => `${d} 查證`,
         foot: "以上為近期經官網查證以及球友提供之資訊。",
-        showLocal: (l) => l ? `${l}問路卡` : "問路卡", localLang: { JP: "日文", KR: "韓文", TW: "中文" }, showQ: "請問這座網球場怎麼走？", close: "關閉",
         maps: "Google 地圖導航", courtPage: "球場頁",
         tips: "旅客心得", tipsEmpty: "還沒有人分享。去過的話，告訴下一個旅客怎麼訂到的。",
         anon: "球友", visited: "打卡過", folded: "倒讚較多，已收起", unfold: "展開",
@@ -246,7 +233,6 @@
         balls: { free: "balls included", paid: "balls for rent", bring: "bring your own balls" },
         checked: (d) => `Checked on the official site, ${d}`, checkedNoLink: (d) => `Checked ${d}`,
         foot: "Recently checked on official sites and shared by players.",
-        showLocal: (l) => l ? `Directions card in ${l}` : "Directions card", localLang: { JP: "Japanese", KR: "Korean", TW: "Chinese" }, showQ: "", close: "Close",
         maps: "Directions in Google Maps", courtPage: "Court page",
         tips: "Visitor tips", tipsEmpty: "No tips yet. If you've played here, tell the next visitor how you booked.",
         anon: "A player", visited: "Checked in", folded: "Hidden: more downvotes than upvotes", unfold: "Show",
@@ -264,11 +250,8 @@
         appBtn: "Get Tennis Nut", loadFail: "Couldn't load. Refresh and try again.", langBtn: "中文",
       },
     }[LANG];
-    // 問路卡：全螢幕顯示球場名、地址和這一句，拿給司機或路人看。用球場當地的
-    // 語言，按鈕上寫出是哪一種語言——原本叫「給當地人看」，看不出按了會怎樣
-    // （2026-11-21 Kayson）。
-    const ASK_LOCAL = { JP: "このテニスコートへの行き方を教えてください。",
-      KR: "이 테니스장에 어떻게 가나요?", TW: "請問這座網球場怎麼走？" };
+    // 問路卡（全螢幕球場名＋當地語言「怎麼走」）11-21 拿掉：上面已經有 Google 地圖
+    // 導航，給司機或路人看導航畫面就好，不需要第二個方法（Kayson）。
 
     const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (m) =>
       ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
@@ -400,8 +383,7 @@
         <div class="court"><h2>${esc(n.primary)}</h2>
         ${n.secondary ? `<div class="localname">${esc(n.secondary)}</div>` : ""}
         <div class="actions">
-          <button class="btn primary" id="showBtn">📱 ${esc(T.showLocal(T.localLang[c.country]))}</button>
-          ${maps ? `<a class="btn" href="${maps}" target="_blank" rel="noopener">${esc(T.maps)}</a>` : ""}
+          ${maps ? `<a class="btn primary" href="${maps}" target="_blank" rel="noopener">${esc(T.maps)}</a>` : ""}
           <a class="btn" href="/courts/${c.id}" target="_blank" rel="noopener">${esc(T.courtPage)}</a>
         </div>
         <ul class="facts"><li class="label${open ? " open" : ""}">${esc(T.reg[v.registration] || T.reg.none)}</li>
@@ -411,7 +393,6 @@
           : esc(T.checkedNoLink(month))}</div>
         <div class="sec">${esc(T.tips)}</div><div id="tips"></div><div id="tipForm"></div></div>` + appCta();
       document.getElementById("back").onclick = () => go(state.dest, null);
-      document.getElementById("showBtn").onclick = () => showLocal(v);
       loadTips(v.court_id);
       renderTipForm(v.court_id);
     }
@@ -422,15 +403,13 @@
       view.innerHTML = `<button class="back" id="back">${esc(state.dest ? T.backList : T.change)}</button>
         <div class="court"><h2>${esc(c.name)}</h2>
         <div class="actions">
-          <button class="btn primary" id="showBtn">📱 ${esc(T.showLocal(T.localLang[c.country]))}</button>
-          ${maps ? `<a class="btn" href="${maps}" target="_blank" rel="noopener">${esc(T.maps)}</a>` : ""}
+          ${maps ? `<a class="btn primary" href="${maps}" target="_blank" rel="noopener">${esc(T.maps)}</a>` : ""}
           <a class="btn" href="/courts/${c.id}" target="_blank" rel="noopener">${esc(T.courtPage)}</a>
         </div>
         <ul class="facts"><li class="label">${esc(T.noInfo)}</li></ul>
         <p class="small">${esc(T.noInfoHint)}</p>
         <div class="sec">${esc(T.tips)}</div><div id="tips"></div><div id="tipForm"></div></div>` + appCta();
       document.getElementById("back").onclick = () => go(state.dest, null);
-      document.getElementById("showBtn").onclick = () => showLocal({ court: c });
       loadTips(c.id);
       renderTipForm(c.id);
     }
@@ -488,15 +467,6 @@
     function appCta() {
       return `<div class="app-cta">${T.appCta}<div style="margin-top:10px">
         <a class="btn primary" href="/install">${esc(T.appBtn)}</a></div></div>`;
-    }
-    function showLocal(v) {
-      const el = document.getElementById("show"), c = v.court;
-      el.innerHTML = `<div class="big">${esc(c.name)}</div>
-        ${c.address ? `<div class="addr">${esc(c.address)}</div>` : ""}
-        <div class="q">${esc(ASK_LOCAL[c.country] || "")}</div>
-        <button id="closeShow">${esc(T.close)}</button>`;
-      el.classList.add("on");
-      document.getElementById("closeShow").onclick = () => el.classList.remove("on");
     }
 
     // ── 心得 ──
