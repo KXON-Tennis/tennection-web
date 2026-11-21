@@ -420,11 +420,21 @@
       const src = map.getSource("grey");
       if (src) return src.setData(fc);
       map.addSource("grey", { type: "geojson", data: fc });
+      const before = map.getLayer("selHalo") ? "selHalo" : map.getLayer("courts") ? "courts" : undefined;
+      map.addLayer({ id: "greyHalo", type: "circle", source: "grey", filter: ["==", ["get", "sel"], 1], paint: {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, 12, 14, 22],
+        "circle-color": VOLT, "circle-opacity": 0.35, "circle-blur": 0.5 } }, before);
+      map.addLayer({ id: "greyRing", type: "circle", source: "grey", filter: ["==", ["get", "sel"], 1], paint: {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, 11, 14, 15],
+        "circle-color": "#11151a", "circle-opacity": 0.9 } }, before);
       map.addLayer({ id: "grey", type: "circle", source: "grey", paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, 2.5, 14, 6],
-        "circle-color": ["case", ["==", ["get", "sel"], 1], "#ffffff", "#8A949E"],
-        "circle-opacity": ["case", ["==", ["get", "sel"], 1], 1, 0.55],
-        "circle-stroke-color": "#11151a", "circle-stroke-width": 1 } }, map.getLayer("courts") ? "courts" : undefined);
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 9, ["case", ["==", ["get", "sel"], 1], 6, 2.5],
+          14, ["case", ["==", ["get", "sel"], 1], 10, 6]],
+        "circle-color": "#8A949E",
+        "circle-opacity": ["case", ["==", ["get", "sel"], 1], 1, 0.75],
+        "circle-stroke-color": ["case", ["==", ["get", "sel"], 1], VOLT, "#ffffff"],
+        "circle-stroke-width": ["case", ["==", ["get", "sel"], 1], 3, 1],
+        "circle-stroke-opacity": ["case", ["==", ["get", "sel"], 1], 1, 0.7] } }, before);
       map.addLayer({ id: "greyLabels", type: "symbol", source: "grey", minzoom: 13.5, layout: {
         "text-field": ["get", "name"], "text-size": 11, "text-offset": [0, 1], "text-anchor": "top" },
         paint: { "text-color": "#8A949E", "text-halo-color": "#11151a", "text-halo-width": 1 } });
@@ -556,6 +566,7 @@
     // 底圖跟 App 同一組（discovery_screen.dart _styles）：自動（Standard，光線
     // 跟著當地太陽）、街道、深色、衛星、正射影像（拉近到街區時換成當地政府航照）。
     const STANDARD = "mapbox://styles/mapbox/standard";
+    const VOLT = "#D4F542";
     const SAT = "mapbox://styles/mapbox/satellite-streets-v12";
     const STYLES = [
       { key: "auto", zh: "自動", en: "Auto", uri: STANDARD },
@@ -698,10 +709,22 @@
       const src = map.getSource("courts");
       if (src) return src.setData(geo());
       map.addSource("courts", { type: "geojson", data: geo() });
+      // 選中的球場：不改成白點（衛星、航照、淺色底上都會糊掉），保留它自己的
+      // 顏色、放大、外圈與光暈用 App 選取的那個螢光黃綠（AppTheme.tennisVolt）。
+      map.addLayer({ id: "selHalo", type: "circle", source: "courts", filter: ["==", ["get", "sel"], 1], paint: {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 12, 14, 24],
+        "circle-color": VOLT, "circle-opacity": 0.35, "circle-blur": 0.5 } });
+      // 螢光黃綠外圈外面再一圈深色：淺色底圖上黃綠會被吃掉，深色那圈讓它在
+      // 每種底圖上都有邊。
+      map.addLayer({ id: "selRing", type: "circle", source: "courts", filter: ["==", ["get", "sel"], 1], paint: {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 12, 11, 14.5, 14, 17.5],
+        "circle-color": "#11151a", "circle-opacity": 0.9 } });
       map.addLayer({ id: "courts", type: "circle", source: "courts", paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, 3.5, 11, 6, 14, 9],
-        "circle-color": ["case", ["==", ["get", "sel"], 1], "#ffffff", ["==", ["get", "open"], 1], "#8CCB6E", "#E9A23B"],
-        "circle-stroke-color": "#11151a", "circle-stroke-width": 1.5 } });
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 4, ["case", ["==", ["get", "sel"], 1], 6.5, 3.5],
+          11, ["case", ["==", ["get", "sel"], 1], 9, 6], 14, ["case", ["==", ["get", "sel"], 1], 12, 9]],
+        "circle-color": ["case", ["==", ["get", "open"], 1], "#6FBF4A", "#F0A030"],
+        "circle-stroke-color": ["case", ["==", ["get", "sel"], 1], VOLT, "#ffffff"],
+        "circle-stroke-width": ["case", ["==", ["get", "sel"], 1], 3.5, 1.6] } });
       map.addLayer({ id: "labels", type: "symbol", source: "courts", minzoom: 11.5, layout: {
         "text-field": ["get", "name"], "text-size": 12, "text-offset": [0, 1.1], "text-anchor": "top" },
         paint: { "text-color": "#F2F5F7", "text-halo-color": "#11151a", "text-halo-width": 1.2 } });
