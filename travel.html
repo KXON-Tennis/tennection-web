@@ -111,6 +111,14 @@
       background: rgba(92,154,70,.08); font-size: 13.5px; line-height: 1.55; color: var(--ink2); }
     .app-cta b { color: var(--ink); }
     .err { color: #ff8a80; font-size: 13px; margin-top: 6px; }
+    /* 心得邀請：去過的人一眼看到、知道按了會怎樣（Kayson 11-21：原本一行灰字＋灰按鈕，看不出是在邀請）。 */
+    .invite { margin-top: 12px; padding: 14px; border: 1px solid rgba(140,203,110,.35); border-radius: 12px;
+      background: rgba(92,154,70,.12); }
+    .invite b { display: block; font-size: 15.5px; color: var(--ink); margin-bottom: 4px; }
+    .invite p { margin: 0 0 12px; font-size: 13.5px; line-height: 1.55; color: var(--ink2); }
+    .invite .small { margin: 10px 0 0; }
+    .top .who { color: var(--ink2); font-size: 12.5px; max-width: 34vw; overflow: hidden;
+      text-overflow: ellipsis; white-space: nowrap; }
 
     .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib { opacity: .4; }
     /* 地圖上的搜尋框（跟 App 一樣：球場名稱＋一般地點）。 */
@@ -160,6 +168,7 @@
       <div class="top">
         <a class="brand" href="/"><img src="/app-icon.png" alt="" />Tennis Nut</a>
         <span class="sp"></span>
+        <span class="who" id="whoEl" hidden></span>
         <button class="auth" id="authBtn" hidden></button>
         <button class="lang" id="langBtn"></button>
       </div>
@@ -195,21 +204,23 @@
         title: "要去哪裡打球？", hint: "選目的地，看旅客訂得到的球場、價格和怎麼訂。",
         destCount: (n, k) => `${n} 座 · ${k} 座旅客打得到`,
         destTitle: (c, n) => `${c} · ${n} 座有旅客資訊`, change: "‹ 換目的地", backList: "‹ 回清單",
-        reg: { none: "旅客可向球場預約", walk_in: "免費，現場輪流", member: "旅客：首次自己辦會員",
-               counter: "旅客需先臨櫃登録", join_local: "旅客：跟當地球團打" },
+        reg: { none: "可直接預約", walk_in: "免費現場輪流", member: "需先辦會員",
+               counter: "需先臨櫃登記", join_local: "跟當地球團打" },
         price: (r, u) => `旅客價 ${r}／${u}`, hour: "小時", hours: (n) => `${n} 小時`, mins: (n) => `${n} 分鐘`,
         bookBy: (c) => `預約：${c}`, sep: "、", ch: { phone: "電話", web: "網頁", counter: "櫃台" },
-        ahead: (n) => `${n} 天前開放`, regFee: (f) => `首次登録 ${f}`,
+        ahead: (n) => `${n} 天前開放`, regFee: (f) => `首次登記 ${f}`,
         racket: (p) => `租拍 ${p}`, racketFree: "租拍免費",
         balls: { free: "球免費", paid: "可租球", bring: "要自備球" },
         checked: (d) => `${d} 查證官網`, checkedNoLink: (d) => `${d} 查證`,
         foot: "以上為近期經官網查證以及球友提供之資訊。",
         maps: "Google 地圖導航", courtPage: "球場頁",
-        tips: "旅客心得", tipsEmpty: "還沒有人分享。去過的話，告訴下一個旅客怎麼訂到的。",
+        tips: "旅客心得", tipsEmpty: "還沒有人分享。",
         anon: "球友", visited: "打卡過", folded: "倒讚較多，已收起", unfold: "展開",
         tipAdd: "＋ 分享你怎麼打到的", tipHint: "怎麼訂到、提前多久、要注意什麼",
         tipWho: "會附上你的名字和日期，發布後不能修改。", tipSave: "發布", cancel: "取消",
-        login: "用 Google 登入", loginToTip: "用 Google 登入後就能分享（和 App 是同一個帳號）。",
+        tipWhoNamed: (n) => `會以「${n}」和今天的日期發布，發布後不能修改。`,
+        inviteTitle: "去過這座球場嗎？", inviteBody: "告訴下一個旅客你怎麼訂到的、提前多久、要注意什麼。",
+        login: "用 Google 登入分享", loginToTip: "和 App 是同一個帳號。",
         loginToVote: "登入後才能按讚", logout: "登出",
         appleNote: "App 是用 Apple 登入的話，請在 App 裡分享。",
         notAllowed: "旅客心得是給外國球友看的：你所在國家的球場請在 App 裡補基本資料。",
@@ -224,8 +235,8 @@
         title: "Where are you playing?", hint: "Pick a destination to see courts visitors can book, prices and how to book.",
         destCount: (n, k) => `${n} courts · ${k} open to visitors`,
         destTitle: (c, n) => `${c} · ${n} courts with visitor info`, change: "‹ Change destination", backList: "‹ Back to list",
-        reg: { none: "Visitors can book with the venue", walk_in: "Free · take turns on site", member: "Visitors: sign up on your first visit",
-               counter: "Visitors: register in person first", join_local: "Visitors: join a local group" },
+        reg: { none: "Book directly", walk_in: "Free, take turns on site", member: "Sign up on first visit",
+               counter: "Register in person first", join_local: "Join a local group" },
         price: (r, u) => `Visitor price ${r} per ${u}`, hour: "hour", hours: (n) => `${n} hours`, mins: (n) => `${n} min`,
         bookBy: (c) => `Book by ${c}`, sep: ", ", ch: { phone: "phone", web: "website", counter: "front desk" },
         ahead: (n) => `opens ${n} days ahead`, regFee: (f) => `${f} sign-up on first visit`,
@@ -234,11 +245,13 @@
         checked: (d) => `Checked on the official site, ${d}`, checkedNoLink: (d) => `Checked ${d}`,
         foot: "Recently checked on official sites and shared by players.",
         maps: "Directions in Google Maps", courtPage: "Court page",
-        tips: "Visitor tips", tipsEmpty: "No tips yet. If you've played here, tell the next visitor how you booked.",
+        tips: "Visitor tips", tipsEmpty: "No tips yet.",
         anon: "A player", visited: "Checked in", folded: "Hidden: more downvotes than upvotes", unfold: "Show",
         tipAdd: "+ Share how you got to play", tipHint: "How you booked, how far ahead, what to watch out for",
         tipWho: "Posted with your name and date. Tips can't be edited after posting.", tipSave: "Post", cancel: "Cancel",
-        login: "Sign in with Google", loginToTip: "Sign in with Google to share (same account as the app).",
+        tipWhoNamed: (n) => `Posted as "${n}" with today's date. Tips can't be edited after posting.`,
+        inviteTitle: "Played here?", inviteBody: "Tell the next visitor how you booked, how far ahead, and what to watch out for.",
+        login: "Sign in with Google to share", loginToTip: "Same account as the app. ",
         loginToVote: "Sign in to vote", logout: "Sign out",
         appleNote: "If you use the app with Apple sign-in, share from the app.",
         notAllowed: "Visitor tips are for players from abroad. For courts in your own country, add details in the app.",
@@ -517,8 +530,9 @@
     async function renderTipForm(courtId) {
       const box = document.getElementById("tipForm");
       if (!session) {
-        box.innerHTML = `<p class="small" style="margin-top:12px">${esc(T.loginToTip)}<br>${esc(T.appleNote)}</p>
-          <button class="btn" id="loginTip">${esc(T.login)}</button>`;
+        box.innerHTML = `<div class="invite"><b>${esc(T.inviteTitle)}</b><p>${esc(T.inviteBody)}</p>
+          <button class="btn primary" id="loginTip">${esc(T.login)}</button>
+          <p class="small">${esc(T.loginToTip)}${esc(T.appleNote)}</p></div>`;
         document.getElementById("loginTip").onclick = login;
         return;
       }
@@ -528,10 +542,11 @@
         if (state.court !== courtId) return;
       }
       if (!canPost[courtId]) { box.innerHTML = `<p class="small" style="margin-top:12px">${esc(T.notAllowed)}</p>`; return; }
-      box.innerHTML = `<button class="btn" id="openTip" style="margin-top:12px">${esc(T.tipAdd)}</button>`;
+      box.innerHTML = `<div class="invite"><b>${esc(T.inviteTitle)}</b><p>${esc(T.inviteBody)}</p>
+        <button class="btn primary" id="openTip">${esc(T.tipAdd)}</button></div>`;
       document.getElementById("openTip").onclick = () => {
         box.innerHTML = `<textarea id="tipBody" maxlength="200" placeholder="${esc(T.tipHint)}"></textarea>
-          <p class="small">${esc(T.tipWho)}</p>
+          <p class="small">${esc(myName ? T.tipWhoNamed(myName) : T.tipWho)}</p>
           <div class="actions"><button class="btn primary" id="saveTip">${esc(T.tipSave)}</button>
           <button class="btn" id="cancelTip">${esc(T.cancel)}</button></div><div class="err" id="tipErr"></div>`;
         document.getElementById("tipBody").focus();
@@ -558,14 +573,30 @@
         options: { redirectTo: location.origin + location.pathname + location.search } });
     }
     const authBtn = document.getElementById("authBtn");
+    const whoEl = document.getElementById("whoEl");
+    // 登入後頁首顯示帳號名稱（Kayson 11-21：只有「登出」看不出登入的是誰）。
+    // 用 App 裡的名字——心得上掛的就是它；還沒有的話退回 Google 帳號的名字。
+    let myName = "";
+    async function loadMe() {
+      if (!session) { myName = ""; renderAuth(); return; }
+      const uid = session.user.id;
+      const m = session.user.user_metadata || {};
+      myName = m.full_name || m.name || session.user.email || "";
+      renderAuth();
+      const { data } = await sb.from("users").select("display_name").eq("id", uid).maybeSingle();
+      if (session?.user.id !== uid) return;
+      if (data?.display_name?.trim()) { myName = data.display_name.trim(); renderAuth(); }
+    }
     function renderAuth() {
       authBtn.hidden = !session;
       authBtn.textContent = T.logout;
+      whoEl.hidden = !session || !myName;
+      whoEl.textContent = myName;
     }
     authBtn.onclick = async () => { await sb.auth.signOut(); };
     sb.auth.onAuthStateChange((_e, s) => {
       const changed = !!s !== !!session; session = s; canPost = {};
-      renderAuth();
+      if (changed) loadMe(); else renderAuth();
       if (changed && state.court) { renderTipForm(state.court); loadTips(state.court); }
     });
 
@@ -861,7 +892,7 @@
         sb.auth.getSession(),
       ]);
       if (d.error || v.error) { view.innerHTML = `<p class="hint">${esc(T.loadFail)}</p>`; return; }
-      DESTS = d.data; ALL = v.data.filter((x) => x.court); session = s.data.session; renderAuth();
+      DESTS = d.data; ALL = v.data.filter((x) => x.court); session = s.data.session; loadMe();
       parsePath(); render(); fitMap();
     })();
   </script>
