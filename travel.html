@@ -123,8 +123,11 @@
     .style-switch button { flex: 0 0 auto; background: none; border: 0; color: var(--ink2); font-size: 12px;
       padding: 5px 9px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
     .style-switch button.on { background: rgba(255,255,255,.14); color: var(--ink); font-weight: 700; }
-    .ortho-credit { position: absolute; right: 8px; bottom: 26px; z-index: 3; font-size: 11px; color: #fff;
-      background: rgba(0,0,0,.55); padding: 2px 7px; border-radius: 6px; }
+    /* 跟 App 的 _OrthoCreditTag 一樣：左下、小字、半透明黑底；香港前面放地政總署標誌。 */
+    .ortho-credit { position: absolute; left: 6px; bottom: 30px; z-index: 3; font-size: 10.5px; color: #fff;
+      background: rgba(0,0,0,.45); padding: 2px 6px; border-radius: 4px; display: flex; align-items: center; gap: 4px; }
+    .ortho-credit[hidden] { display: none; }
+    .ortho-credit img { width: 15px; height: 15px; border-radius: 2px; }
 
     @media (max-width: 760px) {
       .layout { grid-template-columns: 1fr; grid-template-rows: 36vh 1fr; }
@@ -563,7 +566,7 @@
     ];
     let styleIdx = (() => { try { const i = STYLES.findIndex((x) => x.key === localStorage.getItem("travelStyle"));
       return i >= 0 ? i : 0; } catch { return 0; } })();
-    // 和 App 的 _orthoRegions 同一份（香港要放地政總署標誌，網頁先不接）。
+    // 和 App 的 _orthoRegions 同一份。
     const ORTHO_MIN_ZOOM = 13;
     const JP_BOXES = [[128.5, 30.9, 134.0, 34.75], [130.8, 34.75, 134.0, 36.5], [134.0, 32.5, 142.2, 41.6],
       [139.3, 41.3, 146.0, 45.6], [122.9, 24.0, 131.4, 30.9]];
@@ -571,15 +574,21 @@
       { code: "TW", tiles: "https://wmts.nlsc.gov.tw/wmts/PHOTO2/default/GoogleMapsCompatible/{z}/{y}/{x}",
         boxes: [[119.90, 21.85, 122.10, 25.35], [119.30, 23.15, 119.75, 23.85], [118.19, 24.38, 118.48, 24.53],
           [119.89, 25.93, 120.04, 26.25], [120.46, 26.34, 120.53, 26.39]],
-        area: [[118.0, 21.5, 122.2, 26.4]], maxzoom: 20, credit: "© 內政部國土測繪中心" },
+        area: [[118.0, 21.5, 122.2, 26.4]], maxzoom: 20, credit: "© 內政部國土測繪中心",
+        zh: "國土測繪中心", en: "NLSC" },
+      // 地政總署的使用條款：地圖上要有地政總署標誌與這句版權聲明。
+      { code: "HK", tiles: "https://mapapi.hkmapservice.gov.hk/gs/api/v1.0.0/xyz/imagery/WGS84/{z}/{x}/{y}.png",
+        boxes: [[113.82, 22.15, 113.97, 22.42], [113.97, 22.15, 114.13, 22.50], [114.13, 22.15, 114.45, 22.54]],
+        area: [[113.8, 22.1, 114.5, 22.6]], maxzoom: 20, credit: "Aerial Photograph from Lands Department",
+        logo: "/landsd-logo.jpg", zh: "地政總署", en: "Lands Department" },
       { code: "JP", tiles: "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg",
-        boxes: JP_BOXES, area: JP_BOXES, maxzoom: 18, credit: "出典：国土地理院" },
+        boxes: JP_BOXES, area: JP_BOXES, maxzoom: 18, credit: "出典：国土地理院", zh: "国土地理院", en: "GSI Japan" },
       { code: "SG", tiles: "https://www.onemap.gov.sg/maps/tiles/Satellite/{z}/{x}/{y}.png",
         boxes: [[103.60, 1.20, 104.09, 1.47]], area: [[103.55, 1.13, 104.1, 1.48]], maxzoom: 19,
-        credit: "OneMap © Singapore Land Authority" },
+        credit: "OneMap © Singapore Land Authority", zh: "OneMap", en: "OneMap" },
       { code: "AU-NSW", tiles: "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Imagery/MapServer/tile/{z}/{y}/{x}",
         boxes: [[140.99, -37.51, 153.65, -28.15]], area: [[140.99, -37.51, 153.65, -28.15]], maxzoom: 20,
-        credit: "© Spatial Services NSW" },
+        credit: "© Spatial Services NSW", zh: "新南威爾斯州政府", en: "NSW Spatial Services" },
     ];
     const inBox = (b, lat, lng) => lng >= b[0] && lat >= b[1] && lng <= b[2] && lat <= b[3];
     function addOrtho() {
@@ -595,15 +604,18 @@
       });
     }
     // 出處：正射影像開著、拉近到看得到航照、而且畫面中心在那個地方時才標。
+    // 跟 App 一樣：選單上寫「正射影像（國土測繪中心）」，畫面中心不在任何
+    // 一家政府航照範圍內時不列這個選項（那裡它就只是衛星）。
+    const orthoHere = () => { if (!map) return null; const c = map.getCenter();
+      return ORTHO.find((x) => x.area.some((b) => inBox(b, c.lat, c.lng))) || null; };
+    let lastOrthoCode;
     function orthoCredit() {
       const el = document.getElementById("orthoCredit");
-      let r = null;
-      if (map && STYLES[styleIdx].key === "ortho" && map.getZoom() >= ORTHO_MIN_ZOOM) {
-        const c = map.getCenter();
-        r = ORTHO.find((x) => x.area.some((b) => inBox(b, c.lat, c.lng)));
-      }
-      el.textContent = r ? r.credit : "";
+      const here = orthoHere();
+      const r = STYLES[styleIdx].key === "ortho" && map.getZoom() >= ORTHO_MIN_ZOOM ? here : null;
+      el.innerHTML = r ? `${r.logo ? `<img src="${r.logo}" alt="" />` : ""}${esc(r.credit)}` : "";
       el.hidden = !r;
+      if ((here?.code ?? null) !== lastOrthoCode) { lastOrthoCode = here?.code ?? null; renderStyleSwitch(); }
     }
     // 太陽高度（度）：跟 App 的 _sunPosition 同一個判準——≥8° 白天，-6°～8°
     // 上午黎明下午黃昏，更低夜晚。用經緯度與 UTC 算，跟瀏覽器時區無關。
@@ -646,7 +658,13 @@
     }
     function renderStyleSwitch() {
       const el = document.getElementById("styleSwitch");
-      el.innerHTML = STYLES.map((x, i) => `<button class="${i === styleIdx ? "on" : ""}" data-i="${i}">${esc(x[LANG])}</button>`).join("");
+      const here = orthoHere();
+      el.innerHTML = STYLES.map((x, i) => {
+        if (x.key === "ortho" && !here && i !== styleIdx) return "";
+        const label = x.key === "ortho" && here
+          ? (LANG === "zh" ? `正射影像（${here.zh}）` : `Orthophoto (${here.en})`) : x[LANG];
+        return `<button class="${i === styleIdx ? "on" : ""}" data-i="${i}">${esc(label)}</button>`;
+      }).join("");
       el.querySelectorAll("button").forEach((b) => b.onclick = () => setStyle(+b.dataset.i));
     }
 
