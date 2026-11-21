@@ -796,7 +796,11 @@
           b.title = on ? (LANG === "zh" ? "平面" : "Flat view") : (LANG === "zh" ? "立體" : "3D view"); };
         b.onclick = () => {
           const on = map.getPitch() <= 10;
-          map.easeTo(on ? { pitch: 60, bearing: -20, duration: 900 } : { pitch: 0, bearing: 0, duration: 700 });
+          // 3D 順便拉近：開著一座球場就對準它拉到看得清地標；在清單／城市就近一級。
+          const at = openCourtLngLat();
+          map.easeTo(!on ? { pitch: 0, bearing: 0, duration: 700 }
+            : at ? { pitch: 60, bearing: -20, center: at, zoom: Math.max(map.getZoom(), COURT_ZOOM_3D), duration: 1200 }
+            : { pitch: 60, bearing: -20, zoom: Math.min(map.getZoom() + 1, COURT_ZOOM_3D), duration: 1000 });
           try { localStorage.setItem("travel3d", on ? "1" : "0"); } catch {}
         };
         map.on("pitchend", sync); sync();
@@ -874,11 +878,17 @@
       if (v && v.court.lat != null)
         hoverTimer = setTimeout(() => map.easeTo({ center: [v.court.lng, v.court.lat], duration: 500 }), 150);
     }
+    // 3D 看單一球場時拉到看得清周邊地標的距離（Kayson 11-21）。
+    const COURT_ZOOM_3D = 16;
+    function openCourtLngLat() {
+      const v = state.court && (ALL.find((x) => x.court_id === state.court) || { court: GREY.get(state.court) });
+      return v && v.court && v.court.lat != null ? [v.court.lng, v.court.lat] : null;
+    }
     function fitMap() {
       paintMap(); paintGrey();
       if (!mapReady || !ALL.length) return;
-      const v = state.court && (ALL.find((x) => x.court_id === state.court) || { court: GREY.get(state.court) });
-      if (v && v.court && v.court.lat != null) return map.flyTo({ center: [v.court.lng, v.court.lat], zoom: 14 });
+      const at = openCourtLngLat();
+      if (at) return map.flyTo({ center: at, zoom: map.getPitch() > 10 ? COURT_ZOOM_3D : 14 });
       const pts = ALL.filter((x) => (!state.dest || x.destination === state.dest) && x.court.lat != null);
       if (!pts.length) return;
       const b = new mapboxgl.LngLatBounds();
