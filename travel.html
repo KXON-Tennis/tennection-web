@@ -287,13 +287,18 @@
     const OPEN = new Set(["none", "walk_in"]);
     const ORDER = ["none", "walk_in", "member", "counter", "join_local"];
     const nf = new Intl.NumberFormat(LANG === "zh" ? "zh-TW" : "en");
-    const money = (cur, n) => ({ JPY: "¥", KRW: "₩", TWD: "NT$" }[cur] ?? (cur ? cur + " " : "")) + nf.format(n);
+    const money = (cur, n) => ({ JPY: "¥", KRW: "₩", TWD: "NT$", HKD: "HK$" }[cur] ?? (cur ? cur + " " : "")) + nf.format(n);
 
+    // 跟 App 的 CourtVisitorInfo.namesFor 同一套：當地語言名字以我們查過的為準
+    // （香港有些點的基本資料名稱是隔壁學校）；介面語言就是當地語言時第二行放英文。
+    const LOCAL_LANG = { TW: "zh", HK: "zh", MO: "zh", JP: "ja", KR: "ko" };
     function namesFor(v) {
-      const local = v.court.name, tr = (v.names || {})[LANG];
+      const n = v.names || {}, ll = LOCAL_LANG[v.court.country];
+      const local = (ll && n[ll]) || v.court.name, tr = n[LANG], en = n.en;
+      const other = (shown, alt) => (alt && alt !== shown ? alt : null);
+      if (tr && LANG === ll) return { primary: tr, secondary: other(tr, en) };
       if (tr && tr !== local) return { primary: tr, secondary: local };
-      const en = (v.names || {}).en;
-      return { primary: local, secondary: en && en !== local ? en : null };
+      return { primary: local, secondary: other(local, en) };
     }
     const destName = (d) => (d.names || {})[LANG] || (d.names || {}).en || d.code;
     function priceLine(v) {
