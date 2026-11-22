@@ -310,7 +310,7 @@
             "title": "Challenge levels and new stages",
             "body": "Every stage is tagged Beginner to Advanced, so you can start wherever fits. New wall volley and line-change rally challenges, plus 10-ball starter stages for rally and volley.\n\nWhen you finish with a partner, they witness it and you both pass together; passing with different partners shows as ×N. Passing earns nuts, and jumping to a higher stage counts the ones below it too.",
             "shot": {
-              "src": "/shot-2760-challenge.jpg",
+              "src": "/shot-2760-challenge-en.jpg",
               "alt": "Rally challenge: a 3D animation of two players rallying, the rule, and five stages from 10 to 50 balls with their levels",
               "caption": "Every challenge has an animation, and each stage shows its level."
             }
@@ -347,7 +347,8 @@
         ],
         "outdated": [
           "This layer was later renamed “Last 24h”, and practices logged the next day count too."
-        ]
+        ],
+        "image": "/shot-2760-challenge-en.jpg"
       },
       "image": "/shot-2760-challenge.jpg",
       "outdated": [
@@ -465,7 +466,7 @@
             "title": "Immersive mode",
             "body": "A 3D map from the center button, showing nearby players who have it open. Tap someone to add them, record your match or plan the next one.",
             "shot": {
-              "src": "/shot-2690-immersive.jpg",
+              "src": "/shot-2690-immersive-en.jpg",
               "alt": "Immersive mode"
             }
           },
@@ -474,7 +475,7 @@
             "title": "Gear photos",
             "body": "Tap a card in your bag and choose Take a photo. About a minute later it becomes a clean catalog-style photo that friends see on your player card.",
             "shot": {
-              "src": "/shot-2690-bag.jpg",
+              "src": "/shot-2690-bag-en.jpg",
               "alt": "Gear photos"
             }
           },
@@ -483,7 +484,7 @@
             "title": "Hours on every racket",
             "body": "Practices and matches use your main racket and shoes, and keep the strings and tension you played with. Compare hours and wins for each string setup.",
             "shot": {
-              "src": "/shot-2690-racket-usage.jpg",
+              "src": "/shot-2690-racket-usage-en.jpg",
               "alt": "Hours on every racket"
             }
           },
@@ -492,7 +493,7 @@
             "title": "Records and consultations moved",
             "body": "Update: My consultations and the chat with the developer have since moved to Get help, at the bottom of Home.\n\nThe tab bar now has Map and Records. Practices and matches share one timeline. Consultations moved to My consultations in your passport.",
             "shot": {
-              "src": "/shot-2690-records.jpg",
+              "src": "/shot-2690-records-en.jpg",
               "alt": "Records and consultations moved"
             }
           },
@@ -506,7 +507,8 @@
           "Everything updates the moment you save",
           "Room for 10 rackets and 6 pairs of shoes",
           "Fixed an occasional Android map crash"
-        ]
+        ],
+        "image": "/shot-2690-bag-en.jpg"
       },
       "image": "/shot-2690-bag.jpg"
     },

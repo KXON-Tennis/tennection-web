@@ -329,7 +329,8 @@ ${
         title: `${src.title} · Tennis Nut`,
         description: src.summary,
         canonical: SITE + t.rel(r.build),
-        image: r.image || '/app-features.png',
+        // 英文版可以有自己的縮圖（en.image），截圖是英文介面。
+        image: src.image || r.image || '/app-features.png',
         // 只有兩邊都有的版本才掛 hreflang。沒有英文版的那幾篇宣告一個
         // 不存在的網址，等於叫搜尋引擎去撞 404。
         alt: r.en
