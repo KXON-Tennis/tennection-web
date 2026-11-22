@@ -14,6 +14,28 @@
       "permanent": true
     },
     {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "tennisnut.net"
+        }
+      ],
+      "destination": "https://tennisnut.kxon.net/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.tennisnut.net"
+        }
+      ],
+      "destination": "https://tennisnut.kxon.net/$1",
+      "permanent": true
+    },
+    {
       "source": "/whats-new",
       "destination": "/blog",
       "permanent": true
