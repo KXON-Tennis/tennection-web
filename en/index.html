@@ -322,6 +322,9 @@
        the opposite. Below 780px the ring cannot hold four readable cards,
        so it degrades to a vertical list — the loop is then carried by the
        copy of the last step rather than by the drawing. */
+    .explainer { display:flex; justify-content:center; margin: 28px auto 8px; }
+    .explainer video { width: min(78vw, 380px); height: auto; aspect-ratio: 9 / 16; border-radius: 28px; background:#F7FBF2;
+      box-shadow: 0 30px 60px -28px rgba(45, 90, 52, 0.45); border: 1px solid #DCEAC9; cursor: pointer; display:block; }
     .wheel {
       position: relative;
       width: min(620px, 100%);
@@ -1806,63 +1809,24 @@
           Report on courts, log your practices, share what you know. That earns nuts, and nuts buy expert advice and app features.
         </p>
 
-        <div class="wheel">
-          <svg class="wheel-ring" viewBox="0 0 100 100" aria-hidden="true">
-            <!-- Four arcs at r=36, each spanning the gap between two cards and
-                 ending in an arrowhead, so the flow reads clockwise. Solid on
-                 the right half (what you do on court), dashed volt on the left
-                 (what comes back). -->
-            <path class="ring-solid" d="M66.90 18.22A36 36 0 0 1 81.78 33.10" />
-            <path class="ring-head-solid" d="M82.89 35.36 78.41 32.05 82.65 29.79Z" />
-
-            <path class="ring-solid" d="M81.78 66.90A36 36 0 0 1 66.90 81.78" />
-            <path class="ring-head-solid" d="M64.64 82.89 67.95 78.41 70.21 82.65Z" />
-
-            <path class="ring-dash" d="M33.10 81.78A36 36 0 0 1 18.22 66.90" />
-            <path class="ring-head-dash" d="M17.11 64.64 21.59 67.95 17.35 70.21Z" />
-
-            <path class="ring-dash" d="M18.22 33.10A36 36 0 0 1 33.10 18.22" />
-            <path class="ring-head-dash" d="M35.36 17.11 32.05 21.59 29.79 17.35Z" />
-          </svg>
-
-          <div class="wheel-hub"><img src="/app-icon.png" alt="" width="96" height="96" /></div>
-
-          <div class="spoke sp-1">
-            <div class="sp-top">
-              <span class="sp-ic"><svg><use href="#ic-report" /></svg></span>
-              <span class="sp-n">01</span>
-            </div>
-            <h4>Report · Log</h4>
-            <p>Report court conditions, log practices and matches</p>
-          </div>
-
-          <div class="spoke sp-2">
-            <div class="sp-top">
-              <span class="sp-ic volt"><svg><use href="#ic-nut" /></svg></span>
-              <span class="sp-n">02</span>
-            </div>
-            <h4>Earn nuts</h4>
-            <p>Every contribution counts</p>
-          </div>
-
-          <div class="spoke sp-3">
-            <div class="sp-top">
-              <span class="sp-ic"><svg><use href="#ic-chat" /></svg></span>
-              <span class="sp-n">03</span>
-            </div>
-            <h4>Ask an expert</h4>
-            <p>Get an answer written for you</p>
-          </div>
-
-          <div class="spoke sp-4">
-            <div class="sp-top">
-              <span class="sp-ic"><svg><use href="#ic-ball" /></svg></span>
-              <span class="sp-n">04</span>
-            </div>
-            <h4>Back to the court</h4>
-            <p>Play with the answer, then report again</p>
-          </div>
+        <!-- Explainer video replaces the flywheel diagram: plays when in view, pauses when not; reduced-motion users get controls -->
+        <div class="explainer">
+          <video id="explainerVideo" src="/explainer-en.mp4" poster="/explainer-en-poster.jpg"
+                 muted loop playsinline preload="none" width="720" height="1280"
+                 aria-label="Tennis Nut in one minute: find a court, meet the people who play there, check in, log the session, clear a challenge, report the court, ask an expert, log your gear, play abroad"></video>
         </div>
+        <script>
+          (function () {
+            var v = document.getElementById('explainerVideo');
+            if (!v) return;
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.controls = true; return; }
+            if (!('IntersectionObserver' in window)) { v.controls = true; return; }
+            new IntersectionObserver(function (es) {
+              es.forEach(function (e) { if (e.isIntersecting) { v.play().catch(function () { v.controls = true; }); } else { v.pause(); } });
+            }, { threshold: 0.5 }).observe(v);
+            v.addEventListener('click', function () { v.paused ? v.play() : v.pause(); });
+          })();
+        </script>
 
         <p class="wheel-kicker">
           <span class="wk-ic" aria-hidden="true"><svg><use href="#ic-nut" /></svg></span>
