@@ -292,13 +292,14 @@
     // 跟 App 的 CourtVisitorInfo.namesFor 同一套：當地語言名字以我們查過的為準
     // （香港有些點的基本資料名稱是隔壁學校）；介面語言就是當地語言時第二行放英文。
     const LOCAL_LANG = { TW: "zh", HK: "zh", MO: "zh", JP: "ja", KR: "ko", AU: "en", NZ: "en", SG: "en", US: "en", GB: "en", CA: "en" };  // 同 App 的 Court.localLanguage
+    // 同 App 的 Court.nameLines（Kayson 2026-11-22）：上面一律原文名稱，介面語言
+    // 跟當地語言不同時下面多一行譯名（我們查過的 → 英文介面用正式英文名）。
     function namesFor(v) {
       const n = v.names || {}, ll = LOCAL_LANG[v.court.country];
-      const local = (ll && n[ll]) || v.court.name, tr = n[LANG], en = n.en;
-      const other = (shown, alt) => (alt && alt !== shown ? alt : null);
-      if (tr && LANG === ll) return { primary: tr, secondary: other(tr, en) };
-      if (tr && tr !== local) return { primary: tr, secondary: local };
-      return { primary: local, secondary: other(local, en) };
+      const primary = (ll && n[ll]) || v.court.name;
+      if (LANG === ll) return { primary, secondary: null };
+      const t = n[LANG] || (LANG === "en" ? v.court.name_en : null);
+      return { primary, secondary: t && t !== primary ? t : null };
     }
     const destName = (d) => (d.names || {})[LANG] || (d.names || {}).en || d.code;
     function priceLine(v) {
@@ -978,7 +979,7 @@
       view.innerHTML = `<p class="hint">…</p>`;
       const [d, v, s] = await Promise.all([
         sb.from("visitor_destinations").select("*").order("sort", { ascending: true }),
-        sb.from("court_visitor_info").select("*,court:courts(id,name,lat,lng,country,address)"),
+        sb.from("court_visitor_info").select("*,court:courts(id,name,name_en,lat,lng,country,address)"),
         sb.auth.getSession(),
       ]);
       if (d.error || v.error) { view.innerHTML = `<p class="hint">${esc(T.loadFail)}</p>`; return; }
