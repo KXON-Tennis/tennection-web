@@ -291,7 +291,7 @@
 
     // 跟 App 的 CourtVisitorInfo.namesFor 同一套：當地語言名字以我們查過的為準
     // （香港有些點的基本資料名稱是隔壁學校）；介面語言就是當地語言時第二行放英文。
-    const LOCAL_LANG = { TW: "zh", HK: "zh", MO: "zh", JP: "ja", KR: "ko" };
+    const LOCAL_LANG = { TW: "zh", HK: "zh", MO: "zh", JP: "ja", KR: "ko", AU: "en", NZ: "en", SG: "en", US: "en", GB: "en", CA: "en" };  // 同 App 的 Court.localLanguage
     function namesFor(v) {
       const n = v.names || {}, ll = LOCAL_LANG[v.court.country];
       const local = (ll && n[ll]) || v.court.name, tr = n[LANG], en = n.en;

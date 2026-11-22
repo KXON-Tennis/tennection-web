@@ -11,7 +11,7 @@
 import {
   APP_STORE_ID, APP_STORE_URL, PLAY_STORE_URL, ACCESS, CLOSURE_KINDS, COND, HIT_FORMATS,
   SURFACES, VENUE_KINDS, condEntries, courtUrl, distanceM, escapeHtml as h,
-  isIndexable, isPlaceholderName, rest, rpcOr, statusFresh,
+  isIndexable, isPlaceholderName, LOCAL_LANG, rest, rpcOr, statusFresh, translateCourtText,
 } from "./_lib/courts.mjs";
 
 const COURT_FIELDS = [
@@ -50,7 +50,9 @@ function kindLabel(c) {
   return "網球場";
 }
 
-function factsList(c) {
+// 國外球場：原文照舊，下面附中文機器翻譯（tr 是 translate-court-text 的回應）。
+function factsList(c, tr = {}) {
+  const t = (field) => (tr[field] ? { tr: tr[field] } : {});
   const facts = [];
   if (c.venue_kind === "court" || !c.venue_kind) {
     const s = SURFACES[c.surface_code];
@@ -60,11 +62,11 @@ function factsList(c) {
   if (c.light != null) facts.push(["夜間照明", c.light ? "有" : "沒有"]);
   if (c.is_indoor) facts.push(["室內", "是"]);
   if (ACCESS[c.access]) facts.push(["開放方式", ACCESS[c.access]]);
-  if (c.hours_text) facts.push(["開放時間", c.hours_text]);
-  if (c.pricing_note) facts.push(["費用", c.pricing_note]);
+  if (c.hours_text) facts.push(["開放時間", c.hours_text, t("hours_text")]);
+  if (c.pricing_note) facts.push(["費用", c.pricing_note, t("pricing_note")]);
   if (c.rental === "yes") facts.push(["租借", "可租借"]);
   if (c.rental === "no") facts.push(["租借", "不開放租借"]);
-  if (c.opening_notes) facts.push(["備註", c.opening_notes]);
+  if (c.opening_notes) facts.push(["備註", c.opening_notes, t("opening_notes")]);
   return facts;
 }
 
@@ -111,7 +113,7 @@ function describe(c) {
   return `${c.name}：${bits.join("，")}。即時場況與封閉期間由在現場的球友回報。`;
 }
 
-function page({ c, now, closures, hits, parking, live, nearby, players }) {
+function page({ c, now, closures, hits, parking, live, nearby, players, tr = {} }) {
   const url = courtUrl(c.id);
   const indexable = isIndexable(c);
   const kind = kindLabel(c);
@@ -167,9 +169,11 @@ function page({ c, now, closures, hits, parking, live, nearby, players }) {
     : "";
 
   // ── 資訊 ──
-  const facts = factsList(c);
-  const factsHtml = `<dl class="facts">` + facts.map(([k, v]) =>
-    `<dt>${h(k)}</dt><dd>${h(v)}</dd>`).join("") + `</dl>`;
+  const facts = factsList(c, tr);
+  const translated = facts.some(([, , x]) => x?.tr);
+  const factsHtml = `<dl class="facts">` + facts.map(([k, v, x]) =>
+    `<dt>${h(k)}</dt><dd>${h(v)}${x?.tr ? `<span class="tr">${h(x.tr)}</span>` : ""}</dd>`).join("") +
+    `</dl>` + (translated ? `<p class="tr-note">機器翻譯</p>` : "");
   const verify = c.community_verify_count > 0
     ? `<p class="verified">✓ ${c.community_verify_count} 位球友在現場確認過這些資料</p>` : "";
 
@@ -251,6 +255,8 @@ function page({ c, now, closures, hits, parking, live, nearby, players }) {
     .facts { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 0; }
     .facts dt { color: var(--text-tertiary); }
     .facts dd { margin: 0; color: var(--text-primary); white-space: pre-line; }
+    .facts .tr { display: block; margin-top: 2px; color: var(--text-tertiary); font-size: 0.9em; }
+    .tr-note { margin: 4px 0 0; color: var(--text-tertiary); font-size: 12px; text-align: right; }
     .verified { color: var(--accent-d); font-size: 14px; margin: 12px 0 0; }
     .players { color: var(--accent-d); font-weight: 600; margin: -6px 0 14px; }
     .closures, .hits, .plain, .nearby { list-style: none; margin: 0; padding: 0; }
@@ -383,7 +389,9 @@ export default async function handler(req, res) {
   if (!c || c.lat == null || c.lng == null) return notFound(res);
 
   const box = 0.03; // 約 3 公里見方
-  const [closures, hits, parking, live, around, footprints] = await Promise.all([
+  const needsTr = LOCAL_LANG[c.country] && LOCAL_LANG[c.country] !== "zh" &&
+    (c.hours_text || c.pricing_note || c.opening_notes);
+  const [closures, hits, parking, live, around, footprints, tr] = await Promise.all([
     rpcOr("court_closures_for", { p_court_ids: [id] }, []),
     rpcOr("public_hits_at_court", { p_court_id: id }, []),
     rest(`court_parking?court_id=eq.${id}&select=name,distance_m&order=rank&limit=3`).catch(() => []),
@@ -393,6 +401,7 @@ export default async function handler(req, res) {
          `&lng=gte.${c.lng - box}&lng=lte.${c.lng + box}&id=neq.${id}&limit=200`).catch(() => []),
     // 只有總數，說不出任何人是誰（20261004191116 開給 anon）。
     rpcOr("court_footprint_count", { p_court_id: id }, []),
+    needsTr ? translateCourtText(id, "zh") : {},
   ]);
 
   const nearby = around
@@ -401,7 +410,7 @@ export default async function handler(req, res) {
     .slice(0, 6);
 
   const html = page({
-    c, now: Date.now(),
+    c, now: Date.now(), tr: tr && typeof tr === "object" && !tr.error ? tr : {},
     closures: Array.isArray(closures) ? closures : [],
     hits: Array.isArray(hits) ? hits : [],
     parking: Array.isArray(parking) ? parking : [],

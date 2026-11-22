@@ -24,6 +24,24 @@ export async function rest(path) {
   return r.json();
 }
 
+// 球場當地的語言（跟 App 的 Court.localLanguage 同一份）。不在表裡＝不翻譯。
+export const LOCAL_LANG = { TW: "zh", HK: "zh", MO: "zh", JP: "ja", KR: "ko",
+  AU: "en", NZ: "en", SG: "en", US: "en", GB: "en", CA: "en" };
+
+/** 國外球場自由文字的機器翻譯（Edge Function translate-court-text，有快取）。
+ *  第一次翻要等 Gemini，所以限 4 秒；逾時或失敗就只顯示原文。 */
+export async function translateCourtText(courtId, lang) {
+  try {
+    const r = await fetch(`${SUPABASE_URL}/functions/v1/translate-court-text`, {
+      method: "POST", headers: HEADERS, signal: AbortSignal.timeout(4000),
+      body: JSON.stringify({ court_id: courtId, lang }),
+    });
+    return r.ok ? await r.json() : {};
+  } catch {
+    return {};
+  }
+}
+
 /** Optional data: a failed call leaves its section out instead of failing the page. */
 export async function rpcOr(name, body, fallback) {
   try {
