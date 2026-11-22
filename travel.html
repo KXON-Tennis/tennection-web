@@ -287,7 +287,7 @@
     const OPEN = new Set(["none", "walk_in"]);
     const ORDER = ["none", "walk_in", "member", "counter", "join_local"];
     const nf = new Intl.NumberFormat(LANG === "zh" ? "zh-TW" : "en");
-    const money = (cur, n) => ({ JPY: "¥", KRW: "₩", TWD: "NT$", HKD: "HK$", AUD: "A$", SGD: "S$" }[cur] ?? (cur ? cur + " " : "")) + nf.format(n);
+    const money = (cur, n) => ({ JPY: "¥", KRW: "₩", TWD: "NT$", HKD: "HK$", AUD: "A$", SGD: "S$", IDR: "Rp " }[cur] ?? (cur ? cur + " " : "")) + nf.format(n);
 
     // 跟 App 的 CourtVisitorInfo.namesFor 同一套：當地語言名字以我們查過的為準
     // （香港有些點的基本資料名稱是隔壁學校）；介面語言就是當地語言時第二行放英文。
