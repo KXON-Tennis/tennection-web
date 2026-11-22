@@ -240,6 +240,9 @@
     @media (min-width: 820px) {
       .creed-grid { grid-template-columns: repeat(3, 1fr); }
     }
+    @media (min-width: 820px) {
+      .creed-grid.four { grid-template-columns: repeat(2, 1fr); }
+    }
 
     /* Prose, so no box: an eyebrow, a claim, two lines. The hairline above it
        is the only rule on the page that still separates narrative — it marks
@@ -370,6 +373,8 @@
        the opposite. Below 780px the ring cannot hold four readable cards,
        so it degrades to a vertical list — the loop is then carried by the
        copy of the last step rather than by the drawing. */
+    .band-video { margin-top: 40px; border-radius: 28px; }
+    .band-video .sec-h { text-wrap: balance; }
     .explainer { display:flex; justify-content:center; margin: 28px auto 8px; }
     .explainer video { width: min(78vw, 380px); height: auto; aspect-ratio: 9 / 16; border-radius: 28px; background:#F7FBF2;
       box-shadow: 0 30px 60px -28px rgba(45, 90, 52, 0.45); border: 1px solid #DCEAC9; cursor: pointer; display:block; }
@@ -1697,91 +1702,42 @@
       </div>
     </section>
 
-    <!-- ② 三大價值 -->
-    <section class="section">
-      <h2 class="section-h">Tennis Nut 只做三件事</h2>
-      <p class="section-sub">讓網球生活更容易開始，也更容易持續。</p>
+    <!-- ── 理念短片（淡綠帶）：首屏之後第一段，影片本身就是說明，不再配字 ── -->
+    <div class="band band-tint band-video">
+      <section class="sect">
+        <h2 class="sec-h">每次上場，都算數</h2>
 
-      <div class="value-grid">
-        <div class="value">
-          <span class="v-no">01</span>
-          <h3>找得到場</h3>
-          <p>不只看地址，也能看到球友回報過的場地狀況、照明、停車與使用情境。</p>
-          <div class="v-art">
-            <div class="vm-canvas">
-              <span class="vm-pin p1"></span>
-              <span class="vm-pin p2"></span>
-              <span class="vm-pin on"></span>
-            </div>
-            <div class="v-chips">
-              <span class="chip ok">可以打</span>
-              <span class="chip warn">積水</span>
-              <span class="chip">夜間照明</span>
-            </div>
-          </div>
+        <!-- 理念短片取代飛輪圖：進入畫面才播、離開就停；偏好減少動態的人不自動播、給控制列 -->
+        <div class="explainer">
+          <video id="explainerVideo" src="/explainer-zh.mp4" poster="/explainer-zh-poster.jpg"
+                 muted loop playsinline preload="none" width="720" height="1280"
+                 aria-label="Tennis Nut 短片：找場地、認識同一座球場的人、打卡、打球紀錄、挑戰、回報、請教專家、登錄裝備、出國打球"></video>
         </div>
+        <script>
+          (function () {
+            var v = document.getElementById('explainerVideo');
+            if (!v) return;
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.controls = true; return; }
+            if (!('IntersectionObserver' in window)) { v.controls = true; return; }
+            new IntersectionObserver(function (es) {
+              es.forEach(function (e) { if (e.isIntersecting) { v.play().catch(function () { v.controls = true; }); } else { v.pause(); } });
+            }, { threshold: 0.5 }).observe(v);
+            v.addEventListener('click', function () { v.paused ? v.play() : v.pause(); });
+          })();
+        </script>
 
-        <div class="value">
-          <span class="v-no">02</span>
-          <h3>找得到人</h3>
-          <p>排出你有空的時段，或在地圖上看哪座球場有人在找球友。時間、打法、用球發起時就講好，第一次加入也不尷尬。</p>
-          <div class="v-art">
-            <div>
-              <div class="vh-when">今天 21:40 · 竹北星空網球場</div>
-              <div class="vh-what">自由對打 · 一般黃球</div>
-            </div>
-            <div class="v-chips">
-              <span class="chip">雙打</span>
-              <span class="chip">歡迎第一次來</span>
-            </div>
-            <div class="vh-who">
-              <span class="av">K</span>
-              <span class="av">J</span>
-              <span class="av">C</span>
-              <span class="vh-n">3 人要去</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="value">
-          <span class="v-no">03</span>
-          <h3>卡關找得到專家</h3>
-          <p>用堅果向教練、體能訓練師或其他專家提問，先問對一個問題，少走一點彎路。</p>
-          <div class="v-art">
-            <div class="vc-row">
-              <img class="vc-av" src="/expert-coach.jpg" alt="" width="28" height="28" loading="lazy" />
-              <div class="vc-tx">
-                <b>網球教練</b>
-                <span>擊球點只有一個有效的點，讓體軸與頭部安定。</span>
-              </div>
-            </div>
-            <div class="vc-row">
-              <img class="vc-av" src="/expert-fitness.jpg" alt="" width="28" height="28" loading="lazy" />
-              <div class="vc-tx">
-                <b>體能訓練師</b>
-                <span>呼吸訓練的重點在於吐氣，盡可能把空氣吐乾淨，再輕輕吸氣。</span>
-              </div>
-            </div>
-            <div class="v-chips">
-              <span class="chip"><svg><use href="#ic-nut" /></svg>用堅果提問</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- ── 約球：排空檔 → 找球友 → 約 → 約球對話 ── -->
     <section class="section" id="hit">
       <h2 class="section-h">約球，從一句「我有空」開始</h2>
-      <p class="section-sub">
-        不用先認識誰。說出你什麼時候能打，球友就找得到你；約到之後，從講好細節到在球場碰面，都在同一個地方。
-      </p>
+      <p class="section-sub">不用先認識誰。說出你什麼時候能打，球友就找得到你。</p>
 
       <div class="flow-grid">
         <div class="value">
           <span class="v-no">01 · 排空檔</span>
           <h3>說一段你有空的時間</h3>
-          <p>選時間、單打或雙打、想練什麼，再勾幾座常去的球場，或只說「桃園市都可以」。可以只給好友看，也可以公開。</p>
           <div class="v-art">
             <div>
               <div class="vh-when">週六 06:00–09:00 · 連續 4 週</div>
@@ -1798,7 +1754,6 @@
         <div class="value">
           <span class="v-no">02 · 找球友</span>
           <h3>在地圖上看見誰有空</h3>
-          <p>地圖切到「找球友」，每座球場會寫出有幾個人排了空檔、有幾場約球在等人。點開球場，就看得到誰那段時間可以來、和你重疊多久。</p>
           <div class="v-art">
             <div class="vm-canvas">
               <span class="vm-bubble">4 人說桃園市都可以</span>
@@ -1815,7 +1770,6 @@
         <div class="value">
           <span class="v-no">03 · 約球</span>
           <h3>看到合適的人，直接約</h3>
-          <p>時間、球場、打法和用球在發起時就講好。可以只約一個人，也可以讓好友、隊友，或把這座球場加為最愛的人收到通知。</p>
           <div class="v-art">
             <div>
               <div class="vh-when">週六 07:00 · 中路網球場</div>
@@ -1833,7 +1787,6 @@
         <div class="value">
           <span class="v-no">04 · 約球對話</span>
           <h3>約好之後，在對話裡講細節</h3>
-          <p>有人報名，就會開一個只有這場的人看得到的對話。誰帶球、場地費怎麼分、晚到幾分鐘都在這裡說；有人不去了，大家都會收到通知。約球結束 3 小時後對話關閉。</p>
           <div class="v-art">
             <span class="vt-sys">小安 報名了</span>
             <div class="vt-msg"><b>小安</b>我帶一筒新球</div>
@@ -1858,47 +1811,9 @@
     </a>
     <p class="travel-link"><a href="/travel">要出國打球？東京、大阪、首爾、台北⋯旅客訂得到的球場、價格和怎麼訂 →</a></p>
 
-    <!-- ── 堅果飛輪（淡綠帶）── -->
-    <div class="band band-tint">
-      <section class="sect">
-        <h2 class="sec-h">你的貢獻，會變成自己的進步資源</h2>
-        <p class="sec-sub">
-          回報球場、記錄練習、分享資訊，累積堅果點數，再用堅果向專家提問。
-        </p>
-
-        <!-- 理念短片取代飛輪圖：進入畫面才播、離開就停；偏好減少動態的人不自動播、給控制列 -->
-        <div class="explainer">
-          <video id="explainerVideo" src="/explainer-zh.mp4" poster="/explainer-zh-poster.jpg"
-                 muted loop playsinline preload="none" width="720" height="1280"
-                 aria-label="Tennis Nut 短片：找場地、認識同一座球場的人、打卡、打球紀錄、挑戰、回報、請教專家、登錄裝備、出國打球"></video>
-        </div>
-        <script>
-          (function () {
-            var v = document.getElementById('explainerVideo');
-            if (!v) return;
-            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.controls = true; return; }
-            if (!('IntersectionObserver' in window)) { v.controls = true; return; }
-            new IntersectionObserver(function (es) {
-              es.forEach(function (e) { if (e.isIntersecting) { v.play().catch(function () { v.controls = true; }); } else { v.pause(); } });
-            }, { threshold: 0.5 }).observe(v);
-            v.addEventListener('click', function () { v.paused ? v.play() : v.pause(); });
-          })();
-        </script>
-
-        <p class="wheel-kicker">
-          <span class="wk-ic" aria-hidden="true"><svg><use href="#ic-nut" /></svg></span>
-          堅果從你上場揮汗或對網球場資訊的社群貢獻中產生。
-        </p>
-      </section>
-    </div>
-
     <!-- ── App 展示 ── -->
     <section class="section">
       <h2 class="section-h">把你的網球生活收進一個 App</h2>
-      <p class="section-sub">
-        從找球場、約球、記錄練習，到向專家提問，Tennis Nut 讓每一次上場都能被留下，
-        也能成為下一次進步的線索。
-      </p>
 
       <div class="show">
         <div class="show-phone">
@@ -1949,7 +1864,7 @@
         此刻誰在場上，陌生人只看得到一個數字——有人在打，但不知道是誰。
       </p>
 
-      <div class="creed-grid">
+      <div class="creed-grid four">
         <div class="creed">
           <span class="c-not">對等</span>
           <h3>加得到你的人，也在你打球的地方打過</h3>
@@ -1963,29 +1878,7 @@
         <div class="creed">
           <span class="c-not">邀約</span>
           <h3>陌生人不能私訊你，只能約你</h3>
-          <p>有人對你有興趣，他能做的是約你打一場，不是傳訊息給你。要不要去，由你決定；報名之後，才會和同一場的人在約球對話裡說話。私訊只在互為好友、而且兩邊都打開「好友聊天」時才有。</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ④ 品牌理念 -->
-    <section class="section">
-      <h2 class="section-h">這是一個希望你走去球場、留在場上更久的 App</h2>
-      <p class="creed-lede">
-        Tennis Nut 專注在網球生活本身：球場、球友、練習、比賽、專家與紀錄。
-        我們希望降低開始網球、持續練習與尋求協助的門檻，讓更多人能更早開始，也留下更多足跡。
-      </p>
-
-      <div class="creed-grid">
-        <div class="creed">
-          <span class="c-not">專家</span>
-          <h3>從問第一個問題開始</h3>
-          <p>你有疑問的時候，專家就在那裡；不必等到技術夠好才有資格問。</p>
-        </div>
-        <div class="creed">
-          <span class="c-not">約球</span>
-          <h3>收到通知就知道適不適合你報隊</h3>
-          <p>打什麼、用什麼球、歡不歡迎第一次來的人，發起時就講好。</p>
+          <p>有人對你有興趣，他能做的是約你打一場，不是傳訊息給你；要不要去，由你決定。私訊只在互為好友、而且兩邊都打開「好友聊天」時才有。</p>
         </div>
         <div class="creed">
           <span class="c-not">球場</span>
