@@ -176,50 +176,37 @@
       .line-cta { margin-left: 0; }
     }
 
-    /* LINE is a different ask from downloading the app, so it stops sharing a
-       row with the App Store badge and gets its own line below Android — and
-       LINE's own green, not ours, so it reads as the third-party entry it is. */
+    /* LINE 是另一件事（不用裝 App、看活動），所以不跟下載搶：一行淡字連結，
+       跟頁尾「想先掌握活動與更新？加入 LINE →」同一個寫法，只留一顆 LINE 綠
+       的小圖示讓人認得出來。原本是滿版 LINE 綠的實心按鈕，是首屏最搶眼的東西，
+       比兩個商店徽章還吵，綠色也跟品牌綠撞在一起。 */
     .line-cta {
       display: flex;
       width: fit-content;
       align-items: center;
-      gap: 10px;
-      margin: 10px auto 0;
-      padding: 11px 18px;
-      border-radius: 12px;
-      background: #06C755;
-      color: #FFFFFF;
-      font-weight: 700;
-      font-size: 14.5px;
-      line-height: 1.35;
-      text-align: left;
+      gap: 7px;
+      margin: 14px auto 0;
+      color: var(--text-tertiary);
+      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.4;
       text-decoration: none;
-      box-shadow: 0 12px 24px -12px rgba(6, 199, 85, 0.6);
-      transition: transform .14s ease, box-shadow .14s ease;
     }
 
     .line-cta:hover {
+      color: var(--accent-d);
       text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 16px 30px -12px rgba(6, 199, 85, 0.7);
     }
 
     .line-cta svg {
-      width: 21px;
-      height: 21px;
+      width: 17px;
+      height: 17px;
       flex: 0 0 auto;
+      color: #06C755;
     }
 
-    @media (max-width: 560px) {
-      /* Full width made it the loudest thing in the hero, louder than the two
-         real download buttons above it. Sized to its text instead, and the
-         text drops its second half — the button still says what it is. */
-      .line-cta {
-        font-size: 13.5px;
-        padding: 10px 16px;
-      }
-
-      .line-more { display: none; }
+    @media (min-width: 900px) {
+      .line-cta { margin-left: 0; }
     }
 
     /* The badge carries its own top margin on the install page; in the hero
@@ -1709,7 +1696,7 @@
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 3C6.9 3 2.8 6.3 2.8 10.4c0 3.7 3.3 6.8 7.7 7.4.3.06.7.2.8.45.08.23.05.58.03.81l-.13.78c-.04.23-.18.9.79.49 1-.42 5.3-3.12 7.2-5.34 1.34-1.47 1.98-2.96 1.98-4.59C21.2 6.3 17.1 3 12 3z" />
             </svg>
-            加入 LINE 社群<span class="line-more">，掌握活動與更新</span>
+            想先掌握活動與更新？加入 LINE 社群 →
           </a>
         </div>
 
