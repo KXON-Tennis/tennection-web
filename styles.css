@@ -70,7 +70,9 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 24px;
+  /* 左右對齊首屏內容（1040px）：寬螢幕上 logo 貼最左、選單貼最右，中間一大片空，
+     跟底下置中的內容對不上。窄於 1040 時退回 24px。 */
+  padding: 10px max(24px, calc((100% - 1040px) / 2));
   flex-shrink: 0;
   /* 深綠底：第一屏原本沒有任何品牌色的塊面，白色頁首讀起來像預設樣板，
      換成誰的 logo 都成立。深色也讓底下那條淺綠 hero 有東西可以壓著。
@@ -94,7 +96,7 @@ a:hover {
   /* 62px：素材已經裁到圖形本身，白字約佔 46%，所以字高約 28px。
      用整張原圖時字只佔 22%（其餘是幾乎看不見的光暈），
      58px 的框裡字剩 13px——那就是它看起來太小的原因。 */
-  height: 62px;
+  height: 52px;
   width: auto;
   display: block;
 }
@@ -102,7 +104,7 @@ a:hover {
 .site-header nav {
   margin-left: auto;
   display: flex;
-  gap: 18px;
+  gap: 26px;
   /* 對齊 wordmark 的字，不是整張圖：圖的上半是萊姆綠光芒，「tennis nut」
      的字落在圖高 62%–89% 之間。置中對齊時選單字比 logo 字高了約 9px。
      靠底對齊後選單的基線剛好落在 logo 字的底部。 */
@@ -111,10 +113,20 @@ a:hover {
 }
 
 .site-header nav a {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.86);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: rgba(255, 255, 255, 0.88);
   white-space: nowrap;
   position: relative;
+}
+
+.site-header nav a[href="/privacy"],
+.site-header nav a[href="/terms"],
+.site-header nav a[href="/en/privacy"],
+.site-header nav a[href="/en/terms"] {
+  /* 法律頁在頁尾都有；頁首只放使用者真的會來找的東西 */
+  display: none;
 }
 
 .site-header nav a:hover {
@@ -902,14 +914,7 @@ footer a {
   }
 
   .site-header nav a {
-    font-size: 13.5px;
-  }
-
-  .site-header nav a[href="/privacy"],
-  .site-header nav a[href="/terms"],
-  .site-header nav a[href="/en/privacy"],
-  .site-header nav a[href="/en/terms"] {
-    display: none;
+    font-size: 14px;
   }
 
   .hero .device {
