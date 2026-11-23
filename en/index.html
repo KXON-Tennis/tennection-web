@@ -1685,7 +1685,7 @@
                  muted playsinline preload="none" width="720" height="1280"
                  aria-label="Tennis Nut film: find a lit clay court, start a team at your home court, post free time and get matched, check in, log practice and a doubles match, clear a challenge, report the court, ask an expert, build your bag, one passport across borders"></video>
           <button type="button" class="film-play" id="filmPlay" aria-label="Play the film, 1 minute 33 seconds">
-            <span class="fp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span><span id="filmPlayTx">Watch Mia's tennis life · 1:33</span>
+            <span class="fp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span><span id="filmPlayTx">Watch Mia's tennis life · 1:35</span>
           </button>
         </div>
         <div class="film-copy">
@@ -1702,7 +1702,7 @@
             });
             v.addEventListener('ended', function () {
               v.controls = false; f.classList.remove('playing');
-              document.getElementById('filmPlayTx').textContent = 'Watch again · 1:33';
+              document.getElementById('filmPlayTx').textContent = 'Watch again · 1:35';
             });
             if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
               es.forEach(function (e) { if (!e.isIntersecting && !v.paused) v.pause(); });
