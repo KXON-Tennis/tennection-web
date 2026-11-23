@@ -347,6 +347,7 @@
     .film-cta { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
     .film-cta .as-badge { margin-top:0; }
     .film-cta img { height:44px; width:auto; }
+    .band-video + .map-band { margin-top: 48px; }
     @media (min-width: 860px) {
       .film-wrap { grid-template-columns: 320px minmax(0, 1fr); grid-template-areas: "film h" "film copy";
         align-items:center; column-gap:44px; row-gap:18px; justify-items:start; }
@@ -1690,10 +1691,6 @@
         </div>
         <div class="film-copy">
           <p class="explainer-note">When you have a question, the expert is right there. Anyone can ask.</p>
-          <div class="film-cta">
-            <a class="as-badge" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener" aria-label="Download Tennis Nut on the App Store"><img src="/app-store-badge-en.svg" alt="Download on the App Store" width="159" height="53" /></a>
-            <a class="as-badge" href="https://play.google.com/store/apps/details?id=com.tns.passport" target="_blank" rel="noopener" aria-label="Get Tennis Nut on Google Play"><img src="/google-play-badge-en.png" alt="Get it on Google Play" width="178" height="53" /></a>
-          </div>
         </div>
         <script>
           (function () {
@@ -1715,6 +1712,18 @@
         </script>
       </section>
     </div>
+
+    <!-- ── 球場地圖橫條（滿版深色，整條可點）── -->
+    <a class="map-band" href="/courts-map?lang=en">
+      <img src="/courts-map-band-au.jpg" width="1920" height="897" loading="lazy"
+           alt="Tennis courts across Sydney: dense from the Eastern Suburbs to Parramatta, thinning toward the Blue Mountains" />
+      <div class="map-band-tx">
+        <h2>11,500+ courts across 13 markets</h2>
+        <p>Surface, floodlights, parking — and details confirmed on site by players. No install needed.</p>
+        <span class="map-band-go">Open the court map →</span>
+      </div>
+    </a>
+    <p class="travel-link"><a href="/travel?lang=en">Travelling? Courts visitors can actually book in Tokyo, Osaka, Seoul, Taipei and more, with prices and how to book →</a></p>
 
     <!-- ── Hitting: post free time → find players → ask → hit chat ── -->
     <section class="section" id="hit">
@@ -1782,17 +1791,6 @@
       </div>
     </section>
 
-    <!-- ── 球場地圖橫條（滿版深色，整條可點）── -->
-    <a class="map-band" href="/courts-map?lang=en">
-      <img src="/courts-map-band-au.jpg" width="1920" height="897" loading="lazy"
-           alt="Tennis courts across Sydney: dense from the Eastern Suburbs to Parramatta, thinning toward the Blue Mountains" />
-      <div class="map-band-tx">
-        <h2>11,500+ courts across 13 markets</h2>
-        <p>Surface, floodlights, parking — and details confirmed on site by players. No install needed.</p>
-        <span class="map-band-go">Open the court map →</span>
-      </div>
-    </a>
-    <p class="travel-link"><a href="/travel?lang=en">Travelling? Courts visitors can actually book in Tokyo, Osaka, Seoul, Taipei and more, with prices and how to book →</a></p>
 
     <!-- ── Expert advice (real screen): the film and the hero already show what the app does; this is the one detail the film can't -->
     <section class="section">

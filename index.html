@@ -398,6 +398,7 @@
     .film-cta { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
     .film-cta .as-badge { margin-top:0; }
     .film-cta img { height:44px; width:auto; }
+    .band-video + .map-band { margin-top: 48px; }
     @media (min-width: 860px) {
       .film-wrap { grid-template-columns: 320px minmax(0, 1fr); grid-template-areas: "film h" "film copy";
         align-items:center; column-gap:44px; row-gap:18px; justify-items:start; }
@@ -1750,10 +1751,6 @@
         </div>
         <div class="film-copy">
           <p class="explainer-note">有疑問的時候，專家就在那裡；任何人都有資格問。</p>
-          <div class="film-cta">
-            <a class="as-badge" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener" aria-label="從 App Store 下載 Tennis Nut"><img src="/app-store-badge-en.svg" alt="從 App Store 下載" width="159" height="53" /></a>
-            <a class="as-badge" href="https://play.google.com/store/apps/details?id=com.tns.passport" target="_blank" rel="noopener" aria-label="在 Google Play 下載 Tennis Nut"><img src="/google-play-badge-en.png" alt="在 Google Play 下載" width="178" height="53" /></a>
-          </div>
         </div>
         <script>
           (function () {
@@ -1776,6 +1773,18 @@
         </script>
       </section>
     </div>
+
+    <!-- ── 球場地圖橫條（滿版深色，整條可點）── -->
+    <a class="map-band" href="/courts-map">
+      <img src="/courts-map-band.jpg" width="1920" height="897" loading="lazy"
+           alt="全台灣的球場點位圖：西部平原與台北盆地連成密集的一片，東岸沿著海岸線排開" />
+      <div class="map-band-tx">
+        <h2>11,500+ 座球場，13 個市場</h2>
+        <p>材質、夜間照明、停車，還有球友實際到場確認過的資訊。不用安裝就能看。</p>
+        <span class="map-band-go">打開球場地圖 →</span>
+      </div>
+    </a>
+    <p class="travel-link"><a href="/travel">要出國打球？東京、大阪、首爾、台北⋯旅客訂得到的球場、價格和怎麼訂 →</a></p>
 
     <!-- ── 約球：排空檔 → 找球友 → 約 → 約球對話 ── -->
     <section class="section" id="hit">
@@ -1843,17 +1852,6 @@
       </div>
     </section>
 
-    <!-- ── 球場地圖橫條（滿版深色，整條可點）── -->
-    <a class="map-band" href="/courts-map">
-      <img src="/courts-map-band.jpg" width="1920" height="897" loading="lazy"
-           alt="全台灣的球場點位圖：西部平原與台北盆地連成密集的一片，東岸沿著海岸線排開" />
-      <div class="map-band-tx">
-        <h2>11,500+ 座球場，13 個市場</h2>
-        <p>材質、夜間照明、停車，還有球友實際到場確認過的資訊。不用安裝就能看。</p>
-        <span class="map-band-go">打開球場地圖 →</span>
-      </div>
-    </a>
-    <p class="travel-link"><a href="/travel">要出國打球？東京、大阪、首爾、台北⋯旅客訂得到的球場、價格和怎麼訂 →</a></p>
 
     <!-- ── 專家的回覆（實際畫面）：短片和首屏已經講了 App 有什麼，這裡只留影片裡看不到細節的那一張 ── -->
     <section class="section">
