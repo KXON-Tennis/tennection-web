@@ -2037,7 +2037,7 @@
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var hero = document.querySelector('.hero-device');
       if (!hero) return;
-      var items = [['.f-nut', -0.10], ['.f-court', 0.07], ['.f-coach', -0.16]]
+      var items = [['.f-nut', -0.22], ['.f-court', 0.15], ['.f-coach', -0.34]]
         .map(function (p) { return [hero.querySelector(p[0]), p[1]]; })
         .filter(function (p) { return p[0]; });
       var ticking = false;
