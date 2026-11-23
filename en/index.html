@@ -691,6 +691,7 @@
 
     .float {
       position: absolute;
+      will-change: translate;
       display: flex;
       align-items: center;
       gap: 9px;
@@ -1960,6 +1961,32 @@
           }
         });
       }
+    })();
+  </script>
+  <script>
+    // 首屏三張浮動小卡隨捲動微微位移（視差）：各自速度不同，看起來跟手機不在同一層。
+    // 用 CSS 的 translate 屬性，不碰 transform（那裡放的是往外凸出的 translateX）。
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var hero = document.querySelector('.hero-device');
+      if (!hero) return;
+      var items = [['.f-nut', -0.10], ['.f-court', 0.07], ['.f-coach', -0.16]]
+        .map(function (p) { return [hero.querySelector(p[0]), p[1]]; })
+        .filter(function (p) { return p[0]; });
+      var ticking = false;
+      function update() {
+        ticking = false;
+        var r = hero.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > innerHeight) return;
+        // 以首屏在畫面中央時為 0，往上捲是正值。
+        var d = innerHeight / 2 - (r.top + r.height / 2);
+        items.forEach(function (p) { p[0].style.translate = '0 ' + (d * p[1]).toFixed(1) + 'px'; });
+      }
+      addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      addEventListener('resize', update);
+      update();
     })();
   </script>
 </body>
