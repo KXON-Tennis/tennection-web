@@ -202,10 +202,9 @@ const header = (t) => `  <header class="site-header">
       <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
-      <a href="${t.lang === 'en' ? '/en/install' : '/install'}">${t.nav.download}</a>
+      <a href="${t.lang === 'en' ? '/courts-map?lang=en' : '/courts/tw'}">${t.lang === 'en' ? 'Courts' : '球場'}</a>
+      <a href="${t.lang === 'en' ? '/travel?lang=en' : '/travel'}">${t.lang === 'en' ? 'Tennis travel' : '出國打球'}</a>
       <a href="${t.blog}" class="active">${t.nav.blog}</a>
-      <a href="${t.lang === 'en' ? '/en/privacy' : '/privacy'}">${t.nav.privacy}</a>
-      <a href="${t.lang === 'en' ? '/en/terms' : '/terms'}">${t.nav.terms}</a>
       <a href="${t.nav.otherHref}">${t.nav.other}</a>
     </nav>
   </header>`;

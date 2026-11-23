@@ -7,6 +7,83 @@
   ],
   "releases": [
     {
+      "build": 2900,
+      "version": "1.48.0",
+      "date": "2026-11-21",
+      "title": "第 1.48 版更新：出國打球的旅客資訊",
+      "summary": "地圖多了「旅客資訊」：選一個要去的城市，就列出外國球友打得到的球場、價格和怎麼訂。去打過的球友可以留心得給下一位。",
+      "highlights": [
+        {
+          "emoji": "✈️",
+          "title": "要去哪裡打球？",
+          "body": "地圖上點「旅客資訊」，選一個目的地：東京、大阪、首爾、台北、福岡、沖繩、京都、札幌、名古屋、香港。地圖飛過去，清單只列旅客真的打得到的球場。\n\n每一座都標好怎麼進得去：可向球場預約、免費現場輪流、需先辦會員、需先臨櫃登記，或要跟當地球團打。旅客價、怎麼訂、官網連結都在球場卡裡。球場名寫兩行：一行你看得懂，一行是當地名稱，拿手機問當地人就好。"
+        },
+        {
+          "emoji": "💬",
+          "title": "旅客心得",
+          "body": "去打過的球友可以留一句心得給下一位，不用打卡也能寫；有打卡過的會標「打卡過」。大家可以按讚或倒讚，倒讚多的會收起來。"
+        },
+        {
+          "emoji": "🏠",
+          "title": "在地球友提供旅客資訊",
+          "body": "編輯自己國家的球場時，多了一題：外國人要怎麼進得去？選一個答案，審核通過後，球場卡會寫「在地球友提供」。你熟的球場，可以幫來台灣打球的人一把。"
+        },
+        {
+          "emoji": "🏙",
+          "title": "地圖的 3D 鈕",
+          "body": "平面地圖按「3D」，原地斜著看建築和地標，例如芝公園旁的東京鐵塔。開著球場卡時按，會飛到那座球場斜著看。"
+        },
+        {
+          "emoji": "📣",
+          "title": "約球改成公開，新看得到的人會收到通知",
+          "body": "原本只開給好友或球隊的約球，改成公開之後，新看得到它的人會收到通知，不用重發一次。"
+        }
+      ],
+      "fixes": [
+        "旅客價格用當地貨幣顯示（港幣、澳幣、新幣）",
+        "旅客資訊清單開著時，地圖照樣能移動、換底圖、定位，不會被清單蓋住",
+        "點清單的一列，地圖飛過去並把那一點圈起來",
+        "地圖新增福岡、釜山、京都、札幌、愛知的球場"
+      ],
+      "en": {
+        "title": "v1.48 · Visitor info for playing abroad",
+        "summary": "The map has a new Visitor info view: pick a city and see the courts visitors can actually play, with prices and how to book. Players who went can leave a tip for the next one.",
+        "highlights": [
+          {
+            "emoji": "✈️",
+            "title": "Where do you want to play?",
+            "body": "Tap Visitor info on the map and pick a destination: Tokyo, Osaka, Seoul, Taipei, Fukuoka, Okinawa, Kyoto, Sapporo, Nagoya or Hong Kong. The map flies there and the list shows only courts visitors can actually get on.\n\nEach court says how: book with the venue, free walk-in rotation, membership first, register at the counter first, or play with a local group. Visitor price, how to book and the official site are on the court card. Names come in two lines, one you can read and one in the local language to show a local."
+          },
+          {
+            "emoji": "💬",
+            "title": "Visitor tips",
+            "body": "Players who went can leave a one-line tip for the next visitor, no check-in needed; those who checked in are marked. Anyone can upvote or downvote, and heavily downvoted tips fold away."
+          },
+          {
+            "emoji": "🏠",
+            "title": "Locals can add visitor info",
+            "body": "When you edit a court in your own country, there's a new question: how does a visitor get in? Once reviewed, the court card says it came from a local player."
+          },
+          {
+            "emoji": "🏙",
+            "title": "3D on the map",
+            "body": "Tap 3D on the flat map to tilt in place and see buildings and landmarks, like Tokyo Tower next to Shiba Park. With a court card open, it flies to that court."
+          },
+          {
+            "emoji": "📣",
+            "title": "Opening a hit to everyone notifies the new audience",
+            "body": "Change a hit from friends or team to public and the people who can now see it get a notification. No need to post it again."
+          }
+        ],
+        "fixes": [
+          "Visitor prices show in local currency (HK$, A$, S$)",
+          "With the visitor list open, you can still move the map, switch basemaps and locate yourself",
+          "Tapping a row flies the map there and circles the court",
+          "New courts on the map in Fukuoka, Busan, Kyoto, Sapporo and Aichi"
+        ]
+      }
+    },
+    {
       "build": 2890,
       "version": "1.47.0",
       "date": "2026-11-20",
