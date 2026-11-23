@@ -362,6 +362,8 @@
       color: var(--text-secondary);
     }
 
+    .expert-shot { max-width: 460px; margin: 22px auto 0; }
+
     .show-phone .show-cap {
       padding: 12px 0 0;
       text-align: center;
@@ -375,10 +377,36 @@
        copy of the last step rather than by the drawing. */
     .band-video { margin-top: 40px; border-radius: 28px; }
     .band-video .sec-h { text-wrap: balance; }
-    .explainer { display:grid; justify-items:center; gap:18px; margin: 28px auto 8px; }
-    .explainer video { width: 100%; max-width: 400px; height: auto; aspect-ratio: 9 / 16; border-radius: 28px; background:#F7FBF2;
-      box-shadow: 0 30px 60px -28px rgba(45, 90, 52, 0.45); border: 1px solid #DCEAC9; cursor: pointer; display:block; }
-    .explainer-note { text-align:center; color:#2E6B3A; font-weight:600; font-size:15px; margin: 14px auto 0; padding: 0 16px; }
+    /* 短片：看不看由人決定。1 分半的片子自動播放，捲過來的人看到的是中間某一幕；
+       所以是封面＋播放鍵＋長度，按了才從頭播、有控制列。手機：標題→片→一句→下載；
+       桌機：片在左，標題、一句、下載在右。 */
+    .film-wrap { display:grid; gap:18px; justify-items:center; }
+    .film-wrap .sec-h { margin-bottom: 0; }
+    .film { position:relative; width:100%; max-width:380px; }
+    .film video { width:100%; height:auto; aspect-ratio:9 / 16; border-radius:28px; background:#F7FBF2; display:block;
+      box-shadow: 0 30px 60px -28px rgba(45, 90, 52, 0.45); border: 1px solid #DCEAC9; }
+    .film-play { position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); display:flex; align-items:center; gap:12px;
+      border:0; cursor:pointer; background:rgba(21, 39, 27, .86); color:#fff; font:inherit; font-size:15px; font-weight:700;
+      padding:10px 20px 10px 10px; border-radius:999px; box-shadow:0 14px 30px -10px rgba(21, 39, 27, .55); white-space:nowrap; }
+    .film-play:hover { background:#15271B; }
+    .film-play:focus-visible { outline:3px solid #B8D52A; outline-offset:3px; }
+    .film-play .fp-ic { width:44px; height:44px; border-radius:50%; background:#B8D52A; display:flex; align-items:center; justify-content:center; }
+    .film-play .fp-ic svg { width:18px; height:18px; margin-left:3px; fill:#15271B; }
+    .film.playing .film-play { display:none; }
+    .film-copy { display:grid; gap:16px; justify-items:center; text-align:center; }
+    .explainer-note { color:#2E6B3A; font-weight:600; font-size:15px; margin:0; padding:0 8px; max-width:24em; line-height:1.65; }
+    .film-cta { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+    .film-cta .as-badge { margin-top:0; }
+    .film-cta img { height:44px; width:auto; }
+    @media (min-width: 860px) {
+      .film-wrap { grid-template-columns: 320px minmax(0, 1fr); grid-template-areas: "film h" "film copy";
+        align-items:center; column-gap:44px; row-gap:18px; justify-items:start; }
+      .film-wrap .sec-h { grid-area:h; align-self:end; text-align:left; margin-top:0; }
+      .film { grid-area:film; }
+      .film-copy { grid-area:copy; align-self:start; justify-items:start; text-align:left; }
+      .explainer-note { padding:0; }
+      .film-cta { justify-content:flex-start; }
+    }
     .wheel {
       position: relative;
       width: min(620px, 100%);
@@ -1219,6 +1247,11 @@
       white-space: nowrap;
     }
 
+    .vp-push { display:flex; gap:10px; align-items:flex-start; }
+    .vp-push img { border-radius:7px; flex:none; margin-top:1px; }
+    .vp-push b { display:block; font-size:13.5px; font-weight:800; color:var(--accent-d); }
+    .vp-push span { display:block; font-size:11.5px; font-weight:700; color:var(--text-tertiary); margin-top:2px; }
+
     .vt-sys {
       align-self: center;
       font-size: 11px;
@@ -1703,38 +1736,51 @@
       </div>
     </section>
 
-    <!-- ── 理念短片（淡綠帶）：首屏之後第一段，影片本身就是說明，不再配字 ── -->
+    <!-- ── 理念短片（淡綠帶）：首屏之後第一段。封面＋播放鍵，按了才從頭播 ── -->
     <div class="band band-tint band-video">
-      <section class="sect">
+      <section class="sect film-wrap">
         <h2 class="sec-h">每次上場，都算數</h2>
-
-        <!-- 理念短片取代飛輪圖：進入畫面才播、離開就停；偏好減少動態的人不自動播、給控制列 -->
-        <div class="explainer">
+        <div class="film" id="film">
           <video id="explainerVideo" src="/explainer-zh.mp4" poster="/explainer-zh-poster.jpg"
-                 muted loop playsinline preload="none" width="720" height="1280"
-                 aria-label="Tennis Nut 短片：找場地、認識同一座球場的人、打卡、打球紀錄、挑戰、回報、請教專家、登錄裝備、出國打球"></video>
+                 muted playsinline preload="none" width="720" height="1280"
+                 aria-label="Tennis Nut 短片：找有夜間照明的紅土球場、在球場建立球隊、排空檔自動配對、到場打卡、記錄練習與雙打比賽、過關挑戰、回報球場、請教專家、建立球袋、跨國護照"></video>
+          <button type="button" class="film-play" id="filmPlay" aria-label="播放短片，1 分 33 秒">
+            <span class="fp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span><span id="filmPlayTx">看 Mia 的網球日常 · 1:33</span>
+          </button>
+        </div>
+        <div class="film-copy">
+          <p class="explainer-note">有疑問的時候，專家就在那裡；不必等到技術夠好，才有資格問。</p>
+          <div class="film-cta">
+            <a class="as-badge" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener" aria-label="從 App Store 下載 Tennis Nut"><img src="/app-store-badge-en.svg" alt="從 App Store 下載" width="159" height="53" /></a>
+            <a class="as-badge" href="https://play.google.com/store/apps/details?id=com.tns.passport" target="_blank" rel="noopener" aria-label="在 Google Play 下載 Tennis Nut"><img src="/google-play-badge-en.png" alt="在 Google Play 下載" width="178" height="53" /></a>
+          </div>
         </div>
         <script>
           (function () {
-            var v = document.getElementById('explainerVideo');
-            if (!v) return;
-            var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (calm || !('IntersectionObserver' in window)) v.controls = true;
-            else new IntersectionObserver(function (es) {
-              es.forEach(function (e) { if (e.isIntersecting) { v.play().catch(function () { v.controls = true; }); } else { v.pause(); } });
-            }, { threshold: 0.5 }).observe(v);
-            v.addEventListener('click', function () { v.paused ? v.play() : v.pause(); });
+            var v = document.getElementById('explainerVideo'), f = document.getElementById('film'), b = document.getElementById('filmPlay');
+            if (!v || !b) return;
+            b.addEventListener('click', function () {
+              if (v.ended) v.currentTime = 0;
+              v.controls = true; f.classList.add('playing');
+              v.play().catch(function () { f.classList.remove('playing'); });
+            });
+            v.addEventListener('ended', function () {
+              v.controls = false; f.classList.remove('playing');
+              document.getElementById('filmPlayTx').textContent = '再看一次 · 1:33';
+            });
+            // 捲出畫面就暫停，回來由人自己按播放
+            if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
+              es.forEach(function (e) { if (!e.isIntersecting && !v.paused) v.pause(); });
+            }, { threshold: 0.2 }).observe(v);
           })();
         </script>
-        <p class="explainer-note">有疑問的時候，專家就在那裡；不必等到技術夠好，才有資格問。</p>
-
       </section>
     </div>
 
     <!-- ── 約球：排空檔 → 找球友 → 約 → 約球對話 ── -->
     <section class="section" id="hit">
       <h2 class="section-h">約球，從一句「我有空」開始</h2>
-      <p class="section-sub">不用先認識誰。說出你什麼時候能打，球友就找得到你。</p>
+      <p class="section-sub">不用先認識誰。排好空檔，時間和地點對得上的人，兩邊都會收到通知。</p>
 
       <div class="flow-grid">
         <div class="value">
@@ -1754,14 +1800,12 @@
         </div>
 
         <div class="value">
-          <span class="v-no">02 · 找球友</span>
-          <h3>在地圖上看見誰有空</h3>
+          <span class="v-no">02 · 自動配對</span>
+          <h3>對得上的人，自動通知你</h3>
           <div class="v-art">
-            <div class="vm-canvas">
-              <span class="vm-bubble">4 人說桃園市都可以</span>
-              <span class="vm-label">中路網球場：2 人排空檔</span>
-              <span class="vm-pin p2"></span>
-              <span class="vm-pin on"></span>
+            <div class="vp-push">
+              <img src="/app-icon.png" width="28" height="28" alt="" />
+              <div><b>你的空檔跟 小安 重疊</b><span>週六 07:00–09:00 · 中路網球場</span></div>
             </div>
             <div class="v-chips">
               <span class="chip ok">和你重疊 2 小時</span>
@@ -1771,17 +1815,15 @@
 
         <div class="value">
           <span class="v-no">03 · 約球</span>
-          <h3>看到合適的人，直接約</h3>
+          <h3>要約他嗎？按一下就送出</h3>
           <div class="v-art">
             <div>
-              <div class="vh-when">週六 07:00 · 中路網球場</div>
-              <div class="vh-what">雙打 · 一般黃球</div>
+              <div class="vh-what">要約 小安 嗎？</div>
+              <div class="vh-when" style="margin-top:3px">你們的空檔重疊：週六 07:00–09:00 · 中路網球場</div>
             </div>
             <div class="v-chips">
-              <span class="chip">只約他</span>
-              <span class="chip">好友</span>
-              <span class="chip">球隊</span>
-              <span class="chip">常來這座球場的人</span>
+              <span class="chip ok">約他</span>
+              <span class="chip">先不要</span>
             </div>
           </div>
         </div>
@@ -1813,44 +1855,14 @@
     </a>
     <p class="travel-link"><a href="/travel">要出國打球？東京、大阪、首爾、台北⋯旅客訂得到的球場、價格和怎麼訂 →</a></p>
 
-    <!-- ── App 展示 ── -->
+    <!-- ── 專家的回覆（實際畫面）：短片和首屏已經講了 App 有什麼，這裡只留影片裡看不到細節的那一張 ── -->
     <section class="section">
-      <h2 class="section-h">把你的網球生活收進一個 App</h2>
-
-      <div class="show">
-        <div class="show-phone">
-          <div>
-            <div class="phone">
-              <img src="/shot-hit-create.jpg" width="669" height="1228" loading="lazy"
-                   alt="發起約球：時間、今天要打什麼、用哪一種球、誰看得到，都在送出之前就講好" />
-            </div>
-            <div class="show-cap">
-              <b>約球</b>
-              <span>時間、打法、用球先講好</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="show-cards">
-          <figure class="show-card">
-            <img src="/shot-coach-answer.jpg" width="669" height="486" loading="lazy"
-                 alt="教練的回覆：利用旋轉動力鍊產生揮擊動能，取代用身體前移的方式；擊球點只有一個有效的點" />
-            <figcaption class="show-cap">
-              <b>專家諮詢</b>
-              <span>一份為你而寫的正式解答，不是罐頭建議</span>
-            </figcaption>
-          </figure>
-
-          <figure class="show-card">
-            <img src="/shot-passport-stats.jpg" width="669" height="1130" loading="lazy"
-                 alt="網球數據：26 次練習、28 小時、5 場比賽、60% 勝率，以及球場征服進度" />
-            <figcaption class="show-cap">
-              <b>護照 · 紀錄</b>
-              <span>練習、比賽、征服過的球場，都留在這裡</span>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
+      <h2 class="section-h">專家的回覆長這樣</h2>
+      <p class="section-sub">一份為你而寫的正式解答，不是罐頭建議。</p>
+      <figure class="show-card expert-shot">
+        <img src="/shot-coach-answer.jpg" width="669" height="486" loading="lazy"
+             alt="教練的回覆：利用旋轉動力鍊產生揮擊動能，取代用身體前移的方式；擊球點只有一個有效的點" />
+      </figure>
     </section>
 
     <!-- ③ 對等：資訊是打球換來的 ───────────────────────────────
@@ -1861,31 +1873,27 @@
          名字。準確的說法是「陌生人只看得到數字」。 -->
     <section class="section">
       <h2 class="section-h">這裡的資訊，是打球換來的</h2>
-      <p class="creed-lede">
-        誰在這座球場打過，大家都看得到；想加他好友，自己也得在這裡或同一個縣市打一次球。
-        此刻誰在場上，陌生人只看得到一個數字——有人在打，但不知道是誰。
-      </p>
 
       <div class="creed-grid four">
         <div class="creed">
           <span class="c-not">對等</span>
           <h3>加得到你的人，也在你打球的地方打過</h3>
-          <p>球場上的名單誰都看得到，但好友邀請不是。要在同一座球場或同一個縣市留過紀錄，才按得到「加好友」——同一片場地，才是認識的理由。</p>
+          <p>要在同一座球場或同一個縣市留過紀錄，才按得到「加好友」。</p>
         </div>
         <div class="creed">
           <span class="c-not">距離</span>
           <h3>陌生人只看得到數字</h3>
-          <p>地圖上顯示這座球場現在有幾個人在打，但不會說是誰——除非他自己打開沉浸模式、站在球場上。想知道是誰，自己也得來一趟。</p>
+          <p>地圖上看得到現在有幾個人在打，但不會說是誰。</p>
         </div>
         <div class="creed">
           <span class="c-not">邀約</span>
           <h3>陌生人不能私訊你，只能約你</h3>
-          <p>有人對你有興趣，他能做的是約你打一場，不是傳訊息給你；要不要去，由你決定。私訊只在互為好友、而且兩邊都打開「好友聊天」時才有。</p>
+          <p>要不要去由你決定；私訊只在互為好友、兩邊都打開時才有。</p>
         </div>
         <div class="creed">
           <span class="c-not">球場</span>
           <h3>資訊來自真的去過的人</h3>
-          <p>開放與否、幾點開、多少錢，都該查得到。網球場是珍貴資源，需要社群一起維護。</p>
+          <p>開放與否、幾點開、多少錢，由到過現場的球友一起維護。</p>
         </div>
       </div>
     </section>

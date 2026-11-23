@@ -311,6 +311,8 @@
       color: var(--text-secondary);
     }
 
+    .expert-shot { max-width: 460px; margin: 22px auto 0; }
+
     .show-phone .show-cap {
       padding: 12px 0 0;
       text-align: center;
@@ -324,10 +326,36 @@
        copy of the last step rather than by the drawing. */
     .band-video { margin-top: 40px; border-radius: 28px; }
     .band-video .sec-h { text-wrap: balance; }
-    .explainer { display:grid; justify-items:center; gap:18px; margin: 28px auto 8px; }
-    .explainer video { width: 100%; max-width: 400px; height: auto; aspect-ratio: 9 / 16; border-radius: 28px; background:#F7FBF2;
-      box-shadow: 0 30px 60px -28px rgba(45, 90, 52, 0.45); border: 1px solid #DCEAC9; cursor: pointer; display:block; }
-    .explainer-note { text-align:center; color:#2E6B3A; font-weight:600; font-size:15px; margin: 14px auto 0; padding: 0 16px; }
+    /* 短片：看不看由人決定。1 分半的片子自動播放，捲過來的人看到的是中間某一幕；
+       所以是封面＋播放鍵＋長度，按了才從頭播、有控制列。手機：標題→片→一句→下載；
+       桌機：片在左，標題、一句、下載在右。 */
+    .film-wrap { display:grid; gap:18px; justify-items:center; }
+    .film-wrap .sec-h { margin-bottom: 0; }
+    .film { position:relative; width:100%; max-width:380px; }
+    .film video { width:100%; height:auto; aspect-ratio:9 / 16; border-radius:28px; background:#F7FBF2; display:block;
+      box-shadow: 0 30px 60px -28px rgba(45, 90, 52, 0.45); border: 1px solid #DCEAC9; }
+    .film-play { position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); display:flex; align-items:center; gap:12px;
+      border:0; cursor:pointer; background:rgba(21, 39, 27, .86); color:#fff; font:inherit; font-size:15px; font-weight:700;
+      padding:10px 20px 10px 10px; border-radius:999px; box-shadow:0 14px 30px -10px rgba(21, 39, 27, .55); white-space:nowrap; }
+    .film-play:hover { background:#15271B; }
+    .film-play:focus-visible { outline:3px solid #B8D52A; outline-offset:3px; }
+    .film-play .fp-ic { width:44px; height:44px; border-radius:50%; background:#B8D52A; display:flex; align-items:center; justify-content:center; }
+    .film-play .fp-ic svg { width:18px; height:18px; margin-left:3px; fill:#15271B; }
+    .film.playing .film-play { display:none; }
+    .film-copy { display:grid; gap:16px; justify-items:center; text-align:center; }
+    .explainer-note { color:#2E6B3A; font-weight:600; font-size:15px; margin:0; padding:0 8px; max-width:24em; line-height:1.65; }
+    .film-cta { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+    .film-cta .as-badge { margin-top:0; }
+    .film-cta img { height:44px; width:auto; }
+    @media (min-width: 860px) {
+      .film-wrap { grid-template-columns: 320px minmax(0, 1fr); grid-template-areas: "film h" "film copy";
+        align-items:center; column-gap:44px; row-gap:18px; justify-items:start; }
+      .film-wrap .sec-h { grid-area:h; align-self:end; text-align:left; margin-top:0; }
+      .film { grid-area:film; }
+      .film-copy { grid-area:copy; align-self:start; justify-items:start; text-align:left; }
+      .explainer-note { padding:0; }
+      .film-cta { justify-content:flex-start; }
+    }
     .wheel {
       position: relative;
       width: min(620px, 100%);
@@ -1167,6 +1195,11 @@
       white-space: nowrap;
     }
 
+    .vp-push { display:flex; gap:10px; align-items:flex-start; }
+    .vp-push img { border-radius:7px; flex:none; margin-top:1px; }
+    .vp-push b { display:block; font-size:13.5px; font-weight:800; color:var(--accent-d); }
+    .vp-push span { display:block; font-size:11.5px; font-weight:700; color:var(--text-tertiary); margin-top:2px; }
+
     .vt-sys {
       align-self: center;
       font-size: 11px;
@@ -1643,37 +1676,50 @@
       </div>
     </section>
 
-    <!-- ── 理念短片（淡綠帶）：首屏之後第一段，影片本身就是說明，不再配字 ── -->
+    <!-- ── Explainer film: cover + play button; plays from the start only when asked ── -->
     <div class="band band-tint band-video">
-      <section class="sect">
+      <section class="sect film-wrap">
         <h2 class="sec-h">Every time you step on court, it counts</h2>
-
-        <!-- Explainer video replaces the flywheel diagram: plays when in view, pauses when not; reduced-motion users get controls -->
-        <div class="explainer">
+        <div class="film" id="film">
           <video id="explainerVideo" src="/explainer-en.mp4" poster="/explainer-en-poster.jpg"
-                 muted loop playsinline preload="none" width="720" height="1280"
-                 aria-label="Tennis Nut in one minute: find a court, meet the people who play there, check in, log the session, clear a challenge, report the court, ask an expert, log your gear, play abroad"></video>
+                 muted playsinline preload="none" width="720" height="1280"
+                 aria-label="Tennis Nut film: find a lit clay court, start a team at your home court, post free time and get matched, check in, log practice and a doubles match, clear a challenge, report the court, ask an expert, build your bag, one passport across borders"></video>
+          <button type="button" class="film-play" id="filmPlay" aria-label="Play the film, 1 minute 33 seconds">
+            <span class="fp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span><span id="filmPlayTx">Watch Mia's tennis life · 1:33</span>
+          </button>
+        </div>
+        <div class="film-copy">
+          <p class="explainer-note">When you have a question, the expert is right there. You don't have to be good enough first.</p>
+          <div class="film-cta">
+            <a class="as-badge" href="https://apps.apple.com/app/id6761720650" target="_blank" rel="noopener" aria-label="Download Tennis Nut on the App Store"><img src="/app-store-badge-en.svg" alt="Download on the App Store" width="159" height="53" /></a>
+            <a class="as-badge" href="https://play.google.com/store/apps/details?id=com.tns.passport" target="_blank" rel="noopener" aria-label="Get Tennis Nut on Google Play"><img src="/google-play-badge-en.png" alt="Get it on Google Play" width="178" height="53" /></a>
+          </div>
         </div>
         <script>
           (function () {
-            var v = document.getElementById('explainerVideo');
-            if (!v) return;
-            var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (calm || !('IntersectionObserver' in window)) v.controls = true;
-            else new IntersectionObserver(function (es) {
-              es.forEach(function (e) { if (e.isIntersecting) { v.play().catch(function () { v.controls = true; }); } else { v.pause(); } });
-            }, { threshold: 0.5 }).observe(v);
-            v.addEventListener('click', function () { v.paused ? v.play() : v.pause(); });
+            var v = document.getElementById('explainerVideo'), f = document.getElementById('film'), b = document.getElementById('filmPlay');
+            if (!v || !b) return;
+            b.addEventListener('click', function () {
+              if (v.ended) v.currentTime = 0;
+              v.controls = true; f.classList.add('playing');
+              v.play().catch(function () { f.classList.remove('playing'); });
+            });
+            v.addEventListener('ended', function () {
+              v.controls = false; f.classList.remove('playing');
+              document.getElementById('filmPlayTx').textContent = 'Watch again · 1:33';
+            });
+            if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
+              es.forEach(function (e) { if (!e.isIntersecting && !v.paused) v.pause(); });
+            }, { threshold: 0.2 }).observe(v);
           })();
         </script>
-
       </section>
     </div>
 
     <!-- ── Hitting: post free time → find players → ask → hit chat ── -->
     <section class="section" id="hit">
       <h2 class="section-h">Finding a hit starts with "I'm free"</h2>
-      <p class="section-sub">You don't need to know anyone yet. Say when you can play and other players can find you.</p>
+      <p class="section-sub">You don't need to know anyone yet. Post your free time, and when someone's time and place line up with yours, you both get notified.</p>
 
       <div class="flow-grid">
         <div class="value">
@@ -1693,14 +1739,12 @@
         </div>
 
         <div class="value">
-          <span class="v-no">02 · FIND PLAYERS</span>
-          <h3>See who's free on the map</h3>
+          <span class="v-no">02 · AUTO MATCH</span>
+          <h3>Matches come to you</h3>
           <div class="v-art">
-            <div class="vm-canvas">
-              <span class="vm-bubble">4 say anywhere in Sydney</span>
-              <span class="vm-label">Rushcutters Bay Tennis: 2 free</span>
-              <span class="vm-pin p2"></span>
-              <span class="vm-pin on"></span>
+            <div class="vp-push">
+              <img src="/app-icon.png" width="28" height="28" alt="" />
+              <div><b>Your free slot overlaps with Sam</b><span>Sat 07:00–09:00 · Rushcutters Bay Tennis</span></div>
             </div>
             <div class="v-chips">
               <span class="chip ok">2 h overlap with you</span>
@@ -1710,17 +1754,15 @@
 
         <div class="value">
           <span class="v-no">03 · ASK</span>
-          <h3>Found someone? Ask them</h3>
+          <h3>Ask them to play? One tap</h3>
           <div class="v-art">
             <div>
-              <div class="vh-when">Sat 07:00 · Rushcutters Bay Tennis</div>
-              <div class="vh-what">Doubles · regular yellow balls</div>
+              <div class="vh-what">Ask Sam to play?</div>
+              <div class="vh-when" style="margin-top:3px">Your free times overlap: Sat 07:00–09:00 · Rushcutters Bay Tennis</div>
             </div>
             <div class="v-chips">
-              <span class="chip">Just them</span>
-              <span class="chip">Friends</span>
-              <span class="chip">Team</span>
-              <span class="chip">Regulars at this court</span>
+              <span class="chip ok">Ask them</span>
+              <span class="chip">Not now</span>
             </div>
           </div>
         </div>
@@ -1752,59 +1794,20 @@
     </a>
     <p class="travel-link"><a href="/travel?lang=en">Travelling? Courts visitors can actually book in Tokyo, Osaka, Seoul, Taipei and more, with prices and how to book →</a></p>
 
-    <!-- ── App 展示 ── -->
+    <!-- ── Expert advice (real screen): the film and the hero already show what the app does; this is the one detail the film can't -->
     <section class="section">
-      <h2 class="section-h">Your whole tennis life in one app</h2>
-
-      <div class="show">
-        <div class="show-phone">
-          <div>
-            <div class="phone">
-              <img src="/shot-hit-create-en.jpg" width="720" height="1327" loading="lazy"
-                   alt="Posting a session: time, format, balls and who can see it, all settled before you send" />
-            </div>
-            <div class="show-cap">
-              <b>Sessions</b>
-              <span>Time, format and balls agreed up front</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="show-cards">
-          <figure class="show-card">
-            <img src="/shot-consult-en.jpg" width="720" height="487" loading="lazy"
-                 alt="Starting a consultation: pick tennis technique or tennis fitness, and an expert is assigned; an AI recap keeps the advice you got" />
-            <figcaption class="show-cap">
-              <b>Expert advice</b>
-              <span>A written answer for your problem, not a canned tip</span>
-            </figcaption>
-          </figure>
-
-          <figure class="show-card">
-            <img src="/shot-passport-stats-en.jpg" width="720" height="1040" loading="lazy"
-                 alt="The Tennis Nut player card with home court and playing style, above the tennis stats: practices, hours, matches and win rate" />
-            <figcaption class="show-cap">
-              <b>Passport · Records</b>
-              <span>Practices, matches and every court you have conquered</span>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
+      <h2 class="section-h">Ask an expert</h2>
+      <p class="section-sub">Pick tennis technique or fitness and an expert is assigned. You get a written answer for your problem, not a canned tip.</p>
+      <figure class="show-card expert-shot">
+        <img src="/shot-consult-en.jpg" width="720" height="487" loading="lazy"
+             alt="Starting a consultation: pick tennis technique or tennis fitness, and an expert is assigned; an AI recap keeps the advice you got" />
+      </figure>
     </section>
 
     <!-- ③ 品牌理念 -->
     <section class="section">
       <h2 class="section-h">An app that wants you on court, and on court for longer</h2>
-      <p class="creed-lede">
-        Tennis Nut is about the tennis life itself: courts, players, practice, matches, experts and records. It lowers the cost of starting, of keeping at it, and of asking for help.
-      </p>
-
-      <div class="creed-grid">
-        <div class="creed">
-          <span class="c-not">Experts</span>
-          <h3>It starts with your first question</h3>
-          <p>The expert is there the moment you have a question. You do not have to be good enough first.</p>
-        </div>
+      <div class="creed-grid four">
         <div class="creed">
           <span class="c-not">Sessions</span>
           <h3>The invitation tells you whether it is for you</h3>
@@ -1813,7 +1816,7 @@
         <div class="creed">
           <span class="c-not">Courts</span>
           <h3>The information comes from people who went</h3>
-          <p>Whether it is open, when, and what it costs should all be findable. Courts are scarce; keeping that information alive takes a community.</p>
+          <p>Whether it is open, when, and what it costs, kept up to date by players who were there.</p>
         </div>
       </div>
     </section>
