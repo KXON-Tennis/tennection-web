@@ -103,6 +103,11 @@ a:hover {
   margin-left: auto;
   display: flex;
   gap: 18px;
+  /* 對齊 wordmark 的字，不是整張圖：圖的上半是萊姆綠光芒，「tennis nut」
+     的字落在圖高 62%–89% 之間。置中對齊時選單字比 logo 字高了約 9px。
+     靠底對齊後選單的基線剛好落在 logo 字的底部。 */
+  align-self: flex-end;
+  margin-bottom: 2px;
 }
 
 .site-header nav a {

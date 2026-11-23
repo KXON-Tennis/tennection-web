@@ -376,22 +376,8 @@
     .band-video { margin-top: 40px; border-radius: 28px; }
     .band-video .sec-h { text-wrap: balance; }
     .explainer { display:grid; justify-items:center; gap:18px; margin: 28px auto 8px; }
-    .explainer video { width: min(92vw, 400px); height: auto; aspect-ratio: 9 / 16; border-radius: 28px; background:#F7FBF2;
+    .explainer video { width: 100%; max-width: 400px; height: auto; aspect-ratio: 9 / 16; border-radius: 28px; background:#F7FBF2;
       box-shadow: 0 30px 60px -28px rgba(45, 90, 52, 0.45); border: 1px solid #DCEAC9; cursor: pointer; display:block; }
-    .chapters { width: min(92vw, 420px); }
-    .chapters summary { cursor:pointer; font-weight:700; color:#1B5138; font-size:15px; padding:6px 4px; }
-    .chapters ol { list-style:none; margin:6px 0 0; padding:0; }
-    .chapters button { all:unset; box-sizing:border-box; display:block; width:100%; cursor:pointer; padding:8px 12px; border-radius:12px; }
-    .chapters button:focus-visible { outline:2px solid #59B14A; }
-    .chapters b { display:block; font-size:15px; color:#15271B; }
-    .chapters span { display:block; font-size:13.5px; color:#6B7A6E; line-height:1.5; margin-top:2px; }
-    .chapters li.on button { background:#fff; box-shadow: 0 8px 20px -14px rgba(45,90,52,.5); }
-    .chapters li.on b { color:#2E6B3A; }
-    @media (min-width: 900px) {
-      .explainer { grid-template-columns: 340px 290px; justify-content:center; align-items:center; gap:30px; }
-      .explainer video { width: 340px; }
-      .chapters { width: 290px; }
-    }
     .explainer-note { text-align:center; color:#2E6B3A; font-weight:600; font-size:15px; margin: 14px auto 0; padding: 0 16px; }
     .wheel {
       position: relative;
@@ -1727,20 +1713,6 @@
           <video id="explainerVideo" src="/explainer-zh.mp4" poster="/explainer-zh-poster.jpg"
                  muted loop playsinline preload="none" width="720" height="1280"
                  aria-label="Tennis Nut 短片：找場地、認識同一座球場的人、打卡、打球紀錄、挑戰、回報、請教專家、登錄裝備、出國打球"></video>
-          <details class="chapters" id="explainerChapters">
-            <summary>影片在講什麼</summary>
-            <ol>
-              <li data-t="3.1"><button type="button"><b>找到能打的球場</b><span>依材質篩選，看球友回報的現況。</span></button></li>
-              <li data-t="8.1"><button type="button"><b>同一座球場的人</b><span>常在這裡打的球友、駐紮在這裡的球隊，申請加入就能一起約。</span></button></li>
-              <li data-t="15.1"><button type="button"><b>到場打卡</b><span>人真的到了球場，才算數。</span></button></li>
-              <li data-t="20.1"><button type="button"><b>這場球會留下來</b><span>練習紀錄連結球伴，對方那邊也留下一筆，還能分享圖卡。</span></button></li>
-              <li data-t="29.1"><button type="button"><b>挑戰過關</b><span>球友見證，過關記在你的護照上。</span></button></li>
-              <li data-t="36.5"><button type="button"><b>打完順手回報</b><span>收藏這座球場的人都會收到通知，你也拿到堅果。</span></button></li>
-              <li data-t="42.8"><button type="button"><b>卡關時，找得到專家</b><span>用打球累積的堅果，請教網球教練或體能訓練師。</span></button></li>
-              <li data-t="47.8"><button type="button"><b>球拍、球鞋也有紀錄</b><span>主拍打了幾小時、穿線磅數、換線後又打了多久。</span></button></li>
-              <li data-t="56.1"><button type="button"><b>護照不分國界</b><span>去過的國家和球場，都累積在同一本護照。</span></button></li>
-            </ol>
-          </details>
         </div>
         <script>
           (function () {
@@ -1752,18 +1724,6 @@
               es.forEach(function (e) { if (e.isIntersecting) { v.play().catch(function () { v.controls = true; }); } else { v.pause(); } });
             }, { threshold: 0.5 }).observe(v);
             v.addEventListener('click', function () { v.paused ? v.play() : v.pause(); });
-            var d = document.getElementById('explainerChapters');
-            if (!d) return;
-            if (window.matchMedia && window.matchMedia('(min-width: 900px)').matches) d.open = true;
-            var items = [].slice.call(d.querySelectorAll('li'));
-            items.forEach(function (li) {
-              li.querySelector('button').addEventListener('click', function () { v.currentTime = +li.getAttribute('data-t'); v.play().catch(function () { v.controls = true; }); });
-            });
-            v.addEventListener('timeupdate', function () {
-              var t = v.currentTime, cur = null;
-              items.forEach(function (li) { if (+li.getAttribute('data-t') <= t + 0.05) cur = li; });
-              items.forEach(function (li) { li.classList.toggle('on', li === cur); });
-            });
           })();
         </script>
         <p class="explainer-note">有疑問的時候，專家就在那裡；不必等到技術夠好，才有資格問。</p>
