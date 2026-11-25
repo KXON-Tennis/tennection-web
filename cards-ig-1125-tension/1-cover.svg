@@ -7,8 +7,7 @@
 <text x="80" y="280" font-size="30" fill="#9AA4AD">136 位球友、197 支在用的球拍</text>
 <text x="540" y="760" font-size="300" font-weight="900" fill="#C6FF3C" text-anchor="middle">52<tspan fill="#FFFFFF">.</tspan>5</text>
 <text x="540" y="860" font-size="48" font-weight="700" fill="#E6EBEF" text-anchor="middle">磅</text>
-<text x="540" y="1010" font-size="34" fill="#9AA4AD" text-anchor="middle">半磅，不少人穿線時會這樣要求。</text>
-<text x="540" y="1062" font-size="34" fill="#9AA4AD" text-anchor="middle">看看大家都穿幾磅 →</text>
+<text x="540" y="1030" font-size="34" fill="#9AA4AD" text-anchor="middle">看看大家都穿幾磅 →</text>
 <text x="540" y="1310" font-size="30" text-anchor="middle" fill="#8A949C">Your tennis life, <tspan fill="#C6FF3C" font-weight="800">connected.</tspan></text>
 <text x="1000" y="1310" font-size="24" fill="#9AA4AD" text-anchor="end">1/7</text>
 </svg>

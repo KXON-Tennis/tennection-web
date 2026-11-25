@@ -21,8 +21,8 @@ def page(n):
 o = head('你的磅數有小數點嗎？', f'{S["players"]} 位球友、{S["rackets"]} 支在用的球拍', size=56)
 o += [f'<text x="540" y="760" font-size="300" font-weight="900" fill="{A}" text-anchor="middle">52<tspan fill="{T["title"]}">.</tspan>5</text>',
       f'<text x="540" y="860" font-size="48" font-weight="700" fill="{LBL}" text-anchor="middle">磅</text>',
-      f'<text x="540" y="1010" font-size="34" fill="{SUB}" text-anchor="middle">半磅，不少人穿線時會這樣要求。</text>',
-      f'<text x="540" y="1062" font-size="34" fill="{SUB}" text-anchor="middle">看看大家都穿幾磅 →</text>']
+      # 「不少人這樣要求」沒有資料佐證，拿掉（11-25 Kayson）
+      f'<text x="540" y="1030" font-size="34" fill="{SUB}" text-anchor="middle">看看大家都穿幾磅 →</text>']
 o += foot(); o.insert(-1, page(1)); save('1-cover', o)
 
 # 2 半磅的球友
