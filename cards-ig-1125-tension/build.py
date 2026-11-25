@@ -101,8 +101,7 @@ top = S['top']; mx = top[0][1]
 for i, (name, v) in enumerate(top):
     y = 380 + i * 135; w = max(12, 600 * v / mx)
     o += [f'<text x="80" y="{y+40}" font-size="34" font-weight="700" fill="{LBL}">{name}</text>',
-          f'<rect x="80" y="{y+62}" width="{w:.0f}" height="40" rx="20" fill="{A if i < 2 else DIM}"/>',
-          f'<text x="{80+w+18:.0f}" y="{y+94}" font-size="34" font-weight="800" fill="{A if i < 2 else SUB}">{v} 人</text>']
+          f'<rect x="80" y="{y+62}" width="{w:.0f}" height="40" rx="20" fill="{A if i < 2 else DIM}"/>']  # 不標人數（11-25 Kayson）
 o += foot(); o.insert(-1, page(6)); save('6-strings', o)
 
 # 7 結尾

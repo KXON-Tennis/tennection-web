@@ -7,22 +7,16 @@
 <text x="80" y="280" font-size="30" fill="#9AA4AD">同系列合併（不分粗細、光面／粗面），用人數算</text>
 <text x="80" y="420" font-size="34" font-weight="700" fill="#E6EBEF">Babolat RPM Blast</text>
 <rect x="80" y="442" width="600" height="40" rx="20" fill="#C6FF3C"/>
-<text x="698" y="474" font-size="34" font-weight="800" fill="#C6FF3C">16 人</text>
 <text x="80" y="555" font-size="34" font-weight="700" fill="#E6EBEF">Luxilon Alu Power</text>
 <rect x="80" y="577" width="600" height="40" rx="20" fill="#C6FF3C"/>
-<text x="698" y="609" font-size="34" font-weight="800" fill="#C6FF3C">16 人</text>
 <text x="80" y="690" font-size="34" font-weight="700" fill="#E6EBEF">Yonex Polytour Pro</text>
 <rect x="80" y="712" width="562" height="40" rx="20" fill="#5E7F2A"/>
-<text x="660" y="744" font-size="34" font-weight="800" fill="#9AA4AD">15 人</text>
 <text x="80" y="825" font-size="34" font-weight="700" fill="#E6EBEF">Head Lynx Tour</text>
 <rect x="80" y="847" width="412" height="40" rx="20" fill="#5E7F2A"/>
-<text x="510" y="879" font-size="34" font-weight="800" fill="#9AA4AD">11 人</text>
 <text x="80" y="960" font-size="34" font-weight="700" fill="#E6EBEF">Solinco Confidential</text>
 <rect x="80" y="982" width="300" height="40" rx="20" fill="#5E7F2A"/>
-<text x="398" y="1014" font-size="34" font-weight="800" fill="#9AA4AD">8 人</text>
 <text x="80" y="1095" font-size="34" font-weight="700" fill="#E6EBEF">Head Hawk Touch</text>
 <rect x="80" y="1117" width="300" height="40" rx="20" fill="#5E7F2A"/>
-<text x="398" y="1149" font-size="34" font-weight="800" fill="#9AA4AD">8 人</text>
 <text x="540" y="1310" font-size="30" text-anchor="middle" fill="#8A949C">Your tennis life, <tspan fill="#C6FF3C" font-weight="800">connected.</tspan></text>
 <text x="1000" y="1310" font-size="24" fill="#9AA4AD" text-anchor="end">6/7</text>
 </svg>
