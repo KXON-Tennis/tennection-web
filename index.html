@@ -1727,36 +1727,17 @@
     <div class="band band-tint band-video">
       <section class="sect film-wrap">
         <h2 class="sec-h">每次上場，都算數</h2>
-        <div class="film" id="film">
-          <video id="explainerVideo" src="/explainer-zh.mp4" poster="/explainer-zh-poster.jpg"
+        <div class="film" data-again="再看一次 · 1:35">
+          <video src="/explainer-zh.mp4" poster="/explainer-zh-poster.jpg"
                  muted playsinline preload="none" width="720" height="1280"
                  aria-label="Tennis Nut 短片：找有夜間照明的紅土球場、在球場建立球隊、排空檔自動配對、到場打卡、記錄練習與雙打比賽、過關挑戰、回報球場、請教專家、建立球袋、跨國護照"></video>
-          <button type="button" class="film-play" id="filmPlay" aria-label="播放短片，1 分 33 秒">
-            <span class="fp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span><span id="filmPlayTx">看 Mia 的網球日常 · 1:35</span>
+          <button type="button" class="film-play" aria-label="播放短片，1 分 33 秒">
+            <span class="fp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span><span class="fp-tx">看 Mia 的網球日常 · 1:35</span>
           </button>
         </div>
         <div class="film-copy">
           <p class="explainer-note">有疑問的時候，專家就在你手機裡；<br>任何人都有資格問。</p>
         </div>
-        <script>
-          (function () {
-            var v = document.getElementById('explainerVideo'), f = document.getElementById('film'), b = document.getElementById('filmPlay');
-            if (!v || !b) return;
-            b.addEventListener('click', function () {
-              if (v.ended) v.currentTime = 0;
-              v.controls = true; f.classList.add('playing');
-              v.play().catch(function () { f.classList.remove('playing'); });
-            });
-            v.addEventListener('ended', function () {
-              v.controls = false; f.classList.remove('playing');
-              document.getElementById('filmPlayTx').textContent = '再看一次 · 1:35';
-            });
-            // 捲出畫面就暫停，回來由人自己按播放
-            if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
-              es.forEach(function (e) { if (!e.isIntersecting && !v.paused) v.pause(); });
-            }, { threshold: 0.2 }).observe(v);
-          })();
-        </script>
       </section>
     </div>
 
@@ -1771,6 +1752,41 @@
       </div>
     </a>
     <p class="travel-link"><a href="/travel">要出國打球？東京、大阪、首爾、台北⋯旅客訂得到的球場、價格和怎麼訂 →</a></p>
+
+    <!-- ── 直接說：按＋講一句話。播放方式同上面的短片 ── -->
+    <section class="section film-wrap">
+      <h2 class="sec-h">用講的，就能紀錄</h2>
+      <div class="film" data-again="再看一次 · 1:29">
+        <video src="/just-say-it-zh.mp4" poster="/just-say-it-zh-poster.jpg"
+               muted playsinline preload="none" width="720" height="1280"
+               aria-label="直接說示範：說一句話找台中四面以上的紅土球場、記昨天的發球練習、記上週四的單打比分、排每週三和週六下午的空檔，問今年打了幾次球"></video>
+        <button type="button" class="film-play" aria-label="播放直接說示範，1 分 29 秒">
+          <span class="fp-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span><span class="fp-tx">看直接說怎麼用 · 1:29</span>
+        </button>
+      </div>
+      <div class="film-copy">
+        <p class="explainer-note">找球場、記練習、記比賽、排空檔，<br>不用一格一格填。</p>
+      </div>
+    </section>
+    <script>
+      // 每支 .film：封面＋播放鍵，按了才從頭播；播完換成「再看一次」；捲出畫面就暫停
+      document.querySelectorAll('.film').forEach(function (f) {
+        var v = f.querySelector('video'), b = f.querySelector('.film-play'), tx = f.querySelector('.fp-tx');
+        if (!v || !b) return;
+        b.addEventListener('click', function () {
+          if (v.ended) v.currentTime = 0;
+          v.controls = true; f.classList.add('playing');
+          v.play().catch(function () { f.classList.remove('playing'); });
+        });
+        v.addEventListener('ended', function () {
+          v.controls = false; f.classList.remove('playing');
+          if (tx && f.dataset.again) tx.textContent = f.dataset.again;
+        });
+        if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (!e.isIntersecting && !v.paused) v.pause(); });
+        }, { threshold: 0.2 }).observe(v);
+      });
+    </script>
 
     <!-- ── 約球：排空檔 → 找球友 → 約 → 約球對話 ── -->
     <section class="section" id="hit">
