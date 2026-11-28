@@ -11,3 +11,4 @@ node_modules/
 !updates.json
 !vercel.json
 __pycache__/
+!guides-index.json

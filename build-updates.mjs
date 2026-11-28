@@ -350,9 +350,48 @@ enReleases.forEach((r, i) => buildRelease(r, i, enReleases, L.en, true));
 // 內容放在 guides/<slug>.html，只有 <article> 那一段；<head>、頁首、頁尾一律
 // 由這裡套上，跟每一版的更新頁共用同一個殼。手寫整頁那次，頁首用了站上不存在
 // 的 class，wordmark 沒有寬度限制就把版面撐開了——外殼只能有一個來源。
+// 每一段 <h2> 給一個錨點（#s1、#s2…），App 的「直接說」回答怎麼用時可以連到
+// 那一段。原稿不用寫 id，這裡套上；原稿自己寫了 id 就沿用。
+const anchorSections = (html) => {
+  let n = 0;
+  return html.replace(/<h2(\s[^>]*)?>/g, (m, attrs = '') => {
+    n += 1;
+    return /\sid=/.test(attrs) ? m : `<h2 id="s${n}"${attrs}>`;
+  });
+};
+const plain = (html) =>
+  html
+    .replace(/<(script|style)[\s\S]*?<\/\1>/g, ' ')
+    .replace(/<br\s*\/?>/g, '\n')
+    .replace(/<\/(p|li|h3|div|figcaption)>/g, '\n')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+    .replace(/[ \t]+/g, ' ').replace(/\n\s*/g, '\n').trim();
+
+// 給「直接說」讀的索引（/guides-index.json）：每篇的標題、網址、每一段的標題與純文字，
+// 以及 verified（最後一次對過 App 的 build 與日期）。App 的後援讀線上這一份，所以
+// 回答永遠跟網站上看到的一致；verified 太舊的那篇，出版流程會提醒重對。
+const guideIndex = [];
+
 (guides ?? []).forEach((g) => {
   const slug = g.href.replace(/^\//, '');
-  const fragment = readFileSync(join(ROOT, 'guides', `${slug}.html`), 'utf8');
+  const fragment = anchorSections(
+    readFileSync(join(ROOT, 'guides', `${slug}.html`), 'utf8')
+  );
+  const sections = [];
+  const re = /<h2 id="([^"]+)"[^>]*>([\s\S]*?)<\/h2>([\s\S]*?)(?=<h2[\s>]|$)/g;
+  for (const m of fragment.matchAll(re)) {
+    sections.push({ id: m[1], heading: plain(m[2]), text: plain(m[3]).slice(0, 1500) });
+  }
+  guideIndex.push({
+    slug,
+    title: g.title,
+    blurb: g.blurb,
+    url: `${SITE}${g.href}`,
+    verified: g.verified ?? null,
+    sections,
+  });
   writeFileSync(
     join(ROOT, `${slug}.html`),
     page(
@@ -366,6 +405,11 @@ enReleases.forEach((r, i) => buildRelease(r, i, enReleases, L.en, true));
     )
   );
 });
+
+writeFileSync(
+  join(ROOT, 'guides-index.json'),
+  JSON.stringify({ generated: new Date().toISOString(), guides: guideIndex }, null, 1)
+);
 
 // ── 索引 ─────────────────────────────────────────────────────────────────
 const latest = releases[0];
