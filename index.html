@@ -176,7 +176,10 @@
       .line-cta { margin-left: 0; }
     }
 
-    /* LINE 是另一件事（不用裝 App、看活動），所以不跟下載搶：一行淡字連結，
+    /* 11-28 改：LINE 不再是「看活動」，而是不裝 App 也能用的另一條路（生態系：每個
+       管道都是一等公民）。仍然不跟下載搶——淡框小膠囊＋一行說明，不用滿版 LINE 綠。
+       原本的考量照留：
+       LINE 是另一件事（不用裝 App、看活動），所以不跟下載搶：一行淡字連結，
        跟頁尾「想先掌握活動與更新？加入 LINE →」同一個寫法，只留一顆 LINE 綠
        的小圖示讓人認得出來。原本是滿版 LINE 綠的實心按鈕，是首屏最搶眼的東西，
        比兩個商店徽章還吵，綠色也跟品牌綠撞在一起。 */
@@ -196,6 +199,31 @@
     .line-cta:hover {
       color: var(--accent-d);
       text-decoration: none;
+    }
+
+    .line-cta {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 14px 7px 11px;
+      background: var(--surface);
+      color: var(--text-secondary);
+    }
+
+    .line-cta b { color: var(--text-primary, #1F2A28); font-weight: 700; }
+
+    .line-sub {
+      max-width: 420px;
+      margin: 8px auto 0;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-tertiary);
+      text-align: center;
+    }
+
+    .line-sub a { color: var(--accent-d); font-weight: 600; white-space: nowrap; }
+
+    @media (min-width: 900px) {
+      .line-sub { margin-left: 0; text-align: left; }
     }
 
     .line-cta svg {
@@ -1697,8 +1725,10 @@
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 3C6.9 3 2.8 6.3 2.8 10.4c0 3.7 3.3 6.8 7.7 7.4.3.06.7.2.8.45.08.23.05.58.03.81l-.13.78c-.04.23-.18.9.79.49 1-.42 5.3-3.12 7.2-5.34 1.34-1.47 1.98-2.96 1.98-4.59C21.2 6.3 17.1 3 12 3z" />
             </svg>
-            想先掌握活動與更新？加入 LINE 社群 →
+            <span>不想裝 App？<b>在 LINE 加 Nutty 也能用</b> →</span>
           </a>
+          <p class="line-sub">查球場現在能不能打、找人打球、你的網球護照、群組揪球幫你數 +1。
+            <a href="/line">在 LINE 怎麼用</a></p>
         </div>
 
         <div class="hero-device">
@@ -1917,7 +1947,7 @@
           </div>
 
           <a class="fc-third" id="dl-line" href="https://line.me/R/ti/p/@tennisnut"
-             target="_blank" rel="noopener">想先掌握活動與更新？加入 LINE →</a>
+             target="_blank" rel="noopener">不想裝 App？在 LINE 加 Nutty 也能用 →</a>
         </div>
 
         <figure class="fc-qr">

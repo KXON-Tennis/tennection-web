@@ -1700,6 +1700,16 @@
       }
     },
     {
+      "title": "在 LINE 用 Tennis Nut",
+      "blurb": "不裝 App 也能用：加 Nutty 好友查球場、找人打球、看護照；拉進群組揪球數 +1、秀大家的護照、把群組登錄成球隊。",
+      "href": "/line",
+      "icon": "💬",
+      "verified": {
+        "build": "2960",
+        "date": "2026-11-29"
+      }
+    },
+    {
       "title": "Tennis Nut 快速入門",
       "blurb": "裝備、好友、最愛球場、地圖、記第一筆練習、試一個挑戰、問專家——走完一遍，App 就會開始替你做事。",
       "href": "/getting-started",

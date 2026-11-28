@@ -138,6 +138,11 @@ function page({ c, now, closures, hits, parking, live, nearby, players, tr = {} 
       `<p class="nudge">人在場上嗎？在 Tennis Nut 回報現在的狀況（可使用、客滿、溼滑），` +
       `下一個要來的人就知道。</p>`;
   }
+  // 在 LINE 問 Nutty 這座球場（11-28：LINE 是不裝 App 也能用的另一條路）。台灣的球場才放
+  // ——LINE 在台灣人人都有；連結打開跟 Nutty 的一對一、先填好這一句（沒加好友 LINE 會先請他加）。
+  const askLine = c.country === "TW"
+    ? `<p class="nudge line-ask">不想裝 App？<a href="https://line.me/R/oaMessage/${encodeURIComponent("@tennisnut")}/?${encodeURIComponent(`${c.name}現在能打嗎`)}" target="_blank" rel="noopener">在 LINE 問 Nutty「${h(c.name)}現在能打嗎」</a>，隨時看得到場況。</p>`
+    : "";
   const liveHtml = live && live.playing_now > 0
     ? `<p class="live"><span class="pulse"></span>現在 ${live.playing_now} 人在這裡打球</p>`
     : "";
@@ -277,6 +282,8 @@ function page({ c, now, closures, hits, parking, live, nearby, players, tr = {} 
     .app p { margin: 0 0 10px; color: var(--text-secondary); }
     .app .badge img { display: block; height: 46px; width: auto; }
     .app .badges { display: flex; flex-wrap: wrap; gap: 10px; }
+    .app .line-alt { margin: 12px 0 0; font-size: 14px; }
+    .app .line-alt a, .line-ask a { color: var(--accent-d); font-weight: 600; }
   </style>
 </head>
 <body>
@@ -309,6 +316,7 @@ function page({ c, now, closures, hits, parking, live, nearby, players, tr = {} 
       <h2>現在的場況</h2>
       ${liveHtml}
       ${statusHtml}
+      ${askLine}
     </section>
 
     <section>
@@ -340,6 +348,9 @@ function page({ c, now, closures, hits, parking, live, nearby, players, tr = {} 
           <img src="/google-play-badge-en.png" alt="在 Google Play 下載" width="154" height="46" />
         </a>
       </div>
+      ${c.country === "TW"
+        ? `<p class="line-alt">也可以不裝 App：<a href="https://line.me/R/ti/p/${encodeURIComponent("@tennisnut")}" target="_blank" rel="noopener">在 LINE 加 Nutty</a>，在球場上一樣能回報場況、記下這一場。<a href="/line">在 LINE 怎麼用</a></p>`
+        : ""}
     </section>
 
     ${nearbyHtml}
