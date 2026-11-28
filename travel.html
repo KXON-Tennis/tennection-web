@@ -418,7 +418,7 @@
       document.title = `${n.primary} · Tennis Nut`;
       const facts = [priceLine(v), bookingLine(v), gearLine(v)].filter(Boolean);
       const note = (v.notes || {})[LANG];
-      const month = String(v.checked_on || "").slice(0, 7);
+      const day = String(v.checked_on || "").slice(0, 10);
       const src = safeUrl(v.source_url);
       const maps = c.lat != null ? `https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lng}` : null;
       view.innerHTML = `<button class="back" id="back">${esc(T.backList)}</button>
@@ -431,8 +431,8 @@
         <ul class="facts"><li class="label${open ? " open" : ""}">${esc(T.reg[v.registration] || T.reg.none)}</li>
           ${facts.map((f) => `<li>${esc(f)}</li>`).join("")}</ul>
         ${note ? `<div class="note">${esc(note)}</div>` : ""}
-        <div class="checked">${src ? `<a href="${esc(src)}" target="_blank" rel="noopener">${esc(T.checked(month))} ›</a>`
-          : esc(T.checkedNoLink(month))}</div>
+        <div class="checked">${src ? `<a href="${esc(src)}" target="_blank" rel="noopener">${esc(T.checked(day))} ›</a>`
+          : esc(T.checkedNoLink(day))}</div>
         <div class="sec">${esc(T.tips)}</div><div id="tips"></div><div id="tipForm"></div></div>`;
       document.getElementById("back").onclick = () => go(state.dest, null);
       loadTips(v.court_id);
