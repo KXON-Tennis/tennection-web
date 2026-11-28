@@ -41,6 +41,15 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
                 padding: 9px 18px; }
     h3.sub { font-size: 15px; color: var(--text-secondary); margin: 22px 0 8px; }
     .card p + p { margin-top: 8px; }
+    /* 開頭的兩種玩法：一對一（像 App）／群組（熱鬧），各一句話＋一顆按鈕（Kayson 11-29） */
+    .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 8px; }
+    @media (max-width: 560px) { .modes { grid-template-columns: 1fr; } }
+    .mode { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 16px 18px; text-decoration: none; color: inherit; }
+    .mode .k { font-size: 13px; font-weight: 700; color: var(--accent); }
+    .mode h3 { font-size: 17px; margin: 4px 0 6px; color: var(--text-primary); }
+    .mode p { margin: 0; font-size: 14px; line-height: 1.65; }
+    .mode .go { display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 700; color: var(--accent); }
     .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
                   font-size: 14px; color: var(--text-tertiary); }
 </style>
@@ -49,11 +58,27 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
     <span class="tag-line">🌰 使用說明</span>
     <h1>在 LINE 用 Tennis Nut</h1>
     <p class="lead">
-      不想裝 App 也可以。在 LINE 加 Tennis Nut 好友（大家都叫它 Nutty），查球場現在能不能打、找人打球、看你的網球護照；
-      把 Tennis Nut 拉進你的球友群組，揪球幫你數 +1，還能把群組登錄成球隊。
+      不想裝 App 也可以。Tennis Nut（大家都叫它 Nutty）在 LINE 上有兩種用法：自己一個人用，或拉進球友群組大家一起用。
     </p>
 
-    <h2>加 Tennis Nut 好友</h2>
+    <div class="modes">
+      <a class="mode" href="#solo">
+        <span class="k">給自己用</span>
+        <h3>你的網球助理</h3>
+        <p>不用裝 App，你的網球護照和球場資訊就在 LINE 裡：球場現在能不能打、記下這一場、排空檔找人打球。</p>
+        <span class="go">加好友就能用 ↓</span>
+      </a>
+      <a class="mode" href="#group">
+        <span class="k">給球友群組用</span>
+        <h3>群組的總務</h3>
+        <p>把 Tennis Nut 拉進球友群組：揪球幫你數人頭、秀大家的球員證、把群組登錄成球隊。</p>
+        <span class="go">三步拉進群組 ↓</span>
+      </a>
+    </div>
+
+    <h2 id="solo">給自己用：你的網球助理</h2>
+    <p>一對一跟 Tennis Nut 聊，用起來像 App：只有你看得到，你的護照、你的球場、你的空檔都在這裡。</p>
+    <h3 class="sub">加 Tennis Nut 好友</h3>
     <p>
       在 LINE 搜尋 ID <b>@tennisnut</b>，或直接
       <a href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">點這裡加好友</a>。
@@ -65,7 +90,7 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       看不懂的話它不會亂回。
     </div>
 
-    <h2>一對一能做什麼</h2>
+    <h3 class="sub">能做什麼</h3>
     <div class="card">
       <h3>球場現在能不能打</h3>
       <p>問「〇〇現在能打嗎」，回你那座球場的狀況、幾個人回報、有沒有封閉。只說「這裡能打嗎」，傳個位置給它，回最近的那一座。卡片上按「♡ 加入最愛」，或直接說「把中路加入最愛」，人不在球場附近也能加。</p>
@@ -101,7 +126,9 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       <p>找不到你的球場？在「全部功能」裡點「投稿新球場」，在球場上把地圖上的圖釘對準球場送出，審核通過就會出現在地圖上。</p>
     </div>
 
-    <h2>把 Tennis Nut 拉進球友群組</h2>
+    <h2 id="group">給球友群組用：群組的總務</h2>
+    <p>拉進群組，大家一起用：揪球、接龍、秀護照，整群都看得到、都能參加。Tennis Nut 只在被 @ 或有人打 +1 時回話，不會自己洗版。</p>
+    <h3 class="sub">三步拉進群組</h3>
     <ol class="steps">
       <li>
         <b>先加 Tennis Nut 好友</b>
@@ -118,6 +145,7 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       </li>
     </ol>
     <p class="path">一個群組只能放一個官方帳號：群組裡已經有別的機器人，Tennis Nut 就放不進來。</p>
+    <h3 class="sub">群組裡能做什麼</h3>
     <div class="card">
       <h3>揪球，人數它來數</h3>
       <p>「@Tennis Nut 週六早上七點大佳 三缺一」開一張名單，大家照常打 +1、-1，滿了自動排候補；打「統計」看名單。
@@ -134,15 +162,16 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
     <div class="card">
       <h3>秀護照、大家的護照</h3>
       <p>
-        「@Tennis Nut 我的護照」把你的球員證貼到群組。「@Tennis Nut 大家的護照」把群組裡每個貼過護照的人排成一整排。
-        只有自己貼過、或說了「@Tennis Nut 加入名冊」的人會出現；不想出現就說「@Tennis Nut 退出名冊」。
+        「@Tennis Nut 我的護照」把你的球員證貼到群組。「@Tennis Nut 大家的護照」貼出這個群組的名冊：一排大頭照，
+        按「打開名冊」看全部人，點一位看他的護照。只有自己貼過護照、說了「@Tennis Nut 加入名冊」或問過「大家的護照」的人會出現；
+        不想出現就說「@Tennis Nut 退出名冊」。
       </p>
     </div>
     <div class="callout">
       想收到「有人約你」「有人跟你時間重疊」的通知，要先加 Tennis Nut 好友——LINE 只讓官方帳號傳訊息給加了好友的人。
     </div>
 
-    <h2 id="rollcall">接龍怎麼用</h2>
+    <h2 id="rollcall">群組：接龍怎麼用</h2>
     <p>群組裡的報名、+1，Tennis Nut 幫你數人頭、排候補、算場地費。中間穿插其他聊天沒關係，名單不會失效。</p>
 
     <h3 class="sub">開一張</h3>
@@ -195,7 +224,7 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       </p>
     </div>
 
-    <h2>把群組登錄成球隊</h2>
+    <h2>群組：登錄成球隊</h2>
     <p>
       常一起打球的群組，就是一支球隊。在群組說「<b>@Tennis Nut 建立球隊</b>」，按它給你的按鈕，
       在地圖上選你們的主場、取隊名，可以附一張大合照當隊照。人不用在球場上。
@@ -206,15 +235,16 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
       （「@Tennis Nut 全台球隊」）。之後在群組揪的球，就是球隊的約球。
     </p>
 
-    <h2>跟 App 是同一個帳號</h2>
+    <h2>兩種用法、跟 App，都是同一個帳號</h2>
     <p>
-      在 LINE 留下的紀錄、護照、球隊，跟 App 是同一份。之後想用 App，下載後選「使用 LINE 繼續」，就是同一本護照。
+      一對一、群組裡留下的紀錄、護照、球隊，跟 App 是同一份。在群組揪球的人加了 Tennis Nut 好友，就收得到「人齊了」「有人約你」的通知。之後想用 App，下載後選「使用 LINE 繼續」，就是同一本護照。
       已經用 Google、Apple 或 Email 註冊過 App 的人，到 App 的「設定 → 帳號 → 連結 LINE」，兩邊的紀錄就合在一起。
     </p>
 
     <p>
       <a class="next-link" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 加 Tennis Nut 好友<span class="arrow">→</span></a>
     </p>
+    <p class="path">加好友之後，給自己用就直接聊；要拉進群組，回到上面的<a href="#group">三步</a>。</p>
 
     <div class="guide-foot">
       用起來怪怪的？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">在 LINE 🌰</a> 說一聲，或寄信到 <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a>。
