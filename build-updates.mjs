@@ -350,6 +350,8 @@ enReleases.forEach((r, i) => buildRelease(r, i, enReleases, L.en, true));
 // 內容放在 guides/<slug>.html，只有 <article> 那一段；<head>、頁首、頁尾一律
 // 由這裡套上，跟每一版的更新頁共用同一個殼。手寫整頁那次，頁首用了站上不存在
 // 的 class，wordmark 沒有寬度限制就把版面撐開了——外殼只能有一個來源。
+// 寫說明的規則：App 上的字（按鈕、分頁、選項）用 <b class="ui">…</b>，一般強調用 <b>。
+// App repo 的 test/schema/guide_labels_test.dart 會檢查 ui 標的字都還在 App 裡（11-28）。
 // 每一段 <h2> 給一個錨點（#s1、#s2…），App 的「直接說」回答怎麼用時可以連到
 // 那一段。原稿不用寫 id，這裡套上；原稿自己寫了 id 就沿用。
 const anchorSections = (html) => {
