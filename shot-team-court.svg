@@ -5,22 +5,38 @@
   <rect x="16" y="44" width="328" height="300" rx="18" fill="#FFFFFF" stroke="#ECEAE2"/>
   <text x="34" y="80" font-size="16" fill="#1B5138" font-weight="800" text-anchor="start">中路網球場</text>
   <line x1="34" y1="98" x2="326" y2="98" stroke="#ECEAE2"/>
-  <text x="34" y="124" font-size="13" fill="#6E776F" font-weight="700" text-anchor="start">🏳️  駐紮球團</text>
-  <rect x="34" y="140" width="292" height="56" rx="10" fill="#FFFFFF" stroke="#ECEAE2"/>
-  <circle cx="60" cy="168" r="16" fill="#3F7C43" opacity="0.15"/>
-  <text x="60" y="173" font-size="14" fill="#6E776F" font-weight="500" text-anchor="middle">🎾</text>
-  <text x="86" y="164" font-size="13" fill="#1B5138" font-weight="800" text-anchor="start">Tennis Nut 隊</text>
-  <text x="86" y="182" font-size="11" fill="#9BA29B" font-weight="500" text-anchor="start">12 人</text>
-  <rect x="248" y="156" width="62" height="26" rx="13" fill="#3F7C43"/>
-  <text x="279" y="173" font-size="11.5" fill="#FFFFFF" font-weight="800" text-anchor="middle">加入</text>
-  <rect x="34" y="206" width="292" height="56" rx="10" fill="#FFFFFF" stroke="#ECEAE2"/>
-  <circle cx="60" cy="234" r="16" fill="#3F7C43" opacity="0.15"/>
-  <text x="60" y="239" font-size="14" fill="#6E776F" font-weight="500" text-anchor="middle">🎾</text>
-  <text x="86" y="230" font-size="13" fill="#1B5138" font-weight="800" text-anchor="start">週三早球團</text>
-  <text x="86" y="248" font-size="11" fill="#9BA29B" font-weight="500" text-anchor="start">6 人</text>
-  <rect x="248" y="222" width="62" height="26" rx="13" fill="#3F7C43"/>
-  <text x="279" y="239" font-size="11.5" fill="#FFFFFF" font-weight="800" text-anchor="middle">加入</text>
-  <rect x="34" y="276" width="292" height="48" rx="10" fill="#3F7C43" opacity="0.10"/>
-  <text x="48" y="296" font-size="12.5" fill="#3F7C43" font-weight="800" text-anchor="start">＋ 在這裡建隊</text>
-  <text x="48" y="313" font-size="10.5" fill="#6E776F" font-weight="500" text-anchor="start">主場就會是中路網球場</text>
+  <g fill="#3F7C43">
+    <circle cx="41" cy="116" r="3.2"/><circle cx="34.5" cy="118" r="2.4" opacity="0.7"/><circle cx="47.5" cy="118" r="2.4" opacity="0.7"/>
+    <path d="M35.5 126 c0 -4 2.5 -6 5.5 -6 c3 0 5.5 2 5.5 6 z"/>
+    <path d="M30.5 126 c0 -3 1.6 -4.6 4 -4.6 c1 0 1.8 0.3 2.4 0.8 c-1 1.1 -1.5 2.4 -1.5 3.8 z" opacity="0.7"/>
+    <path d="M51.5 126 c0 -3 -1.6 -4.6 -4 -4.6 c-1 0 -1.8 0.3 -2.4 0.8 c1 1.1 1.5 2.4 1.5 3.8 z" opacity="0.7"/>
+  </g>
+  <text x="60" y="126" font-size="13" fill="#3F7C43" font-weight="800" text-anchor="start">球隊 (2)</text>
+  <text x="326" y="126" font-size="12.5" fill="#3F7C43" font-weight="800" text-anchor="end">＋ 在這裡建隊</text>
+  <rect x="34" y="140" width="142" height="52" rx="10" fill="#3F7C43" opacity="0.10"/>
+  <circle cx="58" cy="166" r="15" fill="#1B5138"/>
+  <text x="58" y="171" font-size="13" fill="#FFFFFF" font-weight="800" text-anchor="middle">T</text>
+  <text x="80" y="162" font-size="13" fill="#1B5138" font-weight="800" text-anchor="start">Tennis Nut 隊</text>
+  <text x="80" y="180" font-size="11" fill="#9BA29B" font-weight="500" text-anchor="start">12 人</text>
+  <rect x="184" y="140" width="142" height="52" rx="10" fill="#3F7C43" opacity="0.10"/>
+  <circle cx="208" cy="166" r="15" fill="#C07A2C"/>
+  <text x="208" y="171" font-size="13" fill="#FFFFFF" font-weight="800" text-anchor="middle">週</text>
+  <text x="230" y="162" font-size="13" fill="#1B5138" font-weight="800" text-anchor="start">週三早球團</text>
+  <text x="230" y="180" font-size="11" fill="#9BA29B" font-weight="500" text-anchor="start">6 人</text>
+  <rect x="30" y="136" width="150" height="60" rx="13" fill="none" stroke="#E8590C" stroke-width="3"/>
+  <circle cx="30" cy="136" r="13" fill="#E8590C"/>
+  <text x="30" y="141" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">1</text>
+  <path d="M105 200 v20" stroke="#E8590C" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M99 214 l6 7 l6 -7" fill="none" stroke="#E8590C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="120" y="216" font-size="11.5" fill="#E8590C" font-weight="800" text-anchor="start">點進去</text>
+  <rect x="34" y="228" width="292" height="100" rx="12" fill="#FBFAF6" stroke="#ECEAE2"/>
+  <circle cx="62" cy="256" r="16" fill="#1B5138"/>
+  <text x="62" y="261" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">T</text>
+  <text x="88" y="252" font-size="14" fill="#1B5138" font-weight="800" text-anchor="start">Tennis Nut 隊</text>
+  <text x="88" y="270" font-size="11" fill="#9BA29B" font-weight="500" text-anchor="start">主場 中路網球場 · 12 人</text>
+  <rect x="50" y="284" width="260" height="34" rx="17" fill="#3F7C43"/>
+  <text x="180" y="306" font-size="13" fill="#FFFFFF" font-weight="800" text-anchor="middle">申請加入</text>
+  <rect x="46" y="280" width="268" height="42" rx="21" fill="none" stroke="#E8590C" stroke-width="3"/>
+  <circle cx="46" cy="280" r="13" fill="#E8590C"/>
+  <text x="46" y="285" font-size="14" fill="#FFFFFF" font-weight="800" text-anchor="middle">2</text>
 </svg>
