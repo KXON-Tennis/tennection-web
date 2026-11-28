@@ -408,7 +408,7 @@ const guideIndex = [];
 
 writeFileSync(
   join(ROOT, 'guides-index.json'),
-  JSON.stringify({ generated: new Date().toISOString(), guides: guideIndex }, null, 1)
+  JSON.stringify({ guides: guideIndex }, null, 1)
 );
 
 // ── 索引 ─────────────────────────────────────────────────────────────────
