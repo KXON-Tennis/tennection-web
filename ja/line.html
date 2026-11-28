@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>LINE で Tennis Nut を使う · Tennis Nut</title>
+  <meta name="description" content="アプリなしで使える 2 通りの使い方：ひとりで使う——コート状況、記録、空き時間、パスポート。テニス仲間のグループで使う——募集の人数集計、みんなのパスポート、チーム登録。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="LINE で Tennis Nut を使う · Tennis Nut" />
+  <meta property="og:description" content="アプリなしで使える 2 通りの使い方：ひとりで使う——コート状況、記録、空き時間、パスポート。テニス仲間のグループで使う——募集の人数集計、みんなのパスポート、チーム登録。" />
+  <meta property="og:url" content="https://tennisnut.kxon.net/ja/line" />
+  <meta property="og:image" content="https://tennisnut.kxon.net/app-features.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
+  <link rel="canonical" href="https://tennisnut.kxon.net/ja/line" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .rel-lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    .hl { display: flex; gap: 14px; align-items: flex-start; background: var(--surface);
+          border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 14px; margin-bottom: 14px; }
+    .hl-emoji { font-size: 22px; line-height: 1.4; flex-shrink: 0; }
+    .hl-body h2 { font-size: 17px; margin: 0 0 6px; }
+    .hl-body p { margin: 0; color: var(--text-secondary); font-size: 15px; }
+    .rel-outdated { margin: 0 0 18px; background: #FBF1DF; border-color: #EAD3A8; }
+    .rel-outdated ul { margin: 6px 0 0; padding-left: 18px; }
+    .hl-shot { margin: 14px 0 2px; }
+    .hl-shot img { display: block; width: 100%; max-width: 300px; height: auto;
+                   border-radius: 12px; }
+    .hl-shot figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px; }
+    .guide-h { font-size: 19px; margin: 34px 0 2px; padding-top: 4px; }
+    .guide-h + .meta { margin-top: 0; }
+    .fixes { margin: 28px 0 8px; }
+    .fixes h2 { font-size: 15px; color: var(--text-tertiary); font-weight: 600; margin: 0 0 8px; }
+    .fixes ul { margin: 0; padding-left: 20px; color: var(--text-secondary); font-size: 15px; }
+    .fixes li { margin-bottom: 4px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 14px 16px; font-size: 15px; margin: 28px 0 0; }
+    .rel-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; font-size: 14px; }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-secondary); }
+    .rel-list { list-style: none; margin: 20px 0 0; padding: 0; }
+    .rel-item { margin-bottom: 12px; }
+    .rel-item a { display: block; background: var(--surface); border: 1px solid var(--border);
+                  border-radius: 14px; padding: 18px; text-decoration: none;
+                  transition: background-color .15s ease, border-color .15s ease; }
+    .rel-item a:hover { background: var(--accent-d); border-color: var(--accent-d);
+                        text-decoration: none; }
+    .rel-item a:hover .rel-item-title,
+    .rel-item a:hover .rel-item-meta { color: #fff; }
+    .rel-item a:hover .rel-item-sum { color: rgba(255, 255, 255, .82); }
+    .rel-item-meta { font-size: 13px; color: var(--text-tertiary); }
+    .rel-item-title { font-family: "Sora", -apple-system, sans-serif; font-size: 19px;
+                      color: var(--text-primary); margin: 4px 0 6px; }
+    .rel-item-sum { margin: 0; font-size: 15px; color: var(--text-secondary); }
+
+    /* 區塊標題：小標籤 + 一條線，兩區才分得開 */
+    .sec-eyebrow { display: flex; align-items: center; gap: 12px; margin: 44px 0 0; }
+    .sec-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .sec-eyebrow h2 { font-size: 13px; font-weight: 800; letter-spacing: 1.5px;
+                      color: var(--accent); margin: 0; white-space: nowrap; }
+
+    /* 最新一版：有圖、字大，跟舊版本明顯不同重量 */
+    .rel-hero { display: block; background: var(--surface); border: 1px solid var(--border);
+                border-radius: 18px; overflow: hidden; text-decoration: none; margin-top: 20px; }
+    .rel-hero { transition: border-color .15s ease; }
+    .rel-hero:hover { border-color: var(--accent-d); text-decoration: none; }
+    .rel-hero:hover .rel-hero-body { background: var(--accent-d); }
+    .rel-hero-body { transition: background-color .15s ease; }
+    .rel-hero:hover h3, .rel-hero:hover .rel-item-meta { color: #fff; }
+    .rel-hero:hover p { color: rgba(255, 255, 255, .82); }
+    .rel-hero-body { padding: 26px 22px 28px; }
+    .rel-badge { display: inline-block; background: var(--accent); color: #fff; font-size: 11px;
+                 font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 3px 10px; }
+    .rel-hero h3 { font-family: "Sora", -apple-system, sans-serif; font-size: 24px; line-height: 1.35;
+                   color: var(--text-primary); margin: 12px 0 8px; }
+    .rel-hero p { margin: 0; font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
+    .rel-hero .rel-item-meta { margin-top: 12px; }
+
+    /* 舊版本：收成一行，日期與標題並排 */
+    .rel-past { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--border); }
+    .rel-past li a { display: flex; gap: 14px; align-items: baseline; padding: 14px 2px;
+                     border-bottom: 1px solid var(--border); text-decoration: none; }
+    .rel-past li a { transition: background-color .15s ease; border-radius: 8px; }
+    .rel-past li a:hover { background: var(--accent-d); text-decoration: none;
+                           padding-left: 10px; padding-right: 10px; }
+    .rel-past li a:hover .rel-past-t { color: #fff; }
+    .rel-past li a:hover .rel-past-d { color: rgba(255, 255, 255, .75); }
+    .rel-past-d { font-size: 13px; color: var(--text-tertiary); white-space: nowrap; }
+    .rel-past-t { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+
+    /* 功能介紹：圖示當錨點，桌機兩欄 */
+    .guide-grid { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+    @media (min-width: 720px) { .guide-grid { grid-template-columns: 1fr 1fr; } }
+    .guide-grid a { display: flex; gap: 14px; height: 100%; background: var(--surface);
+                    border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+                    text-decoration: none;
+                    transition: background-color .15s ease, border-color .15s ease; }
+    /* 滑過整張卡就翻成品牌綠底白字——卡片本來就是一整個連結，
+       只換邊框顏色的話，游標在卡片中間時看不出它可以點。 */
+    .guide-grid a:hover { background: var(--accent-d); border-color: var(--accent-d);
+                          text-decoration: none; }
+    .guide-grid a:hover .guide-t { color: #fff; }
+    .guide-grid a:hover .guide-s { color: rgba(255, 255, 255, .82); }
+    .guide-ic { font-size: 22px; line-height: 1.3; flex-shrink: 0; }
+    .guide-t { font-size: 17px; font-weight: 700; color: var(--text-primary); margin: 0 0 6px; }
+    .guide-s { margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/en" class="brand-link">
+      <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
+    </a>
+    <nav>
+      <a href="/courts-map?lang=en">コート</a>
+      <a href="/travel?lang=en">海外でテニス</a>
+      <a href="/en/blog" class="active">Blog</a>
+      <a href="/">中文</a>
+    </nav>
+  </header>
+
+<!-- 日本語の試作ページ（guidesUnlisted、noindex、トップからリンクしない）。中身は guides/line.html と同じ構成。
+     ボットはまだ日本語を理解しないので、公開前に line-webhook の日本語対応が要る（Kayson 11-29）。 -->
+<style>
+h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
+    .rel-back { display: inline-block; font-size: 14px; color: var(--text-tertiary); margin-bottom: 16px; }
+    .lead { font-size: 18px; color: var(--text-secondary); margin: 0 0 32px; }
+    h2 { font-size: 18px; margin: 32px 0 8px; }
+    p { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 18px 14px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; margin: 0 0 6px; }
+    .card p { margin: 0; font-size: 15px; }
+    .callout { background: var(--tint); border: 1px solid var(--accent-soft); border-radius: 14px;
+               padding: 16px 18px; margin: 28px 0; font-size: 15px; color: var(--text-secondary); }
+    figure { margin: 16px 0 4px; }
+    figure img { display: block; width: 100%; max-width: 300px; height: auto;
+                 border-radius: 12px; }
+    figcaption { font-size: 13px; color: var(--text-tertiary); margin-top: 6px;
+                 line-height: 1.6; }
+    .path { font-size: 14px; color: var(--text-tertiary); margin: 4px 0 0; }
+    .path b { color: var(--text-secondary); }
+    /* 文章結尾指向另一篇的連結。內文裡的一般連結在一段字中間認不太出來，
+       這一條是「讀完這篇之後該去哪」，值得長得像一顆按鈕。 */
+    .next-link { display: inline-flex; align-items: center; gap: 8px;
+                 background: var(--accent); color: #fff; text-decoration: none;
+                 font-size: 15px; font-weight: 700; border-radius: 999px;
+                 padding: 11px 20px; margin-top: 8px;
+                 transition: background-color .15s ease, transform .15s ease; }
+    .next-link:hover { background: var(--accent-d); transform: translateY(-1px); }
+    .next-link .arrow { font-size: 14px; opacity: .85; }
+    /* 拉進群組的步驟：編號圓點＋標題＋說明，第一步帶一顆加好友按鈕 */
+    .steps { list-style: none; counter-reset: st; padding: 0; margin: 12px 0 8px; }
+    .steps li { counter-increment: st; position: relative; padding: 0 0 18px 44px; }
+    .steps li::before { content: counter(st); position: absolute; left: 0; top: 0;
+                        width: 30px; height: 30px; border-radius: 50%; background: var(--accent);
+                        color: #fff; font-weight: 800; font-size: 15px;
+                        display: flex; align-items: center; justify-content: center; }
+    .steps li > b { display: block; font-size: 16px; color: var(--text-primary); margin: 3px 0 4px; }
+    .steps li > span { display: block; color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
+    .step-btn { display: inline-block; margin-top: 10px; background: #06C755; color: #fff;
+                text-decoration: none; font-weight: 700; font-size: 15px; border-radius: 999px;
+                padding: 9px 18px; }
+    h3.sub { font-size: 15px; color: var(--text-secondary); margin: 22px 0 8px; }
+    .card p + p { margin-top: 8px; }
+    /* 開頭的兩種玩法：一對一（像 App）／群組（熱鬧），各一句話＋一顆按鈕（Kayson 11-29） */
+    .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 8px; }
+    @media (max-width: 560px) { .modes { grid-template-columns: 1fr; } }
+    .mode { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 16px 18px; text-decoration: none; color: inherit; }
+    .mode .k { font-size: 13px; font-weight: 700; color: var(--accent); }
+    .mode h3 { font-size: 17px; margin: 4px 0 6px; color: var(--text-primary); }
+    .mode p { margin: 0; font-size: 14px; line-height: 1.65; }
+    .mode .go { display: inline-block; margin-top: 10px; font-size: 14px; font-weight: 700; color: var(--accent); }
+    .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+                  font-size: 14px; color: var(--text-tertiary); }
+</style>
+
+<article class="container rel">
+    <span class="tag-line">🌰 使い方</span>
+    <h1>LINE で Tennis Nut を使う</h1>
+    <p class="lead">
+      アプリを入れなくても使えます。Tennis Nut は LINE で 2 通りの使い方ができます：ひとりで使うか、テニス仲間のグループに招待してみんなで使うか。
+    </p>
+
+    <div class="modes">
+      <a class="mode" href="#solo">
+        <span class="k">ひとりで使う</span>
+        <h3>あなたのテニスアシスタント</h3>
+        <p>アプリなしで、テニスパスポートとコート情報が LINE の中に。いまコートで打てるか、今日の一打を記録、空き時間を登録して相手を探す。</p>
+        <span class="go">友だち追加ですぐ使える ↓</span>
+      </a>
+      <a class="mode" href="#group">
+        <span class="k">テニス仲間のグループで使う</span>
+        <h3>グループの幹事役</h3>
+        <p>Tennis Nut をテニス仲間のグループに招待：募集の人数を数え、みんなのプレーヤーカードを並べ、グループをチームとして登録。</p>
+        <span class="go">3 ステップでグループへ ↓</span>
+      </a>
+    </div>
+
+    <h2 id="solo">ひとりで使う：あなたのテニスアシスタント</h2>
+    <p>Tennis Nut と 1 対 1 でトーク。使い心地はアプリに近く、見えるのはあなただけ。あなたのパスポート、あなたのコート、あなたの空き時間がここにまとまります。</p>
+    <h3 class="sub">Tennis Nut を友だち追加</h3>
+    <p>
+      LINE で ID <b>@tennisnut</b> を検索するか、
+      <a href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">ここをタップして友だち追加</a>。
+      トーク画面の下にメニューがあります：<b>近くのコート、マイパスポート、相手を探す、ホームコート、すべての機能、グループに招待</b>。タップするだけです。
+    </p>
+    <div class="callout">
+      コマンドを覚える必要はありません。文字でも音声でも、そのまま Tennis Nut に聞いてください。例：「有明はいま打てる？」「土曜に都内で空いてる人いる？」。
+      わからないときは適当な返事はしません。
+    </div>
+
+    <h3 class="sub">できること</h3>
+    <div class="card">
+      <h3>コートはいま打てる？</h3>
+      <p>「〇〇はいま打てる？」と聞くと、そのコートの状況、何人が報告したか、閉鎖中かどうかを返します。「ここは打てる？」なら位置情報を送ると、いちばん近いコートを答えます。カードの「♡ お気に入り」をタップするか、「有明をお気に入りに」と言えば、コートの近くにいなくても登録できます。</p>
+    </div>
+    <div class="card">
+      <h3>コートを探す</h3>
+      <p>「東京のクレーコートは？」「大阪と京都のオムニコートは？」——場所ごとに 1 枚のカードで答えます。</p>
+    </div>
+    <div class="card">
+      <h3>相手を探す・空き時間を登録</h3>
+      <p>
+        「土曜に近くで空いてる人いる？」と聞くと、公開の募集と、どの日のどの時間帯に何人が空き時間を登録しているかを一覧にします（時間は見えますが、名前は自分も登録すると見えます）。
+        時間帯をタップして確認すれば登録完了（「来週水曜の朝 9 時、有明で空いてる」と直接言っても OK）。ほかの人と時間が重なると、お互いに通知が届きます。誰かの誘いに応じる義務はなく、打つかどうかは当人同士で決めます。間違えたら「私の空き時間」で変更・削除できます。
+      </p>
+    </div>
+    <div class="card">
+      <h3>マイパスポート</h3>
+      <p>
+        「マイパスポート」と言うと、あなたのプレーヤーカードを返します：レベル、利き手、ホームコート、行ったコートの数。レベルと利き手がまだの人は、続けて数回タップで入力できます
+        （「プレーヤーカードを入力」でも OK）。「ホームコートを設定」でいちばんよく行くコートを選べます。
+      </p>
+    </div>
+    <div class="card">
+      <h3>近くのコート</h3>
+      <p>
+        メニューの「近くのコート」：周辺のコートのサーフェス、面数、屋内外、いまの状況。タップすると状況の報告、お気に入り、ホームコート設定、間違いの修正ができます。
+        コートにいるときは一番上に「ここでプレー中」が出て、記録するとパスポートに足跡がひとつ増えます。
+        地図タブでは全国のコート、24 時間以内に誰かがプレーした場所、全国のチームが見られます。
+      </p>
+    </div>
+    <div class="card">
+      <h3>新しいコートを投稿</h3>
+      <p>あなたのコートが見つからない？「すべての機能」の「コートを投稿」から、コートで地図のピンを合わせて送信。審査を通ると地図に表示されます。</p>
+    </div>
+
+    <h2 id="group">テニス仲間のグループで使う：グループの幹事役</h2>
+    <p>グループに招待して、みんなで使う：募集、出欠、パスポート自慢——グループ全員が見られて、全員が参加できます。Tennis Nut が返事をするのは @ でメンションされたときと、誰かが +1 したときだけ。勝手にトークを流しません。</p>
+    <h3 class="sub">3 ステップでグループへ</h3>
+    <ol class="steps">
+      <li>
+        <b>まず Tennis Nut を友だち追加</b>
+        <span>LINE の招待画面には自分の友だちしか出ないので、招待する人だけ先に追加します。ほかのメンバーは不要です。</span>
+        <a class="step-btn" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">Tennis Nut を友だち追加</a>
+      </li>
+      <li>
+        <b>Tennis Nut をテニス仲間のグループに招待</b>
+        <span>グループを開く → 右上の <b>≡</b> → <b>招待</b> → 友だちから <b>Tennis Nut</b> を選択。</span>
+      </li>
+      <li>
+        <b>グループで @Tennis Nut にひとこと</b>
+        <span>Tennis Nut が反応するのは @ 付きのメッセージと +1／-1 だけ。ふだんの会話には反応しません。</span>
+      </li>
+    </ol>
+    <p class="path">1 つのグループに入れる公式アカウントは 1 つだけ。すでに別のボットがいるグループには入れません。</p>
+
+    <h3 class="sub">グループでできること</h3>
+    <div class="card">
+      <h3>募集すれば、人数は数えてくれる</h3>
+      <p>「@Tennis Nut 土曜の朝 7 時 有明 あと 1 人」で参加表ができます。みんなはいつも通り +1、-1 するだけ。定員になると自動でキャンセル待ちに。「集計」で参加表を表示。
+        詳しくは下の「<a href="#rollcall">参加表の使い方</a>」へ。</p>
+    </div>
+    <div class="card">
+      <h3>コート状況をみんなで</h3>
+      <p>「@Tennis Nut 有明はいま打てる？」——グループ全員で確認できます。</p>
+    </div>
+    <div class="card">
+      <h3>誰が空いてる？</h3>
+      <p>「@Tennis Nut 土曜に都内で空いてる人いる？」——時間帯ごとに何人が空き時間を登録しているかを一覧に。グループの誰でも時間帯をタップして自分の空き時間を登録でき、重なった人に通知が届きます。</p>
+    </div>
+    <div class="card">
+      <h3>パスポート自慢・みんなのパスポート</h3>
+      <p>
+        「@Tennis Nut マイパスポート」であなたのプレーヤーカードをグループに貼ります。「@Tennis Nut みんなのパスポート」でこのグループのメンバー名簿を表示：アイコンが並び、
+        「名簿を開く」で全員を一覧、タップするとその人のパスポートが見られます。名簿に載るのは、自分でパスポートを貼った人、「@Tennis Nut 名簿に参加」と言った人、「みんなのパスポート」を聞いた人だけ。
+        載りたくなければ「@Tennis Nut 名簿から抜ける」。
+      </p>
+    </div>
+    <div class="callout">
+      「誘われた」「時間が重なった」などの通知を受け取るには、Tennis Nut の友だち追加が必要です。LINE では公式アカウントがメッセージを送れるのは友だちだけだからです。
+    </div>
+
+    <h2 id="rollcall">グループ：参加表の使い方</h2>
+    <p>グループの出欠や +1 は、Tennis Nut が人数を数え、キャンセル待ちを並べ、コート代を割り勘します。途中で別の話をしても大丈夫、参加表は消えません。</p>
+
+    <h3 class="sub">作る</h3>
+    <div class="card">
+      <h3>テニスの募集（実際の 1 回）</h3>
+      <p>「@Tennis Nut 土曜の朝 7 時 有明 あと 1 人」——日時、コート、人数を言うだけ。「あと 1 人」は定員 4、あなたを含めて 3 人いる、という意味です。
+        「8 人まで」とも言えます。グループをチーム登録すると、この募集はチームメイトのアプリにも表示されます。</p>
+    </div>
+    <div class="card">
+      <h3>ふつうの参加表（練習会、飲み会、まとめ買い…）</h3>
+      <p>「@Tennis Nut 参加表 日曜の練習会」。品目や値段があるときは、ふだん話すように言えば OK。例：
+        「@Tennis Nut 土曜のお弁当まとめて注文、唐揚げ 600 円、のり弁 500 円、ベジ 450 円」。参加表に読み取った品目と値段が並びます。
+        違っていたら作った人が「@Tennis Nut 取り消し」してやり直し。参加するときは「+1 唐揚げ」のように書きます。</p>
+    </div>
+    <div class="card">
+      <h3>メニューの写真から作る</h3>
+      <p>メニュー、料金表、ウェアのサイズ表の写真をグループに送り、<b>その写真を長押し → リプライ</b>で「@Tennis Nut この写真で参加表」と言うと、
+        写真の品目と値段を読み取って参加表を作ります。読むのはリプライした 1 枚だけで、ほかの写真は見ません。送ってから時間が経つと LINE から取得できなくなるので、早めにリプライしてください。</p>
+    </div>
+
+    <h3 class="sub">参加・取り消し</h3>
+    <div class="card">
+      <p>
+        <b>+1</b> で参加、<b>-1</b> で取り消し。友だちの分もまとめてなら <b>+2</b>。選択肢があるときは後ろに：「+1 M」「+2 L」。
+        @Tennis Nut は不要、そのまま打つだけ。定員を超えると自動でキャンセル待ちになり、誰かが -1 すると順番に繰り上がります。
+      </p>
+      <p class="path">
+        参加表が複数あるとき：その参加表を長押し → <b>リプライ</b>して +1、または「+1 #12」（# の後ろは参加表の番号）。
+        どれかわからないときは Tennis Nut が聞き返します。
+      </p>
+    </div>
+
+    <h3 class="sub">参加表を見る</h3>
+    <div class="card">
+      <p>「<b>集計</b>」または「<b>名簿</b>」（@ 不要）で、最新の参加表がいちばん下に貼り直されます。
+        参加表の下のクイックボタンは、誰かが新しいメッセージを送ると消えます（LINE の仕様）。そのまま +1 しても有効ですし、「集計」で呼び戻せます。</p>
+    </div>
+
+    <h3 class="sub">コート代</h3>
+    <div class="card">
+      <p>「@Tennis Nut コート代 3000」で参加人数で割り、集計に 1 人あたりの金額が出ます。</p>
+    </div>
+
+    <h3 class="sub">締める</h3>
+    <div class="card">
+      <p>
+        「<b>@Tennis Nut 締め切り</b>」：これ以上受け付けません。参加表は残り、「集計」でいつでも見られます——誰でも締められます。<br>
+        「<b>@Tennis Nut 取り消し</b>」：参加表ごと取り消し。テニスの募集なら、その回も取り消され、参加者に通知が届きます——取り消せるのは作った人だけ。<br>
+        放っておいても自動で終わります：テニスの募集は開始時刻に、ふつうの参加表は 7 日後に。定員になっても自動では締めず、その後の人はキャンセル待ちになります。
+      </p>
+    </div>
+
+    <h2 id="s4">グループ：チームとして登録</h2>
+    <p>
+      いつも一緒に打つグループは、ひとつのチームです。グループで「<b>@Tennis Nut チームを作る</b>」と言い、届いたボタンから
+      地図でホームコートを選び、チーム名を付けます。集合写真をチーム写真にすることもできます。コートにいる必要はありません。
+    </p>
+    <p>
+      登録すると、Tennis Nut がグループに設立証書を貼ります：チーム名、ホームコート、設立日、全国で何番目のチームか。
+      メンバーは「チームに参加」をタップするだけ。チームは Tennis Nut の地図上のホームコートに表示され、全国のほかのチームも見られます
+      （「@Tennis Nut 全国のチーム」）。以後グループでの募集は、チームの募集になります。
+    </p>
+
+    <h2 id="s5">どちらの使い方も、アプリも、同じアカウント</h2>
+    <p>
+      1 対 1 でも、グループでも、残した記録・パスポート・チームはアプリと同じひとつのデータです。グループで募集に参加した人も Tennis Nut を友だち追加すれば、「人数がそろった」「誘われた」の通知が届きます。
+      あとでアプリを使いたくなったら、ダウンロードして「LINE で続ける」を選べば同じパスポートです。
+      すでに Google、Apple、メールでアプリに登録している人は、アプリの「設定 → アカウント → LINE を連携」で記録がひとつにまとまります。
+    </p>
+
+    <p>
+      <a class="next-link" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">LINE で Tennis Nut を友だち追加<span class="arrow">→</span></a>
+    </p>
+    <p class="path">友だち追加したら、ひとりで使うならそのままトーク。グループに招待するなら上の<a href="#group">3 ステップ</a>へ。</p>
+
+    <div class="guide-foot">
+      うまく動かない？<a class="line-inline" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">LINE 🌰</a> で一言どうぞ。または <a href="mailto:kaysoncho@gmail.com">kaysoncho@gmail.com</a> まで。
+    </div>
+  </article>
+
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-text">
+        <a href="/en/blog">Blog</a>·
+        <a href="/en/privacy">プライバシー</a>·
+        <a href="/en/terms">利用規約</a>·
+        <a href="mailto:kaysoncho@gmail.com">お問い合わせ</a>
+        <div style="margin-top: 12px;">© 2026 Tennis Nut · KXON</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

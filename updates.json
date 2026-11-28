@@ -1687,6 +1687,14 @@
       ]
     }
   ],
+  "guidesUnlisted": [
+    {
+      "lang": "ja",
+      "title": "LINE で Tennis Nut を使う",
+      "blurb": "アプリなしで使える 2 通りの使い方：ひとりで使う——コート状況、記録、空き時間、パスポート。テニス仲間のグループで使う——募集の人数集計、みんなのパスポート、チーム登録。",
+      "href": "/ja/line"
+    }
+  ],
   "guides": [
     {
       "title": "Tennis Nut 完整使用指南",

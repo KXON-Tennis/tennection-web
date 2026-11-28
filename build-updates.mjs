@@ -21,7 +21,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const SITE = 'https://tennisnut.kxon.net';
 
-const { releases, guides } = JSON.parse(
+const { releases, guides, guidesUnlisted } = JSON.parse(
   readFileSync(join(ROOT, 'updates.json'), 'utf8')
 );
 if (!releases?.length) throw new Error('updates.json 裡沒有任何 release');
@@ -67,6 +67,19 @@ const L = {
     latestBadge: 'Latest release',
     metaIdxTitle: 'What\u2019s new · Tennis Nut',
     metaIdxDesc: (r) => `Release notes for Tennis Nut. Latest ${r.version}: ${r.summary}`,
+  },
+  // 日文：目前只有不上索引的試作頁（guidesUnlisted），只需要外殼用到的字串。
+  // 沒有日文的 Blog／隱私權／條款，那幾個連結指向英文版。
+  ja: {
+    lang: 'ja',
+    home: '/en',
+    blog: '/en/blog',
+    nav: { blog: 'Blog', other: '中文', otherHref: '/' },
+    navCourts: { label: 'コート', href: '/courts-map?lang=en' },
+    navTravel: { label: '海外でテニス', href: '/travel?lang=en' },
+    privacyHref: '/en/privacy',
+    termsHref: '/en/terms',
+    footer: { blog: 'Blog', privacy: 'プライバシー', terms: '利用規約', contact: 'お問い合わせ' },
   },
 };
 
@@ -168,8 +181,8 @@ const PAGE_CSS = `
     .guide-s { margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
 `;
 
-const head = ({ title, description, canonical, image, alt }) => `  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+const head = ({ title, description, canonical, image, alt, noindex }) => `  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />${noindex ? '\n  <meta name="robots" content="noindex" />' : ''}
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}" />
   <meta property="og:type" content="article" />
@@ -202,8 +215,8 @@ const header = (t) => `  <header class="site-header">
       <img src="/wordmark-glow.png" alt="Tennis Nut" class="brand-wordmark" />
     </a>
     <nav>
-      <a href="${t.lang === 'en' ? '/courts-map?lang=en' : '/courts/tw'}">${t.lang === 'en' ? 'Courts' : '球場'}</a>
-      <a href="${t.lang === 'en' ? '/travel?lang=en' : '/travel'}">${t.lang === 'en' ? 'Tennis travel' : '出國打球'}</a>
+      <a href="${t.navCourts?.href ?? (t.lang === 'en' ? '/courts-map?lang=en' : '/courts/tw')}">${t.navCourts?.label ?? (t.lang === 'en' ? 'Courts' : '球場')}</a>
+      <a href="${t.navTravel?.href ?? (t.lang === 'en' ? '/travel?lang=en' : '/travel')}">${t.navTravel?.label ?? (t.lang === 'en' ? 'Tennis travel' : '出國打球')}</a>
       <a href="${t.blog}" class="active">${t.nav.blog}</a>
       <a href="${t.nav.otherHref}">${t.nav.other}</a>
     </nav>
@@ -213,8 +226,8 @@ const footer = (t) => `  <footer>
     <div class="footer-inner">
       <div class="footer-text">
         <a href="${t.blog}">${t.footer.blog}</a>·
-        <a href="${t.lang === 'en' ? '/en/privacy' : '/privacy'}">${t.footer.privacy}</a>·
-        <a href="${t.lang === 'en' ? '/en/terms' : '/terms'}">${t.footer.terms}</a>·
+        <a href="${t.privacyHref ?? (t.lang === 'en' ? '/en/privacy' : '/privacy')}">${t.footer.privacy}</a>·
+        <a href="${t.termsHref ?? (t.lang === 'en' ? '/en/terms' : '/terms')}">${t.footer.terms}</a>·
         <a href="mailto:kaysoncho@gmail.com">${t.footer.contact}</a>
         <div style="margin-top: 12px;">© 2026 Tennis Nut · KXON</div>
       </div>
@@ -404,6 +417,33 @@ const guideIndex = [];
         image: g.image || '/app-features.png',
       },
       fragment
+    )
+  );
+});
+
+// ── 不上索引的試作頁（其他語言）──────────────────────────────────────────
+// updates.json 的 guidesUnlisted：[{ lang: 'ja', title, blurb, href: '/ja/line' }]，內容放
+// guides/<href 去掉開頭斜線>.html（例：guides/ja/line.html）。不進 Blog 列表、不進
+// guides-index.json（「直接說」只讀中文那份）、加 noindex。Kayson 11-29：「做一頁日文的來看看，
+// 但不要在首頁給連結」。要正式上線時拿掉 noindex 並決定入口。
+(guidesUnlisted ?? []).forEach((g) => {
+  const slug = g.href.replace(/^\//, '');
+  const t = L[g.lang];
+  if (!t) throw new Error(`guidesUnlisted ${g.href}: 沒有 ${g.lang} 這個語系`);
+  const fragment = anchorSections(readFileSync(join(ROOT, 'guides', `${slug}.html`), 'utf8'));
+  mkdirSync(dirname(join(ROOT, `${slug}.html`)), { recursive: true });
+  writeFileSync(
+    join(ROOT, `${slug}.html`),
+    page(
+      {
+        title: `${g.title} · Tennis Nut`,
+        description: g.blurb,
+        canonical: `${SITE}${g.href}`,
+        image: g.image || '/app-features.png',
+        noindex: g.noindex !== false,
+      },
+      fragment,
+      t
     )
   );
 });
