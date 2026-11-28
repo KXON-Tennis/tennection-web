@@ -2,24 +2,24 @@
   <rect x="4" y="4" width="352" height="374" rx="34" fill="#DEDACE"/>
   <rect x="8" y="8" width="344" height="366" rx="30" fill="#E8EDE6"/>
   <rect x="154.0" y="20" width="52" height="5" rx="2.5" fill="#C9C5B8"/>
-  <circle cx="104" cy="120" r="14" fill="#3F7C43"/>
-  <path d="M98 132 L104 144 L110 132 Z" fill="#3F7C43"/>
+  <circle cx="104" cy="120" r="14" fill="#00695F"/>
+  <path d="M98 132 L104 144 L110 132 Z" fill="#00695F"/>
   <rect x="80" y="96" width="20" height="18" rx="6" fill="#D4AF37" stroke="#FFFFFF" stroke-width="2"/>
   <text x="90" y="109" font-size="11" fill="#3A2E00" font-weight="800" text-anchor="middle">2</text>
-  <circle cx="117" cy="107" r="7" fill="#4CAF50" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="117" cy="107" r="7" fill="#2FA08F" stroke="#FFFFFF" stroke-width="2"/>
   <text x="104" y="162" font-size="10.5" fill="#6E776F" font-weight="700" text-anchor="middle">中路網球場</text>
-  <circle cx="250" cy="164" r="14" fill="#3F7C43"/>
-  <path d="M244 176 L250 188 L256 176 Z" fill="#3F7C43"/>
+  <circle cx="250" cy="164" r="14" fill="#00695F"/>
+  <path d="M244 176 L250 188 L256 176 Z" fill="#00695F"/>
   <rect x="226" y="140" width="20" height="18" rx="6" fill="#D4AF37" stroke="#FFFFFF" stroke-width="2"/>
   <text x="236" y="153" font-size="11" fill="#3A2E00" font-weight="800" text-anchor="middle">1</text>
   <text x="250" y="206" font-size="10.5" fill="#6E776F" font-weight="700" text-anchor="middle">中山公園</text>
-  <circle cx="180" cy="222" r="14" fill="#3F7C43"/>
-  <path d="M174 234 L180 246 L186 234 Z" fill="#3F7C43"/>
+  <circle cx="180" cy="222" r="14" fill="#00695F"/>
+  <path d="M174 234 L180 246 L186 234 Z" fill="#00695F"/>
   <text x="180" y="264" font-size="10.5" fill="#6E776F" font-weight="700" text-anchor="middle">中壢運動公園</text>
   <rect x="22" y="286" width="316" height="72" rx="12" fill="#FFFFFF" stroke="#ECEAE2"/>
   <rect x="36" y="300" width="20" height="18" rx="6" fill="#D4AF37"/>
   <text x="46" y="313" font-size="11" fill="#3A2E00" font-weight="800" text-anchor="middle">2</text>
-  <text x="66" y="313" font-size="12" fill="#1B5138" font-weight="700" text-anchor="start">左上角：駐紮了幾支球隊</text>
-  <circle cx="46" cy="338" r="7" fill="#4CAF50"/>
-  <text x="66" y="342" font-size="12" fill="#1B5138" font-weight="700" text-anchor="start">右上角：球場現在的狀態</text>
+  <text x="66" y="313" font-size="12" fill="#007C72" font-weight="700" text-anchor="start">左上角：駐紮了幾支球隊</text>
+  <circle cx="46" cy="338" r="7" fill="#2FA08F"/>
+  <text x="66" y="342" font-size="12" fill="#007C72" font-weight="700" text-anchor="start">右上角：球場現在的狀態</text>
 </svg>

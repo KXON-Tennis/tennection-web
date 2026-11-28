@@ -2,13 +2,13 @@
   <rect x="4" y="4" width="352" height="572" rx="30" fill="#DEDACE"/>
   <rect x="8" y="8" width="344" height="564" rx="26" fill="#FBFAF6"/>
   <rect x="158" y="24" width="44" height="4" rx="2" fill="#D8D5CB"/>
-  <text x="24" y="62" font-size="17" fill="#1B5138" font-weight="800" text-anchor="start">回報新球場或練習牆</text>
+  <text x="24" y="62" font-size="17" fill="#007C72" font-weight="800" text-anchor="start">回報新球場或練習牆</text>
   <text x="24" y="84" font-size="11.5" fill="#9BA29B" font-weight="400" text-anchor="start">位置：24.95731, 121.22504</text>
   <rect x="24" y="98" width="312" height="32" rx="16" fill="#FFFFFF" stroke="#C9C5B8" stroke-width="1.2"/>
-  <path d="M40 98 H128 V130 H40 a16 16 0 0 1 0 -32 z" fill="#D7EBE3" stroke="#1B5138" stroke-width="1.2"/>
+  <path d="M40 98 H128 V130 H40 a16 16 0 0 1 0 -32 z" fill="#D7EBE3" stroke="#007C72" stroke-width="1.2"/>
   <line x1="128" y1="98" x2="128" y2="130" stroke="#C9C5B8" stroke-width="1.2"/>
   <line x1="232" y1="98" x2="232" y2="130" stroke="#C9C5B8" stroke-width="1.2"/>
-  <text x="76" y="119" font-size="12.5" fill="#1B5138" font-weight="800" text-anchor="middle">球場</text>
+  <text x="76" y="119" font-size="12.5" fill="#007C72" font-weight="800" text-anchor="middle">球場</text>
   <text x="180" y="119" font-size="12.5" fill="#2B2F2C" font-weight="600" text-anchor="middle">練習牆</text>
   <text x="284" y="119" font-size="12.5" fill="#2B2F2C" font-weight="600" text-anchor="middle">練習場</text>
   <rect x="24" y="160" width="312" height="44" rx="8" fill="#FFFFFF" stroke="#D8D5CB" stroke-width="1.2"/>
@@ -29,13 +29,13 @@
   <text x="36" y="397.0" font-size="13.5" fill="#2B2F2C" font-weight="500" text-anchor="start">桃園市中壢區中美路</text>
   <rect x="24" y="422" width="312" height="34" rx="8" fill="#FFFFFF"/>
   <text x="38" y="444" font-size="13" fill="#2B2F2C" font-weight="500" text-anchor="start">有夜間照明</text>
-  <rect x="290" y="430" width="34" height="18" rx="9" fill="#1B5138"/>
+  <rect x="290" y="430" width="34" height="18" rx="9" fill="#007C72"/>
   <circle cx="315" cy="439" r="7" fill="#FFFFFF"/>
   <rect x="24" y="460" width="312" height="34" rx="8" fill="#FFFFFF"/>
   <text x="38" y="482" font-size="13" fill="#2B2F2C" font-weight="500" text-anchor="start">室內球場</text>
   <rect x="290" y="468" width="34" height="18" rx="9" fill="#D8D5CB"/>
   <circle cx="299" cy="477" r="7" fill="#FFFFFF"/>
-  <rect x="24" y="504" width="312" height="40" rx="10" fill="#1B5138"/>
+  <rect x="24" y="504" width="312" height="40" rx="10" fill="#007C72"/>
   <text x="180.0" y="529.0" font-size="13.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">送出（核可後 +50 堅果）</text>
   <text x="180" y="562" font-size="11.5" fill="#9BA29B" font-weight="400" text-anchor="middle">審核通過後即會公開給所有使用者。</text>
   <circle cx="336" cy="178" r="13" fill="#E8590C"/>

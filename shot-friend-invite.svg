@@ -4,8 +4,8 @@
 
   <rect x="8" y="8" width="344" height="62" rx="26" fill="#FBFAF6"/>
   <rect x="8" y="52" width="344" height="18" fill="#FBFAF6"/>
-  <text x="28" y="46" font-size="15" fill="#1B5138" font-weight="800">我的好友</text>
-  <g stroke="#1B5138" stroke-width="1.9" fill="none" stroke-linecap="round">
+  <text x="28" y="46" font-size="15" fill="#007C72" font-weight="800">我的好友</text>
+  <g stroke="#007C72" stroke-width="1.9" fill="none" stroke-linecap="round">
     <circle cx="303" cy="34" r="6"/>
     <path d="M293 48 c0 -6 5 -9 10 -9 c3 0 6 1 8 3"/>
     <path d="M315 40 v11 M309.5 45.5 h11"/>
@@ -17,17 +17,17 @@
 
   <rect x="8" y="98" width="344" height="244" rx="24" fill="#FBFAF6"/>
   <rect x="158" y="110" width="44" height="4" rx="2" fill="#D8D5CB"/>
-  <text x="24" y="144" font-size="15" fill="#1B5138" font-weight="800">搜尋好友</text>
-  <text x="336" y="144" font-size="13" fill="#3F7C43" text-anchor="end">關閉</text>
+  <text x="24" y="144" font-size="15" fill="#007C72" font-weight="800">搜尋好友</text>
+  <text x="336" y="144" font-size="13" fill="#00695F" text-anchor="end">關閉</text>
   <rect x="24" y="158" width="312" height="42" rx="10" fill="#FFFFFF" stroke="#ECEAE2"/>
   <circle cx="46" cy="179" r="7" fill="none" stroke="#9BA29B" stroke-width="1.6"/>
   <line x1="51" y1="184" x2="56" y2="189" stroke="#9BA29B" stroke-width="1.6"/>
   <text x="66" y="184" font-size="13" fill="#9BA29B">貼上 ID 搜尋</text>
 
   <rect x="24" y="212" width="150" height="38" rx="9" fill="none" stroke="#C9C5B8"/>
-  <text x="99" y="236" font-size="12.5" fill="#1B5138" font-weight="700" text-anchor="middle">我的 QR Code</text>
+  <text x="99" y="236" font-size="12.5" fill="#007C72" font-weight="700" text-anchor="middle">我的 QR Code</text>
   <rect x="186" y="212" width="150" height="38" rx="9" fill="none" stroke="#C9C5B8"/>
-  <text x="261" y="236" font-size="12.5" fill="#1B5138" font-weight="700" text-anchor="middle">掃描加好友</text>
+  <text x="261" y="236" font-size="12.5" fill="#007C72" font-weight="700" text-anchor="middle">掃描加好友</text>
 
   <rect x="118" y="262" width="124" height="34" rx="17" fill="#FFF3EC" stroke="#E8590C" stroke-width="3"/>
   <text x="180" y="284" font-size="13" fill="#C24A08" font-weight="800" text-anchor="middle">傳邀請給他</text>

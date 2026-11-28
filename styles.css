@@ -2,15 +2,15 @@
   --bg: #FBFAF6;
   --surface: #FFFFFF;
   --border: #ECEAE2;
-  --text-primary: #2E5A34;
-  --text-secondary: #5E7A60;
-  --text-tertiary: #93A795;
-  --accent: #5C9A46;
-  --accent-d: #3C6E3F;
-  /* 品牌深綠：頁首與主要行動按鈕共用，兩處必須是同一個顏色。 */
-  --brand-deep: #1B5138;
-  --accent-soft: rgba(92, 154, 70, 0.12);
-  --tint: #F3F8EC;
+  --text-primary: #2B3A33;
+  --text-secondary: #6E776F;
+  --text-tertiary: #9BA29B;
+  --accent: #007C72;
+  --accent-d: #00695F;
+  /* 品牌青綠（App 主色 #007C72，11-26 起）：頁首與主要行動按鈕共用，兩處必須是同一個顏色。 */
+  --brand-deep: #007C72;
+  --accent-soft: rgba(0, 124, 114, 0.12);
+  --tint: #EEF6F4;
 }
 
 * {
@@ -260,7 +260,7 @@ tr:last-child td {
   align-items: center;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 30%, var(--accent-soft) 0%, rgba(92, 154, 70, 0) 60%),
+    radial-gradient(ellipse at 50% 30%, var(--accent-soft) 0%, rgba(0, 124, 114, 0) 60%),
     var(--bg);
 }
 
@@ -282,7 +282,7 @@ tr:last-child td {
   width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 16px 30px rgba(45, 90, 52, 0.16));
+  filter: drop-shadow(0 16px 30px rgba(20, 60, 55, 0.16));
 }
 
 .hero .device .phone.back {
@@ -439,7 +439,7 @@ tr:last-child td {
   align-items: center;
   gap: 18px;
   background: var(--tint);
-  border: 1px solid #DCEAC9;
+  border: 1px solid #CBE6E1;
   border-radius: 20px;
   padding: 24px;
   margin: 50px 0 8px;
@@ -512,7 +512,7 @@ tr:last-child td {
 /* 04 · app showcase (phone + callouts) */
 .appshow-img {
   width: 100%;
-  background: #2E5A37;
+  background: #2B3A33;
 }
 
 .appshow-img img {
@@ -618,7 +618,7 @@ footer a {
 
 .plat-ic.and {
   background: #EAF4E1;
-  color: #3C6E3F;
+  color: #00695F;
 }
 
 .plat-ic.line {
@@ -806,7 +806,7 @@ footer a {
 .callout {
   margin-top: 14px;
   background: var(--tint);
-  border: 1px solid #DCEAC9;
+  border: 1px solid #CBE6E1;
   border-radius: 14px;
   padding: 14px 16px;
   font-size: 13.5px;

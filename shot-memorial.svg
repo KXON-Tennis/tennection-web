@@ -36,7 +36,7 @@
 
   <!-- 底下兩顆按鈕 -->
   <rect x="0" y="454" width="158" height="26" rx="13" fill="#FFFFFF" stroke="#ECEAE2"/>
-  <text x="79" y="472" font-size="12" fill="#3C6E3F" font-weight="700" text-anchor="middle">另存至相簿</text>
-  <rect x="172" y="454" width="158" height="26" rx="13" fill="#1B5138"/>
+  <text x="79" y="472" font-size="12" fill="#00695F" font-weight="700" text-anchor="middle">另存至相簿</text>
+  <rect x="172" y="454" width="158" height="26" rx="13" fill="#007C72"/>
   <text x="251" y="472" font-size="12" fill="#FFFFFF" font-weight="700" text-anchor="middle">儲存</text>
 </svg>
