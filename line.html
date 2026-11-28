@@ -157,6 +157,18 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
                  transition: background-color .15s ease, transform .15s ease; }
     .next-link:hover { background: var(--accent-d); transform: translateY(-1px); }
     .next-link .arrow { font-size: 14px; opacity: .85; }
+    /* 拉進群組的步驟：編號圓點＋標題＋說明，第一步帶一顆加好友按鈕 */
+    .steps { list-style: none; counter-reset: st; padding: 0; margin: 12px 0 8px; }
+    .steps li { counter-increment: st; position: relative; padding: 0 0 18px 44px; }
+    .steps li::before { content: counter(st); position: absolute; left: 0; top: 0;
+                        width: 30px; height: 30px; border-radius: 50%; background: var(--accent);
+                        color: #fff; font-weight: 800; font-size: 15px;
+                        display: flex; align-items: center; justify-content: center; }
+    .steps li > b { display: block; font-size: 16px; color: var(--text-primary); margin: 3px 0 4px; }
+    .steps li > span { display: block; color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
+    .step-btn { display: inline-block; margin-top: 10px; background: #06C755; color: #fff;
+                text-decoration: none; font-weight: 700; font-size: 15px; border-radius: 999px;
+                padding: 9px 18px; }
     .guide-foot { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
                   font-size: 14px; color: var(--text-tertiary); }
 </style>
@@ -218,12 +230,22 @@ h1 { font-family: "Sora", -apple-system, sans-serif; font-size: 30px; line-heigh
     </div>
 
     <h2 id="s3">把 Nutty 拉進球友群組</h2>
-    <p>
-      拉 Nutty 的人要<b>先加 Nutty 好友</b>（LINE 的邀請畫面只列得出你的好友），群組裡其他人不用。
-      加好友之後：打開你的球友群組 → 右上角 ≡ → <b>邀請</b> → 在好友裡選 <b>Tennis Nut</b>。
-      一個群組只能放一個官方帳號，群組裡已經有別的機器人就放不進來。
-      進來之後，在群組裡 <b>@Nutty</b> 說一句話就行。Nutty 只回應 @ 它的訊息和 +1、-1，其他聊天它不處理。
-    </p>
+    <ol class="steps">
+      <li>
+        <b>先加 Nutty 好友</b>
+        <span>LINE 的邀請畫面只列得出你的好友，所以拉的人要先加。群組裡其他人不用。</span>
+        <a class="step-btn" href="https://line.me/R/ti/p/@tennisnut" target="_blank" rel="noopener">加 Nutty 好友</a>
+      </li>
+      <li>
+        <b>把 Nutty 拉進球友群組</b>
+        <span>打開你的球友群組 → 右上角 <b>≡</b> → <b>邀請</b> → 在好友裡選 <b>Tennis Nut</b>。</span>
+      </li>
+      <li>
+        <b>在群組裡 @Nutty 說一句話</b>
+        <span>Nutty 只回應 @ 它的訊息和 +1、-1，其他聊天它不處理。</span>
+      </li>
+    </ol>
+    <p class="path">一個群組只能放一個官方帳號：群組裡已經有別的機器人，Nutty 就放不進來。</p>
     <div class="card">
       <h3>揪球，人數它來數</h3>
       <p>「@Nutty 週六早上七點大佳 三缺一」開一張名單，大家照常打 +1、-1，滿了自動排候補；打「統計」看名單。</p>
