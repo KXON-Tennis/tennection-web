@@ -108,8 +108,13 @@
     // tnsdiaryapp://practice-invite?t=<token>。App 收到後記下來，登入後認領，
     // 打開跟好友標記一樣的確認畫面（migration 20261029172727）。
     // 用自訂 scheme：沒裝 App 時按了沒反應，所以下面一定要有下載。
-    var t = (new URLSearchParams(location.search).get('t') || '').toLowerCase();
+    // /confirm?m=<16 hex> 是比賽（migration 20261128102030）：對手或隊友還沒裝 App，
+    // 記的人傳來請他確認。同一頁、同一套下載按鈕，只換摘要與 App 連結。
+    var qs = new URLSearchParams(location.search);
+    var isMatch = !!qs.get('m');
+    var t = ((isMatch ? qs.get('m') : qs.get('t')) || '').toLowerCase();
     if (!/^[0-9a-f]{16}$/.test(t)) t = '';
+    if (isMatch) document.getElementById('headline').textContent = '球友邀你確認一起打的比賽';
     var ua = navigator.userAgent || '';
     var os = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document) ? 'ios'
            : /Android/i.test(ua) ? 'android' : '';
@@ -123,13 +128,55 @@
       n.textContent = msg; n.style.display = 'block';
     }
     if (!t) stop('這條連結不完整，請對方再傳一次。');
-    else open.href = 'tnsdiaryapp://practice-invite?t=' + t;
+    else open.href = 'tnsdiaryapp://' + (isMatch ? 'match-invite' : 'practice-invite') + '?t=' + t;
 
     // 摘要：記的人的名字與頭像、球場、日期、挑戰數字——是他自己選擇傳出去的。
     // anon key 本來就是公開的（App 裡也有）。
     var LABELS = [['rally_max', '對抽'], ['volley_max', '截擊'],
                   ['serve_same_max', '單側發球'], ['serve_alt_max', '雙側發球']];
-    if (t) {
+    // 比賽：記的人的名字與頭像、球場、日期、單雙打、比分。結果從收到的人的角度寫
+    // （記的人贏、你是對手 → 你輸了這場）。
+    var RESULT = { win: '勝', loss: '敗', draw: '和' };
+    function flip(r, slot) {
+      if (slot === 'teammate') return r;
+      return r === 'win' ? 'loss' : r === 'loss' ? 'win' : r;
+    }
+    if (t && isMatch) {
+      fetch('https://dwjwisgbpnrxtcvpbkec.supabase.co/rest/v1/rpc/match_invite_by_token', {
+        method: 'POST',
+        headers: { apikey: 'sb_publishable_-M3m33CyJIROw7mP2x0Sxg_pPErO_oc', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_token: t }),
+      }).then(function (r) { return r.ok ? r.json() : null; }).then(function (rows) {
+        var v = rows && rows[0];
+        if (!v) { stop('找不到這條邀請，請對方再傳一次。'); return; }
+        var name = v.inviter_name || '球友';
+        document.getElementById('headline').textContent = name + ' 邀你確認一起打的比賽';
+        var av = document.getElementById('avatar');
+        if (v.inviter_avatar) {
+          var img = document.createElement('img');
+          img.src = v.inviter_avatar; img.alt = ''; img.className = 'avatar';
+          av.replaceWith(img);
+        } else av.textContent = name.charAt(0);
+        document.getElementById('court').textContent = v.court_name || '';
+        var role = v.slot === 'teammate' ? '你是隊友' : '你是對手';
+        var type = v.match_type === 'doubles' ? '雙打' : '單打';
+        document.getElementById('meta').textContent =
+          [(v.match_date || '').replace(/-/g, '/'), type, role].filter(Boolean).join(' · ');
+        // 比分從收到的人那一邊寫：他是對手就左右對調（6-3 → 3-6）。
+        var mine = v.slot === 'teammate';
+        var sc = v.score && v.score.sets ? v.score.sets.map(function (x) {
+          var a = mine ? x.player1 : x.player2, b = mine ? x.player2 : x.player1;
+          return a + '-' + b;
+        }).join(', ') : '';
+        if (v.score && v.score.tiebreak_only && sc) sc = '搶七 ' + sc;
+        var res = RESULT[flip(v.result, v.slot)];
+        document.getElementById('challenge').textContent =
+          [sc, res ? '（你' + res + '）' : ''].join(' ');
+        document.getElementById('card').style.display = 'flex';
+        if (v.status === 'claimed') stop('這條邀請已經有人確認了。');
+        else if (v.status === 'expired') stop('這條邀請已經過期了（7 天內有效），請對方再傳一次。');
+      }).catch(function () {});
+    } else if (t) {
       fetch('https://dwjwisgbpnrxtcvpbkec.supabase.co/rest/v1/rpc/practice_invite_by_token', {
         method: 'POST',
         headers: { apikey: 'sb_publishable_-M3m33CyJIROw7mP2x0Sxg_pPErO_oc', 'Content-Type': 'application/json' },
